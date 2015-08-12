@@ -8,6 +8,7 @@ import string
 
 #linkable words that are part of wikipedia boilerplate
 wiki_words_reserved = ['isbn','random article','help','issn','related changes','recent changes','info','all articles with unsourced statements']
+#TODO: develop a kickass regex which encompasses many variations of reserved words!
 
 def disambiguouizer(ambiguous_wiki, ambiguous_term):
 	refertochomp = ambiguous_wiki.find('may refer to') + 18
