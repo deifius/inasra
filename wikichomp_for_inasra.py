@@ -7,7 +7,11 @@ import urllib2
 import string
 
 #linkable words that are part of wikipedia boilerplate
+<<<<<<< HEAD
 wiki_words_reserved = ['isbn','random article','help','issn','related changes','recent changes','info','all articles with unsourced statements','Community portal','Main page','Special pages','Removed','Cite','Disclaimers','Upload file']
+=======
+wiki_words_reserved = ['isbn','random article','help','issn','related changes','recent changes','info','all articles with unsourced statements']
+>>>>>>> 07c7f4ee87d119521ee61bc9cb904701183ae4ae
 #TODO: develop a kickass regex which encompasses many variations of reserved words!
 
 def disambiguouizer(ambiguous_wiki, ambiguous_term):
