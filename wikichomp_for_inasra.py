@@ -5,20 +5,20 @@ import sys
 import random
 import urllib2
 import string
+import json
 
 #linkable words that are part of wikipedia boilerplate
-wiki_words_reserved = ['isbn','random article','help','issn','related changes','recent changes','info','all articles with unsourced statements','Community portal','Main page','Special pages','Removed','Cite','Disclaimers','Upload file']
-
-wiki_words_reserved = ['isbn','random article','help','issn','related changes','recent changes','info','all articles with unsourced statements']
+wiki_words_reserved = ['isbn','random article','help','issn','related changes','recent changes','info','all articles with unsourced statements','Community portal','Main page','special pages','Removed','Cite','Disclaimers','upload file','about wikipedia','talk page','categories','featured content']
 
 #TODO: develop a kickass regex which encompasses many variations of reserved words!
 
 def disambiguouizer(ambiguous_wiki, ambiguous_term):
+	#in the event of an amiguous term, the disambiguouszer lets user select the proper meaning
 	refertochomp = ambiguous_wiki.find('may refer to') + 18
 	endchomp = ambiguous_wiki.find('<tr>\n<td class="mbox-image"')
-	disambuslice = re.findall('title=".+">.+<.+>, .+</li>\n', ambiguous_wiki[refertochomp:endchomp])
+	disambuslice = re.findall('title=".+">.+<.+>, .+</li>\n', ambiguous_wiki[refertochomp:-1])
 	disambuchoices =[]
-	print ambiguous_wiki[refertochomp:endchomp]
+	print endchomp
 	#print disambuslice
 	for each in disambuslice:
 		descr = each.split(',')[1].split('<')[0]
@@ -45,7 +45,7 @@ def acronymizer(wikitarget):
 	relevance_regex = re.compile('<a href="/wiki/.*?" title=".*?">.*?</a>')
 	relephants = re.findall(relevance_regex,wiki_dump)
 
-	#construct vocabulary
+	#construct vocabulary which contains lists of relevant terms for every letter of the acronymed word
 	vocabulary = []
 	for each in relephants:
 		vocabulary.append(re.sub(".*>","",each[:-4])) 
@@ -76,12 +76,17 @@ def acronymizer(wikitarget):
 	for tick in range(len(acronym_dict)):
 	    if acronym_dict[tick] == []:
 		acronym_dict[tick].append(acro_term[tick])
-	# now generate a random acronym from the dictionary
-	# && recursify
+    
 	print acro_term + " acronymized:"
+	acro_records = open("acro_dicts/" + acro_term, 'w')
+	acro_records.write(json.dumps(acronym_dict))
+	acro_records.close()
+
 	running_acronym = []
 	selection = 0
 	#print acronym_dict
+	# now generate a random acronym from the dictionary
+	# && recursify
 	for each in acronym_dict:
 		if each in ['','.']:
 			print each
