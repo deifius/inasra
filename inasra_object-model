@@ -1,0 +1,32 @@
+#!/usr/bin/env python
+
+# this is the skeleton tempolate of the true inasra object
+
+inasra = []
+
+def self_recursion(inasra):
+	while 1:
+		ux = str(input("gimme the word:\t")) 
+		if ux == '':	continue
+		if inasra == []:
+			for each in range(len(ux)):
+				inasra.append([ux[each]])
+		elif isinstance(ux, str):
+			for each in range(len(inasra)):
+				if inasra[each][0] == ux[0]:
+					inasra[each].append(ux)
+		if ux.isdigit():
+			print('choose one:')
+			if int(ux) < len(inasra) and int(ux) > -1:
+				oldux = ux
+				ux = input(inasra[int(ux)])
+				ux = inasra[int(oldux)][int(ux)]
+			inasra = []
+			for each in range(len(ux)):
+				inasra.append([ux[each]])
+			print('\n')
+		for each in inasra:	print(each)
+
+self_recursion(inasra)
+
+#In current state it is a forgetting, n-dimension inasra
