@@ -1,5 +1,7 @@
 #!/usr/env python
 
+
+#TODO rather than port this whole thing to python3 and then break it down, trim this to pure wikichomp function and then port that to python 3.  recursor and decoheresy are coded directly in py3
 import re
 import sys
 import random
