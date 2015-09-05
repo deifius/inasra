@@ -1,5 +1,11 @@
 #!/usr/env python
 
+# Hi!  Wikichomp does 3 things: grabs articles from wikipedia, decoheres an acronym and recurses with user directions
+# wikichomp should only do 1 thing:  grab articles and place the dictarray in the acro_dicts folder
+# decoherence should be it's own script
+# and recursor too
+# currently implemented in python2.7 
+
 import re
 import sys
 import random
