@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import pdb
-# TODO 
+# TODO : populate the field with the words
 
 xwordspine = open('inasrafieldtest.txt').read().split('\n')
 if xwordspine[-1] == '':
@@ -25,10 +25,13 @@ for everyletter in range(verts):
 for everyletter in range(horiz):
 	for everyvert in range(verts):
 		xwordfield[everyvert].append(' ')
-
+cursor = ['0','0']
 for eachword in range(len(xwordspine)):
-	
-
+	if eachword%2 == 0:
+		print(xwordspine[eachword])
+	if eachword%2 != 0:
+		print('bark bark')
 for eachline in xwordfield:	print(eachline)
+
 print("verts:", verts)
 print('horiz', horiz)
