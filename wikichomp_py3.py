@@ -11,10 +11,12 @@ import json
 import pdb
 
 #linkable words that are part of wikipedia boilerplate
-wiki_words_reserved = ['isbn','random article','help','issn','related changes','recent changes','info','all articles with unsourced statements','Community portal','Main page','special pages','Removed','Cite','Disclaimers','upload file','about wikipedia','talk page','categories','featured content']
+wiki_words_reserved = ['isbn','random article','help','issn','related changes','recent changes','info','all articles with unsourced statements','community portal','Main page','special pages','Removed','Cite','Disclaimers','upload file','about wikipedia','talk page','categories','featured content','adding citations to reliable sources']
 
 #TODO: develop a kickass regex (or a bloom filter) which encompasses many variations of reserved words!
 #
+
+inasrafieldtest = open("inasrafieldtest.txt",'w')
 
 def disambiguouizer(ambiguous_wiki, ambiguous_term):
 	#in the event of an amiguous term, the disambiguouizer lets user select the proper meaning
@@ -48,8 +50,8 @@ def acronymizer(wikitarget):
 		properly_capped = wikitarget.replace(' ', '_').title()
 	properly_capped = properly_capped.replace('&','%26')
 	print("http://en.wikipedia.org/wiki/" + properly_capped + "\n\n")
-	req = urllib.request.Request("http://en.wikipedia.org/wiki/" + properly_capped, \
-				headers={'User-Agent': 'Mozilla/5.0 (Fuck You Wikipedia; Me; emdash)'})
+	req = urllib.request.Request("http://en.wikipedia.org/wiki/" + properly_capped)#, \
+				#headers={'User-Agent': 'Mozilla/5.0 (Fuck You Wikipedia; Me; emdash)'})
 	wiki_dump = urllib.request.urlopen(req).read().lower()
 	#print(wiki_dump)
 	if wiki_dump.count(b'isambiguation') > 10:
@@ -57,7 +59,7 @@ def acronymizer(wikitarget):
 		disambiguouizer(wiki_dump, wikitarget)
 	relevance_regex = re.compile('<a href="/wiki/.*?" title=".*?">.*?</a>')
 	relephants = re.findall(relevance_regex, str(wiki_dump))
-
+	inasrafieldtest.write(wikitarget + '\t')
 	#construct vocabulary which contains lists of relevant terms for every letter of the acronymed word
 	vocabulary = []
 	for each in relephants:
@@ -108,8 +110,9 @@ def acronymizer(wikitarget):
 	print("\n" + acro_term + " acronymized!")
 	while 0 >  userchoice or userchoice > selection:
 		userchoice = int(input('you choose(0-' + str(selection-1) + '): \t'))
+	inasrafieldtest.write(str(userchoice) + '\n')
 	term = running_acronym[userchoice]
-	#for each in acronym_dict:
+		#for each in acronym_dict:
 	#	if each == '':
 	#		print
 	#	else:
