@@ -11,7 +11,7 @@ import json
 import pdb
 
 #linkable words that are part of wikipedia boilerplate
-wiki_words_reserved = ['isbn','random article','help','issn','related changes','recent changes','info','all articles with unsourced statements','community portal','Main page','special pages','Removed','Cite','Disclaimers','upload file','about wikipedia','talk page','categories','featured content','adding citations to reliable sources']
+wiki_words_reserved = ['isbn','random article','help','issn','related changes','recent changes','info','all articles with unsourced statements','community portal','Main page','special pages','Removed','Cite','Disclaimers','upload file','about wikipedia','talk page','categories','featured content','adding citations to reliable sources','content']
 
 #TODO: develop a kickass regex (or a bloom filter) which encompasses many variations of reserved words!
 #
@@ -91,10 +91,10 @@ def acronymizer(wikitarget):
 			acronym_dict[tick].append(acro_term[tick])
 	
 	print(acro_term + " acronymized:")
-	acro_records = open("acro_dicts/" + acro_term, 'w')
+	acro_records = open("acro_dicts/" + acro_term + ".json", 'w')
 	acro_records.write(json.dumps(acronym_dict))
 	acro_records.close()
-
+#TODO: this is what will become decoheresy
 	running_acronym = []
 	selection = 0
 	# now generate a random acronym from the dictionary
