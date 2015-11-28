@@ -9,9 +9,12 @@ import urllib.request
 import string
 import json
 import pdb
+import subprocess
+from time import sleep
+from os import system
 
 #linkable words that are part of wikipedia boilerplate
-wiki_words_reserved = ['isbn','random article','help','issn','related changes','recent changes','info','all articles with unsourced statements','community portal','Main page','special pages','Removed','Cite','Disclaimers','upload file','about wikipedia','talk page','categories','featured content','adding citations to reliable sources','content']
+wiki_words_reserved = ['isbn','random article','help','issn','related changes','recent changes','info','all articles with unsourced statements','community portal','Main page','special pages','Removed','cite','disclaimers','upload file','about wikipedia','talk page','categories','featured content','adding citations to reliable sources','content']
 
 #TODO: develop a kickass regex (or a bloom filter) which encompasses many variations of reserved words!
 #
@@ -99,17 +102,24 @@ def acronymizer(wikitarget):
 	selection = 0
 	# now generate a random acronym from the dictionary
 	# && recursify
-	for each in acronym_dict:
-		if each in ['','.']:
-			print(each)
-		else:
-			running_acronym.append(random.choice(each))
-			print(str(selection) + ".\t" + running_acronym[-1][0].title() + " \t" + running_acronym[-1].capitalize())
-			selection+= 1
 	userchoice = -1
 	print("\n" + acro_term + " acronymized!")
 	while 0 >  userchoice or userchoice > selection:
-		userchoice = int(input('you choose(0-' + str(selection-1) + '): \t'))
+		for each in acronym_dict:
+			if each in ['','.']:
+				print(each)
+			else:
+				running_acronym.append(random.choice(each))
+				print(str(selection) + ".\t" + running_acronym[-1][0].title() + " \t" + running_acronym[-1].capitalize())
+				selection+= 1
+		userchoice = input('you choose(0-' + str(selection-1) + '): \t')
+		if userchoice == '':
+			inasrafieldtest.flush()
+			exec(compile(open('spinylize.py','rb').read(), 'spinylize.py', 'exec'))
+			userchoice = -1
+			selection = 0
+			print "+-+-+-+-+-+-+-+-+-+\n"
+		userchoice = int(userchoice)
 	inasrafieldtest.write(str(userchoice) + '\n')
 	term = running_acronym[userchoice]
 		#for each in acronym_dict:
