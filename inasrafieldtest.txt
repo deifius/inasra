@@ -1,5 +1,8 @@
-nirvana	3
-vishu	2
-sopanam	4
-neyyattinkara vasudevan	10
-appukutty poduval	
+pokemon	3
+emerald	2
+engraving	4
+antoine masson	2
+titian	2
+theseus	2
+echidna	3
+insects	3

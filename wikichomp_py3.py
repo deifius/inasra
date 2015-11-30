@@ -16,7 +16,7 @@ from os import system
 #linkable words that are part of wikipedia boilerplate
 wiki_words_reserved = ['isbn','random article','help','issn','related changes','recent changes','info','all articles with unsourced statements','community portal','Main page','special pages','Removed','cite','disclaimers','upload file','about wikipedia','talk page','categories','featured content','adding citations to reliable sources','content']
 
-#TODO: develop a kickass regex (or a bloom filter) which encompasses many variations of reserved words!
+#TODO: develop a kickass regex (and a bloom filter) which encompasses many variations of reserved words!
 #
 
 inasrafieldtest = open("inasrafieldtest.txt",'w')
@@ -42,10 +42,10 @@ def disambiguouizer(ambiguous_wiki, ambiguous_term):
 	while 0 >  userchoice or userchoice > selection:
 		userchoice = int(input('you choose(0-' + str(selection) + '): \t'))
 	ambiguous_term = disambuchoices[userchoice][2].split(b'/')[-1]
-	acronymizer(ambiguous_term)
+	acronymizer(str(ambiguous_term)[2:-1])
 
 def acronymizer(wikitarget):
-	if str(b'(') in wikitarget:
+	if '(' in wikitarget:
 		properly_capped = wikitarget.split('(')[0].replace(' ', '_').title() \
 									+"("+ wikitarget.split('(')[1]
 		wikitarget = wikitarget.split('(')[0]
