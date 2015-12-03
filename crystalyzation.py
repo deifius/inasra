@@ -18,6 +18,7 @@ def boardtrim(this):
     elif destroy == 0:
         print('trimmed')
 
+
 boardtrim(this)
 this = list(zip(*this))
 boardtrim(this)
@@ -26,17 +27,17 @@ this = list(zip(*this))
 for each in this: print(each)
 
 #place 1 horizontal
-wordbones = ""
-for each_square in this[0]:
-    wordbones += each_square.replace(' ','.')
-for each_square in range(len(this[1])):
-    if this[1][each_square] is ' ': 
-        pass
-    else: 
-        print(wordbones[each_square])
+#wordbones = ""
+#for each_square in this[0]:
+#    wordbones += each_square.replace(' ','.')
+#for each_square in range(len(this[1])):
+#    if this[1][each_square] is ' ': 
+#        pass
+#    else: 
+#        print(wordbones[each_square])
         #wordbones[each_square] = this[0][each_square].replace(' ','!')
-print(wordbones)
-mystery_word = re.compile(wordbones)
+#print(wordbones)
+#mystery_word = re.compile(wordbones)
 pdb.set_trace()
 #place -1 horizontal
 
