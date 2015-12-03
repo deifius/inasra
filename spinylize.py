@@ -19,7 +19,7 @@ def visualize(xwordfield):
 		
 maxwordsize = {'verts':0,'horiz':0}
 xwordspine = open('inasrafieldtest.txt').read().replace(' ','').split('\n')
-if xwordspine[-1] == '':
+if xwordspine[-1] is '':
 	xwordspine.pop(-1)
 #pdb.set_trace()
 if xwordspine[-1][-1].isdigit() == False:
@@ -61,7 +61,7 @@ for eachword in range(len(xwordspine)):
 			xwordfield[cursor[0]][cursor[1]] = letter
 			cursor[0] += 1
 			visualize(xwordfield)
-			sleep(.071)
+			sleep(.061)
 		if cursor[0] > maxcursor[0]:
 				maxcursor[0] = cursor[0] 
 		cursor[0] -= len(xwordspine[eachword][0])
@@ -71,7 +71,7 @@ for eachword in range(len(xwordspine)):
 			xwordfield[cursor[0]][cursor[1]] = letter
 			cursor[1] += 1
 			visualize(xwordfield)
-			sleep(.071)
+			sleep(.061)
 		if cursor[1] > maxcursor[1]:
 				maxcursor[1] = cursor[1] 
 		cursor[1] -= len(xwordspine[eachword][0])

@@ -1,8 +1,8 @@
-pokemon	3
-emerald	2
-engraving	4
-antoine masson	2
-titian	2
-theseus	2
-echidna	3
-insects	3
+isaac asimov	5
+androids	7
+seropi	2
+robonaut	2
+bioloid	3
+lego mindstorms	4
+microsoft robotics studio	9
+robosapien	8
