@@ -30,7 +30,7 @@ class Board(object):
 
     def row_count(self):
         if self.DISPOSITION is Horizontal:
-            return len(self.board)
+            return len(self.boarhd)
         elif self.DISPOSITION is Vertical:
             return len(self.board[0])
         else:

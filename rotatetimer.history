@@ -1,0 +1,1019 @@
+None
+this =json.loads(open("xwordspine.json").read())
+def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+    else:
+        xwordfield = 'trimmed'
+        print('trimmed')
+xwordfield = 'untrimmed'
+while xwordfield == 'untrimmed':
+    xwordfield = boardtrim(this)
+this = list(zip(*this))
+xwordfield = 'untrimmed'
+while xwordfield == 'untrimmed':
+    xwordfield = boardtrim(this)
+import json
+this =json.loads(open("xwordspine.json").read())
+def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+    else:
+        xwordfield = 'trimmed'
+        print('trimmed')
+xwordfield = 'untrimmed'
+while xwordfield == 'untrimmed':
+    xwordfield = boardtrim(this)
+this = list(zip(*this))
+xwordfield = 'untrimmed'
+while xwordfield == 'untrimmed':
+    xwordfield = boardtrim(this)
+this
+this = list(zip(this))
+this
+for each in this:
+ each
+this = list(zip(*this))
+for each in this:
+ each
+for each in this:
+ each
+this = list(zip(*this))
+import json
+this =json.loads(open("xwordspine.json").read())
+for each in this:
+ each
+this = list(zip(*this))
+for each in this:
+ each
+def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+    else:
+        xwordfield = 'trimmed'
+        print('trimmed')
+this
+xwordfield = 'untrimmed'
+while xwordfield == 'untrimmed':
+    xwordfield = boardtrim(this)
+this = list(zip(*this))
+xwordfield = 'untrimmed'
+while xwordfield == 'untrimmed':
+    xwordfield = boardtrim(this)
+for each in this:
+ each
+xwordfield = 'untrimmed'
+while xwordfield == 'untrimmed':
+    xwordfield = boardtrim(this)
+    print('yep')
+def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+    else if destroy = 0:
+        xwordfield = 'trimmed'
+        print('trimmed')
+def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+    else if destroy = 0:
+        xwordfield = 'trimmed'
+def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+    else if destroy = 0:
+        xwordfield = 'trimmed'
+def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+    elif destroy = 0:
+        xwordfield = 'trimmed'def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+    elif destroy == 0:
+        xwordfield = 'trimmed'
+def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+    elif destroy == 0:
+        xwordfield = 'trimmed'
+this
+for each in this:
+ each
+def boardtrim(this):xwordfield = 'untrimmed'
+while xwordfield == 'untrimmed':
+    xwordfield = boardtrim(this)
+    print('yep')
+xwordfield = 'untrimmed'
+while xwordfield == 'untrimmed':
+    xwordfield = boardtrim(this)
+    print('yep')
+for each in this: each
+xwordfield = 'untrimmed'
+while xwordfield == 'untrimmed':
+    xwordfield = boardtrim(this)
+    print('yep')
+xwordfield = 'untrimmed'
+while xwordfield == 'untrimmed':
+    xwordfield = boardtrim(this)
+    print('yep')
+xwordfield = 'untrimmed'
+while xwordfield == 'untrimmed':
+    xwordfield = boardtrim(this)
+    print('yep')xwordfield = 'untrimmed'
+while xwordfield == 'untrimmed':
+    xwordfield = boardtrim(this)
+    print('yep')
+for each in this: each
+xwordfield = 'untrimmed'
+while xwordfield eq 'untrimmed':
+    xwordfield = boardtrim(this)
+    print('yep')
+xwordfield = 'untrimmed'
+while xwordfield eq 'untrimmed':
+    xwordfield = boardtrim(this)
+    print('yep')
+xwordfield = 'untrimmed'
+while xwordfield eq 'untrimmed':
+    xwordfield = boardtrim(this)
+def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+    elif destroy == 0:
+        print('trimmed')
+def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+    elif destroy == 0:
+        print('trimmed')
+def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+    elif destroy == 0:
+        print('trimmed')
+xwordfield = 'untrimmed'
+while xwordfield eq 'untrimmed':
+    xwordfield = boardtrim(this)
+    print('yep')
+xwordfield = 'untrimmed'
+while xwordfield eq 'untrimmed':
+    xwordfield = boardtrim(this)
+    print('yep')
+xwordfield = 'untrimmed'
+while xwordfield eq 'untrimmed':
+    xwordfield = boardtrim(this)
+    print('yep')
+xwordfield = 'untrimmed'
+while xwordfield eq 'untrimmed':
+    xwordfield = boardtrim(this)
+    print('yep')
+xwordfield = 'untrimmed'
+while xwordfield is 'untrimmed':
+    xwordfield = boardtrim(this)
+    print('yep')
+while xwordfield is 'untrimmed':
+    xwordfield = boardtrim(this)
+xwordfield
+xwordfield = 'untrimmed'
+xwordfield
+while xwordfield is 'untrimmed':
+    xwordfield = boardtrim(this)
+xwordfield
+for each in this: each
+def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+        boardtrim(this)
+    elif destroy == 0:
+        print('trimmed')
+def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+        boardtrim(this)
+    elif destroy == 0:
+        print('trimmed')
+def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+        boardtrim(this)
+    elif destroy == 0:
+        print('trimmed')
+for each in this: each
+boardtrim(this)
+for each in this: each
+this = list(zip(*this))this = list(zip(*this))this = list(zip(*this))
+this = list(zip(*this))
+for each in this: each
+this = list(zip(*this))
+for each in this: each
+boardtrim(this)
+for each in this: each
+this = list(zip(*this))
+boardtrim(this)
+this = list(zip(*this))
+for each in this: each
+this =json.loads(open("xwordspine.json").read())
+for each in this: each
+def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+        boardtrim(this)
+    elif destroy == 0:
+        print('trimmed')
+boardtrim(this)
+this = list(zip(*this))
+boardtrim(this)
+for each in this: each
+this = list(zip(*this))
+for each in this: each
+this =json.loads(open("xwordspine.json").read())
+def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+        boardtrim(this)
+    elif destroy == 0:
+        print('trimmed')
+boardtrim(this)
+this = list(zip(*this))
+boardtrim(this)
+this = list(zip(*this))
+for each in this: each
+for each in this[1]:
+for each in this[5]:
+ if each is ' ':
+  pass
+ else:
+  print each
+for each in this[1]:
+ if each is ' ':
+  pass
+ else:
+  print(each)
+for each in this[1]:
+ each
+for each in this[0]: each
+this[1]
+this[5]
+this[-1]
+this[-2]
+import re
+wordbones = ""
+for each_square in this[0]:
+    wordbones += each_square.replace(' ','.')
+wordbones
+import json
+json.loads(open('acro_dicts/yajna.json').read))
+json.loads(open('acro_dicts/yajna.json').read)
+json.loads(open('acro_dicts/yajna.json').read())
+yajna = json.loads(open('acro_).read())
+yajna[1]
+yajna[2]
+yajna[4]
+yajna[4][2]
+yajna[5][2]
+yajna[0][2]
+yajna[1][2]
+yajna[2][2]
+yajna[3][2]
+yajna[4][2]
+yajna[4][3]
+import lol_accessing
+board
+Board
+import lol_accessi
+import crystalyzation
+c
+import crystalyzation
+wordbones
+this
+inasra.this
+crystalyzation.this
+accessing_lol.board
+import lol_accessi
+import lol_accessing
+lol_accessing.Board()
+lol_accessing.DispositionError()()
+lol_accessing.DispositionError())
+lol_accessing.DispositionError()
+lol_accessing.Board()
+lol_accessing.Board(board)
+lol_accessing.board()
+lol_accessing.board
+for each in lol_accessing.board: each
+import numpy
+import timeit
+def rotate(aplane):)
+def rotate(aplane):
+    aplane=list(zip(*aplane))
+    for each in aplane:
+        each = list(each)
+timeit.timeit(rotate(lol_accessing.board)))
+timeit.timeit(rotate(lol_accessing.board))
+timeit.timeit(rotate(lol_accessing.board), 1000))
+timeit.timeit(rotate(lol_accessing.board), number = 1000))
+timeit.timeit(rotate(lol_accessing.board), number = 1000)lol
+for each in lol_accessing.board: each
+rotate(lol_accessing.board)
+for each in lol_accessing.board: each
+board = lol_accessing.board
+board
+rotate(board)
+for each in board: each
+rotate(board)
+for each in board: each
+def rotate(this):
+ this = list(zip(*this))
+ for each in this:
+    each = list(each)
+ for each in this: each
+rotate(board)
+board
+def rotate(this):
+ this = list(zip(*this))
+ for each in this:
+    each = list(each)
+ for each in this: print each
+def rotate(this):
+ this = list(zip(*this))
+ for each in this:
+    each = list(each)
+ for each in this: print(each)
+def rotate(this):
+rotate(board)
+board
+boardp[1][0] = 7
+board[1][0] = 7
+board[0][1] = 5
+board
+for each in board: each
+rotate(board)
+timeit.timeit(rotate(board), number = 500)
+timeit.timeit('rotate(board)', number = 500)
+rotate(board)
+timeit.timeit(rotate(board), number = 500)
+timeit.timeit("rotate(board'), number = 500)
+timeit.timeit('rotate(board'), number = 500)
+timeit.timeit('rotate(board)', number = 500)
+timeit.timeit('print(board)', number = 500)
+timeit.timeit('print('yo')', number = 500)
+timeit.timeit('print("yo")', number = 500)
+import time
+time.time()
+time.clock()
+time.ascitime()
+time.asctime()
+time.time()
+from time import time as epoch
+epoch
+epoch()
+def rotatetime(board):
+ timeA = epoch()
+ rotate(board)
+ print(epoch()-timeA)
+rotateboar(board)
+rotateboard(board)
+rotatetime(board)
+import random
+random.Random(6)
+list(random.Random(6))
+string(random.Random(6))
+str(random.Random(6))
+bigrow= []
+for each in range(500):
+ bigrow.append(random.randint(9))
+help(random.randint)
+for each in range(500):
+ bigrow.append(random.randint(0:9))
+help(random.randint)
+for each in range(500):
+ bigrow.append(random.randint(0,9))
+bigrow
+bigboard = []
+for each in range(1200):
+ bigboard.append(bigrow)
+bigboard[0]
+len(bigboard)
+rotatetime(bigboard)
+import readline
+readline.get_history_item(1)
+for each_history in range(readline.get_current_history_length()):
+ savehistory.write(str(readline.get_history_item(each_history)) + '\n')
+savehistory.flush()
+historyfile = 'rotatetimer.history'
+savehistory = open(historyfile, 'w')
+for each_history in range(readline.get_current_history_length()):
+ savehistory.write(str(readline.get_history_item(each_history)) + '\n')
+savehistory.flush()
+for each_history in range(readline.get_current_history_length()):
+None
+this =json.loads(open("xwordspine.json").read())
+def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+    else:
+        xwordfield = 'trimmed'
+        print('trimmed')
+xwordfield = 'untrimmed'
+while xwordfield == 'untrimmed':
+    xwordfield = boardtrim(this)
+this = list(zip(*this))
+xwordfield = 'untrimmed'
+while xwordfield == 'untrimmed':
+    xwordfield = boardtrim(this)
+import json
+this =json.loads(open("xwordspine.json").read())
+def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+    else:
+        xwordfield = 'trimmed'
+        print('trimmed')
+xwordfield = 'untrimmed'
+while xwordfield == 'untrimmed':
+    xwordfield = boardtrim(this)
+this = list(zip(*this))
+xwordfield = 'untrimmed'
+while xwordfield == 'untrimmed':
+    xwordfield = boardtrim(this)
+this
+this = list(zip(this))
+this
+for each in this:
+ each
+this = list(zip(*this))
+for each in this:
+ each
+for each in this:
+ each
+this = list(zip(*this))
+import json
+this =json.loads(open("xwordspine.json").read())
+for each in this:
+ each
+this = list(zip(*this))
+for each in this:
+ each
+def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+    else:
+        xwordfield = 'trimmed'
+        print('trimmed')
+this
+xwordfield = 'untrimmed'
+while xwordfield == 'untrimmed':
+    xwordfield = boardtrim(this)
+this = list(zip(*this))
+xwordfield = 'untrimmed'
+while xwordfield == 'untrimmed':
+    xwordfield = boardtrim(this)
+for each in this:
+ each
+xwordfield = 'untrimmed'
+while xwordfield == 'untrimmed':
+    xwordfield = boardtrim(this)
+    print('yep')
+def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+    else if destroy = 0:
+        xwordfield = 'trimmed'
+        print('trimmed')
+def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+    else if destroy = 0:
+        xwordfield = 'trimmed'
+def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+    else if destroy = 0:
+        xwordfield = 'trimmed'
+def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+    elif destroy = 0:
+        xwordfield = 'trimmed'def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+    elif destroy == 0:
+        xwordfield = 'trimmed'
+def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+    elif destroy == 0:
+        xwordfield = 'trimmed'
+this
+for each in this:
+ each
+def boardtrim(this):xwordfield = 'untrimmed'
+while xwordfield == 'untrimmed':
+    xwordfield = boardtrim(this)
+    print('yep')
+xwordfield = 'untrimmed'
+while xwordfield == 'untrimmed':
+    xwordfield = boardtrim(this)
+    print('yep')
+for each in this: each
+xwordfield = 'untrimmed'
+while xwordfield == 'untrimmed':
+    xwordfield = boardtrim(this)
+    print('yep')
+xwordfield = 'untrimmed'
+while xwordfield == 'untrimmed':
+    xwordfield = boardtrim(this)
+    print('yep')
+xwordfield = 'untrimmed'
+while xwordfield == 'untrimmed':
+    xwordfield = boardtrim(this)
+    print('yep')xwordfield = 'untrimmed'
+while xwordfield == 'untrimmed':
+    xwordfield = boardtrim(this)
+    print('yep')
+for each in this: each
+xwordfield = 'untrimmed'
+while xwordfield eq 'untrimmed':
+    xwordfield = boardtrim(this)
+    print('yep')
+xwordfield = 'untrimmed'
+while xwordfield eq 'untrimmed':
+    xwordfield = boardtrim(this)
+    print('yep')
+xwordfield = 'untrimmed'
+while xwordfield eq 'untrimmed':
+    xwordfield = boardtrim(this)
+def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+    elif destroy == 0:
+        print('trimmed')
+def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+    elif destroy == 0:
+        print('trimmed')
+def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+    elif destroy == 0:
+        print('trimmed')
+xwordfield = 'untrimmed'
+while xwordfield eq 'untrimmed':
+    xwordfield = boardtrim(this)
+    print('yep')
+xwordfield = 'untrimmed'
+while xwordfield eq 'untrimmed':
+    xwordfield = boardtrim(this)
+    print('yep')
+xwordfield = 'untrimmed'
+while xwordfield eq 'untrimmed':
+    xwordfield = boardtrim(this)
+    print('yep')
+xwordfield = 'untrimmed'
+while xwordfield eq 'untrimmed':
+    xwordfield = boardtrim(this)
+    print('yep')
+xwordfield = 'untrimmed'
+while xwordfield is 'untrimmed':
+    xwordfield = boardtrim(this)
+    print('yep')
+while xwordfield is 'untrimmed':
+    xwordfield = boardtrim(this)
+xwordfield
+xwordfield = 'untrimmed'
+xwordfield
+while xwordfield is 'untrimmed':
+    xwordfield = boardtrim(this)
+xwordfield
+for each in this: each
+def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+        boardtrim(this)
+    elif destroy == 0:
+        print('trimmed')
+def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+        boardtrim(this)
+    elif destroy == 0:
+        print('trimmed')
+def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+        boardtrim(this)
+    elif destroy == 0:
+        print('trimmed')
+for each in this: each
+boardtrim(this)
+for each in this: each
+this = list(zip(*this))this = list(zip(*this))this = list(zip(*this))
+this = list(zip(*this))
+for each in this: each
+this = list(zip(*this))
+for each in this: each
+boardtrim(this)
+for each in this: each
+this = list(zip(*this))
+boardtrim(this)
+this = list(zip(*this))
+for each in this: each
+this =json.loads(open("xwordspine.json").read())
+for each in this: each
+def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+        boardtrim(this)
+    elif destroy == 0:
+        print('trimmed')
+boardtrim(this)
+this = list(zip(*this))
+boardtrim(this)
+for each in this: each
+this = list(zip(*this))
+for each in this: each
+this =json.loads(open("xwordspine.json").read())
+def boardtrim(this):
+    destroy = 1
+    for each in this[-1]:
+        if each is ' ':
+            pass
+        else:
+            destroy = 0
+    if destroy == 1:
+        this.pop(-1)
+        boardtrim(this)
+    elif destroy == 0:
+        print('trimmed')
+boardtrim(this)
+this = list(zip(*this))
+boardtrim(this)
+this = list(zip(*this))
+for each in this: each
+for each in this[1]:
+for each in this[5]:
+ if each is ' ':
+  pass
+ else:
+  print each
+for each in this[1]:
+ if each is ' ':
+  pass
+ else:
+  print(each)
+for each in this[1]:
+ each
+for each in this[0]: each
+this[1]
+this[5]
+this[-1]
+this[-2]
+import re
+wordbones = ""
+for each_square in this[0]:
+    wordbones += each_square.replace(' ','.')
+wordbones
+import json
+json.loads(open('acro_dicts/yajna.json').read))
+json.loads(open('acro_dicts/yajna.json').read)
+json.loads(open('acro_dicts/yajna.json').read())
+yajna = json.loads(open('acro_).read())
+yajna[1]
+yajna[2]
+yajna[4]
+yajna[4][2]
+yajna[5][2]
+yajna[0][2]
+yajna[1][2]
+yajna[2][2]
+yajna[3][2]
+yajna[4][2]
+yajna[4][3]
+import lol_accessing
+board
+Board
+import lol_accessi
+import crystalyzation
+c
+import crystalyzation
+wordbones
+this
+inasra.this
+crystalyzation.this
+accessing_lol.board
+import lol_accessi
+import lol_accessing
+lol_accessing.Board()
+lol_accessing.DispositionError()()
+lol_accessing.DispositionError())
+lol_accessing.DispositionError()
+lol_accessing.Board()
+lol_accessing.Board(board)
+lol_accessing.board()
+lol_accessing.board
+for each in lol_accessing.board: each
+import numpy
+import timeit
+def rotate(aplane):)
+def rotate(aplane):
+    aplane=list(zip(*aplane))
+    for each in aplane:
+        each = list(each)
+timeit.timeit(rotate(lol_accessing.board)))
+timeit.timeit(rotate(lol_accessing.board))
+timeit.timeit(rotate(lol_accessing.board), 1000))
+timeit.timeit(rotate(lol_accessing.board), number = 1000))
+timeit.timeit(rotate(lol_accessing.board), number = 1000)lol
+for each in lol_accessing.board: each
+rotate(lol_accessing.board)
+for each in lol_accessing.board: each
+board = lol_accessing.board
+board
+rotate(board)
+for each in board: each
+rotate(board)
+for each in board: each
+def rotate(this):
+ this = list(zip(*this))
+ for each in this:
+    each = list(each)
+ for each in this: each
+rotate(board)
+board
+def rotate(this):
+ this = list(zip(*this))
+ for each in this:
+    each = list(each)
+ for each in this: print each
+def rotate(this):
+ this = list(zip(*this))
+ for each in this:
+    each = list(each)
+ for each in this: print(each)
+def rotate(this):
+rotate(board)
+board
+boardp[1][0] = 7
+board[1][0] = 7
+board[0][1] = 5
+board
+for each in board: each
+rotate(board)
+timeit.timeit(rotate(board), number = 500)
+timeit.timeit('rotate(board)', number = 500)
+rotate(board)
+timeit.timeit(rotate(board), number = 500)
+timeit.timeit("rotate(board'), number = 500)
+timeit.timeit('rotate(board'), number = 500)
+timeit.timeit('rotate(board)', number = 500)
+timeit.timeit('print(board)', number = 500)
+timeit.timeit('print('yo')', number = 500)
+timeit.timeit('print("yo")', number = 500)
+import time
+time.time()
+time.clock()
+time.ascitime()
+time.asctime()
+time.time()
+from time import time as epoch
+epoch
+epoch()
+def rotatetime(board):
+ timeA = epoch()
+ rotate(board)
+ print(epoch()-timeA)
+rotateboar(board)
+rotateboard(board)
+rotatetime(board)
+import random
+random.Random(6)
+list(random.Random(6))
+string(random.Random(6))
+str(random.Random(6))
+bigrow= []
+for each in range(500):
+ bigrow.append(random.randint(9))
+help(random.randint)
+for each in range(500):
+ bigrow.append(random.randint(0:9))
+help(random.randint)
+for each in range(500):
+ bigrow.append(random.randint(0,9))
+bigrow
+bigboard = []
+for each in range(1200):
+ bigboard.append(bigrow)
+bigboard[0]
+len(bigboard)
+rotatetime(bigboard)
+import readline
+readline.get_history_item(1)
+for each_history in range(readline.get_current_history_length()):
+ savehistory.write(str(readline.get_history_item(each_history)) + '\n')
+savehistory.flush()
+historyfile = 'rotatetimer.history'
+savehistory = open(historyfile, 'w')
+for each_history in range(readline.get_current_history_length()):
+ savehistory.write(str(readline.get_history_item(each_history)) + '\n')
+savehistory.flush()
+for each_history in range(readline.get_current_history_length()):
+ savehistory.write(str(readline.get_history_item(each_history)) + '\n')
+savehistory.flush()
+for each_history in range(readline.get_current_history_length()):

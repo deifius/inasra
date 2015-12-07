@@ -44,6 +44,15 @@ class Board(object):
         else:
             raise DispositionError("Disposition is required.")
 
+    def write_cell(self, row, col, val):
+        if self.DISPOSITION is Horizontal:
+            self.board[row][col] = val
+        elif self.DISPOSITION is Vertical:
+            self.board[col][row] = val
+        else:
+            raise DispositionError("Disposition is required.")
+    
+
 class HorizontalBoard(Board):
     DISPOSITION = Horizontal
 
