@@ -1,8 +1,2 @@
-isaac asimov	5
-androids	7
-seropi	2
-robonaut	2
-bioloid	3
-lego mindstorms	4
-microsoft robotics studio	9
-robosapien	8
+kurt Cobain	3
+the stooges	

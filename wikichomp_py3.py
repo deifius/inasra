@@ -12,10 +12,11 @@ import pdb
 import subprocess
 from time import sleep
 from os import system
+import pdb
 
 #linkable words that are part of wikipedia boilerplate
-wiki_words_reserved = ['isbn','random article','help','issn','related changes','recent changes','info','all articles with unsourced statements','community portal','Main page','special pages','Removed','cite','disclaimers','upload file','about wikipedia','talk page','categories','featured content','adding citations to reliable sources','content']
-
+wiki_words_reserved = json.loads(open('wiki_reserve_terms.json').read())
+#pdb.set_trace()
 #TODO: develop a kickass regex (and a bloom filter) which encompasses many variations of reserved words!
 #
 
