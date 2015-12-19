@@ -81,4 +81,4 @@ for eachword in range(len(xwordspine)):
 writio = open('xwordspine.json', 'w')
 writio.write(json.dumps(xwordfield))
 writio.close()
-# TODO : populate the spine with the words from acro_dicts
+# TODO : populate the spine with the words from acro_dicts. This is project crystalyzation.py

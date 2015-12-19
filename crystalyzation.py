@@ -19,6 +19,7 @@ def boardtrim(board):
         boardtrim(board)
     elif destroy == 0:
         print('trimmed')
+pdb.set_trace()
 
 
 boardtrim(board)
@@ -47,7 +48,7 @@ mystery_word = re.compile(''.join(wordbones))
 acroglob = glob('acro_dicts/*')
 maybe_bone = []
 for each in acroglob:
- maybe_bone.append(json.loads(open(each).read()))
+	maybe_bone.append(json.loads(open(each).read()))
 
 flat_list_of_maybe_bones = []
 for each in maybe_bone:
