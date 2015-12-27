@@ -1,0 +1,38 @@
+#N canvas 61 77 450 300 10;
+#X obj 86 92 gemwin;
+#X msg 40 29 create;
+#X msg 23 61 destroy;
+#X msg 90 62 dimen 400 320;
+#X obj 63 93 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
+;
+#X obj 253 233 text3d;
+#X msg 110 256 font /usr/share/fonts/truetype/ubuntu-font-family/Ubuntu-MI.ttf
+;
+#X msg 85 115 lighting 0;
+#X obj 190 199 gemhead;
+#X obj 340 132 shell;
+#X msg 92 225 set font \$1;
+#X obj 95 199 openpanel;
+#X obj 93 180 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 359 153 print std;
+#X obj 344 203 print err;
+#X msg 332 102 ls;
+#X msg 226 88 sh present.words.sh;
+#X msg 254 162 text \$1 \$2;
+#X connect 1 0 0 0;
+#X connect 2 0 0 0;
+#X connect 3 0 0 0;
+#X connect 4 0 0 0;
+#X connect 6 0 5 0;
+#X connect 7 0 0 0;
+#X connect 8 0 5 0;
+#X connect 9 0 13 0;
+#X connect 9 0 5 0;
+#X connect 9 1 14 0;
+#X connect 10 0 6 0;
+#X connect 11 0 10 0;
+#X connect 12 0 11 0;
+#X connect 15 0 9 0;
+#X connect 16 0 9 0;
+#X connect 17 0 5 0;

@@ -1,0 +1,33 @@
+#N canvas 759 211 1030 644 10;
+#X obj -31 7 inlet;
+#X obj -147 207 mtof;
+#X text -84 -14 receive midi note value;
+#X obj -44 60 moses 4e+14;
+#X obj -74 59 * 2;
+#X obj 38 86 hsl 596 100 8e+14 4e+14 0 0 empty empty empty -2 -8 0
+10 -262144 -1 -1 38224 1;
+#X obj 336 119 image Linear_visible_spectrum.gif;
+#X msg 682 103 open Linear_visible_spectrum.gif;
+#X obj 684 82 loadbang;
+#X obj -62 262 synesthes;
+#X floatatom -76 154 5 0 0 0 - - -;
+#X obj -50 178 + 5;
+#X obj -25 108 + 12;
+#X obj -24 147 int;
+#X obj -76 126 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X connect 0 0 1 0;
+#X connect 1 0 3 0;
+#X connect 3 0 4 0;
+#X connect 3 1 5 0;
+#X connect 4 0 3 0;
+#X connect 7 0 6 0;
+#X connect 8 0 7 0;
+#X connect 10 0 1 0;
+#X connect 10 0 11 0;
+#X connect 10 0 12 0;
+#X connect 11 0 9 0;
+#X connect 12 0 13 1;
+#X connect 13 0 10 0;
+#X connect 14 0 13 0;
+#X coords 0 -1 1 1 603 102 1 34 85;

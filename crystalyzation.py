@@ -4,8 +4,10 @@ import re
 import pdb
 from glob import glob as glob
 import random
+pdb.set_trace()
 
-board =json.loads(open("xwordspine.json").read())
+board = json.loads(open("xwordspine.json").read())
+pdb.set_trace()
 
 def boardtrim(board):
     destroy = 1
@@ -31,14 +33,15 @@ board = list(zip(*board))
 for each in range(len(board)):
     board[each] = list(board[each])
 
-for each in board: print(each)
+for each in board:
+    print(each)
 
 #place 1 horizontal
 wordbones = []
 for each_square in board[0]:
-    wordbones.append(each_square.replace(' ','.'))
+    wordbones.append(each_square.replace(' ', '.'))
 for each_square in range(len(board[1])):
-    if board[1][each_square] is not ' ':  
+    if board[1][each_square] is not ' ':
         print(wordbones[each_square])
         wordbones[each_square] = board[0][each_square]
 print(''.join(wordbones))
@@ -48,17 +51,17 @@ mystery_word = re.compile(''.join(wordbones))
 acroglob = glob('acro_dicts/*')
 maybe_bone = []
 for each in acroglob:
-	maybe_bone.append(json.loads(open(each).read()))
+    maybe_bone.append(json.loads(open(each).read()))
 
 flat_list_of_maybe_bones = []
 for each in maybe_bone:
-	for every in each:
- 		for single in every:
- 			flat_list_of_maybe_bones.append(single)
+    for every in each:
+        for single in every:
+            flat_list_of_maybe_bones.append(single)
 random.shuffle(flat_list_of_maybe_bones)
 
 pdb.set_trace()
-#Why the fuck are my for loops broken?
+#Why are my for loops broken?
 
 
 

@@ -1,0 +1,4 @@
+#N canvas 919 365 450 300 10;
+#X obj 94 107 table red 1024;
+#X obj 94 130 table green 1024;
+#X obj 87 154 table blue 1024;
