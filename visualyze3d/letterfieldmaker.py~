@@ -1,0 +1,5 @@
+#!/usr/bin/env python
+
+import json
+
+blockwithspine = json.loads(open("../xwordspine.json").read())
