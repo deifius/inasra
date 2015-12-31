@@ -4,10 +4,9 @@ import re
 import pdb
 from glob import glob as glob
 import random
-pdb.set_trace()
+import socket
 
 board = json.loads(open("xwordspine.json").read())
-pdb.set_trace()
 
 def boardtrim(board):
     destroy = 1
@@ -21,8 +20,6 @@ def boardtrim(board):
         boardtrim(board)
     elif destroy == 0:
         print('trimmed')
-pdb.set_trace()
-
 
 boardtrim(board)
 board = list(zip(*board))
@@ -33,9 +30,17 @@ board = list(zip(*board))
 for each in range(len(board)):
     board[each] = list(board[each])
 
-for each in board:
-    print(each)
+depants = open('visualyze3d/thepants.txt','w')
+for each in range(len(board)):
+	for space in range(len(board[each])):
+		if board[each][space] == ' ':
+			print('ok')
+		else:
+			goods = board[each][space]+' 0 '+str(each)+' '+str(space)+';\n'
+			depants.write(goods)
+depants.close()
 
+pdb.set_trace()
 #place 1 horizontal
 wordbones = []
 for each_square in board[0]:
