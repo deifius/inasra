@@ -1,6 +1,10 @@
-charcoal	1
-horticulture	3
-turgor pressure	4
-osmotic	4
-turgor	4
-osmotic	
+weezer	5
+rick rubin	1
+ian mackaye	3
+minor threat	6
+hardcore_pornography	16
+pornotopia	4
+omnipotent	2
+narcissists	4
+ingroup	3
+racism	

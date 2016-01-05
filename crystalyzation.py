@@ -34,9 +34,9 @@ depants = open('visualyze3d/thepants.txt','w')
 for each in range(len(board)):
 	for space in range(len(board[each])):
 		if board[each][space] == ' ':
-			print('ok')
+			print('')
 		else:
-			goods = board[each][space]+' 0 '+str(each)+' '+str(space)+';\n'
+			goods = board[each][space]+' 0 '+str(.4*each)+' '+str(-.4*space)+';\n'
 			depants.write(goods)
 depants.close()
 

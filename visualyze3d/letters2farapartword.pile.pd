@@ -1,4 +1,4 @@
-#N canvas 1 52 895 290 10;
+#N canvas 124 78 895 290 10;
 #X obj 617 19 random 360;
 #X obj 635 91 route 0 1 2;
 #X obj 533 21 % 3;
@@ -14,7 +14,7 @@
 #X obj 674 177 t b b f;
 #X obj 618 -6 until 3;
 #X msg 618 -28 3;
-#N canvas 1 203 262 164 window 0;
+#N canvas 1 122 262 164 window 0;
 #X obj 108 134 gemwin;
 #X msg 89 69 create;
 #X msg 31 60 destroy;
@@ -42,7 +42,7 @@
 #X obj 403 192 t b s;
 #X obj 340 216 pack f symbol;
 #X obj 135 17 gemkeyname;
-#X obj 244 -11 gemkeyname;
+#X obj 247 -11 gemkeyname;
 #X obj 228 90 sel Return BackSpace;
 #X obj 509 153 s mailman;
 #X obj 149 44 loadbang;
@@ -50,7 +50,7 @@
 #X obj 147 133 metro 50;
 #X msg 197 106 1;
 #X msg 153 102 0;
-#N canvas 561 365 450 300 it 0;
+#N canvas 557 363 450 300 it 0;
 #X obj 126 51 inlet;
 #X obj 119 242 outlet;
 #X obj 166 148 list split 1;
@@ -92,7 +92,7 @@
 #X connect 7 0 8 0;
 #X connect 8 0 6 0;
 #X connect 9 0 6 1;
-#X restore 400 154 pd speedlimit;
+#X restore 406 164 pd speedlimit;
 #X obj 344 112 sel Control_L Caps_Lock;
 #X floatatom 493 53 5 0 0 0 - - -;
 #X msg 494 73 \$1 clear;
@@ -107,6 +107,7 @@
 #X obj 339 50 print;
 #X msg 338 0 python wikichomp.webify.py cure;
 #X obj 499 208 pack;
+#X obj 498 229 s mouse.pos;
 #X obj 501 178 gemmouse 22 16;
 #X msg 715 110 \$1 move \$2 \$3 \$4;
 #N canvas 709 516 267 248 formcube 0;
@@ -157,15 +158,15 @@
 #X connect 19 0 1 3;
 #X coords 0 -1 1 1 85 60 1 100 100;
 #X restore 714 36 pd formcube;
-#N canvas 24 441 550 285 camera 0;
+#N canvas 26 442 550 285 camera 0;
 #X obj 98 107 camera;
 #X obj 98 5 gemhead;
 #X obj 81 55 tgl 15 0 empty empty reverse 0 -6 0 8 -262144 -1 -1 0
 1;
 #X obj 68 12 tgl 15 0 empty empty forward 0 -6 0 8 -262144 -1 -1 0
 1;
-#X obj 53 28 tgl 15 0 empty empty left 0 -6 0 8 -262144 -1 -1 1 1;
-#X obj 79 26 tgl 15 0 empty empty right 0 -6 0 8 -262144 -1 -1 1 1
+#X obj 53 28 tgl 15 0 empty empty left 0 -6 0 8 -262144 -1 -1 0 1;
+#X obj 79 26 tgl 15 0 empty empty right 0 -6 0 8 -262144 -1 -1 0 1
 ;
 #X msg 68 27 left \$1;
 #X msg 94 26 right \$1;
@@ -200,10 +201,6 @@
 #X obj 334 26 symbol;
 #X obj 142 135 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 231 77 r mousepos;
-#X obj 229 106 unpack;
-#X obj 186 127 - 11;
-#X obj 240 146 - 8;
 #X connect 1 0 0 0;
 #X connect 2 0 14 0;
 #X connect 3 0 13 0;
@@ -246,13 +243,8 @@
 #X connect 35 0 33 1;
 #X connect 36 0 32 0;
 #X connect 37 0 12 0;
-#X connect 38 0 39 0;
-#X connect 39 0 40 0;
-#X connect 39 1 41 0;
-#X connect 40 0 23 0;
-#X connect 41 0 21 0;
 #X coords 0 -1 1 1 170 150 1 0 0;
-#X restore -44 -4 pd camera;
+#X restore -45 -4 pd camera;
 #X obj 701 36 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X msg 707 10 1;
@@ -275,21 +267,20 @@
 #X connect 4 0 7 0;
 #X connect 5 0 7 0;
 #X connect 6 0 7 0;
-#X restore 414 137 pd selLRUD;
-#N canvas 1 588 235 176 lettercontrol 1;
+#X restore 428 139 pd selLRUD;
+#N canvas 685 445 235 176 lettercontrol 1;
 #X floatatom 195 46 5 0 0 0 - - -;
 #X obj 40 106 list append;
 #X obj 53 22 inlet;
 #X obj 135 145 outlet;
 #X obj 87 86 t b l;
-#N canvas 613 528 216 236 mailmandecoder 1;
+#N canvas 611 528 216 236 mailmandecoder 1;
 #X obj -149 1 inlet;
 #X obj -157 34 list split 1;
 #X obj -137 56 list split 1;
 #X obj -198 95 list prepend;
 #X obj -103 81 list prepend;
 #X obj -133 170 list;
-#X obj -194 172 list;
 #X obj -154 197 s mailman;
 #X obj -47 24 loadbang;
 #X msg -56 57 0 0 0 0 0;
@@ -300,13 +291,12 @@
 #X connect 1 1 2 0;
 #X connect 2 0 3 0;
 #X connect 2 1 4 0;
-#X connect 3 0 6 0;
-#X connect 4 0 10 0;
-#X connect 5 0 7 0;
-#X connect 6 0 7 0;
-#X connect 8 0 9 0;
-#X connect 9 0 1 0;
-#X connect 10 0 5 0;
+#X connect 3 0 5 0;
+#X connect 4 0 9 0;
+#X connect 5 0 6 0;
+#X connect 7 0 8 0;
+#X connect 8 0 1 0;
+#X connect 9 0 5 0;
 #X restore 15 154 pd mailmandecoder;
 #X obj 8 25 inlet;
 #X text 94 52 receive a list:;
@@ -316,9 +306,7 @@
 #X text 139 116 bang letter;
 #X text 142 128 instantiator;
 #X msg 143 89 c 1 0 0;
-#X obj 13 132 print ord;
 #X connect 1 0 5 0;
-#X connect 1 0 14 0;
 #X connect 2 0 1 0;
 #X connect 4 0 3 0;
 #X connect 4 1 1 1;
@@ -327,8 +315,8 @@
 #X connect 10 1 0 0;
 #X connect 13 0 4 0;
 #X restore -53 200 pd lettercontrol;
-#N canvas 109 495 235 269 lettermaker 1;
-#N canvas 761 159 94 605 letterarray 1;
+#N canvas 702 346 235 269 lettermaker 0;
+#N canvas 702 108 94 605 letterarray 1;
 #X obj 10 20 letter 0;
 #X obj 10 40 letter 1;
 #X obj 10 60 letter 2;
@@ -415,6 +403,7 @@
 #X obj 10 1680 letter 83;
 #X obj 10 1700 letter 84;
 #X obj 10 1720 letter 85;
+#X obj 10 1740 letter 86;
 #X restore 32 43 pd letterarray;
 #X obj -32 101 pack f f;
 #X obj -18 49 t f f;
@@ -456,51 +445,55 @@
 #X connect 18 0 8 1;
 #X connect 21 1 20 0;
 #X restore 66 203 pd lettermaker;
-#N canvas 147 569 176 195 lettertest 1;
+#N canvas 616 569 176 195 lettertest 1;
 #X obj 45 132 netsend;
 #X floatatom 61 164 5 0 0 0 - - -;
-#N canvas 825 581 127 183 readpants 1;
-#X obj 22 6 inlet;
+#N canvas 827 524 127 183 readpants 1;
+#X obj 16 -4 inlet;
 #X obj 7 118 textfile;
-#X obj 75 155 outlet;
+#X obj 48 146 outlet;
 #X msg 24 86 rewind;
-#X obj 67 30 t b b b;
-#X msg 10 56 read thepants.txt;
+#X obj 61 20 t b b b;
+#X msg 4 46 read thepants.txt;
 #X msg 72 92 1;
-#X obj 24 142 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
 #X obj 99 95 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
 ;
 #X obj 67 117 metro 120;
+#X msg 83 70 0;
+#X obj 18 141 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
 #X connect 0 0 4 0;
 #X connect 1 0 2 0;
+#X connect 1 1 9 0;
 #X connect 3 0 1 0;
 #X connect 4 0 6 0;
 #X connect 4 1 3 0;
 #X connect 4 2 5 0;
 #X connect 5 0 1 0;
-#X connect 6 0 9 0;
-#X connect 7 0 1 0;
-#X connect 8 0 9 0;
-#X connect 9 0 1 0;
+#X connect 6 0 7 0;
+#X connect 7 0 8 0;
+#X connect 8 0 1 0;
+#X connect 9 0 7 0;
+#X connect 10 0 1 0;
 #X restore 35 31 pd readpants;
 #X obj 31 9 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X msg 8 92 connect localhost 38989;
 #X obj 28 51 prepend send;
 #X obj 44 69 loadbang;
+#X msg 97 130 disconnect;
 #X connect 0 0 1 0;
 #X connect 2 0 5 0;
 #X connect 3 0 2 0;
 #X connect 4 0 0 0;
 #X connect 5 0 0 0;
 #X connect 6 0 4 0;
+#X connect 7 0 0 0;
 #X restore 142 -2 pd lettertest;
 #X obj 403 52 r mailman;
 #X obj 709 140 s mailman;
+#X msg 495 124;
 #X msg 516 100 0 move 1 2 3;
-#X obj 498 229 s mousepos;
-#X msg 495 124 85 w;
 #X connect 0 0 7 0;
 #X connect 1 0 10 0;
 #X connect 1 1 8 0;
@@ -536,7 +529,8 @@
 #X connect 27 0 17 0;
 #X connect 28 0 27 0;
 #X connect 29 0 27 0;
-#X connect 32 2 52 0;
+#X connect 31 0 19 0;
+#X connect 32 2 53 0;
 #X connect 33 0 34 0;
 #X connect 34 0 24 0;
 #X connect 36 0 38 0;
@@ -548,16 +542,16 @@
 #X connect 41 0 23 0;
 #X connect 42 0 43 0;
 #X connect 44 0 42 0;
-#X connect 45 0 59 0;
-#X connect 46 0 45 0;
-#X connect 46 1 45 1;
-#X connect 47 0 57 0;
-#X connect 48 0 47 0;
-#X connect 50 0 48 0;
-#X connect 51 0 50 0;
-#X connect 52 0 31 0;
-#X connect 53 0 54 0;
-#X connect 54 0 53 1;
-#X connect 56 0 35 0;
-#X connect 58 0 24 0;
+#X connect 45 0 46 0;
+#X connect 47 0 45 0;
+#X connect 47 1 45 1;
+#X connect 48 0 58 0;
+#X connect 49 0 48 0;
+#X connect 51 0 49 0;
+#X connect 52 0 51 0;
+#X connect 53 0 31 0;
+#X connect 54 0 55 0;
+#X connect 55 0 54 1;
+#X connect 57 0 35 0;
+#X connect 59 0 24 0;
 #X connect 60 0 24 0;
