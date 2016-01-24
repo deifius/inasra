@@ -7,13 +7,22 @@ Self
 Recursive
 Acronym
 
-In current form, inasra will help you build an acronym tree that serves as a spine for a crossword.  
-You will have the opportunity to recursively acronymise, and so experience an adventure of words and meaning.
-the desired funcionality will build acronyms based off relevant new articles and dictionary entries
-there will be an inasra.me client that visualizes a crossword puzzle in the browser as relephant paths
-inasra will populate a robust crossword puzzle from the spine ctreated by the user
-inasra will over iteration evolve a hyper-dimensional crosswords from aggregate user sessions (inasra.us)
-inasra.us will search for loops within the xwor[d] 
+right now, inasra is prepared to help you build an acronym tree 
+that serves as a spine for a crossword you (me) devise.  
+You may then recursively acronymise, 
+and so begin an adventure of words and meaning.
+
+we will build acronyms from 
+news articles, dictionary entries, wikis; all avilable relephants.
+there will be an inasra.me client that visualizes 
+a crossword puzzle in the browser as relephant paths
+inasra will populate a crossword puzzle 
+from the spine designed by the the me
+
+over iteration inasra will evolve a 
+hyper-dimensional crosswords from aggregate 
+user sessions (inasra.us)
+inasra.us will then seek loops within the xwor[d] 
 
 ####todo list####
 inasra.me
