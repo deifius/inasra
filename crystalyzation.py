@@ -3,10 +3,8 @@ import json
 import re
 import pdb
 from glob import glob as glob
-import random
-import socket
 
-board = json.loads(open("xwordspine.json").read())
+board =json.loads(open("xwordspine.json").read())
 
 def boardtrim(board):
     destroy = 1
@@ -21,6 +19,7 @@ def boardtrim(board):
     elif destroy == 0:
         print('trimmed')
 
+
 boardtrim(board)
 board = list(zip(*board))
 for each in board:
@@ -30,45 +29,56 @@ board = list(zip(*board))
 for each in range(len(board)):
     board[each] = list(board[each])
 
-depants = open('visualyze3d/thepants.txt','w')
-for each in range(len(board)):
-	for space in range(len(board[each])):
-		if board[each][space] == ' ':
-			print('')
-		else:
-			goods = board[each][space]+' 0 '+str(.4*each)+' '+str(-.4*space)+';\n'
-			depants.write(goods)
-depants.close()
+def boardprint(board):
+    for each in board: print(each)
 
-pdb.set_trace()
 #place 1 horizontal
 wordbones = []
 for each_square in board[0]:
-    wordbones.append(each_square.replace(' ', '.'))
+    wordbones.append(each_square.replace(' ','\S'))
 for each_square in range(len(board[1])):
-    if board[1][each_square] is not ' ':
+    if board[1][each_square] is not ' ':  
         print(wordbones[each_square])
         wordbones[each_square] = board[0][each_square]
-print(''.join(wordbones))
-mystery_word = re.compile(''.join(wordbones))
+killer = "".join(wordbones)
+mystery_word = re.compile(killer)
+
+sumpin = glob('acro_dicts/*.json')
+biglexicon = []
+for each in sumpin:
+    once = json.loads(open(each).read())
+    for every in once:
+        for each in every:
+            biglexicon.append(each.replace(' ',''))
+
+lines = []
+def findnextwordspace (board):
+    for space in range(len(board[0])):
+        if  board[0][space] == ' ' and board[1][space] == ' ':
+            board[0][space] = '.'
+    for space in range(len(board[-1])):
+        if  board[-1][space] == ' ' and board[-2][space] == ' ':
+            board[-1][space] = '.'
+    for eachline in range(len(board)):
+        for space in range(len(board[0])):
+            if board[eachline][space] == ' ':
+                if board[eachline-1][space] == '.' or board[eachline-1][space] == ' ':
+                    if board[eachline+1][space] == '.' or board[eachline+1][space] == ' ':
+                        board[eachline][space] = '.'
+
+    for each in board:
+        lines.append(''.join(each))
+#    for each in range(len(lines)):
+#        for entry in range(len(lines[each])):
+#            if  lines[each][entry] == '':
+#                lines[each].pop(entry)
+                
 
 
-acroglob = glob('acro_dicts/*')
-maybe_bone = []
-for each in acroglob:
-    maybe_bone.append(json.loads(open(each).read()))
-
-flat_list_of_maybe_bones = []
-for each in maybe_bone:
-    for every in each:
-        for single in every:
-            flat_list_of_maybe_bones.append(single)
-random.shuffle(flat_list_of_maybe_bones)
+findnextwordspace(board)
 
 pdb.set_trace()
-#Why are my for loops broken?
-
-
-
+writio = open('xwordspine.json', 'w')
+writio.write(json.dumps(board))
+writio.close()
 #place -1 horizontal
-
