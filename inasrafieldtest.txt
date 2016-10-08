@@ -1,10 +1,6 @@
-weezer	5
-rick rubin	1
-ian mackaye	3
-minor threat	6
-hardcore_pornography	16
-pornotopia	4
-omnipotent	2
-narcissists	4
-ingroup	3
-racism	
+facebook	0
+facebook like button	0
+facebook	2
+cascading style sheets	4
+authority control	5
+redirection_	2

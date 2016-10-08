@@ -38,7 +38,7 @@ for each_square in board[0]:
     wordbones.append(each_square.replace(' ','\S'))
 for each_square in range(len(board[1])):
     if board[1][each_square] is not ' ':  
-        print(wordbones[each_square])
+        #print(wordbones[each_square])
         wordbones[each_square] = board[0][each_square]
 killer = "".join(wordbones)
 mystery_word = re.compile(killer)
@@ -49,8 +49,8 @@ for each in sumpin:
     once = json.loads(open(each).read())
     for every in once:
         for each in every:
+            each = re.sub('[^a-z]','',each)
             biglexicon.append(each.replace(' ',''))
-
 lines = []
 def findnextwordspace (board):
     for space in range(len(board[0])):
@@ -65,19 +65,39 @@ def findnextwordspace (board):
                 if board[eachline-1][space] == '.' or board[eachline-1][space] == ' ':
                     if board[eachline+1][space] == '.' or board[eachline+1][space] == ' ':
                         board[eachline][space] = '.'
-
     for each in board:
         lines.append(''.join(each))
-#    for each in range(len(lines)):
-#        for entry in range(len(lines[each])):
-#            if  lines[each][entry] == '':
-#                lines[each].pop(entry)
-                
+    obstacle = re.compile('\.?[a-z][a-z]+\.?')
+    for i in range(len(lines)):  
+        lines[i] = re.sub(obstacle,'',lines[i],)
+        if re.search('[a-z| ]',lines[i],) is None:
+            lines[i] = '<empty>'
+        if re.search('\.',lines[i],) is None:
+            lines[i] = '<empty>'
 
+    for i in range(len(lines)):
+        if lines[i] == '<empty>': continue
+        start = 0
+        end = 0
+        templist = list(lines[i])
+        while templist[0] == '.':
+            templist.pop(0)
+            start = start + 1
+        while templist[-1] == '.':
+            templist.pop(-1)
+            end = end + 1
+        lines[i] = '.{,' + str(start) + '}' + ''.join(templist) + '.{,' + str(end) + '}'
+    newentries = []
+    for i in range(len(lines)):
+        for j in range(len(biglexicon)):
+            if re.match(lines[i], biglexicon[j]) is not None:
+                newentries.append([i, biglexicon[j]])
+    pdb.set_trace()
 
 findnextwordspace(board)
-
 pdb.set_trace()
+#  lol I can search biglexicon for well formulated regex strings from the board
+
 writio = open('xwordspine.json', 'w')
 writio.write(json.dumps(board))
 writio.close()
