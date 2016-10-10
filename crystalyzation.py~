@@ -17,22 +17,16 @@ def boardtrim(board):
         board.pop(-1)
         boardtrim(board)
     elif destroy == 0:
-        print('trimmed')
-
+        print('')
 
 boardtrim(board)
 board = list(zip(*board))
 for each in board:
     each = list(each)
 boardtrim(board)
-board = list(zip(*board))
-for each in range(len(board)):
-    board[each] = list(board[each])
-
-def boardprint(board):
-    for each in board: print(each)
 
 #place 1 horizontal
+
 wordbones = []
 for each_square in board[0]:
     wordbones.append(each_square.replace(' ','\S'))
@@ -50,9 +44,10 @@ for each in sumpin:
     for every in once:
         for each in every:
             each = re.sub('[^a-z]','',each)
-            biglexicon.append(each.replace(' ',''))
-lines = []
+            biglexicon.append(str(each.replace(' ','')))
+
 def findnextwordspace (board):
+    lines = []
     for space in range(len(board[0])):
         if  board[0][space] == ' ' and board[1][space] == ' ':
             board[0][space] = '.'
@@ -74,7 +69,6 @@ def findnextwordspace (board):
             lines[i] = '<empty>'
         if re.search('\.',lines[i],) is None:
             lines[i] = '<empty>'
-
     for i in range(len(lines)):
         if lines[i] == '<empty>': continue
         start = 0
@@ -87,17 +81,43 @@ def findnextwordspace (board):
             templist.pop(-1)
             end = end + 1
         lines[i] = '.{,' + str(start) + '}' + ''.join(templist) + '.{,' + str(end) + '}'
+    
     newentries = []
     for i in range(len(lines)):
         for j in range(len(biglexicon)):
             if re.match(lines[i], biglexicon[j]) is not None:
-                newentries.append([i, biglexicon[j]])
+                entry = []
+                entry.append(i)
+                entry.extend(list(biglexicon[j]))
+                newentries.append(entry)
+    entrysort = newentries.sort(key=len)
 
+    chosen_one = ''
+    while chosen_one is '':
+        #pdb.set_trace()
+        chosen_line = int(newentries[-1].pop(0))
+        chosen_word = newentries.pop()
+        alignment = []
+        for x in range(len(board[chosen_line])):
+            if re.match('[^\.]',board[chosen_line][x]) is not None:
+                #pdb.set_trace()
+                alignment.append([x,board[chosen_line][x]])
+        while alignment[0][1] is not chosen_word[alignment[0][0]]:
+            chosen_word = ['.'] + chosen_word
+            if len(chosen_word) > len(board[chosen_line]): break
+#        if len(alignment) > 1:
+#            while alignment[-1][1] is not chosen_word[alignment[-1][0]]:
+#                chosen_word = ['.'] + chosen_word
+#                if len(chosen_word) > len(board[chosen_line]): break
+        if len(chosen_word) < len(board[chosen_line]):
+            for e in range(len(chosen_word)):
+                board[chosen_line][e] = chosen_word[e]
+                chosen_one = chosen_word
 findnextwordspace(board)
 pdb.set_trace()
 #  lol I can search biglexicon for well formulated regex strings from the board
 
 writio = open('xwordspine.json', 'w')
-writio.write(json.dumps(board))
+writio.write(json.dumps(board).replace('.',' '))
 writio.close()
 #place -1 horizontal

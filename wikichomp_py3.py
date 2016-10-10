@@ -85,7 +85,7 @@ def acronymizer(wikitarget):
 				acronym_equiv.append(each)
 		acronym_dict.append(acronym_equiv)
 
-
+## A regex to excise all reserved wikiwords will be needed here.  It should be its own function and 
 	for element in wiki_words_reserved:
 		for letter_dict in acronym_dict:
 			while element in letter_dict:

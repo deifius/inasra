@@ -12,10 +12,11 @@ import pdb
 import subprocess
 from time import sleep
 from os import system
+import pdb
 
 #linkable words that are part of wikipedia boilerplate
-wiki_words_reserved = ['isbn','random article','help','issn','related changes','recent changes','info','all articles with unsourced statements','community portal','Main page','special pages','Removed','cite','disclaimers','upload file','about wikipedia','talk page','categories','featured content','adding citations to reliable sources','content']
-
+wiki_words_reserved = json.loads(open('wiki_reserve_terms.json').read())
+#pdb.set_trace()
 #TODO: develop a kickass regex (and a bloom filter) which encompasses many variations of reserved words!
 #
 
@@ -53,7 +54,6 @@ def acronymizer(wikitarget):
 		properly_capped = wikitarget.replace(' ', '_').title()
 	properly_capped = properly_capped.replace('&','%26')
 	print("http://en.wikipedia.org/wiki/" + properly_capped + "\n\n")
-	pdb.set_trace()
 	req = urllib.request.Request("http://en.wikipedia.org/wiki/" + properly_capped)#, \
 				#headers={'User-Agent': 'Mozilla/5.0 (Fuck You Wikipedia; Me; emdash)'})
 	wiki_dump = urllib.request.urlopen(req).read().lower()
@@ -84,12 +84,15 @@ def acronymizer(wikitarget):
 			if each[0] == element:
 				acronym_equiv.append(each)
 		acronym_dict.append(acronym_equiv)
-
-
+		
+#	for letter_dict in acronym_dict[0]: 
+#	    if re.search(wiki_words_reserved[-1],letter_dict) is not None: 
+#	        print(letter_dict) 
+#	pdb.set_trace()
 	for element in wiki_words_reserved:
 		for letter_dict in acronym_dict:
-			while element in letter_dict:
-				letter_dict.remove(element)
+		    for each in letter_dict:
+			    each = filter(re.compile(element).match,each)
 	for tick in range(len(acronym_dict)):
 		if acronym_dict[tick] == []:
 			acronym_dict[tick].append(acro_term[tick])
