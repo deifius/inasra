@@ -3,6 +3,7 @@ import json
 import re
 import pdb
 from glob import glob as glob
+import random
 
 board =json.loads(open("xwordspine.json").read())
 
@@ -93,11 +94,14 @@ def findnextwordspace (board):
                 entry.append(i)
                 entry.extend(list(biglexicon[j]))
                 newentries.append(entry)
-    entrysort = newentries.sort(key=len)
+    #uncommenting the following line will randomize the next entry
+    random.shuffle(newentries) 
+    #uncommenting the following line will produce the largest word for the next entry
+    #entrysort = newentries.sort(key=len) 
 
     chosen_one = ''
     while chosen_one is '':
-        #pdb.set_trace()
+        pdb.set_trace()
         chosen_line = int(newentries[-1].pop(0))
         chosen_word = newentries.pop()
         alignment = []
@@ -117,7 +121,7 @@ def findnextwordspace (board):
                 board[chosen_line][e] = chosen_word[e]
                 chosen_one = chosen_word
 findnextwordspace(board)
-pdb.set_trace()
+#pdb.set_trace()
 #  lol I can search biglexicon for well formulated regex strings from the board
 board = list(zip(*board))
 writio = open('xwordspine.json', 'w')

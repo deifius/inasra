@@ -66,12 +66,16 @@ def acronymizer(wikitarget):
 	inasrafieldtest.write(wikitarget + '\t')
 	#construct vocabulary which contains lists of relevant terms for every letter of the acronymed word
 	vocabulary = []
+	#here
+	wikiwords = re.compile('('+')|('.join(wiki_words_reserved)+')')
 	for each in relephants:
-		vocabulary.append(re.sub(".*>","",each[:-4])) 
+		questionable_content = re.sub(".*>","",each[:-4])
+		#pdb.set_trace()
+		if wikiwords.match(questionable_content) is None:
+			vocabulary.append(questionable_content) 
 	for bang in range(0,vocabulary.count('')):
 		vocabulary.remove('')
 	vocab = sorted(vocabulary, key=str.lower)
-
 	#form a dictionary from vocabulary
 	acro_term = wikitarget.lower().translate(str.maketrans("","")) #got from http://stackoverflow.com/questions/265960/best-way-to-strip-punctuation-from-a-string-in-python
 	acronym_dict = []
@@ -96,7 +100,7 @@ def acronymizer(wikitarget):
 	
 	print(acro_term + " acronymized:")
 	acro_records = open("acro_dicts/" + acro_term + ".json", 'w')
-	acro_records.write(json.dumps(acronym_dict))
+	acro_records.write(json.dumps(vocabulary))
 	acro_records.close()
 #TODO: this is what will become decoheresy
 	running_acronym = []
