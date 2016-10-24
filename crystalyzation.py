@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import json
 import re
 import pdb
@@ -94,14 +94,15 @@ def findnextwordspace (board):
                 entry.append(i)
                 entry.extend(list(biglexicon[j]))
                 newentries.append(entry)
+    pdb.set_trace()
     #uncommenting the following line will randomize the next entry
-    random.shuffle(newentries) 
+    #random.shuffle(newentries) 
     #uncommenting the following line will produce the largest word for the next entry
-    #entrysort = newentries.sort(key=len) 
+    entrysort = newentries.sort(key=len) 
 
     chosen_one = ''
     while chosen_one is '':
-        pdb.set_trace()
+        #pdb.set_trace()
         chosen_line = int(newentries[-1].pop(0))
         chosen_word = newentries.pop()
         alignment = []
