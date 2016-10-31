@@ -46,9 +46,9 @@ biglexicon = []
 for each in sumpin:
     once = json.loads(open(each).read())
     for every in once:
-        for each in every:
-            each = re.sub('[^a-z]','',each)
-            biglexicon.append(str(each.replace(' ','')))
+        every = re.sub('[^a-z]','',every)
+        biglexicon.append(str(every.replace(' ','')))
+
 
 def findnextwordspace (board):
     lines = []
@@ -94,7 +94,7 @@ def findnextwordspace (board):
                 entry.append(i)
                 entry.extend(list(biglexicon[j]))
                 newentries.append(entry)
-    pdb.set_trace()
+    #pdb.set_trace()
     #uncommenting the following line will randomize the next entry
     #random.shuffle(newentries) 
     #uncommenting the following line will produce the largest word for the next entry

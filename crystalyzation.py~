@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import json
 import re
 import pdb
@@ -46,9 +46,9 @@ biglexicon = []
 for each in sumpin:
     once = json.loads(open(each).read())
     for every in once:
-        for each in every:
-            each = re.sub('[^a-z]','',each)
-            biglexicon.append(str(each.replace(' ','')))
+        every = re.sub('[^a-z]','',every)
+        biglexicon.append(str(every.replace(' ','')))
+pdb.set_trace()
 
 def findnextwordspace (board):
     lines = []
