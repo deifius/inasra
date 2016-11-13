@@ -1,11 +1,39 @@
 Welcome to inasra
 
-As it exists now, inasra will help you build acronyms for concepts that are found in wikipedia.
-the desired funcionality will build acronyms based off relevant new articles and dictionary entries
-the eventual functionality will include a client that visualizes a crossword puzzle as relephant paths are created and traversed
-inasra will populate a robust crossword puzzle from the spine ctreated by the user
-inasra will also prepare hyper-dimensional crosswords from aggregate user sessions
+Inasra
+Needs
+Another
+Self
+Recursive
+Acronym
 
+right now, inasra is prepared to help you build an acronym tree 
+that serves as a spine for a crossword you (me) devise.  
+You may then recursively acronymise, 
+and so begin an adventure of words and meaning.
 
+we will build acronyms from 
+news articles, dictionary entries, wikis; all avilable relephants.
+inasra.me will be an web client in browser visualizing 
+a crossword puzzle of relephant paths
+inasra will populate the crossword 
+from the spine designed by the me
 
-global statistics, weird-normal fader
+over iteration inasra will evolve a 
+hyper-dimensional crosswords from aggregate 
+user sessions (inasra.us)
+inasra.us will then seek loops within the xwor[d]
+
+####todo list####
+inasra.me
+-> control camera via click at word/letter. mouse and gesture
+-> active rt integration of inasra process and gem UX
+-> cc public domain content in a autoKenBurns media collage
+--> auto vaporwave (this is what to be afraid of)
+
+inasra.us
+-> global statistics
+-> weird/normal == excentricity coefficient fader 
+-> maximize dimensions of inasra
+-> n dimensional decoheresy (like scrambled hackz)
+-> get a swell readme organized.
