@@ -4,6 +4,7 @@ import re
 import pdb
 from glob import glob as glob
 import random
+from os import system
 
 board =json.loads(open("xwordspine.json").read())
 
@@ -124,6 +125,19 @@ def findnextwordspace (board):
 findnextwordspace(board)
 #pdb.set_trace()
 #  lol I can search biglexicon for well formulated regex strings from the board
+def visualize(xwordfield):
+	system('clear')
+	print('')
+	for eachline in xwordfield:
+		line = ' '
+		linecheck = 0
+		for each in eachline:
+			line = line + ' ' + each
+			if each != ' ':
+				linecheck = 1
+		if linecheck == 1:
+			print(line)
+visualize(board)
 board = list(zip(*board))
 writio = open('xwordspine.json', 'w')
 writio.write(json.dumps(board).replace('.',' '))

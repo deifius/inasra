@@ -3,6 +3,7 @@ import pdb
 import json
 from time import sleep
 from os import system
+import re
 
 def visualize(xwordfield):
 	system('clear')
@@ -32,6 +33,11 @@ if len(xwordspine)%2 == 0:
 else:
 	horiz = len(xwordspine[-1][0])+1
 	verts = len(xwordspine[-2][0])+1
+
+pattern = re.compile('[\W_]+')
+for each in xwordspine:
+	each[0] = pattern.sub('', each[0])
+#pdb.set_trace()
 
 for eachword in range(len(xwordspine)):
 	if eachword%2 == 0:

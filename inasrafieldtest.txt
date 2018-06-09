@@ -1,7 +1,7 @@
-iron man	2
-odin	3
-niflheim	4
-hades	3
-epic cycle	7
-little iliad	6
-iliad	3
+david bowie	5
+brixton	6
+newham	4
+abbey road	4
+yellow_submarine_	11
+revolver	4
+lasers	3
