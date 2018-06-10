@@ -57,6 +57,7 @@ def acronymizer(wikitarget):
 	req = urllib.request.Request("http://en.wikipedia.org/wiki/" + properly_capped)#, \
 				#headers={'User-Agent': 'Mozilla/5.0 (Fuck You Wikipedia; Me; emdash)'})
 	wiki_dump = urllib.request.urlopen(req).read().lower()
+	#pdb.set_trace()
 	#print(wiki_dump)
 	if wiki_dump.count(b'isambiguation') > 10:
 		#10 seems to be more instances of 'disambiguous' references than non disambiarticales contain
@@ -109,6 +110,7 @@ def acronymizer(wikitarget):
 	# && recursify
 	userchoice = -1
 	print("\n" + acro_term + " acronymized!")
+	#pdb.set_trace()
 	while 0 >  userchoice or userchoice > selection:
 		for each in acronym_dict:
 			if each in ['','.']:

@@ -17,14 +17,9 @@ goodwords = []
 for each in maybe_bone:
 	for every in each:
 		if every in reservewords: continue
-		goodwords.append(pattern.sub('', every[0]))
-		pdb.set_trace()
+		goodwords.append(pattern.sub('', every))
 
-flat_list_of_maybe_bones = []
-for each in maybe_bone:
-	for every in each:
- 		for single in every:
- 			flat_list_of_maybe_bones.append(single)
+writeitout = open('OneBigDict.json','w')
+writeitout.write(json.dumps(goodwords))		
+writeitout.close()
 
-
-flat_list_of_maybe_bones[random.randint(0,len(flat_list_of_maybe_bones))]
