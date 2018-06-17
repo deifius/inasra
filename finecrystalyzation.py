@@ -33,15 +33,15 @@ for each in range(len(board)):
 
 #place 1 horizontal
 
-wordbones = []
-for each_square in board[0]:
-	wordbones.append(each_square.replace(' ','\S'))
-for each_square in range(len(board[1])):
-	if board[1][each_square] is not ' ':  
-		#print(wordbones[each_square])
-		wordbones[each_square] = board[0][each_square]
-killer = "".join(wordbones)
-mystery_word = re.compile(killer)
+#wordbones = []
+#for each_square in board[0]:
+#	wordbones.append(each_square.replace(' ','\S'))
+#for each_square in range(len(board[1])):
+#	if board[1][each_square] is not ' ':  
+#		#print(wordbones[each_square])
+#		wordbones[each_square] = board[0][each_square]
+#killer = "".join(wordbones)
+#mystery_word = re.compile(killer)
 
 sumpin = glob('acro_dicts/*.json')
 alexicon = []
@@ -57,13 +57,6 @@ for each in sumpin:
 
 
 def findnextwordspace (board):
-#	for x in range(len(board)):
-#		for y in range(len(x)):
-#			if board[x][y] == '.':
-#				board[x][y] = ' '
-#	for e in board: print(e.join(''))
-#	print("tabula rasa")
-#	sleep(2)			
 	lines = []
 	for space in range(len(board[0])):
 		if  board[0][space] == ' ' and board[1][space] == ' ':
@@ -109,9 +102,9 @@ def findnextwordspace (board):
 				newentries.append(entry)
 	#pdb.set_trace()
 	#uncommenting the following line will randomize the next entry
-	#random.shuffle(newentries) 
+	random.shuffle(newentries) 
 	#uncommenting the following line will produce the largest word for the next entry
-	entrysort = newentries.sort(key=len) 
+	#entrysort = newentries.sort(key=len) 
 
 	chosen_one = ''
 	while chosen_one is '':
@@ -148,20 +141,19 @@ def visualize(xwordfield):
 		if linecheck == 1:
 			print(line)
 
+wegotwords = ''
+while wegotwords == '':
+	try:
+		findnextwordspace(board)
+		visualize(board)
+		board = list(zip(*board))
+		sleep(2)
+	except:
+		wegotwords = 'no we do not'
 
-
-try:
-	visualize(board)
-	findnextwordspace(board)
-	sleep(2)
-except:
-	visualize(board)
 
 visualize(board)
-board = list(zip(*board))
 writio = open('xwordspine.json', 'w')
 writio.write(json.dumps(board).replace('.',' '))
 writio.close()
-#place -1 horizontal		
-
-
+#place -1 horizontal

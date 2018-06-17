@@ -53,7 +53,7 @@ def acronymizer(wikitarget):
 	else:
 		properly_capped = wikitarget.replace(' ', '_').title()
 	properly_capped = properly_capped.replace('&','%26')
-	print("http://en.wikipedia.org/wiki/" + properly_capped + "\n\n")
+	####print("http://en.wikipedia.org/wiki/" + properly_capped + "\n\n")
 	req = urllib.request.Request("http://en.wikipedia.org/wiki/" + properly_capped)#, \
 				#headers={'User-Agent': 'Mozilla/5.0 (Fuck You Wikipedia; Me; emdash)'})
 	wiki_dump = urllib.request.urlopen(req).read().lower()

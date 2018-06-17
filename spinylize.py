@@ -67,7 +67,7 @@ for eachword in range(len(xwordspine)):
 			xwordfield[cursor[0]][cursor[1]] = letter
 			cursor[0] += 1
 			visualize(xwordfield)
-			sleep(.061)
+			sleep(.031)
 		if cursor[0] > maxcursor[0]:
 				maxcursor[0] = cursor[0] 
 		cursor[0] -= len(xwordspine[eachword][0])
@@ -77,7 +77,7 @@ for eachword in range(len(xwordspine)):
 			xwordfield[cursor[0]][cursor[1]] = letter
 			cursor[1] += 1
 			visualize(xwordfield)
-			sleep(.061)
+			sleep(.031)
 		if cursor[1] > maxcursor[1]:
 				maxcursor[1] = cursor[1] 
 		cursor[1] -= len(xwordspine[eachword][0])
