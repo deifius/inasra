@@ -8,28 +8,30 @@ Recursive
 Acronym
 
 right now, inasra is prepared to help you build an acronym tree 
-that serves as a spine for a crossword you (me) devise.  
-You may then recursively acronymise, 
-and so begin an adventure of words and meaning.
+that serves as a spine for a crossword you devise.  
+You may then recursively acronymise.
 
 we will build acronyms from 
-news articles, dictionary entries, wikis; all avilable relephants.
+news articles, dictionary entries, wikis.
 inasra.me will be an web client in browser visualizing 
-a crossword puzzle of relephant paths
+a crossword puzzle of paths
 inasra will populate the crossword 
 from the spine designed by the me
 
 over iteration inasra will evolve a 
 hyper-dimensional crosswords from aggregate 
 user sessions (inasra.us)
-inasra.us will then seek loops within the xwor[d]
+inasra.us will then seek loops within the xword
 
 ####todo list####
 inasra.me
--> control camera via click at word/letter. mouse and gesture
--> active rt integration of inasra process and gem UX
+-> morph wikichomping into DB + acronimisation
+	-> db is mirrors of sources
+		-> 
+-> rt inasra process and gem UI
+	-> camera control via click@letter. mouse and gesture
 -> cc public domain content in a autoKenBurns media collage
---> auto vaporwave (this is what to be afraid of)
+-->  persistent autonymous vaporwave (this is what to be wary of)
 
 inasra.us
 -> global statistics
