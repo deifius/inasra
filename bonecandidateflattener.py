@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from glob import glob as glob
+from glob import glob
 import random
 import json
 import re
