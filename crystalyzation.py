@@ -2,7 +2,7 @@
 import json
 import re
 import pdb
-from glob import glob as glob
+from glob import glob
 import random
 from os import system
 from time import sleep
