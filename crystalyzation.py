@@ -38,7 +38,6 @@ for each_square in board[0]:
 	wordbones.append(each_square.replace(' ','\S'))
 for each_square in range(len(board[1])):
 	if board[1][each_square] is not ' ':  
-		#print(wordbones[each_square])
 		wordbones[each_square] = board[0][each_square]
 killer = "".join(wordbones)
 mystery_word = re.compile(killer)
@@ -56,14 +55,7 @@ for each in sumpin:
 				alexicon.append(str(every))
 
 
-def findnextwordspace (board):
-#	for x in range(len(board)):
-#		for y in range(len(x)):
-#			if board[x][y] == '.':
-#				board[x][y] = ' '
-#	for e in board: print(e.join(''))
-#	print("tabula rasa")
-#	sleep(2)			
+def findnextwordspace (board):		
 	lines = []
 	for space in range(len(board[0])):
 		if  board[0][space] == ' ' and board[1][space] == ' ':
@@ -107,10 +99,11 @@ def findnextwordspace (board):
 				entry.append(i)
 				entry.extend(list(alexicon[j]))
 				newentries.append(entry)
-	#pdb.set_trace()
-	#uncommenting the following line will randomize the next entry
+	#uncomment the following line to randomize the next entry
 	#random.shuffle(newentries) 
-	#uncommenting the following line will produce the largest word for the next entry
+
+
+	#uncomment the following line to produce the longest word for the next entry
 	entrysort = newentries.sort(key=len) 
 
 	chosen_one = ''
@@ -135,6 +128,7 @@ def findnextwordspace (board):
 				chosen_one = chosen_word
 #pdb.set_trace()
 #  lol I can search alexicon for well formulated regex strings from the board
+# tons of bugs in here, overwriting spine words?  no plz
 def visualize(xwordfield):
 	system('clear')
 	print('')

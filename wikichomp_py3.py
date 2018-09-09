@@ -1,7 +1,10 @@
 #!/usr/env python3
 
 
-#TODO rather than port this whole thing to python3 and then break it down, trim this to pure wikichomp function and then port that to python 3.  recursor and decoheresy are coded directly in py3
+#TODO BREAK THIS INTO simple scripts:  
+#1) wikichomp- accepts the term and populates the acrodict
+#2) decoheresy- selects a proper subset of acrodict for selection by player
+#3) acronymizer- builds the acronym in ipuz format from the decohered selection tree
 import re
 import sys
 import random
