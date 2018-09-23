@@ -34,7 +34,7 @@ term = sys.argv[1]
  http://en.wikipedia.org/w/index.php?title=Cure&action=edit
 req = urllib2.Request("http://en.wikipedia.org/wiki/%s" % term.replace(' ', '_'), \
 req = urllib2.Request("http://en.wikipedia.org/wiki/%s" % term.replace(' ', '_'), \
-                      headers={'User-Agent': 'Mozilla/5.0 (Wikipedia is nice; Me; emdash)'})
+				  headers={'User-Agent': 'Mozilla/5.0 (Wikipedia is nice; Me; emdash)'})
 wiki_dump = urllib2.urlopen(req).read().lower()
 relevance_regex = re.compile('<a href="/wiki/.*?" title=".*?">.*?</a>')
 relephants = re.findall(relevance_regex,wiki_dump)
