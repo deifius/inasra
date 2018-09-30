@@ -2,7 +2,6 @@
 import json
 import re
 import pdb
-from glob import glob as glob
 import random
 from os import system
 from time import sleep
@@ -43,18 +42,7 @@ for each in range(len(board)):
 #killer = "".join(wordbones)
 #mystery_word = re.compile(killer)
 
-sumpin = glob('acro_dicts/*.json')
-alexicon = []
-for each in sumpin:
-	once = json.loads(open(each).read())
-	for every in once:
-		every = re.sub('[^a-z]','',every).replace(' ','')
-		if every != '':
-			if every in alexicon:
-				continue
-			else:
-				alexicon.append(str(every))
-
+alexicon = json.loads(open('OneBigDict.json').read())
 
 def findnextwordspace (board):
 	lines = []

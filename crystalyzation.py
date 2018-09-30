@@ -42,19 +42,8 @@ for each_square in range(len(board[1])):
 killer = "".join(wordbones)
 mystery_word = re.compile(killer)
 
-sumpin = glob('acro_dicts/*.json')
-alexicon = []
-for each in sumpin:
-	once = json.loads(open(each).read())
-	for every in once:
-		every = re.sub('[^a-z]','',every).replace(' ','')
-		if every != '':
-			if every in alexicon:
-				continue
-			else:
-				alexicon.append(str(every))
-
-
+alexicon = json.loads(open('OneBigDict.json').read())
+pdb.set_trace()
 def findnextwordspace (board):		
 	lines = []
 	for space in range(len(board[0])):

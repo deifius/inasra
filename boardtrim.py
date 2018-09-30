@@ -3,17 +3,17 @@
 import json
 
 def boardtrim(board):
-    destroy = 1
-    for each in board[-1]:
-	   if each is ' ':
-		  pass
-	   else:
-		  destroy = 0
-    if destroy == 1:
-	   board.pop(-1)
-	   boardtrim(board)
-    elif destroy == 0:
-	   print('')
+	destroy = 1
+	for each in board[-1]:
+		if each is ' ':
+			pass
+		else:
+			destroy = 0
+	if destroy == 1:
+		board.pop(-1)
+		boardtrim(board)
+	elif destroy == 0:
+		print('')
 
 
 board =json.loads(open("xwordspine.json").read())
