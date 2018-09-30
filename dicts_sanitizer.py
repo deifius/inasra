@@ -19,6 +19,20 @@ for each in maybe_bone:
 		if every in reservewords: continue
 		goodwords.append(pattern.sub('', every))
 
+goodwords = set(goodwords)
+numbers = re.compile('[0-9]')
+badwords = []
+for e in goodwords:
+	if len(numbers.findall(e)) > 0:
+		print(e)
+		badwords.append(e)
+for e in badwords:
+	goodwords.remove(e)
+
+goodwords = list(goodwords)
+goodwords.sort()
+##pdb.set_trace()
+
 writeitout = open('OneBigDict.json','w')
 writeitout.write(json.dumps(goodwords))		
 writeitout.close()

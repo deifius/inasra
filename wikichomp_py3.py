@@ -26,7 +26,7 @@ wiki_words_reserved = json.loads(open('wiki_reserve_terms.json').read())
 inasrafieldtest = open("inasrafieldtest.txt",'w')
 
 def disambiguouizer(ambiguous_wiki, ambiguous_term):
-	#in the event of an amiguous term, the disambiguouizer lets user select the proper meaning
+	#in the event of an amiguous term, the disambiguouizer lets user select the favored meaning
 	refertochomp = ambiguous_wiki.find(b'may refer to') + 18
 	endchomp = ambiguous_wiki.find(b"disambigbox") - 11
 	disambuslice = re.findall(b'a href=".+">.+<.+>, .+</li>\n', ambiguous_wiki[refertochomp:endchomp])
