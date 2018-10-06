@@ -20,7 +20,7 @@ board =json.loads(open("xwordspine.json").read())
 boardtrim(board)
 board = list(zip(*board))
 boardtrim(board)
-writio = open('xwordspine.json', 'w')
-writio.write(json.dumps(board).replace('.',' '))
-writio.close()
+
+with open('xwordspine.json', 'w') as writio:
+	writio.write(json.dumps(board).replace('.',' '))
 

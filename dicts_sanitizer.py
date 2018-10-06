@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 from glob import glob
-import random
 import json
 import re
 import pdb
@@ -33,7 +32,7 @@ goodwords = list(goodwords)
 goodwords.sort()
 ##pdb.set_trace()
 
-writeitout = open('OneBigDict.json','w')
-writeitout.write(json.dumps(goodwords))		
-writeitout.close()
+with open('OneBigDict.json','w') as writeitout:
+	writeitout.write(json.dumps(goodwords))		
+
 

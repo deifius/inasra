@@ -4,43 +4,8 @@ import re
 import pdb
 import random
 from os import system
-from time import sleep
 
 board =json.loads(open("xwordspine.json").read())
-
-def boardtrim(board):
-	destroy = 1
-	for each in board[-1]:
-		if each is ' ':
-			pass
-		else:
-			destroy = 0
-	if destroy == 1:
-		board.pop(-1)
-		boardtrim(board)
-	elif destroy == 0:
-		print('')
-
-boardtrim(board)
-board = list(zip(*board))
-for each in board:
-	each = list(each)
-boardtrim(board)
-board = list(zip(*board))
-for each in range(len(board)):
-	board[each] = list(board[each])
-
-#place 1 horizontal
-
-#wordbones = []
-#for each_square in board[0]:
-#	wordbones.append(each_square.replace(' ','\S'))
-#for each_square in range(len(board[1])):
-#	if board[1][each_square] is not ' ':  
-#		#print(wordbones[each_square])
-#		wordbones[each_square] = board[0][each_square]
-#killer = "".join(wordbones)
-#mystery_word = re.compile(killer)
 
 alexicon = json.loads(open('OneBigDict.json').read())
 
@@ -88,12 +53,7 @@ def findnextwordspace (board):
 				entry.append(i)
 				entry.extend(list(alexicon[j]))
 				newentries.append(entry)
-	#pdb.set_trace()
-	#uncommenting the following line will randomize the next entry
-	random.shuffle(newentries) 
-	#uncommenting the following line will produce the largest word for the next entry
-	#entrysort = newentries.sort(key=len) 
-
+	random.shuffle(newentries) #main diff with crystalization
 	chosen_one = ''
 	while chosen_one is '':
 		chosen_line = int(newentries[-1].pop(0))
@@ -106,15 +66,12 @@ def findnextwordspace (board):
 		while alignment[0][1] is not chosen_word[alignment[0][0]]:
 			chosen_word = ['.'] + chosen_word
 			if len(chosen_word) > len(board[chosen_line]): break
-#		if len(alignment) > 1:
-#			while alignment[-1][1] is not chosen_word[alignment[-1][0]]:
-#				chosen_word = ['.'] + chosen_word
-#				if len(chosen_word) > len(board[chosen_line]): break
+
 		if len(chosen_word) < len(board[chosen_line]):
 			for e in range(len(chosen_word)):
 				board[chosen_line][e] = chosen_word[e]
 				chosen_one = chosen_word
-#pdb.set_trace()
+
 #  lol I can search alexicon for well formulated regex strings from the board
 def visualize(xwordfield):
 	system('clear')
@@ -135,13 +92,13 @@ while wegotwords == '':
 		findnextwordspace(board)
 		visualize(board)
 		board = list(zip(*board))
-		sleep(2)
 	except:
 		wegotwords = 'no we do not'
 
 
-visualize(board)
-writio = open('xwordspine.json', 'w')
-writio.write(json.dumps(board).replace('.',' '))
-writio.close()
+vvisualize(board)
+board = list(zip(*board))
+with open('xwordspine.json', 'w') as writeio:
+	writeio.write(json.dumps(board).replace('.',' '))
+
 #place -1 horizontal

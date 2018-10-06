@@ -23,8 +23,8 @@ for each in maybe_bone:
 flat_list_of_maybe_bones = []
 for each in maybe_bone:
 	for every in each:
- 		for single in every:
- 			flat_list_of_maybe_bones.append(single)
+		for single in every:
+			flat_list_of_maybe_bones.append(single)
 
 
 flat_list_of_maybe_bones[random.randint(0,len(flat_list_of_maybe_bones))]

@@ -84,7 +84,7 @@ for eachword in range(len(xwordspine)):
 		cursor[1] += int(xwordspine[eachword][1])
 		#pdb.set_trace()
 
-writio = open('xwordspine.json', 'w')
-writio.write(json.dumps(xwordfield))
-writio.close()
+with open('xwordspine.json', 'w') as writio:
+	writio.write(json.dumps(xwordfield))
+
 # TODO : populate the spine with the words from acro_dicts. This is project crystalyzation.py
