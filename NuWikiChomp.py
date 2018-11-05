@@ -7,6 +7,7 @@ import re
 import pdb
 
 def wikipedia_grab_chomp(wikiterm):
+	'''I retrieve linked articles, summaries and picture locations from wikipedia'''
 	page = wikipedia.page(wikiterm)
 	links = []
 	for link in page.links:
