@@ -1,40 +1,23 @@
 INASRA
 Welcome to inasra
 
- 
-
 Inasra
-
 Needs
-
 A
-
 Self
-
 Recursive
-
 Acronym
 
- 
-
 right now inasra is prepared build you an acronym tree 
-
 that serves as a spine for a crossword you devise.  
-
 You may then recursively acronymise.
-
 we will build acronyms from 
-
 news articles, dictionary entries, wikis.
-
 inasra.me will be an web client in browser visualizing 
 
 a crossword puzzle of paths
-
 inasra will populate the crossword 
-
 from the spine designed by the me
-
  
 
 Motivation
@@ -48,73 +31,34 @@ Completely fluid as I am learning as I compose this software.  If you think I mi
 
 Tech/framework used
 Backend prototyped in python 3.xx
-
 Frontend prototyped in puredata/GEM
-
 Web interface?
-
 Crosswords are ipuz compatible
-
-Features
-What makes your project stand out?
-
-Installation
-Provide step by step series of examples and explanations about how to get a development env running.
-
-API Reference
-Depending on the size of the project, if it is small and simple enough the reference docs can be added to the README. For medium size to larger projects it is important to at least provide a link to where the API reference docs live.
-
-Tests
-Describe and show how to run the tests with code examples.
-
-How to use?
-If people like your project they’ll want to learn how they can use it. To do so include step by step guide to use your project.
 
 Contribute
 ####todo list####
 
 inasra.me
-
 -> ipuz handlers
-
 -> morph wikichomping into DB + acronimisation
-
 	-> db is mirrors of sources
-
 		-> 
-
 -> rt inasra process and gem UI
-
 	-> camera control via click@letter. mouse and gesture
-
 -> cc public domain content in a autoKenBurns media collage
-
 -->  persistent autonymous vaporwave (this is what to be wary of)
 
- 
-
 inasra.us
-
 -> global statistics
-
 -> weird/normal == excentricity coefficient fader 
-
 -> maximize dimensions of inasra
-
 -> n dimensional decoheresy (like scrambled hackz)
-
--> get a swell readme organized.
-
- 
+-> get a swell readme organized. 
 
 Simulate the User Experience
-
 1) wikichomp_py3.py #run until you have a good spine
-
 2) spinylze.py
-
 3) sanitize acro_dicts
-
 4) crystalyzation.py
 
  
