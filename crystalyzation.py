@@ -3,107 +3,56 @@ import json
 import re
 import pdb
 from os import system
+from sys import argv
+
+# feed me an partially constructed crossword puzzle in a 2d array, in ipuz notation (board)
+# and a word (alexicon) you want to place on the board, and findthenextword will return a list of valid places
+# in the format: [[xCoord_of_First_Letter,yCoord_of_First_Letter]] which is the first letter placement of the accross clue
+# zip* the board to do down!!
 
 board =json.loads(open("xwordspine.json").read())
 
-wordbones = []
-for each_square in board[0]:
-	wordbones.append(each_square.replace(' ','\S'))
-for each_square in range(len(board[1])):
-	if board[1][each_square] is not ' ':  
-		wordbones[each_square] = board[0][each_square]
-killer = "".join(wordbones)
-mystery_word = re.compile(killer)
+alexicon = argv[1]
 
-alexicon = json.loads(open('OneBigDict.json').read())
 
-def findnextwordspace (board):		
+def findnextwordspace (board, alexicon):
+	#print('trying to find next word now')
 	lines = []
-	for space in range(len(board[0])):
-		if  board[0][space] == ' ' and board[1][space] == ' ':
-			board[0][space] = '.'
-	for space in range(len(board[-1])):
-		if  board[-1][space] == ' ' and board[-2][space] == ' ':
-			board[-1][space] = '.'
-	for eachline in range(len(board)):
-		for space in range(len(board[0])):
-			if board[eachline][space] == ' ':
-				if board[eachline-1][space] == '.' or board[eachline-1][space] == ' ':
-					if board[eachline+1][space] == '.' or board[eachline+1][space] == ' ':
-						board[eachline][space] = '.'
+	for space in enumerate(board[0]):
+		if  board[0][space[0]] == ' ' and board[1][space[0]] == ' ':
+			board[0][space[0]] = '.'
+	for space in enumerate(board[-1]):
+		if  board[-1][space[0]] == ' ' and board[-2][space[0]] == ' ':
+			board[-1][space[0]] = '.'
+	for eachline in enumerate(board):
+		for space in enumerate(board[0]):
+			if board[eachline[0]][space[0]] == ' ':
+				if board[eachline[0]-1][space[0]] == '.' or board[eachline[0]-1][space[0]] == ' ':
+					if board[eachline[0]+1][space[0]] == '.' or board[eachline[0]+1][space[0]] == ' ':
+							board[eachline[0]][space[0]] = '.'
+		
 	for each in board:
 		lines.append(''.join(each))
 	obstacle = re.compile('\.?[a-z][a-z]+\.?')
-	for i in range(len(lines)):  
-		lines[i] = re.sub(obstacle,'',lines[i],)
-		if re.search('[a-z| ]',lines[i],) is None:
-			lines[i] = '<empty>'
-		if re.search('\.',lines[i],) is None:
-			lines[i] = '<empty>'
-	for i in range(len(lines)):
-		if lines[i] == '<empty>': continue
-		start = 0
-		end = 0
-		templist = list(lines[i])
-		while templist[0] == '.':
-			templist.pop(0)
-			start = start + 1
-		while templist[-1] == '.':
-			templist.pop(-1)
-			end = end + 1
-		lines[i] = '.{,' + str(start) + '}' + ''.join(templist) + '.{,' + str(end) + '}'
 	
-	newentries = []
-	for i in range(len(lines)):
-		for j in range(len(alexicon)):
-			if re.match(lines[i], alexicon[j]) is not None:
-				entry = []
-				entry.append(i)
-				entry.extend(list(alexicon[j]))
-				newentries.append(entry)
-	entrysort = newentries.sort(key=len) #selects biggest fit rather than randomized in fincrystalization
+	legalplace = []
+	for line in enumerate(lines):
+		validstart = len(line[1])-len(alexicon)
+		#
+		for validplace in range(validstart):
+			if re.match(line[1][validplace:len(alexicon)+validplace], alexicon) is not None:
+				#print("maybe! "+line[1][validplace:validplace+len(alexicon)])
+				if re.search('[a-z| ]',line[1][validplace:len(alexicon)+validplace],) is not None:
+					#print("found one at [" + str(line[0]) + "," + str(validplace) + "]:" + line[1][validplace:len(alexicon)+validplace], alexicon)
+					if re.search('[a-z| ]',line[1][validplace-1],) is None:
+						if re.search('[a-z| ]',line[1][validplace+len(alexicon)+1],) is None:
+							#print(line[1][validplace-1])
+							#print("found one at [" + str(line[0]) + "," + str(validplace) + "]:")
+							legalplace.append((line[0],validplace))
+	print('legalplaces:') 
+	print(legalplace) 
+	#pdb.set_trace()
 
-	chosen_one = ''
-	while chosen_one is '':
-		chosen_line = int(newentries[-1].pop(0))
-		chosen_word = newentries.pop()
-		alignment = []
-		for x in range(len(board[chosen_line])):
-			if re.match('[^\.]',board[chosen_line][x]) is not None:
-				alignment.append([x,board[chosen_line][x]])
-		while alignment[0][1] is not chosen_word[alignment[0][0]]:
-			chosen_word = ['.'] + chosen_word
-			if len(chosen_word) > len(board[chosen_line]): break
-		if len(chosen_word) < len(board[chosen_line]):
-			for e in range(len(chosen_word)):
-				board[chosen_line][e] = chosen_word[e]
-				chosen_one = chosen_word
-#  lol I can search alexicon for well formulated regex strings from the board
-# tons of bugs in here, overwriting spine words?  no plz
-def visualize(xwordfield):
-	system('clear')
-	print('')
-	for eachline in xwordfield:
-		line = ' '
-		linecheck = 0
-		for each in eachline:
-			line = line + ' ' + each
-			if each != ' ':
-				linecheck = 1
-		if linecheck == 1:
-			print(line)
-
-try:
-	visualize(board)
-	findnextwordspace(board)
-except:
-	visualize(board)
-
-visualize(board)
-board = list(zip(*board))
-with open('xwordspine.json', 'w') as writeio:
-	writeio.write(json.dumps(board).replace('.',' '))
-
-#place -1 horizontal		
+findnextwordspace(board, alexicon)
 
 
