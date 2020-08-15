@@ -1,9 +1,6 @@
-sudan	4
-nobiin	3
-islam	3
-arabic	5
-croats	3
-adriatic	6
-istria	2
-trieste	3
-elettra	
+united kingdom	9
+george frideric handel	17
+double bass	9
+subwoofer	7
+electronic dance music	11
+anheuser-busch	

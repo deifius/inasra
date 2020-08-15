@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import json
 import re
-import pdb
+from pdb import set_trace
 from os import system
 from sys import argv
 
@@ -16,6 +16,7 @@ alexicon = argv[1]
 
 
 def findnextwordspace (board, alexicon):
+	#set_trace()
 	#print('trying to find next word now')
 	lines = []
 	for space in enumerate(board[0]):
@@ -30,15 +31,14 @@ def findnextwordspace (board, alexicon):
 				if board[eachline[0]-1][space[0]] == '.' or board[eachline[0]-1][space[0]] == ' ':
 					if board[eachline[0]+1][space[0]] == '.' or board[eachline[0]+1][space[0]] == ' ':
 							board[eachline[0]][space[0]] = '.'
-		
+
 	for each in board:
 		lines.append(''.join(each))
 	obstacle = re.compile('\.?[a-z][a-z]+\.?')
-	
+
 	legalplace = []
 	for line in enumerate(lines):
 		validstart = len(line[1])-len(alexicon)
-		#
 		for validplace in range(validstart):
 			if re.match(line[1][validplace:len(alexicon)+validplace], alexicon) is not None:
 				#print("maybe! "+line[1][validplace:validplace+len(alexicon)])
@@ -53,6 +53,20 @@ def findnextwordspace (board, alexicon):
 	print(legalplace) 
 	#pdb.set_trace()
 
-findnextwordspace(board, alexicon)
+
+def sanitize(alexicon):
+	if len(alexicon) > len(board[0]):
+		print("too long, submit shorter word")
+		exit()
+	if re.search("[^a-zA-Z ]", alexicon,) is None:
+		alexicon = ''.join(alexicon.lower().split(' '))
+		return alexicon
+	else: 
+		print("remove offending characters, submit l8ter")
+		exit()
+
+
+
+findnextwordspace(board, sanitize(alexicon))
 
 
