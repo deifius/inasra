@@ -10,14 +10,12 @@ from sys import argv
 # in the format: [[xCoord_of_First_Letter,yCoord_of_First_Letter]] which is the first letter placement of the accross clue
 # zip* the board to do down!!
 
-board =json.loads(open("xwordspine.json").read())
+with open("xwordspine.json") as readio: board =json.loads(readio.read())
 
 alexicon = argv[1]
 
 
 def findnextwordspace (board, alexicon):
-	#set_trace()
-	#print('trying to find next word now')
 	lines = []
 	for space in enumerate(board[0]):
 		if  board[0][space[0]] == ' ' and board[1][space[0]] == ' ':
@@ -31,11 +29,9 @@ def findnextwordspace (board, alexicon):
 				if board[eachline[0]-1][space[0]] == '.' or board[eachline[0]-1][space[0]] == ' ':
 					if board[eachline[0]+1][space[0]] == '.' or board[eachline[0]+1][space[0]] == ' ':
 							board[eachline[0]][space[0]] = '.'
-
 	for each in board:
 		lines.append(''.join(each))
 	obstacle = re.compile('\.?[a-z][a-z]+\.?')
-
 	legalplace = []
 	for line in enumerate(lines):
 		validstart = len(line[1])-len(alexicon)
@@ -49,8 +45,8 @@ def findnextwordspace (board, alexicon):
 							#print(line[1][validplace-1])
 							#print("found one at [" + str(line[0]) + "," + str(validplace) + "]:")
 							legalplace.append((line[0],validplace))
-	print('legalplaces:') 
-	print(legalplace) 
+	print('legalplaces for ' + alexicon + ':') 
+	return legalplace
 	#pdb.set_trace()
 
 

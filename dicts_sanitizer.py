@@ -8,31 +8,24 @@ import pdb
 acroglob = glob('acro_dicts/*')
 maybe_bone = []
 for each in acroglob:
- maybe_bone.append(json.loads(open(each).read()))
+	maybe_bone.append(json.loads(open(each).read().lower()))
 
-reservewords = json.loads(open('wiki_reserve_terms.json').read())
+with open("wiki_reserve_terms.json") as readio: reservewords =json.loads(readio.read())
+
 pattern = re.compile('[\W_]+')
 goodwords = []
 for each in maybe_bone:
 	for every in each:
-		if every in reservewords: continue
-		goodwords.append(pattern.sub('', every))
+		if every.lower() not in reservewords: 
+			if re.search("[^a-zA-Z ]", every,) is None:
+				#pdb.set_trace()
+				goodwords.append(pattern.sub('', every).lower())
 
-goodwords = set(goodwords)
-numbers = re.compile('[0-9]')
-badwords = []
-for e in goodwords:
-	if len(numbers.findall(e)) > 0:
-		print(e)
-		badwords.append(e)
-for e in badwords:
-	goodwords.remove(e)
+freqygoodwords = sorted(set(goodwords), key = lambda ele: goodwords.count(ele)) 
+# freqygoodwords and OneBigDict are sorted by frequency of recurrence of reference.  
+# Most referred words are last, least are first 
+pdb.set_trace()
 
-goodwords = list(goodwords)
-goodwords.sort()
-##pdb.set_trace()
-
-with open('OneBigDict.json','w') as writeitout:
-	writeitout.write(json.dumps(goodwords))		
+with open('OneBigDict.json','w') as writeitout: writeitout.write(json.dumps(freqygoodwords))		
 
 
