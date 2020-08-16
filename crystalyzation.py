@@ -45,7 +45,7 @@ def findnextwordspace (board, alexicon):
 							#print(line[1][validplace-1])
 							#print("found one at [" + str(line[0]) + "," + str(validplace) + "]:")
 							legalplace.append((line[0],validplace))
-	print('legalplaces for ' + alexicon + ':') 
+	print('legalplaces for ' + alexicon + ':' + str(legalplace))
 	return legalplace
 	#pdb.set_trace()
 
