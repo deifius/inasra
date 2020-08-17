@@ -30,21 +30,21 @@ def findnextwordspace (board, alexicon):
 					if board[eachline[0]+1][space[0]] == '.' or board[eachline[0]+1][space[0]] == ' ':
 							board[eachline[0]][space[0]] = '.'
 	for each in board:
-		lines.append(''.join(each))
+		if re.search("[a-z]","".join(each)) is not None:
+			lines.append(''.join(each))
 	obstacle = re.compile('\.?[a-z][a-z]+\.?')
 	legalplace = []
 	for line in enumerate(lines):
-		validstart = len(line[1])-len(alexicon)
+		validstart = len(line[1])-len(alexicon) - 1
+		#set_trace()
 		for validplace in range(validstart):
 			if re.match(line[1][validplace:len(alexicon)+validplace], alexicon) is not None:
-				#print("maybe! "+line[1][validplace:validplace+len(alexicon)])
 				if re.search('[a-z| ]',line[1][validplace:len(alexicon)+validplace],) is not None:
-					#print("found one at [" + str(line[0]) + "," + str(validplace) + "]:" + line[1][validplace:len(alexicon)+validplace], alexicon)
 					if re.search('[a-z| ]',line[1][validplace-1],) is None:
-						if re.search('[a-z| ]',line[1][validplace+len(alexicon)+1],) is None:
-							#print(line[1][validplace-1])
-							#print("found one at [" + str(line[0]) + "," + str(validplace) + "]:")
-							legalplace.append((line[0],validplace))
+						if validplace + len(alexicon) + 1 < len(line[1]):
+							if re.search('[a-z| ]',line[1][validplace+len(alexicon)+1],) is None:
+								#validplace is valid for word!
+								legalplace.append((line[0],validplace))
 	print('legalplaces for ' + alexicon + ':' + str(legalplace))
 	return legalplace
 	#pdb.set_trace()
