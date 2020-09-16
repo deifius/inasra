@@ -45,20 +45,22 @@ def findnextwordspace (board, alexicon):
 							if re.search('[a-z| ]',line[1][validplace+len(alexicon)+1],) is None:
 								#validplace is valid for word!
 								legalplace.append((line[0],validplace))
-	print('legalplaces for ' + alexicon + ':' + str(legalplace))
+	for eachplace in legalplace:
+		print(alexicon + ' ' + str(eachplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']','')) 
+	#print(alexicon + ' ' + str(legalplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']',''))
 	return legalplace
 	#pdb.set_trace()
 
 
 def sanitize(alexicon):
 	if len(alexicon) > len(board[0]):
-		print("too long, submit shorter word")
+		#print("too long, submit shorter word")
 		exit()
 	if re.search("[^a-zA-Z ]", alexicon,) is None:
 		alexicon = ''.join(alexicon.lower().split(' '))
 		return alexicon
 	else: 
-		print("remove offending characters, submit l8ter")
+		#print("remove offending characters, submit l8ter")
 		exit()
 
 
