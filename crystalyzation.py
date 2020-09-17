@@ -45,10 +45,12 @@ def findnextwordspace (board, alexicon):
 							if re.search('[a-z| ]',line[1][validplace+len(alexicon)+1],) is None:
 								#validplace is valid for word!
 								legalplace.append((line[0],validplace))
+	goodplaces = []
 	for eachplace in legalplace:
-		print(alexicon + ' ' + str(eachplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']','')) 
+		goodplaces.append(alexicon + ' ' + str(eachplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']','')) 
+		#print(alexicon + ' ' + str(eachplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']','')) 
 	#print(alexicon + ' ' + str(legalplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']',''))
-	return legalplace
+	print(json.dumps(goodplaces))
 	#pdb.set_trace()
 
 
