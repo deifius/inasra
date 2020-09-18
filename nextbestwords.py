@@ -15,5 +15,5 @@ while Relevants:
 	Places4BestWord = json.loads(subprocess.check_output(['python3', 'crystalyzation.py', Relevants.pop()]))
 	for each in Places4BestWord:
 		print(each)
-		subprocess.call(['python3', 'cluePLACER.py'] + each.split(' '))
-		
+		subprocess.call(['python3', 'cluePLACER.py'] + each.split(' ') + ['&'])
+		subprocess.call(['python3', 'clueonMTtable.py'] + each.split(' ') + ['&'])
