@@ -12,20 +12,21 @@ import json
 FontSize = 22
 with open(argv[1]) as readio: board =json.loads(readio.read())
 #set_trace()
-Width = int(len(board[0]) * FontSize * .8)
-Height = int(len(board) * FontSize)
+Width = int((len(board[0])+2) * FontSize * .8)
+Height = int((len(board)+2) * FontSize )
+FileName=argv[1]+'.png'
 
 with Drawing() as draw:
 	with Image(width=Width, height=Height) as img:
-		draw.font_family = 'Letter Gothic'
+		draw.font_family = "Times New Roman"
 		#draw.font_style = "Outline"
 		draw.font_size = FontSize
 		draw.push()
 		for row in enumerate(board):
-			draw.text(int(Width/8),int(.7*FontSize*(row[0]+14)),' '.join(row[1]))	
-	
+			for letter in enumerate(row[1]):
+				draw.text(int(.8*FontSize*(letter[0]+1)),int(.8*FontSize*(row[0]+9)),letter[1])	
 		draw.pop()
 		draw(img)
-		img.save(filename='image.png')
+		img.save(filename=FileName)
 
-subprocess.call(['feh','image.png'])
+subprocess.call(['feh',FileName])
