@@ -9,23 +9,33 @@ import subprocess
 from pdb import set_trace
 import json
 
-FontSize = 22
+FontSize = 16
 with open(argv[1]) as readio: board =json.loads(readio.read())
 #set_trace()
-Width = int(len(board[0]) * FontSize * .8)
-Height = int(len(board) * FontSize)
+
+# The width & height formulas were deleloped w/ guess & check
+# Anyone who knows enough about fonts to build more precise algorithms?
+Width = int((len(board[0])+1) * FontSize * .65)
+Height = int((len(board)+2) * FontSize * .7)
+FileName=argv[1]+'.png'
 
 with Drawing() as draw:
 	with Image(width=Width, height=Height) as img:
-		draw.font_family = 'Letter Gothic'
-		#draw.font_style = "Outline"
+		draw.font_family = 'Fixed'
+		# the font need not only be monotype, but spaces must have the same weight as characters
+		draw.font_style = "normal"
 		draw.font_size = FontSize
 		draw.push()
 		for row in enumerate(board):
-			draw.text(int(Width/8),int(.7*FontSize*(row[0]+14)),' '.join(row[1]))	
-	
+			#for letter in enumerate(row[1]):
+			#	set_trace()
+			#	if letter[1] == " ":
+			#		board[row[0]][letter[0]] = " "
+			#set_trace()
+			draw.text(int(FontSize),int(.7*FontSize*(row[0]+2)),''.join(row[1]))
+			# Font placement here is dependant on more guess&check spacing issues
 		draw.pop()
 		draw(img)
-		img.save(filename='image.png')
+		img.save(filename=FileName)
 
-subprocess.call(['feh','image.png'])
+#subprocess.call(['feh',FileName])

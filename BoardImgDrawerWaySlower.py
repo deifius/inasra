@@ -9,7 +9,7 @@ import subprocess
 from pdb import set_trace
 import json
 
-FontSize = 22
+FontSize = 11
 with open(argv[1]) as readio: board =json.loads(readio.read())
 #set_trace()
 Width = int((len(board[0])+2) * FontSize * .8)

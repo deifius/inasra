@@ -4,6 +4,7 @@ import re
 from pdb import set_trace
 from os import system
 from sys import argv
+import subprocess
 
 # feed me an partially constructed crossword puzzle in a 2d array, in ipuz notation (board)
 # and a word (alexicon) you want to place on the board, the valid location for the first letter of the word x,y,
@@ -48,5 +49,12 @@ def insert(alexicon, position):
 
 insert(sanitize(alexicon), position)
 
-with open('.NextMoves/'+alexicon+str(position[0])+','+str(position[1]) + '.MTtable', 'w') as writio:
+FileNameOut = '.NextMoves/'+alexicon+str(position[0])+','+str(position[1]) + '.MTtable'
+#print(FileNameOut)
+with open(FileNameOut, 'w') as writio:
 	writio.write(json.dumps(board))
+
+#print(['python3', 'BoardImgDrawer.py', FileNameOut, ['&']])
+subprocess.Popen(['python3', 'BoardImgDrawer.py', FileNameOut, '&'])
+
+
