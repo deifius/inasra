@@ -10,6 +10,9 @@ from pdb import set_trace
 import json
 
 FontSize = 16
+#if argv[2]:
+#	board = json.loads(argv[2])
+#else:
 with open(argv[1]) as readio: board =json.loads(readio.read())
 #set_trace()
 
@@ -24,6 +27,7 @@ with Drawing() as draw:
 		draw.font_family = 'Fixed'
 		# the font need not only be monotype, but spaces must have the same weight as characters
 		draw.font_style = "normal"
+		draw.stroke_color = Color('Green')
 		draw.font_size = FontSize
 		draw.push()
 		for row in enumerate(board):

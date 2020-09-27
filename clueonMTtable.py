@@ -49,12 +49,12 @@ def insert(alexicon, position):
 
 insert(sanitize(alexicon), position)
 
-FileNameOut = '.NextMoves/'+alexicon+str(position[0])+','+str(position[1]) + '.MTtable'
+FileNameOut = '.NextMoves/'+alexicon+str(position[0])+'.'+str(position[1]) + '.MTtable'
 #print(FileNameOut)
 with open(FileNameOut, 'w') as writio:
 	writio.write(json.dumps(board))
 
 #print(['python3', 'BoardImgDrawer.py', FileNameOut, ['&']])
-subprocess.Popen(['python3', 'BoardImgDrawer.py', FileNameOut, '&'])
+subprocess.call(['python3', 'BoardImgDrawer.py', FileNameOut, json.dumps(board)])
 
 

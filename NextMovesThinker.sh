@@ -4,7 +4,7 @@
 # OneBigDict is sorted so that the 0th element is the least frequently linked 
 
 [ -d ".NextMoves/" ] && rm .NextMoves/* > /dev/null; 
-[ ! -d ".NextMoves/" ]	&& mkdir .NextMoves && echo "YES" # && mount -t tmpfs -o size=1024m tmpfs NextMoves
+[ ! -d ".NextMoves/" ]	&& mkdir .NextMoves && echo "YES" # && sudo mount -t tmpfs -o size=1024m tmpfs .NextMoves
 
 if test -f ".wordplacementideal"; then rm .wordplacementideal; fi
 python3 nextbestwords.py
@@ -19,4 +19,7 @@ python3 nextbestwords.py
 #while IFS= read -r -u13 line; do 
 #   python3 cluePLACER.py $line >> .wordplacementideal; done 13<".wordplacementideal"
 
+#for e in $(ls .NextMoves/*.png); do echo "$e"; sleep .5; done
 
+# the following line produces a random image from the NextMoves folder:
+#expressions=($(ls .NextMoves/*.png)) && echo ${expressions[$RANDOM % ${#expressions[@]} ]}

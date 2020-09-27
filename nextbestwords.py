@@ -11,6 +11,7 @@ import subprocess
 #I am designed to be interrupted, NextMovesThinker clears the mem and restarts me constantly.  
 
 with open('OneBigDict.json') as ok: Relevants = json.loads(ok.read())
+Relevants = Relevants[100:150]
 while Relevants:
 	Places4BestWord = json.loads(subprocess.check_output(['python3', 'crystalyzation.py', Relevants.pop()]))
 	for each in Places4BestWord:
