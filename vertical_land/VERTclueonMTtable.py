@@ -12,7 +12,7 @@ import subprocess
 # zip* the board to do down!!
 
 
-with open("xwordspine.json") as readio: board =json.loads(readio.read())
+with open("jackvertical.json") as readio: board =json.loads(readio.read())
 
 alexicon = argv[1]
 position = [int(argv[2]),int(argv[3])]
@@ -49,12 +49,14 @@ def insert(alexicon, position):
 
 insert(sanitize(alexicon), position)
 
-FileNameOut = '.NextMoves/'+alexicon+str(position[0])+'.'+str(position[1]) + '.MTtable'
+FileNameOut = '../.NextMoves/'+alexicon+str(position[0])+'.'+str(position[1]) + '.VERTclueMTtable'
 #print(FileNameOut)
+board = list(zip(*board))
+
 with open(FileNameOut, 'w') as writio:
 	writio.write(json.dumps(board))
 
 #print(['python3', 'BoardImgDrawer.py', FileNameOut, ['&']])
-subprocess.call(['python3', 'BoardImgDrawer.py', FileNameOut, json.dumps(board)])
+subprocess.call(['python3', 'VERTBoardImgDrawer.py', FileNameOut, json.dumps(board)])
 
 
