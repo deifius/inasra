@@ -1,0 +1,24 @@
+pre {
+	position: absolute;
+	font-size: 1em;
+	top: 100px;
+	left: 20px;
+	letter-spacing: 0.5em;
+	cursor: pointer;
+	transform-style: preserve-3d;
+	user-select: none;
+}
+#inasra {
+	z-index: 1;
+}
+/* #container {
+	position: relative;
+	width: 600px;
+	height: 600px;
+}
+#container .inasra {
+	position: absolute;
+	top: 0;
+	left: 0;
+	font-family: monospace;
+} */
