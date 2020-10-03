@@ -8,9 +8,33 @@ pre {
 	transform-style: preserve-3d;
 	user-select: none;
 }
+
 #inasra {
-	z-index: 1;
+	position: relative;
+	min-width: 1000px;
+	min-height: 1000px;
 }
+
+#inasra .word {
+	position: absolute;
+	line-height: 12px;
+	font-family: Fixed, monospace;
+	font-size: 12px;
+}
+
+#inasra span {
+	display: inline-block;
+	height: 12px;
+	width: 12px;
+	font-family: monospace;
+	font-size: 12px;
+	line-height: 12px;
+}
+
+#inasra .vertical span {
+	display: block;
+}
+
 /* #container {
 	position: relative;
 	width: 600px;
