@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
 import json
 import re
-from pdb import set_trace
+#from pdb import set_trace
 from os import system
 from sys import argv
-import subprocess
 
 # feed me an partially constructed crossword puzzle in a 2d array, in ipuz notation (board)
 # and a word (alexicon) you want to place on the board, the valid location for the first letter of the word x,y,
-# and clueonMTtable will provide the clue on an otherwise empty board, for overlaying on the existing board.
+# and clueinsert will return the puzzle with the clue inserted
 # zip* the board to do down!!
 
 
@@ -31,17 +30,11 @@ def sanitize(alexicon):
 		exit()
 
 def insert(alexicon, position):
+	#set_trace()
 	regexalexicon = re.compile(''.join(board[position[0]][position[1]:position[1]+len(alexicon)]).replace(' ','.'))
 	if regexalexicon.match(alexicon) is None:
 		print('this word does not fit the position you have specified')
 		exit()
-	#set_trace()# This is where we empty the board 
-	for row in enumerate(board):
-		for space in enumerate(row[1]):
-			#print(space)
-			board[row[0]][space[0]] = ' '
-	#for row in board: print(row)
-
 	for letter in alexicon:
 		board[position[0]][position[1]] = letter
 		position[1] = position[1]+1
@@ -49,14 +42,6 @@ def insert(alexicon, position):
 
 insert(sanitize(alexicon), position)
 
-FileNameOut = '../.NextMoves/'+alexicon+str(position[0])+'.'+str(position[1]) + '.VERTclueMTtable'
-#print(FileNameOut)
 board = list(zip(*board))
-
-with open(FileNameOut, 'w') as writio:
+with open('../.NextMoves/'+alexicon+".PlacedClue.VERT."+str(position[0])+','+str(position[1]), 'w') as writio:
 	writio.write(json.dumps(board))
-
-#print(['python3', 'BoardImgDrawer.py', FileNameOut, ['&']])
-subprocess.call(['python3', 'VERTBoardImgDrawer.py', FileNameOut, json.dumps(board)])
-
-
