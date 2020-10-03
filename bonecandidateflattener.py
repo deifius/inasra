@@ -9,7 +9,7 @@ import pdb
 acroglob = glob('acro_dicts/*')
 maybe_bone = []
 for each in acroglob:
- maybe_bone.append(json.loads(open(each).read()))
+	maybe_bone.append(json.loads(open(each).read()))
 
 reservewords = json.loads(open('wiki_reserve_terms.json').read())
 pattern = re.compile('[\W_]+')
@@ -18,7 +18,7 @@ for each in maybe_bone:
 	for every in each:
 		if every in reservewords: continue
 		goodwords.append(pattern.sub('', every[0]))
-		pdb.set_trace()
+		#pdb.set_trace()
 
 flat_list_of_maybe_bones = []
 for each in maybe_bone:

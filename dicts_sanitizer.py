@@ -16,16 +16,14 @@ pattern = re.compile('[\W_]+')
 goodwords = []
 for each in maybe_bone:
 	for every in each:
-		if every.lower() not in reservewords: 
+		if every.lower() not in reservewords:
 			if re.search("[^a-zA-Z ]", every,) is None:
 				#pdb.set_trace()
 				goodwords.append(pattern.sub('', every).lower())
 
-freqygoodwords = sorted(set(goodwords), key = lambda ele: goodwords.count(ele)) 
-# freqygoodwords and OneBigDict are sorted by frequency of recurrence of reference.  
-# Most referred words are last, least are first 
-pdb.set_trace()
+freqygoodwords = sorted(set(goodwords), key = lambda ele: goodwords.count(ele))
+# freqygoodwords and OneBigDict are sorted by frequency of recurrence of reference.
+# Most referred words are last, least are first
+#pdb.set_trace()
 
-with open('OneBigDict.json','w') as writeitout: writeitout.write(json.dumps(freqygoodwords))		
-
-
+with open('OneBigDict.json','w') as writeitout: writeitout.write(json.dumps(freqygoodwords))
