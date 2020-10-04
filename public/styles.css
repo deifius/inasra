@@ -18,7 +18,7 @@ pre {
 #inasra .word {
 	position: absolute;
 	line-height: 12px;
-	font-family: Fixed, monospace;
+	font-family: monospace;
 	font-size: 12px;
 }
 
@@ -26,9 +26,6 @@ pre {
 	display: inline-block;
 	height: 12px;
 	width: 12px;
-	font-family: monospace;
-	font-size: 12px;
-	line-height: 12px;
 }
 
 #inasra .vertical span {
