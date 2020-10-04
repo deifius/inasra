@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import json
 import re
-from pdb import set_trace
+#from pdb import set_trace
 from os import system
 from sys import argv
 
@@ -11,7 +11,7 @@ from sys import argv
 # zip* the board to do down!!
 
 
-with open(".xwordMEM/xwordspine.json") as readio: board =json.loads(readio.read())
+with open("xwordspine.json") as readio: board =json.loads(readio.read())
 
 alexicon = argv[1]
 position = [int(argv[2]),int(argv[3])]
@@ -42,5 +42,5 @@ def insert(alexicon, position):
 
 insert(sanitize(alexicon), position)
 
-with open('.NextMoves/'+alexicon+str(position[0])+','+str(position[1]), 'w') as writio:
+with open('.NextMoves/'+alexicon+".PlacedClue.HORIZ."+str(position[0])+','+str(position[1]), 'w') as writio:
 	writio.write(json.dumps(board))

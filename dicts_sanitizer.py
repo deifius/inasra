@@ -22,8 +22,8 @@ for each in maybe_bone:
 				goodwords.append(pattern.sub('', every).lower())
 
 freqygoodwords = sorted(set(goodwords), key = lambda ele: goodwords.count(ele))
-# freqygoodwords and OneBigDict are sorted by frequency of recurrence of reference.
+# freqygoodwords are sorted by frequency of recurrence of reference.
 # Most referred words are last, least are first
 #pdb.set_trace()
 
-with open('OneBigDict.json','w') as writeitout: writeitout.write(json.dumps(freqygoodwords))
+with open('freqygoodwords.json','w') as writeitout: writeitout.write(json.dumps(freqygoodwords))
