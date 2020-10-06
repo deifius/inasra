@@ -11,10 +11,10 @@ import subprocess
 #I am designed to be interrupted, NextMovesThinker clears the mem and restarts me constantly.  
 
 with open('freqygoodwords.json') as ok: Relevants = json.loads(ok.read())
-Relevants = Relevants[0:32]
+#Relevants = Relevants[0:32]
 while Relevants:
 	Places4BestWord = json.loads(subprocess.check_output(['python3', 'crystalyzation.py', Relevants.pop()]))
 	for each in Places4BestWord:
-		print(each)
+		#print(each)
 		subprocess.call(['python3', 'cluePLACER.py'] + each.split(' ') + ['&'])
 		subprocess.Popen(['python3', 'clueonMTtable.py'] + each.split(' ') + ['&'])

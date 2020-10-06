@@ -19,7 +19,7 @@ def visualize(xwordfield):
 			print(line)
 		
 maxwordsize = {'verts':0,'horiz':0}
-xwordspine = open('inasrafieldtest.txt').read().replace(' ','').split('\n')
+xwordspine = open('.eggspine.txt').read().replace(' ','').split('\n')
 if xwordspine[-1] is '':
 	xwordspine.pop(-1)
 #pdb.set_trace()
