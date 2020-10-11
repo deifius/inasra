@@ -10,7 +10,7 @@ from sys import argv
 # in the format: [[xCoord_of_First_Letter,yCoord_of_First_Letter]] which is the first letter placement of the accross clue
 # zip* the board to do down!!
 
-with open(".xwordMEM/xwordspine.json") as readio: board =json.loads(readio.read())
+with open("xwordspine.json") as readio: board =json.loads(readio.read())
 
 alexicon = argv[1]
 
