@@ -1,3 +1,6 @@
-pants	4
-swimwear	5
-earplugs	7
+Nikolai Gogol	3
+osyp bodiansky	11
+kazan	2
+zainsk	3
+novosheshminsky	2
+verkhneuslonsky	9

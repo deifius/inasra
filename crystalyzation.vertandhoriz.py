@@ -16,6 +16,7 @@ alexicon = argv[1]
 
 def rotateboard(board):
 	board = list(zip(*board))
+	return board
 
 def findnextwordspace (board, alexicon):
 	lines = []
@@ -68,6 +69,16 @@ def sanitize(alexicon):
 		exit()
 
 
-findnextwordspace(board, sanitize(alexicon))
+cleanexicon= sanitize(alexicon)
+vertlex = cleanexicon
+vertboard = [list(row) for row in list(zip(*board))] 
+for each in board: print(' '.join(each))
+for each in vertboard: print(' '.join(each))
+
+print('horiz:')
+findnextwordspace(board, cleanexicon)
+print('vert:')
+#set_trace()
+findnextwordspace(vertboard, vertlex)
 
 
