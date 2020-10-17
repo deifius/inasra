@@ -82,6 +82,7 @@ vert = findnextwordspace(vertboard, cleanexicon)
 #for each in vertboard: print(' '.join(each))
 for clue in horiz:
 	subprocess.call(['python3', 'cluePLACER.py'] + clue.split(' ') + ['&'])
-
+	subprocess.call(['python3', 'clueonMTtable.py'] + clue.split(' ') + ['&'])
 for clue in vert:
 	subprocess.call(['python3', 'cluePLACERvert.py'] + clue.split(' ') + ['&'])
+	subprocess.call(['python3', 'clueonMTtableVert.py'] + clue.split(' ') + ['&'])

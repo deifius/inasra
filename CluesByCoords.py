@@ -19,7 +19,6 @@ for row in enumerate(board):
 	for col in enumerate(row[1]):
 		board[row[0]][col[0]]=[]
 
-def 
 
 for eachmove in glob('.NextMoves/*'):
 	if '.HORIZ' in eachmove:
