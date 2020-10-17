@@ -1,6 +1,9 @@
-Nikolai Gogol	3
-osyp bodiansky	11
-kazan	2
-zainsk	3
-novosheshminsky	2
-verkhneuslonsky	9
+David Bowie	9
+elton john	5
+jack nitzsche	8
+stevie wonder	4
+iggy pop	6
+pierre boulez	10
+enrico caruso	6
+charles mingus	8
+imdb	
