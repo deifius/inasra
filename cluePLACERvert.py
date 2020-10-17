@@ -13,7 +13,7 @@ from sys import argv
 
 with open("xwordspine.json") as readio: board =json.loads(readio.read())
 alexicon = argv[1]
-position = [int(argv[2])+2,int(argv[3])]
+position = [int(argv[2]),int(argv[3])]
 
 
 def sanitize(alexicon):

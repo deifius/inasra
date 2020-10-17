@@ -73,14 +73,13 @@ def sanitize(alexicon):
 
 cleanexicon= sanitize(alexicon)
 vertboard = [list(row) for row in list(zip(*board))] 
-#for each in board: print(' '.join(each))
-#for each in vertboard: print(' '.join(each))
-
 print('horiz:')
 horiz = findnextwordspace(board, cleanexicon)
+#for each in board: print(' '.join(each))
 print('vert:')
 #set_trace()
 vert = findnextwordspace(vertboard, cleanexicon)
+#for each in vertboard: print(' '.join(each))
 for clue in horiz:
 	subprocess.call(['python3', 'cluePLACER.py'] + clue.split(' ') + ['&'])
 
