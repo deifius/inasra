@@ -12,12 +12,12 @@
 echo $1|grep -q PlacedClue
 if [ $? = 0 ]
 then
-	echo ".NextMoves/$1"
-	test -f .NextMoves/$1
+	echo "$1"
+	test -f $1
 	if [ $? = 0 ]
 	then
 		echo "should be doin now"
-		mv .NextMoves/$1 xwordspine.json
+		mv $1 xwordspine.json
 		rm .NextMoves/*
 		echo $1 >> .eggspine.txt
 		python3 freqyforget.py $1

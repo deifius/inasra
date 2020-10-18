@@ -1,2 +1,18 @@
 pants	3
 xiongnu.PlacedClue.VERT.9,8
+.NextMoves/banyan.PlacedClue.VERT.5.8
+.NextMoves/nightgown.PlacedClue.HORIZ.18.10
+.NextMoves/top.PlacedClue.VERT.10.13
+.NextMoves/blessedhat.PlacedClue.HORIZ.20.10
+.NextMoves/peatbog.PlacedClue.VERT.7.16
+.NextMoves/phrygian.PlacedClue.VERT.16.11
+.NextMoves/shrug.PlacedClue.HORIZ.19.9
+.NextMoves/pantalone.PlacedClue.HORIZ.6.16
+.NextMoves/uniforms.PlacedClue.VERT.13.10
+.NextMoves/banyan.PlacedClue.VERT.5.8
+.NextMoves/boater.PlacedClue.HORIZ.17.9
+.NextMoves/gablehood.PlacedClue.HORIZ.13.14
+.NextMoves/homburg.PlacedClue.HORIZ.2.9
+.NextMoves/toga.PlacedClue.VERT.11.7
+.NextMoves/bowler.PlacedClue.VERT.7.19
+.NextMoves/clerical.PlacedClue.HORIZ.21.10

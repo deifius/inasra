@@ -17,15 +17,16 @@ X = int(argv[1])
 Y = int(argv[2])
 print(str(X) + ',' + str(Y))
 #set_trace()
-# then a miracle happens!
+# then a miracle happens, as described below😘️
 
 for eachPossibleMove in glob('.NextMoves/*MTtable*'):
 	with open(eachPossibleMove) as possiboard: MTclue = json.loads(possiboard.read())
 	if MTclue[X][Y] != " ": 
-		system('clear')
-		for e in MTclue: print(" ".join(e))
-		print(str(eachPossibleMove) + ':' )
-		sleep(.5)
-
+		#system('clear')
+		#for e in MTclue: print(" ".join(e))
+		#print(str(eachPossibleMove) + ':' )
+		#sleep(.5)
+		# or alternately one might:
+		print(str(eachPossibleMove))
 
 
