@@ -28,6 +28,4 @@ for eachPossibleMove in glob('.NextMoves/*MTtable*'):
 		sleep(.5)
 
 
-		
-
 

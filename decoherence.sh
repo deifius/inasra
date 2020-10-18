@@ -9,17 +9,23 @@
 
 # I accept the argument: 1 item from the .NextMoves/ directory
 # and I make it into the the next actual board state
-
-if test -f .NextMoves/$1; then
-
-subprocess.call(mv $1 xwordspine.json)
-subprocess.call(mv $1 xwordspine.json)
-
-python3 -c "
-import json
-with open('freqygoodwords.json') as BigDict:
-	BigDict.write(json.loads(BigDict.remove($1.split('.'))))
-"
+echo $1|grep -q PlacedClue
+if [ $? = 0 ]
+then
+	echo ".NextMoves/$1"
+	test -f .NextMoves/$1
+	if [ $? = 0 ]
+	then
+		echo "should be doin now"
+		mv .NextMoves/$1 xwordspine.json
+		rm .NextMoves/*
+		echo $1 >> .eggspine.txt
+		python3 freqyforget.py $1
+		python3 nextbestwords.py
+	else
+		echo "dont see it in .NextMoves"
+	fi
+else
+	echo "gimme a PlacedClue"
 fi
-rm .NextMoves/*
-echo $1 >> .eggspine.txt
+

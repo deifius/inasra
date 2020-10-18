@@ -1,1 +1,2 @@
 pants	3
+xiongnu.PlacedClue.VERT.9,8
