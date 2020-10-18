@@ -1,18 +1,23 @@
-pants	3
-xiongnu.PlacedClue.VERT.9,8
-.NextMoves/banyan.PlacedClue.VERT.5.8
-.NextMoves/nightgown.PlacedClue.HORIZ.18.10
-.NextMoves/top.PlacedClue.VERT.10.13
-.NextMoves/blessedhat.PlacedClue.HORIZ.20.10
-.NextMoves/peatbog.PlacedClue.VERT.7.16
-.NextMoves/phrygian.PlacedClue.VERT.16.11
-.NextMoves/shrug.PlacedClue.HORIZ.19.9
-.NextMoves/pantalone.PlacedClue.HORIZ.6.16
-.NextMoves/uniforms.PlacedClue.VERT.13.10
-.NextMoves/banyan.PlacedClue.VERT.5.8
-.NextMoves/boater.PlacedClue.HORIZ.17.9
-.NextMoves/gablehood.PlacedClue.HORIZ.13.14
-.NextMoves/homburg.PlacedClue.HORIZ.2.9
-.NextMoves/toga.PlacedClue.VERT.11.7
-.NextMoves/bowler.PlacedClue.VERT.7.19
-.NextMoves/clerical.PlacedClue.HORIZ.21.10
+nikolai gogol	2
+kyiv university	7
+viacheslav chornovil	14
+nadiya svitlychna	4
+yosyf zisels	3
+yevgenia ginzburg	9
+ivan hel	6
+lev timofeev	3
+tatyana velikanova	11
+kazakhstan	4
+kyrgyzstan	6
+soviet union	3
+iron curtain	7
+trotskyism	2
+orthodox marxist	5
+.NextMoves/lutzvonkrosigk.PlacedClue.VERT.11.17
+.NextMoves/operationunthinkable.PlacedClue.VERT.30.33
+.NextMoves/henrykissinger.PlacedClue.HORIZ.29.27
+.NextMoves/kolapeninsula.PlacedClue.HORIZ.3.22
+.NextMoves/impressionism.PlacedClue.VERT.55.37
+.NextMoves/folkreligion.PlacedClue.HORIZ.13.41
+.NextMoves/greensyndicalism.PlacedClue.HORIZ.34.51
+.NextMoves/falseaccusation.PlacedClue.VERT.9.20

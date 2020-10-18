@@ -13,7 +13,7 @@ import subprocess
 with open('freqygoodwords.json') as ok: Relevants = json.loads(ok.read())
 Relevants = Relevants[0:32]
 while Relevants:
-	subprocess.call(['python3', 'crystalyzation.vertandhoriz.py', Relevants.pop()])
+	subprocess.Popen(['python3', 'crystalyzation.vertandhoriz.py', Relevants.pop()])
 #for each in Places4BestWord:
 #		#print(each)
 #		subprocess.call(['python3', 'cluePLACER.py'] + each.split(' ') + ['&'])
