@@ -1,23 +1,17 @@
-nikolai gogol	2
-kyiv university	7
-viacheslav chornovil	14
-nadiya svitlychna	4
-yosyf zisels	3
-yevgenia ginzburg	9
-ivan hel	6
-lev timofeev	3
-tatyana velikanova	11
-kazakhstan	4
-kyrgyzstan	6
-soviet union	3
-iron curtain	7
-trotskyism	2
-orthodox marxist	5
-.NextMoves/lutzvonkrosigk.PlacedClue.VERT.11.17
-.NextMoves/operationunthinkable.PlacedClue.VERT.30.33
-.NextMoves/henrykissinger.PlacedClue.HORIZ.29.27
-.NextMoves/kolapeninsula.PlacedClue.HORIZ.3.22
-.NextMoves/impressionism.PlacedClue.VERT.55.37
-.NextMoves/folkreligion.PlacedClue.HORIZ.13.41
-.NextMoves/greensyndicalism.PlacedClue.HORIZ.34.51
-.NextMoves/falseaccusation.PlacedClue.VERT.9.20
+isaac newton	6
+enlightened absolutism	17
+thomas hobbes	9
+bertrand russell	3
+.NextMoves/augustincalmet.PlacedClue.VERT.2.14
+.NextMoves/peaceactionandsane.PlacedClue.VERT.10.30
+.NextMoves/keithderose.PlacedClue.HORIZ.7.16
+.NextMoves/vladimirlenin.PlacedClue.HORIZ.24.13
+.NextMoves/edwardwaring.PlacedClue.HORIZ.22.12
+.NextMoves/kingjamesviandi.PlacedClue.VERT.0.30
+.NextMoves/williamlanecraig.PlacedClue.VERT.4.26
+.NextMoves/laureates.PlacedClue.HORIZ.29.12
+.NextMoves/gauss.PlacedClue.HORIZ.26.11
+.NextMoves/thomasnagel.PlacedClue.VERT.14.13
+.NextMoves/frankrussell.PlacedClue.VERT.12.14
+.NextMoves/williamhastings.PlacedClue.VERT.17.23
+.NextMoves/josephii.PlacedClue.VERT.9.10
