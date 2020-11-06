@@ -1,0 +1,17 @@
+isaac newton	6
+enlightened absolutism	17
+thomas hobbes	9
+bertrand russell	3
+.NextMoves/augustincalmet.PlacedClue.VERT.2.14
+.NextMoves/peaceactionandsane.PlacedClue.VERT.10.30
+.NextMoves/keithderose.PlacedClue.HORIZ.7.16
+.NextMoves/vladimirlenin.PlacedClue.HORIZ.24.13
+.NextMoves/edwardwaring.PlacedClue.HORIZ.22.12
+.NextMoves/kingjamesviandi.PlacedClue.VERT.0.30
+.NextMoves/williamlanecraig.PlacedClue.VERT.4.26
+.NextMoves/laureates.PlacedClue.HORIZ.29.12
+.NextMoves/gauss.PlacedClue.HORIZ.26.11
+.NextMoves/thomasnagel.PlacedClue.VERT.14.13
+.NextMoves/frankrussell.PlacedClue.VERT.12.14
+.NextMoves/williamhastings.PlacedClue.VERT.17.23
+.NextMoves/josephii.PlacedClue.VERT.9.10

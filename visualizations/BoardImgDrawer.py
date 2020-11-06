@@ -38,6 +38,7 @@ with Drawing() as draw:
 			#set_trace()
 			draw.text(int(FontSize),int(.7*FontSize*(row[0]+2)),''.join(row[1]))
 			# Font placement here is dependant on more guess&check spacing issues
+			# this is a hack! that needs to be re-solved
 		draw.pop()
 		draw(img)
 		img.save(filename=FileName)

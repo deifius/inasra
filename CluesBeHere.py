@@ -22,9 +22,7 @@ print(str(X) + ',' + str(Y))
 for eachPossibleMove in glob('.NextMoves/*MTtable*'):
 	with open(eachPossibleMove) as possiboard: MTclue = json.loads(possiboard.read())
 	if MTclue[X][Y] != " ": 
-		system('clear')
-		for e in MTclue: print(" ".join(e))
+		#for e in MTclue: print(" ".join(e))
 		print(str(eachPossibleMove))
-		sleep(.7)
 		
 

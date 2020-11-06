@@ -47,9 +47,11 @@ def insert(alexicon, position):
 		position[1] = position[1]+1
 	#for e in board: print(e)
 
+board = [list(row) for row in list(zip(*board))] 
 insert(sanitize(alexicon), position)
+board = [list(row) for row in list(zip(*board))] 
 
-FileNameOut = '.NextMoves/'+alexicon+".MTtable.HORIZ."+str(position[0])+'.'+str(position[1])
+FileNameOut = '.NextMoves/'+alexicon+".MTtable.VERT."+str(position[0])+'.'+str(position[1])
 #print(FileNameOut)
 with open(FileNameOut, 'w') as writio:
 	writio.write(json.dumps(board))

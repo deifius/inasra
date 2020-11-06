@@ -49,7 +49,7 @@ def insert(alexicon, position):
 
 insert(sanitize(alexicon), position)
 
-FileNameOut = '.NextMoves/'+alexicon+str(position[0])+'.'+str(position[1]) + '.MTtable'
+with open('.NextMoves/'+alexicon+".MTtable.Vert."+str(position[0])+','+str(position[1]), 'w') as writio:
 #print(FileNameOut)
 with open(FileNameOut, 'w') as writio:
 	writio.write(json.dumps(board))

@@ -3,7 +3,7 @@
 
 #TODO BREAK THIS INTO simple scripts:  
 #1) wikichomp- accepts the term and populates the acrodict
-#2) decoheresy- selects a proper subset of acrodict for selection by player
+#2) decoheresy- selects a proper subset of acrodict for selection by player 
 #3) acronymizer- builds the acronym in ipuz format from the decohered selection tree
 import re
 import sys
@@ -23,7 +23,7 @@ wiki_words_reserved = json.loads(open('wiki_reserve_terms.json').read())
 #TODO: develop a kickass regex (and a bloom filter) which encompasses many variations of reserved words!
 #
 
-inasrafieldtest = open("inasrafieldtest.txt",'w')
+inasrafieldtest = open(".eggspine.txt",'w')
 
 def disambiguouizer(ambiguous_wiki, ambiguous_term):
 	#in the event of an amiguous term, the disambiguouizer lets user select the favored meaning

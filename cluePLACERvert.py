@@ -4,16 +4,14 @@ import re
 from pdb import set_trace
 from os import system
 from sys import argv
-import subprocess
 
 # feed me an partially constructed crossword puzzle in a 2d array, in ipuz notation (board)
 # and a word (alexicon) you want to place on the board, the valid location for the first letter of the word x,y,
-# and clueonMTtable will provide the clue on an otherwise empty board, for overlaying on the existing board.
+# and clueinsert will return the puzzle with the clue inserted
 # zip* the board to do down!!
 
 
 with open("xwordspine.json") as readio: board =json.loads(readio.read())
-
 alexicon = argv[1]
 position = [int(argv[2]),int(argv[3])]
 
@@ -32,29 +30,20 @@ def sanitize(alexicon):
 
 def insert(alexicon, position):
 	regexalexicon = re.compile(''.join(board[position[0]][position[1]:position[1]+len(alexicon)]).replace(' ','.'))
+	#set_trace()
 	if regexalexicon.match(alexicon) is None:
 		print('this word does not fit the position you have specified')
 		exit()
-	#set_trace()# This is where we empty the board 
-	for row in enumerate(board):
-		for space in enumerate(row[1]):
-			#print(space)
-			board[row[0]][space[0]] = ' '
-	#for row in board: print(row)
-
 	for letter in alexicon:
 		board[position[0]][position[1]] = letter
 		position[1] = position[1]+1
 	#for e in board: print(e)
 
+#for e in board: print(' '.join(e))
+board = [list(row) for row in list(zip(*board))] 
+#for e in board: print(' '.join(e))
+
 insert(sanitize(alexicon), position)
-
-FileNameOut = '.NextMoves/'+alexicon+".MTtable.HORIZ."+str(position[0])+'.'+str(position[1])
-#print(FileNameOut)
-with open(FileNameOut, 'w') as writio:
+board = [list(row) for row in list(zip(*board))] 
+with open('.NextMoves/'+alexicon+".PlacedClue.VERT."+str(position[0])+'.'+str(position[1]), 'w') as writio:
 	writio.write(json.dumps(board))
-
-#print(['python3', 'BoardImgDrawer.py', FileNameOut, ['&']])
-#subprocess.call(['python3', 'BoardImgDrawer.py', FileNameOut, json.dumps(board)])
-
-

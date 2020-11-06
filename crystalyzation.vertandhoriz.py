@@ -1,9 +1,11 @@
+
 #!/usr/bin/env python3
 import json
 import re
 from pdb import set_trace
 from os import system
 from sys import argv
+import subprocess
 
 # feed me an partially constructed crossword puzzle in a 2d array, in ipuz notation (board)
 # and a word (alexicon) you want to place on the board, and findthenextword will return a list of valid places
@@ -16,6 +18,7 @@ alexicon = argv[1]
 
 def rotateboard(board):
 	board = list(zip(*board))
+	return board
 
 def findnextwordspace (board, alexicon):
 	lines = []
@@ -53,6 +56,7 @@ def findnextwordspace (board, alexicon):
 		#print(alexicon + ' ' + str(eachplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']','')) 
 	#print(alexicon + ' ' + str(legalplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']',''))
 	print(json.dumps(goodplaces))
+	return goodplaces
 	#pdb.set_trace()
 
 
@@ -68,6 +72,18 @@ def sanitize(alexicon):
 		exit()
 
 
-findnextwordspace(board, sanitize(alexicon))
-
-
+cleanexicon= sanitize(alexicon)
+vertboard = [list(row) for row in list(zip(*board))] 
+print('horiz:')
+horiz = findnextwordspace(board, cleanexicon)
+#for each in board: print(' '.join(each))
+print('vert:')
+#set_trace()
+vert = findnextwordspace(vertboard, cleanexicon)
+#for each in vertboard: print(' '.join(each))
+for clue in horiz:
+	subprocess.call(['python3', 'cluePLACER.py'] + clue.split(' ') + ['&'])
+	subprocess.call(['python3', 'clueonMTtable.py'] + clue.split(' ') + ['&'])
+for clue in vert:
+	subprocess.call(['python3', 'cluePLACERvert.py'] + clue.split(' ') + ['&'])
+	subprocess.call(['python3', 'clueonMTtableVert.py'] + clue.split(' ') + ['&'])
