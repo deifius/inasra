@@ -1,18 +1,13 @@
+const LETTER_SIZE = 12;
 
-function makeWord(isVertical, word, coords) {
-	const size = 12;
-	const div = document.createElement("div");
-	div.innerHTML += `<span>${word.split("").join("</span><span>")}</span>`;
-	div.className = `word${isVertical ? ' vertical' : ''}`;
-	div.style.left = `${size*coords[0]}px`;
-	div.style.top  = `${size*coords[1]}px`;
-	return div;
-}
-
-function render(xwords, ywords) {
-	const inasra = document.getElementById("inasra");
-	Object.entries(xwords).forEach(entry => inasra.appendChild(makeWord(false, ...entry)));
-	Object.entries(ywords).forEach(entry => inasra.appendChild(makeWord(true, ...entry)));
+function wordHtml(isVertical, word, coords) {
+	const px = coords.map(pos => `${LETTER_SIZE * pos}px`)
+	const className = `word${isVertical ? ' vertical' : ''}`;
+	return [
+		`<div class="${className}" style="left: ${px[0]}; top: ${px[1]};">`,
+			`<span>${word.split("").join("</span><span>")}</span>`,
+		`</div>`,
+	].join("")
 }
 
 function parseLetterGrid(grid, invert) { // grid is an array of arrays containing characters
@@ -51,10 +46,13 @@ function flipLetterGridAxis(grid) {
 
 function fetchwords() {
 	fetch("/wordgrid.json").then(async function(response) {
-		var json = JSON.parse(await response.text());
-		const xwords = parseLetterGrid(json);
-		const ywords = parseLetterGrid(flipLetterGridAxis(json), true);
-		render(xwords, ywords);
+		const { app } = window;
+		const json = JSON.parse(await response.text());
+		app.data = {
+			...app.data,
+			xwords: parseLetterGrid(json),
+			ywords: parseLetterGrid(flipLetterGridAxis(json), true),
+		};
 	});
 	// fetch("/ipuz.json").then(async function(response) {
 	// 	var json = JSON.parse(await response.text());
@@ -62,7 +60,21 @@ function fetchwords() {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
+
+	window.app = new Reef('#inasra', {
+		data: {
+			xwords: {},
+			ywords: {},
+		},
+		template: props => [
+			Object.entries(props.xwords).map(entry => wordHtml(false, ...entry)).join(""),
+			Object.entries(props.ywords).map(entry => wordHtml( true, ...entry)).join(""),
+		].join(""),
+	});
+	window.app.render();
+
 	fetchwords();
+
 	document.getElementById("submit").addEventListener("click", function() {
 		var clue = document.getElementById("clueinsert").value;
 		if(!/^[a-z]+\s[0-9]+\s[0-9]+$/.test(clue)) {
