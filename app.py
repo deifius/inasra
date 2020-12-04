@@ -1,6 +1,7 @@
 #!/usr/env python3
 
 from flask import Flask, request
+from glob import glob
 import json
 import os
 
@@ -39,6 +40,14 @@ def ipuz():
 def wordgrid():
   with open("xwordspine.json") as ok: this=ok.read()
   return this
+
+@app.route("/nextmoves.json")
+def nextmoves():
+  nextmovesglob = glob(".NextMoves/*")
+  nextmovesdict = {}
+  for nextmove in nextmovesglob:
+    with open(nextmove) as ok: nextmovesdict[nextmove]=json.loads(ok.read())
+  return nextmovesdict
 
 @app.route("/clueinsert", methods=["POST"])
 def post():

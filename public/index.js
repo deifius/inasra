@@ -3,9 +3,12 @@ const LETTER_SIZE = 12;
 function wordHtml(isVertical, word, coords) {
 	const px = coords.map(pos => `${LETTER_SIZE * pos}px`)
 	const className = `word${isVertical ? ' vertical' : ''}`;
+	// const onmouseovers = `onmouseover="console.log(${coords[0]+","+coords[1]}); if(cache)console.log(cache['${coords[0]},${coords[1]}']);"`;
+	// const onmouseovers = `onmouseover="if(cache)console.log(cache['${coords[0]},${coords[1]}']);"`;
+	const onmouseovers = ``;
 	return [
 		`<div class="${className}" style="left: ${px[0]}; top: ${px[1]};">`,
-			`<span>${word.split("").join("</span><span>")}</span>`,
+			`<span ${onmouseovers}>${word.split("").join(`</span><span ${onmouseovers}>`)}</span>`,
 		`</div>`,
 	].join("")
 }
@@ -44,10 +47,45 @@ function flipLetterGridAxis(grid) {
 	}, []);
 }
 
+setTimeout(() => {
+	fetch("/nextmoves.json").then(async function(response) {
+		const hasCharactersPlz = /[^\s]+/;
+		const nextmoves = JSON.parse(await response.text());
+		//console.log(nextmoves);
+		const moves = Object.keys(nextmoves).reduce((out, nextkey) => {
+			const nextmovegrid = nextmoves[nextkey];
+			nextmovegrid.forEach(nextmoveline => {
+				const str = nextmoveline.join("");
+				// console.log(nextkey, str);
+				if(hasCharactersPlz.test(str)) out.push([str, nextkey]);
+				// else                           out.push("");
+			})
+			return out;
+		}, []);
+		//console.log(moves);
+		let cache = {};
+		wordgrid.forEach((line, y) => {
+			line.forEach((char, x) => {
+				if(char !== " ") {
+					cache[`${y},${x}`] = [];
+					const moveline = moves[y];
+					// if(moveline !== "") console.log(moveline, x);
+					if(moveline !== "" && moveline[x] !== " ") {
+						cache[`${y},${x}`].push(moveline);
+					}
+				}
+			})
+		});
+		//console.log(cache);
+		window.cache = cache;
+	});
+}, 1000);
+
 function fetchwords() {
 	fetch("/wordgrid.json").then(async function(response) {
 		const { app } = window;
 		const json = JSON.parse(await response.text());
+		wordgrid = json;
 		app.data = {
 			...app.data,
 			xwords: parseLetterGrid(json),
