@@ -11,3 +11,4 @@ python3 nextbestwords.py &
 bestwords=$!
 #python3 vertical_land/VERTnextbestwords.py &
 vertwords=$!
+

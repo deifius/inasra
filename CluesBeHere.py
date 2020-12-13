@@ -19,7 +19,7 @@ print(str(X) + ',' + str(Y))
 #set_trace()
 # then a miracle happens, as described below😘️
 
-for eachPossibleMove in glob('.NextMoves/*MTtable*'):
+for eachPossibleMove in glob('.NextMoves/*PlacedClue*'):
 	with open(eachPossibleMove) as possiboard: MTclue = json.loads(possiboard.read())
 	if MTclue[X][Y] != " ": 
 		#for e in MTclue: print(" ".join(e))
