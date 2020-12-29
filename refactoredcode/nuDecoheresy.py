@@ -33,14 +33,17 @@ class decoheresy:
 	def set_coordinate(self, x, y):
 		self.coordinate= [x,y]		
 
-	def get_possibilities(self, howmany):
+	def show_board(self, howmany):
 		for e in self.board: print(' '.join(e))	
 
-#	def get_long_possibilities(self, howmany):
-#	def get_short_possibilities(self, howmany):
-#	def get_popular_possibilities(self, howmany):
-#	def board_rotate(self):
-#	def 
+	def board_rotate(self):
+		board = list(zip(*board))
+
+#	def get_long_possibilities(self, howMany):
+#	def get_short_possibilities(self, howMany):
+#	def get_popular_possibilities(self, howMany):
+#	def get_places_for_clue(self, clue):
+#	def place_clue(self,firstCharPos, orientation)
 
 def sanitizer(argv):
 	#	I sanitize the input, and break it down into wordlist, boardstate and coordinates

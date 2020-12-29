@@ -1,23 +1,4 @@
-Walt Disney	3
-the jungle book	6
-gunga din	3
-gulf war	4
-world bank	5
-business cycle	3
-industrial revolution	5
-tulip mania	3
-international financial centre	21
-london stock exchange	6
-shadow cabinet	7
-abhisit vejjajiva	12
-jurin laksanawisit	.NextMoves/buddha.PlacedClue.HORIZ.4.8
-.NextMoves/thomaspickering.PlacedClue.HORIZ.20.18
-.NextMoves/gilkane.PlacedClue.HORIZ.22.12
-.NextMoves/ilovelucy.PlacedClue.HORIZ.8.14
-.NextMoves/octoberrebellion.PlacedClue.VERT.2.34
-.NextMoves/internationalaidtransparencyinitiative.PlacedClue.HORIZ.2.38
-.NextMoves/realpolitik.PlacedClue.VERT.22.11
-.NextMoves/stockholmstockexchange.PlacedClue.HORIZ.8.43
-.NextMoves/paulinerobinsonbush.PlacedClue.HORIZ.6.38
-.NextMoves/humphrydavy.PlacedClue.VERT.39.11
-.NextMoves/interrogation.PlacedClue.VERT.6.35
+David Bowie	9
+ed sheeran	7
+annie lennox	6
+eurythmics	9

@@ -57,7 +57,7 @@ def findnextwordspace (board, alexicon):
 	#print(alexicon + ' ' + str(legalplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']',''))
 	print(json.dumps(goodplaces))
 	return goodplaces
-	#pdb.set_trace()
+	pdb.set_trace()
 
 
 def sanitize(alexicon):
