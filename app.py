@@ -2,6 +2,7 @@
 
 from flask import Flask, request
 from glob import glob
+from subprocess import Popen, PIPE, STDOUT
 import json
 import os
 
@@ -51,11 +52,19 @@ def nextmoves():
 
 @app.route("/clueinsert", methods=["POST"])
 def post():
-	#return request.get_json(force=True)["insert"]
-	os.system("python3 clueinsert.py " + request.get_json(force=True)["insert"])
-	return "success"; # FIXME: check for actual success
+  #return request.get_json(force=True)["insert"]
+  os.system("python3 clueinsert.py " + request.get_json(force=True)["insert"])
+  return "success"; # FIXME: check for actual success
+
+@app.route("/newinasra", methods=["POST"])
+def postnew():
+  value = request.get_json(force=True)["value"] + "\n"
+  p = Popen(["python3", "wikichomp_py3.py"], stdout=PIPE, stdin=PIPE, stderr=PIPE)
+  stdout_data = p.communicate(input=bytes(value, "utf-8"))[0];
+  return stdout_data
+  #os.system("python3 clueinsert.py " + request.get_json(force=True)["insert"])
 
 #Finally, let"s launch the app if the script is invoked as the main program:
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0")
+  app.run(debug=True, host="0.0.0.0")

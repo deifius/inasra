@@ -64,6 +64,7 @@ setTimeout(() => {
 		}, []);
 		//console.log(moves);
 		let cache = {};
+		//window.wordgrid = wordgrid;
 		wordgrid.forEach((line, y) => {
 			line.forEach((char, x) => {
 				if(char !== " ") {
@@ -76,7 +77,7 @@ setTimeout(() => {
 				}
 			})
 		});
-		//console.log(cache);
+		console.log(cache);
 		window.cache = cache;
 	});
 }, 1000);
@@ -88,8 +89,9 @@ function fetchwords() {
 		wordgrid = json;
 		app.data = {
 			...app.data,
-			xwords: parseLetterGrid(json),
-			ywords: parseLetterGrid(flipLetterGridAxis(json), true),
+			wordgrid,
+			xwords: parseLetterGrid(wordgrid),
+			ywords: parseLetterGrid(flipLetterGridAxis(wordgrid), true),
 		};
 	});
 	// fetch("/ipuz.json").then(async function(response) {
@@ -103,13 +105,25 @@ window.addEventListener("DOMContentLoaded", () => {
 		data: {
 			xwords: {},
 			ywords: {},
+			wordgrid: [],
 		},
-		template: props => [
-			Object.entries(props.xwords).map(entry => wordHtml(false, ...entry)).join(""),
-			Object.entries(props.ywords).map(entry => wordHtml( true, ...entry)).join(""),
-		].join(""),
+		template: props => {
+			const { xwords, ywords, wordgrid } = props;
+			console.log(xwords, ywords, wordgrid, props);
+			const [ xlen, ylen ] = [wordgrid.length, (wordgrid[0] || []).length].map(px => px * 12);
+			console.log(xlen, ylen);
+			return [
+				`<div class="inner" style="min-width: ${xlen}px; min-height: ${ylen}px">`,
+				Object.entries(xwords).map(entry => wordHtml(false, ...entry)).join(""),
+				Object.entries(ywords).map(entry => wordHtml( true, ...entry)).join(""),
+				`</div>`,
+			].join("")
+		},
 	});
 	window.app.render();
+
+	// with open('xwordspine.json') as xwordspine:
+	// 	xy = [len(json.dumps(xwordspine)), len(json.dumps(xwordspine)[])]
 
 	fetchwords();
 
@@ -126,6 +140,21 @@ window.addEventListener("DOMContentLoaded", () => {
 			});
 		}
 	});
+
+	document.getElementById("submitnew").addEventListener("click", function() {
+		var { value } = document.getElementById("newinasra");
+		if(!/^[a-z]+$/.test(value)) {
+			alert("invalid format!")
+		} else {
+			fetch("/newinasra", {
+				method: "post",
+				body: JSON.stringify({ value }),
+			}).then(function() {
+				fetchwords();
+			});
+		}
+	});
+
 	// var listener = false;
 	// document.getElementById("inasra").addEventListener("mousedown", function(e) {
 	// 	const startY = e.clientY;
