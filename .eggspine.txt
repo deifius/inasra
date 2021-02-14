@@ -2,3 +2,10 @@ David Bowie	9
 ed sheeran	7
 annie lennox	6
 eurythmics	9
+.NextMoves/bobbymcferrin.PlacedClue.HORIZ.4.14
+.NextMoves/kanyewest.PlacedClue.VERT.16.14
+.NextMoves/whenthewindblows.PlacedClue.HORIZ.16.16
+.NextMoves/arttatum.PlacedClue.HORIZ.13.16
+.NextMoves/eagles.PlacedClue.HORIZ.2.10
+.NextMoves/falconheavy.PlacedClue.VERT.18.14
+.NextMoves/franciscofranco.PlacedClue.HORIZ.2.18
