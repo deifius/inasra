@@ -9,11 +9,12 @@ word = argv[1]
 #with open('acronym/links/'+ word, 'r') as relephants:
 #	relephant = json.loads(relephants.read())
 #	relephant.sort()
-relephant = json.loads(''.join(argv[2:]))	
+relephant = json.loads(' '.join(argv[2:]))	
 
 #	Input: 
 #		first argument 
 #		sbsequent arguments: the dictionary 
+#	./Acronymizer.NU.py $1  $(cat acronym/links/$1)
 acronym = []
 def acronymize(word, acronym, relephant):
 	'''I accept a string and return a relevant acronym'''
@@ -21,6 +22,7 @@ def acronymize(word, acronym, relephant):
 		if len(singleletter) != 1: return "only one letter plz"
 		if singleletter == ' ': return ' '
 		shuffle(relephant)
+		#pdb.set_trace()
 		for each in relephant:
 			if each[0].capitalize() == singleletter.capitalize():
 				return each
