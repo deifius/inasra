@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-
+if [ "$#" -ne 1 ]; then 
+    echo "You must enter exactly 1 command line arguments"
+    exit 1
+fi
 mkdir -p users/$USER/$@
 #cd users/$USER/$@
 #echo "$@"

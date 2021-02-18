@@ -25,6 +25,7 @@ def wikipedia_grab_chomp(wikiterm):
 	'''I retrieve linked articles, summaries and picture locations from wikipedia'''
 	
 	try:
+		#pdb.set_trace()
 		page = wikipedia.page(wikiterm)
 	except wikipedia.DisambiguationError as disambu_choices:
 		#pdb.set_trace()
