@@ -17,6 +17,8 @@ from time import sleep
 from os import system
 import pdb
 
+
+# we are adding an argument , passing the state of the board to perform
 #linkable words that are part of wikipedia boilerplate
 wiki_words_reserved = json.loads(open('wiki_reserve_terms.json').read())
 #pdb.set_trace()

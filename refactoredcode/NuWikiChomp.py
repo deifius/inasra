@@ -16,9 +16,10 @@ def wikipedia_grab_chomp(wikiterm):
 	numbers = re.compile('[0-9]')
 	goodwords = set(links)
 	badwords = []
+	#pdb.set_trace()
 	for e in goodwords:
 		if len(numbers.findall(e)) > 0:
-			print(e)
+			print("throwing out '" +e+ "' because we don't do numbers yet")
 			badwords.append(e)
 	for e in badwords:
 		goodwords.remove(e)

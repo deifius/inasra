@@ -9,6 +9,7 @@
 
 # I accept the argument: 1 item from the .NextMoves/ directory
 # and I make it into the the next actual board state
+# we are creating the directory hierarchy for spannable history trees,  
 echo $1|grep -q PlacedClue
 if [ $? = 0 ]
 then
@@ -17,8 +18,9 @@ then
 	if [ $? = 0 ]
 	then
 		echo "should be doin now"
-		mv $1 xwordspine.json
-		rm .NextMoves/*
+		mkdir -p $inasradir/$1/.NextMoves 
+		mv $1 $inasradir/xwordspine.json
+		mv .NextMoves/* $inasradir/.NextMoves
 		echo $1 >> .eggspine.txt
 		python3 freqyforget.py $1
 		python3 nextbestwords.py
