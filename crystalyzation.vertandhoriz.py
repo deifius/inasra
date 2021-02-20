@@ -52,10 +52,10 @@ def findnextwordspace (board, alexicon):
 								legalplace.append((line[0],validplace))
 	goodplaces = []
 	for eachplace in legalplace:
-		goodplaces.append(alexicon + ' ' + str(eachplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']','')) 
-		#print(alexicon + ' ' + str(eachplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']','')) 
+		goodplaces.append(alexicon + ' ' + str(eachplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']',''))
+		#print(alexicon + ' ' + str(eachplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']',''))
 	#print(alexicon + ' ' + str(legalplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']',''))
-	print(json.dumps(goodplaces))
+	#print(json.dumps(goodplaces))
 	return goodplaces
 	pdb.set_trace()
 
@@ -67,17 +67,17 @@ def sanitize(alexicon):
 	if re.search("[^a-zA-Z ]", alexicon,) is None:
 		alexicon = ''.join(alexicon.lower().split(' '))
 		return alexicon
-	else: 
+	else:
 		#print("remove offending characters, submit l8ter")
 		exit()
 
 
 cleanexicon= sanitize(alexicon)
-vertboard = [list(row) for row in list(zip(*board))] 
-print('horiz:')
+vertboard = [list(row) for row in list(zip(*board))]
+#print('horiz:')
 horiz = findnextwordspace(board, cleanexicon)
 #for each in board: print(' '.join(each))
-print('vert:')
+#print('vert:')
 #set_trace()
 vert = findnextwordspace(vertboard, cleanexicon)
 #for each in vertboard: print(' '.join(each))

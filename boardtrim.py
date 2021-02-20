@@ -5,7 +5,7 @@ import json
 def boardtrim(board):
 	destroy = 1
 	for each in board[-1]:
-		if each is ' ':
+		if each == ' ':
 			pass
 		else:
 			destroy = 0
@@ -23,4 +23,3 @@ boardtrim(board)
 
 with open('xwordspine.json', 'w') as writio:
 	writio.write(json.dumps(board).replace('.',' '))
-

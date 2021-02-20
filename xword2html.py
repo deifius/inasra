@@ -2,10 +2,13 @@
 
 from tabulate import tabulate
 import json, re
+from sys import argv
 
 #Hallo I generate an html with buttons for letters to std
 #input xwordspine.json
-with open('xwordspine.json') as ok: this = json.loads(ok.read())
+#this = argv[1]
+with open(argv[1]) as ok: this = json.loads(ok.read())
+#with open('xwordspine.json') as ok: this = json.loads(ok.read())
 
 #for each in enumerate(this):
 #    for every in enumerate(each[1]):
@@ -20,6 +23,18 @@ header = '''
 <html>
 <body>
 
+<script>
+function siblingCount(node) {
+	return [...node.parentElement.childNodes].indexOf(node);
+}
+
+function klik(btn) {
+	const x = siblingCount(btn.parentElement.parentElement);
+	const y = siblingCount(btn.parentElement);
+	document.location = `/cluez/lukifer/usufruct?action=click&x=${x}&y=${y}`;
+}
+</script>
+
 <h2>INASRA</h2>
 '''
 footer = '</html>\n</body>'
@@ -31,6 +46,6 @@ footer = '</html>\n</body>'
 
 print(header)
 #print(tabulate(this, tablefmt='html'))
-print(re.sub('>([\S\s])<', r'><button>\1</button><',tabulate(this, tablefmt='html')))
+print(re.sub('>([\S\s])<', r'><button onclick="klik(this)">\1</button><',tabulate(this, tablefmt='html')))
 
 print(footer)

@@ -18,10 +18,10 @@ def visualize(xwordfield):
 				linecheck = 1
 		if linecheck == 1:
 			print(line)
-		
+
 maxwordsize = {'verts':0,'horiz':0}
 xwordspine = open('.eggspine.txt').read().replace(' ','').split('\n')
-if xwordspine[-1] is '':
+if xwordspine[-1] == '':
 	xwordspine.pop(-1)
 #pdb.set_trace()
 if xwordspine[-1][-1].isdigit() == False:
@@ -70,7 +70,7 @@ for eachword in range(len(xwordspine)):
 			visualize(xwordfield)
 			sleep(.031)
 		if cursor[0] > maxcursor[0]:
-				maxcursor[0] = cursor[0] 
+				maxcursor[0] = cursor[0]
 		cursor[0] -= len(xwordspine[eachword][0])
 		cursor[0] += int(xwordspine[eachword][1])
 	if eachword%2 != 0:
@@ -80,7 +80,7 @@ for eachword in range(len(xwordspine)):
 			visualize(xwordfield)
 			sleep(.031)
 		if cursor[1] > maxcursor[1]:
-				maxcursor[1] = cursor[1] 
+				maxcursor[1] = cursor[1]
 		cursor[1] -= len(xwordspine[eachword][0])
 		cursor[1] += int(xwordspine[eachword][1])
 		#pdb.set_trace()

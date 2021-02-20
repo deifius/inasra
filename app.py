@@ -22,6 +22,25 @@ def index():
 #  <p>A sample web-app for running Flask inside Docker.</p>
 #  """
 
+@app.route("/nu/<oozer>/<werd>")
+def nu(oozer, werd):
+  os.system("./xword2html.py xwordspine.json > luk.html"); # temp
+  # FIXMEandstuff
+  #os.system("./xword2html.py "+oozer+"/"+werd+"/xwordspine.json > luk.html");
+  with open("luk.html") as ok: this=ok.read()
+  return this;
+
+@app.route("/cluez/<oozer>/<werd>")
+def cluez(oozer, werd):
+  ackshun = request.args.get("action")
+  if ackshun == "click":
+    x=request.args.get("x")
+    y=request.args.get("y")
+    return os.system("./CluesBeHere.py "+x+" "+y)
+  # TODO: return all the values from the paths as rendered and clickable HTML
+  # OR: return an array of JSONs for all CluesBeHere and then render with JS to be clickable
+  return "you should not be here, ya derp";
+
 @app.route("/index.js")
 def js():
   with open("public/index.js") as ok: this=ok.read()
