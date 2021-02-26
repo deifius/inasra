@@ -38,7 +38,7 @@ def acronymize(word, acronym, relephant):
 		#pdb.set_trace()
 		acronym.append(initialyze(eachletter, relephant))
 
-def get_choice(word, acronym):
+def get_choice(word, acronym, relephant):
 	#pdb.set_trace()
 	for each in enumerate(acronym):
 		if each[1].isspace(): print('');
@@ -46,15 +46,18 @@ def get_choice(word, acronym):
 	choice_word = input("\nSelect a line by number:\t")
 	print("you said "+choice_word)
 	if choice_word.isspace() or len(choice_word) == 0:
-		#acronymize(word, acronym, relephant)
-		choice_word = get_choice(word, acronym)
+		pdb.set_trace()
+		acronymize(word, acronym, relephant)
+		pdb.set_trace()
+		choice_word = get_choice(word, acronym, relephant)
+		return choice_word
 		#os.system('./ye_Olde_init.sh ' + argv[1])
 	try:		choice_word = int(choice_word)
-	except:	get_choice(word, acronym)
+	except:	get_choice(word, acronym, relephant)
 	return choice_word
 
 acronymize(word, acronym, relephant)
-choice_word = get_choice(word, acronym)
+choice_word = get_choice(word, acronym, relephant)
 print(acronym[int(choice_word)].replace(' ','_'))
 #print(relephant)
 

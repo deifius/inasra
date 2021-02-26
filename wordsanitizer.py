@@ -5,7 +5,7 @@ import json
 import re
 import pdb
 
-acroglob = glob('acro_dicts/*')
+acroglob = glob('acronym/links/*')
 maybe_bone = []
 for each in acroglob:
 	maybe_bone.append(json.loads(open(each).read().lower()))

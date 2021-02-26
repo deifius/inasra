@@ -1,28 +1,5 @@
-Nine Inch Nails	6
-Natural Born Killers	9
-Oliver Stone	9
-Otar Iosseliani	9
-Echo of Moscow	10
-Saint Petersburg	15
-Gagarin Cup	3
-Atlant Moscow Oblast	10
-Czech Republic	3
-Carp	2
-Ryder Cup	4
-Rome	2
-Many-worlds interpretation	14
-Time travel	9
-Eternal return	2
-Edvard Munch	7
-Nine Inch Nails	7
-Chris Vrenna	1
-Head Like a Hole	13
-Outside Tour	11
-Reeves Gabrels	7
-Gail Ann Dorsey	3
-Nine Inch Nails	2
-Nothing Records	4
-Into the Void 	9
-Void 	2
-Isambard Kingdom Brunel	5
-Animated film	2
+testes	1
+Epispadias	5
+Alport syndrome	3
+Occipital horn syndrome	6
+Tooth	3

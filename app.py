@@ -61,6 +61,11 @@ def wordgrid():
   with open("xwordspine.json") as ok: this=ok.read()
   return this
 
+@app.route("/xword.html")
+def xword():
+  with open("xword.html") as ok: this=ok.read()
+  return this
+
 @app.route("/nextmoves.json")
 def nextmoves():
   nextmovesglob = glob(".NextMoves/*")

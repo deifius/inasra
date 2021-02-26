@@ -1,8 +1,9 @@
 #!/bin/bash
 
-rm .NextMoves/* acro_dicts/* #a bunch of stuff
+rm .NextMoves/* acro_dicts/* acronym/*/* #a bunch of stuff
 
-python3 wikichomp_py3.py
+./ye_Olde_init.sh $1
+#python3 wikichomp_py3.py
 python3 spinylize.py
 python3 boardtrim.py
 python3 wordsanitizer.py

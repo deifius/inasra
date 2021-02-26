@@ -56,4 +56,6 @@ def wikipedia_grab_chomp(wikiterm):
 	with open('acronym/content/' + wikiterm, 'w') as content:
 		content.write(json.dumps(page.content))
 
+	
+	
 wikipedia_grab_chomp(word)

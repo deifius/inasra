@@ -11,7 +11,7 @@ import subprocess
 #I am designed to be interrupted, NextMovesThinker clears the mem and restarts me constantly.  
 
 with open('freqygoodwords.json') as ok: Relevants = json.loads(ok.read())
-if len(Relevants)>80: Relevants = Relevants[0:64]
+if len(Relevants)>80: Relevants = Relevants[0:36]
 while Relevants:
 	subprocess.Popen(['python3', 'crystalyzation.vertandhoriz.py', Relevants.pop()])
 #for each in Places4BestWord:
