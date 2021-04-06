@@ -1,5 +1,7 @@
-testes	1
-Epispadias	5
-Alport syndrome	3
-Occipital horn syndrome	6
-Tooth	3
+Frank Sinatra	4
+David Bowie	6
+David Bowie	7
+David Bowie	8
+David Bowie	2
+Visage 	4
+Goteki	3

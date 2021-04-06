@@ -12,7 +12,7 @@ import pdb
 #		sbsequent arguments: the dictionary
 #	./Acronymizer.NU.py $1  $(cat acronym/links/$1)
 
-if len(argv) != 2: word = input("\n\n\nwhat do you want to make an acronym for? ")
+if len(argv) != 2: word = " ".join(argv)
 else:
 	word = argv[1]
 	print(argv[1] + '\n')
@@ -48,7 +48,7 @@ def get_choice(word, acronym, relephant):
 	if choice_word.isspace() or len(choice_word) == 0:
 		pdb.set_trace()
 		acronymize(word, acronym, relephant)
-		pdb.set_trace()
+		#pdb.set_trace()
 		choice_word = get_choice(word, acronym, relephant)
 		return choice_word
 		#os.system('./ye_Olde_init.sh ' + argv[1])
@@ -61,5 +61,9 @@ choice_word = get_choice(word, acronym, relephant)
 print(acronym[int(choice_word)].replace(' ','_'))
 #print(relephant)
 
-with open('.eggspine.txt','a') as inasradna: inasradna.write(word +"\t"+ str(choice_word) +"\n")
-os.system('./ye_Olde_init.sh ' + argv[1] +'/'+ acronym[int(choice_word)].replace(' ','_'))
+with open('.eggspine.txt','a+') as inasradna:
+	#pdb.set_trace()
+	inasradna.write(word +"\t"+ str(choice_word) + "\n")
+	print("I just wrote " + word)
+os.system('./ye_Olde_init.sh ' + argv[1] +'/'+ acronym[int(choice_word)].replace(' ','_').split('/')[-1])
+

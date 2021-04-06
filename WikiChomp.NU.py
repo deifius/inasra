@@ -5,7 +5,7 @@ import json
 from sys import argv
 import re
 import pdb
-
+from num2words import num2words
 
 word = argv[1]
 if "/" in word: word = word.split('/')[-1]
@@ -39,9 +39,13 @@ def wikipedia_grab_chomp(wikiterm):
 	goodwords = set(links)
 	badwords = []
 	#pdb.set_trace()
-	for e in goodwords:
+	for e in list(goodwords):
 		if len(numbers.findall(e)) > 0:
-			print("throwing out '" +e+ "': don't do numbers yet")
+			# in: clue w/ #, out: same clue, no #
+			for numba in re.findall('[0-9]+', e):	
+				goodwords.add(re.sub(numba, num2words(numba), e))
+			#pdb.set_trace()
+			#print("throwing out '" +e+ "': don't do numbers yet")
 			badwords.append(e)
 	for e in badwords:
 		goodwords.remove(e)
@@ -56,6 +60,5 @@ def wikipedia_grab_chomp(wikiterm):
 	with open('acronym/content/' + wikiterm, 'w') as content:
 		content.write(json.dumps(page.content))
 
-	
-	
+#inasrafieldtest = open(".eggspine.txt",'w')
 wikipedia_grab_chomp(word)

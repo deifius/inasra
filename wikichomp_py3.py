@@ -65,12 +65,14 @@ def acronymizer(wikitarget):
 	#pdb.set_trace()
 	#print(wiki_dump)
 	if wiki_dump.count(b'isambiguation') > 10:
-		#10 seems to be more instances of 'disambiguous' references than non disambiarticales contain
+		#10 seems to be more instances of 'disambiguous' 
+		#references than non disambiarticales contain
 		disambiguouizer(wiki_dump, wikitarget)
 	relevance_regex = re.compile('<a href="/wiki/.*?" title=".*?">.*?</a>')
 	relephants = re.findall(relevance_regex, str(wiki_dump))
 	inasrafieldtest.write(wikitarget + '\t')
-	#construct vocabulary which contains lists of relevant terms for every letter of the acronymed word
+	#construct vocabulary which contains lists of relevant terms 
+	#for every letter of the acronymed word
 	vocabulary = []
 	#here
 	wikiwords = re.compile('('+')|('.join(wiki_words_reserved)+')')
