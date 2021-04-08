@@ -40,6 +40,8 @@ def acronymize(word, acronym, relephant):
 
 def get_choice(word, acronym, relephant):
 	#pdb.set_trace()
+	while ' ' in acronym: acronym.remove(' ')
+	word = word.replace(' ','')
 	for each in enumerate(acronym):
 		if each[1].isspace(): print('');
 		else: print(str(each[0]) +".\t"+ word[each[0]] +"\t"+ each[1])

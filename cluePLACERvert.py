@@ -32,7 +32,7 @@ def insert(alexicon, position):
 	regexalexicon = re.compile(''.join(board[position[0]][position[1]:position[1]+len(alexicon)]).replace(' ','.'))
 	#set_trace()
 	if regexalexicon.match(alexicon) is None:
-		print('this word does not fit the position you have specified')
+		print(','.join(argv) +'\tthis word does not fit the position you have specified')
 		exit()
 	for letter in alexicon:
 		board[position[0]][position[1]] = letter
