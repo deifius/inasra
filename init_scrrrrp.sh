@@ -1,6 +1,8 @@
 #!/bin/bash
 
 rm .NextMoves/* acro_dicts/* acronym/*/* #a bunch of stuff
+rm .eggspine.txt
+touch .eggspine.txt
 
 ./ye_Olde_init.sh $1
 #python3 wikichomp_py3.py

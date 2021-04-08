@@ -1,7 +1,12 @@
-Frank Sinatra	4
-David Bowie	6
-David Bowie	7
-David Bowie	8
-David Bowie	2
-Visage 	4
-Goteki	3
+William Gibson	9
+Isaac Asimov	4
+Cyrillic alphabet	2
+Retroflex consonant	12
+Northern Europe	12
+Oasisamerica	8
+Recapture Canyon	7
+Rock Eagle	9
+Eagle	2
+Gray hawk	6
+American Ornithological Society	25
+Origin of birds	4
