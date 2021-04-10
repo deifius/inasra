@@ -70,7 +70,8 @@ with open('.eggspine.txt','a+') as inasradna:
 os.system('python3 spinylize.py; python3 boardtrim.py')
 newdir = 'users/$USER/'+ argv[1] +'/'+ acronym[int(choice_word)].replace(' ','_').split('/')[-1]
 os.system('mkdir -p ' + newdir)
-os.system('python3 xword2html.py xwordspine.json > ' + newdir + '/xword.html')
+#os.system('python3 xword2html.py xwordspine.json > ' + newdir + '/xword.html')
+os.system('python3 xword2jsonhtml.py xwordspine.json > ' + newdir + '/xword.json.html')
 os.system('cp acronym/links/' + word.replace(' ','_') + " " + 'users/$USER/'+ argv[1] + "/links.json")
 os.system('cp acronym/images/' + word.replace(' ','_') + " " + 'users/$USER/'+ argv[1] + "/images.json")
 os.system('cp acronym/summary/' + word.replace(' ','_') + " " + 'users/$USER/'+ argv[1] + "/summary.json")
@@ -79,4 +80,3 @@ os.system('cp acronym/content/' + word.replace(' ','_') + " " + 'users/$USER/'+ 
 
 #pdb.set_trace()
 os.system('./ye_Olde_init.sh ' + argv[1] +'/'+ acronym[int(choice_word)].replace(' ','_').split('/')[-1])
-
