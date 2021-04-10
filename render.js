@@ -16,10 +16,6 @@ function render(data) {
     <link rel="stylesheet" type="text/css" href="${data["#render"].css}" />
     <title>${data.title}</title>`;
 
-    // <table><button onclick="klik(this)">
-    // </button><tbody><button onclick="klik(this)">
-    // </button><tr><td><button onclick="klik(this)">M</button></td><td><button onclick="klik(this)">y</button></td><td><button onclick="klik(this)">S</button></td><td><button onclick="klik(this)">t</button></td><td><button onclick="klik(this)">i</button></td><td><button onclick="klik(this)">c</button></td><td><button onclick="klik(this)">i</button></td><td><button onclick="klik(this)">s</button></td><td><button onclick="klik(this)">m</button></td><td><button onclick="klik(this)"> </button></
-//#print(re.sub('>([\S\s])<', r'><button onclick="klik(this)">\1</button><',tabulate(this, tablefmt='html')))
   const { spine } = data;
   const rows = spine.map(row => row.map(btn).join("\n"));
 
