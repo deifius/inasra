@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+# DEPRECATED: we now use xword2jsonhtml.py
+
 from tabulate import tabulate
 import json, re
 from sys import argv

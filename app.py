@@ -24,10 +24,11 @@ def index():
 
 @app.route("/nu/<oozer>/<werd>")
 def nu(oozer, werd):
-  os.system("./xword2html.py xwordspine.json > luk.html"); # temp
+  #os.system("./xword2html.py xwordspine.json > luk.html"); # temp
   # FIXMEandstuff
-  #os.system("./xword2html.py "+oozer+"/"+werd+"/xwordspine.json > luk.html");
-  with open("luk.html") as ok: this=ok.read()
+  # FIXME: oozer and werd should be escaped!
+  #with open("users/"+oozer+"/"+werd+"/xword.html") as ok: this=ok.read()
+  with open("users/"+oozer+"/"+werd+"/xword.json.html") as ok: this=ok.read()
   return this;
 
 @app.route("/cluez/<oozer>/<werd>")
@@ -50,6 +51,11 @@ def js():
 def css():
   with open("public/styles.css") as ok: this=ok.read()
   return this;
+
+@app.route("/render.js")
+def renderjs():
+  with open("render.js") as ok: this=ok.read()
+  return this
 
 @app.route("/ipuz.json")
 def ipuz():
