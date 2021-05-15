@@ -33,7 +33,7 @@ if len(xwordspine)%2 == 0:
 	horiz = len(xwordspine[-2][0])+1
 else:
 	horiz = len(xwordspine[-1][0])+1
-	verts = len(xwordspine[-2][0])+1
+	verts = len(xwordspine[-2][0])+1 if len(xwordspine) >= 2 else 0
 
 pattern = re.compile('[\W_]+')
 for each in xwordspine:
