@@ -24,7 +24,7 @@ def recur(path):
       recur(f)
     elif re.match(".+json$", f):
       path_components = path.split("/")
-      print("^"+path_components[0:-2].join("/")+"/([a-zA-Z_]+)/([a-zA-Z_]+).json$")
+      print("^"+("/".join(path_components[0:-2]))+"/([a-zA-Z_]+)/([a-zA-Z_]+).json$")
       m = re.match("^"+path+"/([a-zA-Z_]+)/([a-zA-Z_]+).json$", f)
       if m: jayzawn["metadata"][m.group(1)][m.group(2)] = json.loads(open(f).read())
     else:
