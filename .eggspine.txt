@@ -1,1 +1,20 @@
-typography	7
+ennui	4
+Inishmacowney	5
+Mutton Island	7
+Sixmilebridge	10
+Doora Barefield	9
+Feakle	2
+.NextMoves/tralee.PlacedClue.VERT.7.11
+.NextMoves/liberalparty.PlacedClue.HORIZ.2.15
+.NextMoves/mullingar.PlacedClue.HORIZ.10.18
+.NextMoves/tenorbanjo.PlacedClue.HORIZ.17.20
+.NextMoves/ennisnationalschool.PlacedClue.VERT.0.19
+.NextMoves/cusackpark.PlacedClue.VERT.17.12
+.NextMoves/athlone.PlacedClue.VERT.23.19
+.NextMoves/moynalty.PlacedClue.VERT.14.15
+.NextMoves/killokennedy.PlacedClue.HORIZ.20.23
+.NextMoves/riotact.PlacedClue.HORIZ.13.18
+.NextMoves/trout.PlacedClue.HORIZ.8.7
+.NextMoves/countygalway.PlacedClue.VERT.2.16
+.NextMoves/kilmaleery.PlacedClue.VERT.9.17
+.NextMoves/salmon.PlacedClue.HORIZ.4.23
