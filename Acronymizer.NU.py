@@ -67,7 +67,7 @@ with open('.eggspine.txt','a+') as inasradna:
 	#pdb.set_trace()
 	inasradna.write(word +"\t"+ str(choice_word) + "\n")
 	print("I just wrote " + word)
-os.system('python3 spinylize.py; python3 boardtrim.py')
+os.system('python3 spinylize.py; echo "Acronymizer.NU ln 70"; python3 boardtrim.py')
 userdir = 'users/$USER/'+ argv[1];
 newdir = userdir +'/'+ acronym[int(choice_word)].replace(' ','_').split('/')[-1]
 os.system('mkdir -p ' + newdir)

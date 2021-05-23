@@ -26,7 +26,7 @@ def sanitize(alexicon):
 		alexicon = ''.join(alexicon.lower().split(' '))
 		#set_trace()
 		return alexicon
-	else: 
+	else:
 		print("remove offending characters, submit l8ter")
 		exit()
 
@@ -35,7 +35,7 @@ def insert(alexicon, position):
 	if regexalexicon.match(alexicon) is None:
 		print('this word does not fit the position you have specified')
 		exit()
-	#set_trace()# This is where we empty the board 
+	#set_trace()# This is where we empty the board
 	for row in enumerate(board):
 		for space in enumerate(row[1]):
 			#print(space)
@@ -56,5 +56,3 @@ with open(FileNameOut, 'w') as writio:
 
 #print(['python3', 'BoardImgDrawer.py', FileNameOut, ['&']])
 #subprocess.call(['python3', 'BoardImgDrawer.py', FileNameOut, json.dumps(board)])
-
-

@@ -45,5 +45,5 @@ board = [list(row) for row in list(zip(*board))]
 
 insert(sanitize(alexicon), position)
 board = [list(row) for row in list(zip(*board))] 
-with open('.NextMoves/'+alexicon+".PlacedClue.VERT."+str(position[0])+'.'+str(position[1]), 'w') as writio:
+with open('.NextMoves/'+alexicon+".VERT."+str(position[0])+'.'+str(position[1]), 'w') as writio:
 	writio.write(json.dumps(board))

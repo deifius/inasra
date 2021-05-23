@@ -3,6 +3,9 @@ import json
 from time import sleep
 from os import system
 import re
+import ipuz
+
+
 
 def visualize(xwordfield):
 	system('clear')
@@ -82,6 +85,8 @@ for eachword in range(len(xwordspine)):
 		cursor[1] -= len(xwordspine[eachword][0])
 		cursor[1] += int(xwordspine[eachword][1])
 		#pdb.set_trace()
+
+
 
 with open('xwordspine.json', 'w') as writio:
 	writio.write(json.dumps(xwordfield))

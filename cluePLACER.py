@@ -42,5 +42,5 @@ def insert(alexicon, position):
 
 insert(sanitize(alexicon), position)
 
-with open('.NextMoves/'+alexicon+".PlacedClue.HORIZ."+str(position[0])+'.'+str(position[1]), 'w') as writio:
+with open('.NextMoves/'+alexicon+".HORIZ."+str(position[0])+'.'+str(position[1]), 'w') as writio:
 	writio.write(json.dumps(board))
