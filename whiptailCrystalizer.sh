@@ -3,7 +3,7 @@
 # Lifted from:
 # https://unix.stackexchange.com/questions/155636/dialog-menu-to-display-files-and-select-one-of-them
 [ -z "$1" ] && exit 1
-[ -d $1 ] || exit 1
+[ -d $1 ] || exit 2
 
 let i=0 # define counting variable
 NextMoves=() # define working array
@@ -15,7 +15,7 @@ done
 #for line in ${NextMoves[@]}; do; echo "$line"; done
 
 FILE=$(whiptail --title "Here's your NextMoves" --menu "Chose one" 24 80 17 "${NextMoves[@]}" 3>&2 2>&1 1>&3) # show dialog and store output
-
+echo lets do the whiptail
 [ "$?" == 0 ] || exit 1
 
 echo .NextMoves/"${NextMoves[$FILE * 2 - 1]}" $1${NextMoves[$FILE * 2 - 1]}

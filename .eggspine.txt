@@ -1,8 +1,24 @@
-Geography	5
-Anaxagoras	2
-Antipater of Cyrene	5
-Aristippus	3
-.NextMoves/asebeia.VERT.19.7
-.NextMoves/geostatistics.HORIZ.11.15
-.NextMoves/lissus.HORIZ.5.13
-.NextMoves/plant.VERT.6.9
+Guitar	1
+Ukulele	5
+Lee de Forest	5
+FidoNet	4
+Nikola Tesla	7
+Evangelista Torricelli	10
+.NextMoves/worldwari.HORIZ.22.15
+.NextMoves/bluewave.HORIZ.3.8
+.NextMoves/enricocaruso.VERT.3.17
+.NextMoves/headstock.VERT.10.28
+.NextMoves/ceres.HORIZ.13.6
+.NextMoves/equalization.VERT.15.17
+.NextMoves/inlay.VERT.10.12
+.NextMoves/octave.HORIZ.16.9
+.NextMoves/vojvodina.VERT.7.22
+.NextMoves/btuning.HORIZ.19.10
+.NextMoves/cometvintages.VERT.1.26
+.NextMoves/stereoscope.HORIZ.26.14
+.NextMoves/publicdomain.HORIZ.29.15
+.NextMoves/electrode.HORIZ.24.10
+.NextMoves/vcba.HORIZ.11.6
+.NextMoves/czech.VERT.4.26
+.NextMoves/hdl.HORIZ.7.8
+.NextMoves/sweden.HORIZ.14.15

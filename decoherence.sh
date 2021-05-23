@@ -24,15 +24,15 @@ echo inasra directory:  $inasradir
 
 if [ $? = 0 ]
 then
-	echo "$1"
+	#echo "$1"
 	test -f $1
 	if [ $? = 0 ]
 	then
-		echo "should be doin now"
-		echo "$inasradir$ancillary_word"
-		mkdir -p $inasradir
+		#echo "should be doin now"
+		#echo "$inasradir$ancillary_word"
+		mkdir -p $inasradir/
 		mv $1 xwordspine.json
-		cp xwordspine.json $inasradir
+		cp xwordspine.json $inasradir/
 		rm .NextMoves/*
 		echo $1 >> .eggspine.txt
 		python3 freqyforget.py $1
@@ -45,4 +45,11 @@ else
 fi
 
 echo $inasradir
+
+sleep 2
+while $( ps -aux|grep cluePLACER|wc ) > 1
+do
+	sleep 1
+done
+./whiptailCrystalizer.sh $inasradir/
 #./whiptailCrystalizer.sh $inasradir

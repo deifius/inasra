@@ -9,10 +9,16 @@ mkdir -p users/$USER/$@
 echo "$@"
 
 test -f "acronym/links/$@" || ./WikiChomp.NU.py "$@"; clear
-./Acronymizer.NU.py "$@"
-next_word_dir = users/$USER/$@/$next_word
+./Acronymizer.py "$@"
+next_word_dir = users/$USER/$@/$next_word/
 mkdir -p $next_word_dir
 #python3 xword2html.py xwordspine.json > users/$USER/$@/$next_word/xword.html
 python3 xword2jsonhtml.py xwordspine.json $next_word_dir > $next_word_dir/xword.json.html
 #echo $next_word
 #./ye_Olde_init.sh $next_word
+sleep 2
+while $( ps -aux|grep cluePLACER|wc ) > 1
+do
+	sleep 2
+done
+./whiptailCrystalizer.sh $next_word_dir
