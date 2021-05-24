@@ -1,8 +1,9 @@
-
 #!/usr/bin/env python3
+
+
 import json
 import re
-from pdb import set_trace
+from pdb import set_trace as st
 from os import system
 from sys import argv
 import subprocess
@@ -18,9 +19,13 @@ with open("xwordspine.json") as readio: board = json.loads(readio.read())
 
 alexicon = argv[1]
 
+#print(alexicon+ "\n\n\n")
+
 def rotateboard(board):
-	board = list(zip(*board))
-	return board
+	loard = list(zip(*board))
+	for e in enumerate(loard):
+		loard[e[0]] = list(e[1])
+	return loard
 
 def findnextwordspace (board, alexicon):
 	lines = []
@@ -59,7 +64,7 @@ def findnextwordspace (board, alexicon):
 	#print(alexicon + ' ' + str(legalplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']',''))
 	#print(json.dumps(goodplaces))
 	return goodplaces
-	pdb.set_trace()
+
 
 
 def sanitize(alexicon):
@@ -72,6 +77,7 @@ def sanitize(alexicon):
 	else:
 		#print("remove offending characters, submit l8ter")
 		exit()
+
 
 
 cleanexicon= sanitize(alexicon)

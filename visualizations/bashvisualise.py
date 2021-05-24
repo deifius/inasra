@@ -8,7 +8,9 @@ from glob import glob as golb
 
 def showit():
 	readio = json.loads(open('xwordspine.json', 'r').read())
-	for e in readio: print(' '.join(e))
+	print("+ " * (len(readio[0]) + 2))
+	for e in readio: print("+ " + ' '.join(e) + " +")
+	print("+ " * (len(readio[0]) + 2))
 
 def lookatthemoves():
 	for each in golb('.NextMoves/*'):

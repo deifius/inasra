@@ -1,24 +1,27 @@
-Guitar	1
-Ukulele	5
-Lee de Forest	5
-FidoNet	4
-Nikola Tesla	7
-Evangelista Torricelli	10
-.NextMoves/worldwari.HORIZ.22.15
-.NextMoves/bluewave.HORIZ.3.8
-.NextMoves/enricocaruso.VERT.3.17
-.NextMoves/headstock.VERT.10.28
-.NextMoves/ceres.HORIZ.13.6
-.NextMoves/equalization.VERT.15.17
-.NextMoves/inlay.VERT.10.12
-.NextMoves/octave.HORIZ.16.9
-.NextMoves/vojvodina.VERT.7.22
-.NextMoves/btuning.HORIZ.19.10
-.NextMoves/cometvintages.VERT.1.26
-.NextMoves/stereoscope.HORIZ.26.14
-.NextMoves/publicdomain.HORIZ.29.15
-.NextMoves/electrode.HORIZ.24.10
-.NextMoves/vcba.HORIZ.11.6
-.NextMoves/czech.VERT.4.26
-.NextMoves/hdl.HORIZ.7.8
-.NextMoves/sweden.HORIZ.14.15
+Larry Wall	6
+Apocalypse	2
+Overfishing	5
+Invasive species	5
+Invertebrate	5
+Triploblastic	6
+Blastula	2
+Alpha catenin	2
+Plectin	4
+.NextMoves/ecologicalforecasting.HORIZ.23.21
+.NextMoves/aegilopstriuncialis.VERT.1.19
+.NextMoves/alliariapetiolata.HORIZ.5.21
+.NextMoves/smallpopulationsize.HORIZ.21.19
+.NextMoves/tierradelfuego.VERT.14.19
+.NextMoves/underpopulated.VERT.22.18
+.NextMoves/purseseiner.HORIZ.11.11
+.NextMoves/kyotoprotocol.HORIZ.18.16
+.NextMoves/humangenome.VERT.8.18
+.NextMoves/naomiklein.VERT.4.14
+.NextMoves/exegesis.VERT.20.23
+.NextMoves/jamaica.VERT.20.11
+.NextMoves/taxonomy.HORIZ.15.11
+.NextMoves/tonian.VERT.18.7
+.NextMoves/taxa.HORIZ.1.22
+.NextMoves/weed.HORIZ.9.14
+.NextMoves/gill.HORIZ.2.5
+.NextMoves/npr.VERT.5.23
