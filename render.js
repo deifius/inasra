@@ -6,7 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function btn(ltr) {
-  return `            <td><button onclick="klik(this)">${ltr}</button></td>`;
+  const evts = [
+    'onclick="klik(this)"',
+    'onmouseenter="onhover(this)"',
+    'onmouseexit="offhover(this)"',
+  ];
+  return `            <td><button ${evts.join(" ")}>${ltr}</button></td>`;
 }
 
 function render(data) {
@@ -39,4 +44,14 @@ function klik(btn) {
 	const y = siblingCount(btn.parentElement);
   const path = document.location.pathname.match(/\/nu\/(.+)$/)[1];
 	document.location = `/cluez/${path}?action=click&x=${x}&y=${y}`;
+}
+
+function onhover(btn) {
+  const x = siblingCount(btn.parentElement);
+  const y = siblingCount(btn.parentElement.parentElement);
+  // console.log(x, y);
+}
+
+function offhover(btn) {
+
 }
