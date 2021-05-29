@@ -24,7 +24,7 @@ def sanitize(alexicon):
 		alexicon = ''.join(alexicon.lower().split(' '))
 		#set_trace()
 		return alexicon
-	else: 
+	else:
 		print("remove offending characters, submit l8ter")
 		exit()
 
@@ -32,7 +32,7 @@ def insert(alexicon, position):
 	regexalexicon = re.compile(''.join(board[position[0]][position[1]:position[1]+len(alexicon)]).replace(' ','.'))
 	#set_trace()
 	if regexalexicon.match(alexicon) is None:
-		print(','.join(argv) +'\tthis word does not fit the position you have specified')
+		print(','.join(argv) +'\tno fit')
 		exit()
 	for letter in alexicon:
 		board[position[0]][position[1]] = letter
@@ -40,10 +40,10 @@ def insert(alexicon, position):
 	#for e in board: print(e)
 
 #for e in board: print(' '.join(e))
-board = [list(row) for row in list(zip(*board))] 
+board = [list(row) for row in list(zip(*board))]
 #for e in board: print(' '.join(e))
 
 insert(sanitize(alexicon), position)
-board = [list(row) for row in list(zip(*board))] 
+board = [list(row) for row in list(zip(*board))]
 with open('.NextMoves/'+alexicon+".VERT."+str(position[0])+'.'+str(position[1]), 'w') as writio:
 	writio.write(json.dumps(board))

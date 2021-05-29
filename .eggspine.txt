@@ -1,27 +1,31 @@
-Larry Wall	6
-Apocalypse	2
-Overfishing	5
-Invasive species	5
-Invertebrate	5
-Triploblastic	6
-Blastula	2
-Alpha catenin	2
-Plectin	4
-.NextMoves/ecologicalforecasting.HORIZ.23.21
-.NextMoves/aegilopstriuncialis.VERT.1.19
-.NextMoves/alliariapetiolata.HORIZ.5.21
-.NextMoves/smallpopulationsize.HORIZ.21.19
-.NextMoves/tierradelfuego.VERT.14.19
-.NextMoves/underpopulated.VERT.22.18
-.NextMoves/purseseiner.HORIZ.11.11
-.NextMoves/kyotoprotocol.HORIZ.18.16
-.NextMoves/humangenome.VERT.8.18
-.NextMoves/naomiklein.VERT.4.14
-.NextMoves/exegesis.VERT.20.23
-.NextMoves/jamaica.VERT.20.11
-.NextMoves/taxonomy.HORIZ.15.11
-.NextMoves/tonian.VERT.18.7
-.NextMoves/taxa.HORIZ.1.22
-.NextMoves/weed.HORIZ.9.14
-.NextMoves/gill.HORIZ.2.5
-.NextMoves/npr.VERT.5.23
+Sir Arthur Conan Doyle	3
+Adaptations of Sherlock Holmes	10
+Sherlock Holmes and the Sign of Four	18
+How Watson Learned the Trick	15
+Diogenes Club	11
+.NextMoves/emilandthedetectives.HORIZ.7.21
+.NextMoves/thepsychologyoftheoccult.HORIZ.4.27
+.NextMoves/minacrandon.HORIZ.2.11
+.NextMoves/georgebernardshaw.HORIZ.12.22
+.NextMoves/merchantivoryproductions.VERT.1.30
+.NextMoves/desmonddavis.HORIZ.16.22
+.NextMoves/menschenamsonntag.VERT.28.32
+.NextMoves/alvinsargent.HORIZ.30.26
+.NextMoves/andrewlycett.HORIZ.32.25
+.NextMoves/barryjenkins.VERT.26.30
+.NextMoves/charlesmarowitz.VERT.23.30
+.NextMoves/charlesgunn.HORIZ.18.23
+.NextMoves/katharinehepburn.HORIZ.22.23
+.NextMoves/michaelgraves.HORIZ.28.23
+.NextMoves/pneumonia.VERT.8.23
+.NextMoves/thedailytelegraph.HORIZ.25.18
+.NextMoves/lostcontinent.VERT.26.14
+.NextMoves/goldenglobeawards.VERT.5.29
+.NextMoves/curlie.VERT.12.26
+.NextMoves/freemasonry.HORIZ.2.30
+.NextMoves/fayardnicholas.VERT.30.28
+.NextMoves/arthurmitchell.VERT.32.23
+.NextMoves/harrycallahan.HORIZ.14.23
+.NextMoves/nature.VERT.24.7
+.NextMoves/rockstargames.HORIZ.20.23
+.NextMoves/psychic.VERT.29.7

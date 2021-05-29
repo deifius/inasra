@@ -10,15 +10,20 @@ echo "$@"
 
 test -f "acronym/links/$@" || ./WikiChomp.NU.py "$@"; clear
 ./Acronymizer.py "$@"
-next_word_dir = users/$USER/$@/$next_word/
-mkdir -p $next_word_dir
-#python3 xword2html.py xwordspine.json > users/$USER/$@/$next_word/xword.html
+next_word_dir= users/$USER/$@
+mkdir -p $next_word_dir/$next_word
 python3 xword2jsonhtml.py xwordspine.json $next_word_dir > $next_word_dir/xword.json.html
+#python3 xword2html.py xwordspine.json > users/$USER/$@/$next_word/xword.html
 #echo $next_word
 #./ye_Olde_init.sh $next_word
+sleep 4
+while $( ps -aux|grep cluePLACER|wc ) > 1
+do
+	sleep 3
+done
 sleep 2
 while $( ps -aux|grep cluePLACER|wc ) > 1
 do
 	sleep 2
 done
-./whiptailCrystalizer.sh $next_word_dir
+./whiptailCrystalizer.sh $next_word_dir/$next_word

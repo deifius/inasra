@@ -25,7 +25,7 @@ def sanitize(alexicon):
 		alexicon = ''.join(alexicon.lower().split(' '))
 		#set_trace()
 		return alexicon
-	else: 
+	else:
 		print("remove offending characters, submit l8ter")
 		exit()
 
@@ -33,7 +33,7 @@ def insert(alexicon, position):
 	#set_trace()
 	regexalexicon = re.compile(''.join(board[position[0]][position[1]:position[1]+len(alexicon)]).replace(' ','.'))
 	if regexalexicon.match(alexicon) is None:
-		print(','.join(argv) +'\tthis word does not fit the position you have specified')
+		print(','.join(argv) +'\tnot fit')
 		exit()
 	for letter in alexicon:
 		board[position[0]][position[1]] = letter

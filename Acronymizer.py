@@ -5,12 +5,13 @@ import json
 from random import shuffle
 import os
 import pdb
-
+from subprocess import check_output
+import whiptail
 
 #	Input:
 #		first argument
 #		sbsequent arguments: the dictionary
-#	./Acronymizer.py $1  $(cat acronym/links/$1)
+#	./Acronymizer.py $1    $(cat acronym/links/$1)
 
 
 def acronymize(word, acronym, relephant):
@@ -27,25 +28,26 @@ def acronymize(word, acronym, relephant):
 		#pdb.set_trace()
 		acronym.append(initialyze(eachletter, relephant))
 
-def get_choice(word, acronym, relephant):
+def get_choice_with_whiptail(word, acronym, relephant):
 	#pdb.set_trace()
 	while ' ' in acronym: acronym.remove(' ')
 	word = word.replace(' ','')
 	for each in enumerate(acronym):
-		if each[1].isspace(): print('');
-		else: print(str(each[0]) +".\t"+ word[each[0]] +"\t"+ each[1])
-	choice_word = input("\nSelect a line by number:\t")
-	print("you said "+choice_word)
-	if choice_word.isspace() or len(choice_word) == 0:
-		pdb.set_trace()
-		acronymize(word, acronym, relephant)
-		#pdb.set_trace()
-		choice_word = get_choice(word, acronym, relephant)
-		return choice_word
-		#os.system('./ye_Olde_init.sh ' + argv[1])
-	try:		choice_word = int(choice_word)
-	except:	get_choice(word, acronym, relephant)
-	return choice_word
+		if each[1].isspace(): acronym[each[0]] = ('');
+		else: acronym[each[0]] = str(each[0]) + "    " + word[each[0]] + "    " + each[1]
+	thechoice = whiptail.Whiptail()
+	possible_choices = acronym
+	possible_choices.append('respin')
+	choice_word, exitstatus = thechoice.menu('inasra', possible_choices,'-')
+	if exitstatus == '1':
+		return 0
+	if choice_word == "respin":
+		input("respinnin'")
+		get_choice_with_whiptail(word, acronym, relephant)
+	#input("you said " + choice_word.split('    ')[-1])
+	#input(choice_word.split('    ')[0])
+	choice_pos = int(choice_word.split('    ')[0])
+	return choice_pos
 
 def main():
 	if len(argv) != 2: word = " ".join(argv)
@@ -61,17 +63,19 @@ def main():
 	acronym = []
 
 	acronymize(word, acronym, relephant)
-	choice_word = get_choice(word, acronym, relephant)
-	print(acronym[int(choice_word)].replace(' ','_'))
+	choice_pos = get_choice_with_whiptail(word, acronym, relephant)
+	choice_word = acronym[choice_pos].split('    ')[-1]
+	#input("my choice word is: " + choice_word)
 	#print(relephant)
 
 	with open('.eggspine.txt','a+') as inasradna:
 		#pdb.set_trace()
-		inasradna.write(word +"\t"+ str(choice_word) + "\n")
+		inasradna.write(word +"\t"+ str(choice_pos) + "\n")
 		print("I just wrote " + word)
 	os.system('python3 spinylize.py; echo "Acronymizer line 70"; python3 boardtrim.py')
 	userdir = 'users/$USER/'+ argv[1];
-	newdir = userdir +'/'+ acronym[int(choice_word)].replace(' ','_').split('/')[-1]
+	newdir = userdir +'/'+ choice_word.replace(' ','_').split('/')[-1]
+	#input('new dir is: ' + newdir)
 	os.system('mkdir -p ' + newdir)
 	#os.system('python3 xword2html.py xwordspine.json > ' + newdir + '/xword.html')
 	os.system('cp acronym/links/' + word.replace(' ','_') + " " + userdir + "/links.json")
@@ -79,9 +83,7 @@ def main():
 	os.system('cp acronym/summary/' + word.replace(' ','_') + " " + userdir + "/summary.json")
 	os.system('cp acronym/content/' + word.replace(' ','_') + " " + userdir + "/content.json")
 	os.system('python3 xword2jsonhtml.py xwordspine.json ' + userdir + ' > ' + newdir + '/xword.json.html')
-
-
 	#pdb.set_trace()
-	os.system('./ye_Olde_init.sh ' + argv[1] +'/'+ acronym[int(choice_word)].replace(' ','_').split('/')[-1])
+	os.system('./ye_Olde_init.sh ' + argv[1] +'/'+ choice_word.replace(' ','_').split('/')[-1])
 
-if __name__ == "__main__":  main()
+if __name__ == "__main__":    main()
