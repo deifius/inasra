@@ -11,18 +11,18 @@ from os import system
 # Yo I receive a coordinate in X Y format on the xwordspine board
 # I construct a list of regular expressions for legal word configurations which intersect the coordinate provided
 # I then compare the list to the freqygoodword list and return any matches
-# a reference to a file in .NextMoves/ 
+# a reference to a file in .NextMoves/
 
 X = int(argv[1])
 Y = int(argv[2])
 print(str(X) + ',' + str(Y))
 #set_trace()
 # then a miracle happens, as described below😘️
+#set_trace()
 
-for eachPossibleMove in glob('.NextMoves/*PlacedClue*'):
+for eachPossibleMove in glob('.NextMoves/*'):
 	with open(eachPossibleMove) as possiboard: MTclue = json.loads(possiboard.read())
-	if MTclue[X][Y] != " ": 
+	#set_trace()
+	if MTclue[X][Y] != " ":
 		#for e in MTclue: print(" ".join(e))
 		print(str(eachPossibleMove))
-		
-

@@ -36,9 +36,11 @@ def get_choice_with_whiptail(word, acronym, relephant):
 		if each[1].isspace(): acronym[each[0]] = ('');
 		else: acronym[each[0]] = str(each[0]) + "    " + word[each[0]] + "    " + each[1]
 	thechoice = whiptail.Whiptail()
+	thechoice.title = word
+	thechoice.backtitle = 'inasra'
 	possible_choices = acronym
 	possible_choices.append('respin')
-	choice_word, exitstatus = thechoice.menu('inasra', possible_choices,'-')
+	choice_word, exitstatus = thechoice.menu('choose your path', possible_choices,'-')
 	if exitstatus == '1':
 		return 0
 	if choice_word == "respin":

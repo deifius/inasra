@@ -20,10 +20,12 @@ sleep 4
 while $( ps -aux|grep cluePLACER|wc ) > 1
 do
 	sleep 3
+    echo "...still too much clue placing going on"
 done
 sleep 2
 while $( ps -aux|grep cluePLACER|wc ) > 1
 do
 	sleep 2
+    echo "...not enough next move ideatin quite yet"
 done
 ./whiptailCrystalizer.sh $next_word_dir/$next_word
