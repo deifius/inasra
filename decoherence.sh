@@ -46,10 +46,10 @@ fi
 
 echo $inasradir
 
-sleep 2
-while $( ps -aux|grep cluePLACER|wc ) > 1
+sleep 4
+while $( ps -aux|grep cluePLACER|wc|awk '{print $1}' ) > 1
 do
-	sleep 1
+	sleep 4
 done
 ./whiptailCrystalizer.sh $inasradir/
 #./whiptailCrystalizer.sh $inasradir
