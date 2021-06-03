@@ -74,7 +74,7 @@ def main():
 		#pdb.set_trace()
 		inasradna.write(word +"\t"+ str(choice_pos) + "\n")
 		print("I just wrote " + word)
-	os.system('python3 spinylize.py; echo "Acronymizer line 70"; python3 boardtrim.py')
+	os.system('python3 spinylize.py; echo "COnstruturing"; python3 boardtrim.py')
 	userdir = 'users/$USER/'+ argv[1];
 	newdir = userdir +'/'+ choice_word.replace(' ','_').split('/')[-1]
 	#input('new dir is: ' + newdir)

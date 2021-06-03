@@ -7,8 +7,8 @@ from os import system
 import re
 
 def visualize(xwordfield):
-	system('clear')
-	print('')
+	#system('clear')
+	#print('')
 	for eachline in xwordfield:
 		line = ' '
 		linecheck = 0
@@ -16,8 +16,8 @@ def visualize(xwordfield):
 			line = line + ' ' + each
 			if each != ' ':
 				linecheck = 1
-		if linecheck == 1:
-			print(line)
+		#if linecheck == 1:
+			#print(line)
 
 maxwordsize = {'verts':0,'horiz':0}
 xwordspine = open('.eggspine.txt').read().replace(' ','').split('\n')

@@ -7,10 +7,12 @@ from os import system
 def WikiQueryPrep(word_or_phrase):
     # Hola pass me any string and I'll format it as a wikipedia article title.
     # so "legislative chamber" becomes "Legislative_chamber"
-    words = word_or_phrase.split(' ')
-    wiki_article = words[0].capitalize() + "_" + '_'.join(words[1:])
-    return wiki_article
-
+    if ' ' in word_or_phrase:
+        words = word_or_phrase.split(' ')
+        wiki_article = words[0].capitalize() + "_" + '_'.join(words[1:])
+        return wiki_article
+    else: return word_or_phrase.capitalize()
+    
 def main():
     new_adventure = Whiptail()
     new_adventure.title = "inasra welcomes you"
