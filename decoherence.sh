@@ -44,13 +44,13 @@ else
 	echo "gimme a PlacedClue"
 fi
 
-echo $inasradir
-
+#echo $inasradir
 sleep 1
-while $( ps -ef | grep cluePLACER | wc -l ) > 1
+while [ $(ps -ef | grep cluePLACER | wc -l) -gt 1 ]
 do
 	sleep 1
-	echo "still plenty of new board states to splinylize"
+    echo "...plenty of thinkin yet to do"
 done
+
 ./whiptailCrystalizer.sh $inasradir/
 #./whiptailCrystalizer.sh $inasradir

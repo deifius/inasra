@@ -14,7 +14,7 @@ done
 
 #for line in ${NextMoves[@]}; do; echo "$line"; done
 
-FILE=$(whiptail --title "Here's your NextMoves" --menu "Chose one" 24 80 17 "${NextMoves[@]}" 3>&2 2>&1 1>&3) # show dialog and store output
+FILE=$(whiptail --backtitle $1 --title "Here's your NextMoves" --menu "Chose one" 24 80 17 "${NextMoves[@]}" 3>&2 2>&1 1>&3) # show dialog and store output
 echo lets do the whiptail
 [ "$?" == 0 ] || exit 1
 

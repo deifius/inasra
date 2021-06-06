@@ -1,3 +1,30 @@
-Cheese	2
-Empress 	2
-Pabllo Vittar	3
+Clipper ship	8
+Herald of the Morning 	13
+Richard Glover 	6
+Debra Oswald	7
+WorldCat Identities 	6
+.NextMoves/australiannetguide.HORIZ.8.23
+.NextMoves/bermudarig.VERT.4.12
+.NextMoves/zoominguserinterface.HORIZ.6.26
+.NextMoves/applicationprogram.HORIZ.3.26
+.NextMoves/squarerig.HORIZ.17.9
+.NextMoves/annedavies.HORIZ.17.24
+.NextMoves/annmckim.VERT.29.22
+.NextMoves/chullora.VERT.6.19
+.NextMoves/hardwareindependence.HORIZ.23.24
+.NextMoves/josephwarrenholmes.VERT.31.21
+.NextMoves/granthackett.VERT.26.22
+.NextMoves/internetarchive.VERT.2.15
+.NextMoves/marriedatfirstsight.VERT.0.22
+.NextMoves/thamessailingbarge.HORIZ.10.28
+.NextMoves/knarr.VERT.19.20
+.NextMoves/yoal.VERT.24.12
+.NextMoves/sixpr.VERT.4.18
+.NextMoves/talkradio.VERT.12.21
+.NextMoves/copac.VERT.19.6
+.NextMoves/mysticseaport.HORIZ.1.27
+.NextMoves/xebec.VERT.22.19
+.NextMoves/schomberg.VERT.10.21
+.NextMoves/dhow.HORIZ.15.29
+.NextMoves/bigiw.HORIZ.15.19
+.NextMoves/uk.VERT.2.19
