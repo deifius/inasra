@@ -7,6 +7,7 @@ rm .next_word_dir
 rm .eggspine.txt
 touch .eggspine.txt
 
+xfce4-terminal -e  './visualizations/bashvisualise.py'
 ./ye_Olde_init.sh $1
 #python3 wikichomp_py3.py
 python3 spinylize.py
