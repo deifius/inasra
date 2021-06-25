@@ -1,8 +1,9 @@
 .DS_Store
 node_modules
-acro_dicts/*
-.NextMoves/*
+acro_dicts/**
+.NextMoves/**
 .eggspine.txt
 freqygoodwords.json
 xwordspine.json
 xword.html
+users/**
