@@ -4,6 +4,10 @@ from whiptail import Whiptail
 import json
 from os import system
 
+def directory_initializer():
+    for essentialdir in ['users','acronym/summary','acronym/content','acronym/links','acronym/images','.NextMoves' ]:
+        system('mkdir -p ' + essentialdir)
+
 def Color_Scheme():
     system("export NEWT_COLORS='\
     window=green,gray\
@@ -30,6 +34,7 @@ def WikiQueryPrep(word_or_phrase):
     else: return word_or_phrase.capitalize()
 
 def main():
+    directory_initializer()
     Color_Scheme()
     new_adventure = Whiptail()
     new_adventure.title = "inasra welcomes you"

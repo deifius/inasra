@@ -1,39 +1,9 @@
-Christianity	5
-Theoconservatism	7
-Symphonia 	7
-Isidore of Seville	3
-Dionysius of Corinth	9
-Obadiah	5
-Abraham	6
-Muhammad in Islam	6
-.NextMoves/dailyoffice.HORIZ.19.15
-.NextMoves/greece.HORIZ.2.9
-.NextMoves/houri.VERT.20.21
-.NextMoves/medieval.HORIZ.17.16
-.NextMoves/romancanon.HORIZ.12.25
-.NextMoves/raqib.VERT.14.17
-.NextMoves/tithe.HORIZ.12.10
-.NextMoves/batriyya.HORIZ.19.25
-.NextMoves/laconia.HORIZ.4.10
-.NextMoves/jewisheschatology.HORIZ.22.23
-.NextMoves/liberalarts.VERT.2.15
-.NextMoves/surah.HORIZ.17.28
-.NextMoves/law.HORIZ.10.5
-.NextMoves/dromedary.VERT.3.28
-.NextMoves/monothelitism.HORIZ.29.28
-.NextMoves/ismailis.HORIZ.26.28
-.NextMoves/iman.HORIZ.15.18
-.NextMoves/maribdam.HORIZ.26.9
-.NextMoves/quadrivium.HORIZ.24.10
-.NextMoves/asiya.HORIZ.14.9
-.NextMoves/latinchurchinturkey.VERT.29.19
-.NextMoves/london.HORIZ.24.28
-.NextMoves/qizilbash.VERT.17.12
-.NextMoves/jannah.VERT.16.27
-.NextMoves/latincross.HORIZ.7.27
-.NextMoves/manu.VERT.24.26
-.NextMoves/nationalbloc.HORIZ.4.26
-.NextMoves/madras.HORIZ.25.18
-.NextMoves/taqiyya.VERT.15.10
-.NextMoves/takbir.VERT.22.7
-.NextMoves/hejaz.HORIZ.2.24
+Theosophy	6
+Pedophilia	4
+Paraphilic infantilism	7
+Lust murder	4
+Moses Sithole	4
+Shell organization	2
+European economic interest grouping	2
+.NextMoves/internationalclassificationofdiseases.HORIZ.16.39
+.NextMoves/agniyoga.VERT.1.21
