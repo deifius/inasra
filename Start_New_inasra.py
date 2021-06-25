@@ -4,6 +4,22 @@ from whiptail import Whiptail
 import json
 from os import system
 
+def Color_Scheme():
+    system("export NEWT_COLORS='\
+    window=green,gray\
+    border=black,green\
+    textbox=green,black\
+    button=black,green\
+    title=green,black\
+    root=lightgray,gray\
+    entry=,black\
+    roottext=green,gray\
+    shadow=gray\
+    actbutton=green,black\
+    entry=green,black\
+    '")
+    print('color schemed!')
+
 def WikiQueryPrep(word_or_phrase):
     # Hola pass me any string and I'll format it as a wikipedia article title.
     # so "legislative chamber" becomes "Legislative_chamber"
@@ -12,8 +28,9 @@ def WikiQueryPrep(word_or_phrase):
         wiki_article = words[0].capitalize() + "_" + '_'.join(words[1:])
         return wiki_article
     else: return word_or_phrase.capitalize()
-    
+
 def main():
+    Color_Scheme()
     new_adventure = Whiptail()
     new_adventure.title = "inasra welcomes you"
     new_adventure.backtitle = "lots of stuff eventually"
