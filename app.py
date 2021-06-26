@@ -3,7 +3,7 @@
 from flask import Flask, request
 from glob import glob
 from subprocess import Popen, PIPE, STDOUT
-import json
+import json, re
 import os
 
 app = Flask(__name__)
@@ -16,7 +16,7 @@ app = Flask(__name__)
 @app.route("/")
 def index():
   with open("public/index.html") as ok: this=ok.read()
-  return this;
+  return this
 #  return """
 #  <h1>Python Flask in Docker!</h1>
 #  <p>A sample web-app for running Flask inside Docker.</p>
@@ -29,7 +29,7 @@ def nu(oozer, werd):
   # FIXME: oozer and werd should be escaped!
   #with open("users/"+oozer+"/"+werd+"/xword.html") as ok: this=ok.read()
   with open("users/"+oozer+"/"+werd+"/xword.json.html") as ok: this=ok.read()
-  return this;
+  return this
 
 @app.route("/cluez/<oozer>/<werd>")
 def cluez(oozer, werd):
@@ -40,21 +40,16 @@ def cluez(oozer, werd):
     return os.system("./CluesBeHere.py "+x+" "+y)
   # TODO: return all the values from the paths as rendered and clickable HTML
   # OR: return an array of JSONs for all CluesBeHere and then render with JS to be clickable
-  return "you should not be here, ya derp";
+  return "you should not be here, ya derp"
 
-@app.route("/index.js")
-def js():
-  with open("public/index.js") as ok: this=ok.read()
-  return this;
-
-@app.route("/styles.css")
-def css():
-  with open("public/styles.css") as ok: this=ok.read()
-  return this;
-
-@app.route("/render.js")
-def renderjs():
-  with open("render.js") as ok: this=ok.read()
+@app.route("/xterm.<filetype>")
+def xterm(filetype):
+  if filetype == "css":
+    with open("node_modules/xterm/css/xterm.css") as ok: this=ok.read()
+  elif filetype == "js":
+    with open("node_modules/xterm/lib/xterm.js") as ok: this=ok.read()
+  else:
+    return "no"
   return this
 
 @app.route("/ipuz.json")
@@ -84,7 +79,7 @@ def nextmoves():
 def post():
   #return request.get_json(force=True)["insert"]
   os.system("python3 clueinsert.py " + request.get_json(force=True)["insert"])
-  return "success"; # FIXME: check for actual success
+  return "success" # FIXME: check for actual success
 
 @app.route("/newinasra", methods=["POST"])
 def postnew():
@@ -93,6 +88,12 @@ def postnew():
   stdout_data = p.communicate(input=bytes(value, "utf-8"))[0];
   return stdout_data
   #os.system("python3 clueinsert.py " + request.get_json(force=True)["insert"])
+
+@app.route("/<file>")
+def publicfile(file):
+  if not re.match("^[a-z]+\.[a-z]+$", file): return "no";
+  with open("public/"+file) as ok: this=ok.read()
+  return this
 
 #Finally, let"s launch the app if the script is invoked as the main program:
 

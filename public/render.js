@@ -19,6 +19,7 @@ function render(data) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" type="text/css" href="${data["#render"].css}" />
+    <!-- <link rel="stylesheet" type="text/css" href="/xterm.css" /> -->
     <title>${data.title}</title>`;
 
   const { spine } = data;
@@ -27,12 +28,31 @@ function render(data) {
   document.body.innerHTML = `
     <section>
       <h1>${data.title}</h1>
+      <!-- <div id="terminal"></div> -->
       <table>
         <tbody>
           <tr>${rows.join("</tr>\n          <tr>")}</tr>
         </tbody>
       </table>
     </section>`;
+
+  //appendScripts(["/xterm.js"]);
+
+  // var term = new Terminal();
+  // term.open(document.getElementById('terminal'));
+  // term.write('Hello from \x1B[1;3;31mxterm.js\x1B[0m $ ');
+}
+
+function appendScripts(scrrps) {
+  const fragment = document.createDocumentFragment();
+  scrrps.forEach(src => {
+    let script = document.createElement("script");
+    script.type = "text/javascript";
+    script.async = false;
+    script.src = src;
+    fragment.appendChild(script);
+  });
+  document.getElementsByTagName("head")[0].appendChild(fragment);
 }
 
 function siblingCount(node) {
