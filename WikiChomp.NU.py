@@ -18,19 +18,19 @@ def disambiguouizer(disambuchoices, ambiguous_word):
 	while 0 >  userchoice or userchoice > len(disambuchoices):
 		userchoice = int(input('you choose(0-' + str(len(disambuchoices)) + '): \t'))
 	return str(disambuchoices[userchoice])
-	
+
 
 
 def wikipedia_grab_chomp(wikiterm):
 	'''I retrieve linked articles, summaries and picture locations from wikipedia'''
-	
+
 	try:
 		#pdb.set_trace()
 		page = wikipedia.page(wikiterm)
 	except wikipedia.DisambiguationError as disambu_choices:
 		#pdb.set_trace()
 		page = wikipedia.page(disambiguouizer(disambu_choices.options, word))
-	
+
 	links = []
 	for link in page.links:
 		links.append(link.split('(')[0])
@@ -42,8 +42,8 @@ def wikipedia_grab_chomp(wikiterm):
 	for e in list(goodwords):
 		if len(numbers.findall(e)) > 0:
 			# in: clue w/ #, out: same clue, no #
-			for numba in re.findall('[0-9]+', e):	
-				goodwords.add(re.sub(numba, num2words(numba), e))
+			for numba in re.findall('[0-9]+', e):
+				goodwords.add(re.sub(numba, num2words(numba, to="year"), e))
 			#pdb.set_trace()
 			#print("throwing out '" +e+ "': don't do numbers yet")
 			badwords.append(e)
