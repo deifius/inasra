@@ -1,33 +1,58 @@
 from functools import reduce
 
-def getLetterAtPos(x, y, wordspace, axis):
+def offAxis(wordAxis):          return 'y' if wordAxis == 'x' else 'x'
+def offAxisVal(wordAxis, x, y): return  y  if wordAxis == 'x' else  x
+def    axisVal(wordAxis, x, y): return  x  if wordAxis == 'x' else  y
+
+# Get the length of one side of a wordspace
+def getWordspaceLen(wordspace, axis):
+    if   axis == 'x': return len(wordspace[0])
+    elif axis == 'y': return len(wordspace)
+
+def getLetterAtPos(wordspace, x, y):
     return wordspace[x][y]
-#    if axis == 'x': return wordspace[x][y]
-#    else:           return wordspace[y][x]
 
 def getColumn(wordspace, n):
-    return list(map(lambda word : word[n], wordspace))
+    return tuple(map(lambda word : word[n], wordspace))
 
 def flipWordspace(wordspace):
     enumeratedFirstWord = enumerate(wordspace[0])
-    return list(map(lambda pos : getColumn(wordspace, pos[0]), enumeratedFirstWord))
+    return tuple(map(lambda pos : getColumn(wordspace, pos[0]), enumeratedFirstWord))
 
-def getRow(x, y, wordspace, wordAxis):
-    letter = getLetterAtPos(x, y, wordspace, wordAxis)
-    if   wordAxis == 'x': return flipWordspace(wordspace)[y]
-    elif wordAxis == 'y': return wordspace[x]
+def getLine(wordspace, x, y, wordAxis):
+    if   wordAxis == 'x': return wordspace[y]
+    elif wordAxis == 'y': return flipWordspace(wordspace)[x]
 
-def getRegexesForLetter(x, y, wordspace, wordAxis):
-    row = getRow(x, y, wordspace, wordAxis)
-    rowReverse = row[::-1]
-    #backLetters = reduce(lambda out, x : out + x + x, row, '')
-    #return backLetters
+# Get the x/y index for a specific row/col, and its next/prev neighbors if possible
+def getNeighborIndexes(wordspace, x, y, wordAxis):
+    maxPos = getWordspaceLen(wordspace, wordAxis) - 1
+    wordIdx = axisVal(wordAxis, x, y)
+    return tuple(filter(
+        lambda pos : pos >= 0 and pos <= maxPos,
+        (
+            wordIdx - 1,
+            wordIdx,
+            wordIdx + 1,
+        )
+    ))
 
-thing = [['h', 'i'], [' ', 'f']]
+def getRegexesForLine(line, pos):
+    lineStr = ''.join(line)
+    maxPos = len(lineStr) - 1
+    # temp
+    return (lineStr+str(pos),)
 
-print('hi')
-print(getColumn(thing, 1))
-print(flipWordspace(thing))
-print(getRow(0, 1, thing, 'y')) # hi
-print(getRow(0, 1, thing, 'x')) # if
-#print(getRegexesForLetter(0, 1, thing, 'x')) # if
+# Return array of valid regexes for a specific x/y and its word axis
+def getRegexesForLetter(wordspace, x, y, wordAxis):
+    neighborIndexes = getNeighborIndexes(wordspace, x, y, wordAxis)
+    pivotIndex = offAxisVal(wordAxis, x, y)
+    getAxisLine = axisVal(
+        wordAxis,
+        lambda n : getLine(wordspace, n, y, offAxis(wordAxis)),
+        lambda n : getLine(wordspace, x, n, offAxis(wordAxis))
+    )
+    return reduce(
+        lambda rgxs, idx: rgxs + getRegexesForLine(getAxisLine(idx), pivotIndex),
+        neighborIndexes,
+        ()
+    )
