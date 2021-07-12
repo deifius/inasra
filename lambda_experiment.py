@@ -36,23 +36,59 @@ def getNeighborIndexes(wordspace, x, y, wordAxis):
         )
     ))
 
-def getRegexesForLine(line, pos):
-    lineStr = ''.join(line)
-    maxPos = len(lineStr) - 1
-    # temp
-    return (lineStr+str(pos),)
+# Take a triple-tuple of characters, return one character with either:
+# - Empty string: this letter can be anything
+# - "|": this letter is a hard block (no valid matches)
+# - "x": the specified letter must match exactly
+def condenseComparisonTriplet(triplet):
+    # If neighbor lines contain a letter, return a hard stop
+    if(triplet[1] == "" and (triplet[0] != "" or triplet[2] != "")):
+        return "|"
+    else:
+        return triplet[1]
 
-# Return array of valid regexes for a specific x/y and its word axis
-def getRegexesForLetter(wordspace, x, y, wordAxis):
+def buildComparisonLine(wordspace, x, y, wordAxis):
     neighborIndexes = getNeighborIndexes(wordspace, x, y, wordAxis)
-    pivotIndex = offAxisVal(wordAxis, x, y)
     getAxisLine = axisVal(
         wordAxis,
         lambda n : getLine(wordspace, n, y, offAxis(wordAxis)),
         lambda n : getLine(wordspace, x, n, offAxis(wordAxis))
     )
-    return reduce(
-        lambda rgxs, idx: rgxs + getRegexesForLine(getAxisLine(idx), pivotIndex),
+    comparisonLines = reduce(
+        lambda lines, idx : lines + (getAxisLine(idx),),
         neighborIndexes,
         ()
     )
+    lineLen = len(comparisonLines[0])
+    # Pad an empty row if we are on an edge
+    if(len(neighborIndexes) == 2):
+        emptyLine = ("",) * lineLen
+        if(neighborIndexes[0] == 0): comparisonLines = (emptyLine,)    + comparisonLines
+        else:                        comparisonLines = comparisonLines + (emptyLine,)
+    # Final tuple-line, each being empty (safe), a char (hard match), or "|" (no match)
+    getCharacterTriplet = lambda n : tuple(map(lambda line : line[n], comparisonLines))
+    return reduce(
+        lambda final, n : final + (condenseComparisonTriplet(getCharacterTriplet(n)),),
+        range(lineLen),
+        ()
+    )
+
+# Return array of valid regexes for a specific x/y and its word axis
+# TODO
+def getRegexesForLetter(wordspace, x, y, wordAxis):
+    #neighborIndexes = getNeighborIndexes(wordspace, x, y, wordAxis)
+    comparisonLine = buildComparisonLine(wordspace, x, y, wordAxis)
+    pivotIndex = offAxisVal(wordAxis, x, y)
+    print('evaluating at pivot'+str(pivotIndex), comparisonLine)
+    # FIXME: This isn't correct
+    # baseStrs = filter((
+    #     comparisonLine[:pivotIndex],
+    #     comparisonLine[pivotIndex+1:],
+    # ))
+    regexes = ()
+    return regexes
+    #if(pivotIndex < len(comparisonLine)-1):
+        # regexes = reduce(
+        #     tuple(range(pivotIndex)),
+        #     regexes
+        # )

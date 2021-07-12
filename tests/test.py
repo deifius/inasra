@@ -2,6 +2,7 @@ import os
 import unittest
 import sys
 import inspect
+from functools import reduce
 
 current_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 parent_dir = os.path.dirname(current_dir)
@@ -40,24 +41,38 @@ class TestStringMethods(unittest.TestCase):
 
     def test_wordspace(self):
         wordspace = (
-            ('h', 'e', 'w'),
-            ('i', '' , '' ),
-            ('p', '' , '' ),
-            ('s', '' , '' ),
+            ('h', 'o', 'w'),
+            ('e', '' , '' ),
+            ('f', '' , '' ),
+            ('t', '' , '' ),
         )
         self.assertEqual(ws.getWordspaceLen(wordspace, 'x'), 3)
         self.assertEqual(ws.getWordspaceLen(wordspace, 'y'), 4)
 
-        self.assertEqual(ws.getLine(wordspace, 0, 2, 'y'), ('h', 'i', 'p', 's')) #p
-        self.assertEqual(ws.getLine(wordspace, 1, 0, 'x'), ('h', 'e', 'w'))      #e
+        self.assertEqual(ws.getLine(wordspace, 0, 2, 'y'), ('h', 'e', 'f', 't')) #f
+        self.assertEqual(ws.getLine(wordspace, 1, 0, 'x'), ('h', 'o', 'w'))      #o
 
         self.assertEqual(ws.getNeighborIndexes(wordspace, 0, 0, 'y'), (0, 1))    #h
-        self.assertEqual(ws.getNeighborIndexes(wordspace, 0, 2, 'y'), (1, 2, 3)) #p
-        self.assertEqual(ws.getNeighborIndexes(wordspace, 0, 3, 'y'), (2, 3))    #s
+        self.assertEqual(ws.getNeighborIndexes(wordspace, 0, 2, 'y'), (1, 2, 3)) #f
+        self.assertEqual(ws.getNeighborIndexes(wordspace, 0, 3, 'y'), (2, 3))    #t
         self.assertEqual(ws.getNeighborIndexes(wordspace, 0, 0, 'x'), (0, 1))    #h
         self.assertEqual(ws.getNeighborIndexes(wordspace, 2, 0, 'x'), (1, 2))    #w
 
-        # expectedRegexes = ('p.{1,2}')
+        self.assertEqual(ws.condenseComparisonTriplet(('a', '', '')), '|')
+        self.assertEqual(ws.condenseComparisonTriplet(('', '', 'a')), '|')
+        self.assertEqual(ws.condenseComparisonTriplet(('', 'a', '')), 'a')
+        self.assertEqual(ws.condenseComparisonTriplet(('', '', '')), '')
+
+        self.assertEqual(ws.buildComparisonLine(wordspace, 1, 0, 'x'), ('o', '|', '|', '|'))
+        self.assertEqual(ws.buildComparisonLine(wordspace, 2, 0, 'x'), ('w', '',  '',  '' ))
+        self.assertEqual(ws.buildComparisonLine(wordspace, 0, 1, 'y'), ('e', '|', '|'))
+        self.assertEqual(ws.buildComparisonLine(wordspace, 0, 3, 'y'), ('t', '',  '' ))
+
+        wordspace2 = wordspace + (('y', 'e', 's'),)
+        self.assertEqual(ws.buildComparisonLine(wordspace2, 1, 0, 'x'), ('o', '|', '|', '|', 'e'))
+        self.assertEqual(ws.buildComparisonLine(wordspace2, 2, 0, 'x'), ('w', '',  '',  '',  's'))
+
+        expectedRegexes = ('p.{1,2}')
         # self.assertEqual(ws.getRegexesForLetter(wordspace, 2, 0, 'x'), expectedRegexes)
         # self.assertEqual(ws.getRegexesForLetter(wordspace, 0, 2, 'y'), expectedRegexes)
 
