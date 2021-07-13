@@ -28,6 +28,7 @@ def rotateboard(board):
 	return loard
 
 def findnextwordspace (board, alexicon):
+	# feed me a board state and a word and I'll tell you all the horizontal spaces it legally fits
 	lines = []
 	for space in enumerate(board[0]):
 		if  board[0][space[0]] == ' ' and board[1][space[0]] == ' ':
@@ -60,9 +61,10 @@ def findnextwordspace (board, alexicon):
 	goodplaces = []
 	for eachplace in legalplace:
 		goodplaces.append(alexicon + ' ' + str(eachplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']',''))
-		#print(alexicon + ' ' + str(eachplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']',''))
-	#print(alexicon + ' ' + str(legalplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']',''))
-	#print(json.dumps(goodplaces))
+		print(alexicon + ' ' + str(eachplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']',''))
+	print(alexicon + ' ' + str(legalplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']',''))
+	print(json.dumps(goodplaces))
+	st()
 	return goodplaces
 
 
@@ -79,19 +81,18 @@ def sanitize(alexicon):
 		exit()
 
 
+def main():
+	cleanexicon= sanitize(alexicon)
+	horiz = findnextwordspace(board, cleanexicon)
 
-cleanexicon= sanitize(alexicon)
-vertboard = [list(row) for row in list(zip(*board))]
-#print('horiz:')
-horiz = findnextwordspace(board, cleanexicon)
-#for each in board: print(' '.join(each))
-#print('vert:')
-#set_trace()
-vert = findnextwordspace(vertboard, cleanexicon)
-#for each in vertboard: print(' '.join(each))
-for clue in horiz:
-	subprocess.call(['python3', 'cluePLACER.py'] + clue.split(' ') + ['&'])
-	#subprocess.call(['python3', 'clueonMTtable.py'] + clue.split(' ') + ['&'])
-for clue in vert:
-	subprocess.call(['python3', 'cluePLACERvert.py'] + clue.split(' ') + ['&'])
-	#subprocess.call(['python3', 'clueonMTtableVert.py'] + clue.split(' ') + ['&'])
+	vertboard = [list(row) for row in list(zip(*board))]
+	vert = findnextwordspace(vertboard, cleanexicon)
+	#for each in vertboard: print(' '.join(each))
+	for clue in horiz:
+		subprocess.call(['python3', 'cluePLACER.py'] + clue.split(' ') + ['&'])
+		#subprocess.call(['python3', 'clueonMTtable.py'] + clue.split(' ') + ['&'])
+	for clue in vert:
+		subprocess.call(['python3', 'cluePLACERvert.py'] + clue.split(' ') + ['&'])
+		#subprocess.call(['python3', 'clueonMTtableVert.py'] + clue.split(' ') + ['&'])
+
+if __name__ == "__main__" : main()

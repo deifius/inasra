@@ -1,5 +1,4 @@
-George Washinton	3
-Restraining Acts seventeen seventy-five	10
-.NextMoves/mohawknation.HORIZ.5.12
-.NextMoves/fortmifflin.HORIZ.3.11
-.NextMoves/matalerebellion.VERT.0.20
+Chaucer	2
+amersham	2
+england	2
+great britain	2
