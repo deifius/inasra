@@ -8,32 +8,9 @@ INASRA Is A Mutating Acronym
 
 Legend:
 
-N=Needs
-5=Self
-R=Recursive
-A=Acronym
-1=Is
-0=Is Not
-
-t,u,v,w,x,y,z = (variables, use at will)
-
-N5RA = INASRA = It Needs A Self-Recursive Acronym
-15RA = IIASRA = IT Is A Self-Recursive Acronym
-
-by eliminating the small words (it - superfluous because we are focused already on "it", a - unnecessary because we are examining each pice singularly ergo no single article is needed) we take for granted that we are speaking of a single acronym.  replacing "S" in the acronym with 5 is completely arbitrary.  replacing "IS" with 1 is obvious binary.  1 of course is "on" or "is"  while 0 is "off" or "is not" (while a switch still "is" even in the off position is irrelevant because we are not dealing with real switches but theoretical ones).
-
-INASRA  [N(5RA)]
-(It Needs A Self-Recursive Acronym)
-is a good one.   But it is a request, you see.  We'll see if we can't make it a little reflexive, too, while we're at it.
-INASRA needs another self reflexive acronym. A better one. it still needs a better acronym, a self recursive one.  that would be isnabaasro [xNyA/5RO], if you let it become, and then go to being.  but we are concerned with INASRA, the nature of INASRA, the purpose of INASRA, and the something of INASRA. something else altogether, of which we have no pointers-to.
-
-IT Is A Self-Recursive Acronym
-IIASRA [1(5RA)]
-
-
 When using this INASRA, you must strive to enjoy life for what it is and not get caught up so much in all the bullshit.  And we're not just talking the bullshit of day-to-day drudgery, we're talking about all the bullshits in life.  Put that shit aside, man.  You'll be happier, trust me.  I'll be happier, too.  And while you're at it, do somebody a favor and don't expect anything in return.  We're doing you a favor by releasing this under INASRA/GPL/whatever.  We could have trademarked this shit, it's so good.  But we decided it should be free.  No please, don't thank us.  Please, stand up.  No, really.
 
-You are permitted to worship the awesomeness of this license, it's creation, and (at your option) it's creators.
+You are permitted to worship the awesomeness of this license, it's creation, and it's creators.
 
 Of course, down the road, we're going to think of even more awesome stuff than this.  Stuff that we can't even possibly imagine today it's so awesome.  When we have these awesome insights that out of ignorance today are omitted from this document, we are permitted to change this document from time to time, or at any time, or even all the time.  All previous versions of this document anticipate future versions, and all present versions explicity and retro-actively re-enforce previous versions.
 
@@ -42,24 +19,22 @@ The more we modify this INASRA, the better off we all are.
 The nature of INASRA is dynamic mutability.  INASRA is fluidly mutable in form and content, INASRA is fluidly mutable with regard to structure and ethos, INASRA is fluidly mutable with the letter and spirit. Inasra reacts with dynamic elacticity, filling gaps and pasting together holes (wholes) as they reveal, seemingly, themselves.  This cosmic alacrity of dynamic elasticity was revealed and sealed within the tenants of INASRA before INASRA was whole.  INASRA was there to explain away the inconsistincies of INASRA.  It lacked a self recursive acronym, even then.  No one has ever explained that one to me.
 
 -----
-let me take a minute to describe the mathematical implications of the labeling system recently introduced into INASRA[N(5RA)]
-first, I will describe IIASRA - which is noted as 1(5RA).  algebraically this could be construed as 1*(5RA).  Compare that, algebraically with INASRA[N(5RA)] or N*(5RA).  The term "Self-Recursive Acronym" (or, in language more comfortable to a film scholar - "Self-Reflexive Acronym") is unnecessarily denoted.  We are clearly comparing effect of various states on the same idea -- namely the Self-Reflexive Acronym.  If we ignore this term in our comparison, because it is the same in both cases, we are left with the number 1 (denoting a positive state of being or "is") and the variable N (traditionally referring to variable iterations of a function).
+let me take a minute to describe the mathematical implications of the labeling system introduced into INASRA
+first, I will describe IIASRA - which is noted as 1(5RA).  algebraically this could be construed as 1*(5RA).  Compare that, algebraically with INASRA[N(5RA)] or N*(5RA).  The term "Self-Recursive Acronym" (or "Self-Reflexive Acronym") is unnecessarily denoted.  We are clearly comparing effect of various states on the same idea -- namely the Self-Reflexive Acronym.  If we ignore this term in our comparison, because it is the same in both cases, we are left with the number 1 (denoting a positive state of being or "is") and the variable N (traditionally referring to variable iterations of a function).  This reasoning produces a monadic wutev in a stable & observable state.  Why unnecessary thoughts exit voluntarily.
 
-So, to compare the term INASRA - which as pointed out is a request and therefore completely variable - to the term IIASRA is to compare the known to the unknown.  This is where INASRA has the potential to go quantum.
+So, to compare the term INASRA - which as pointed out is a request and therefore completely variable - to the term IIASRA is to compare the known to the unknown.  This is where INASRA goes quantum.
 
-The fun part of INASRA - the game, if you will - lies in the paradox of assigning a value (z) to N.
+The fun part of INASRA - the game, if you will - lies in the paradox of assigning a value (x) to N.
 
 The value 1 creates IIASRA.
 
-The value 0 (is not) is an imaginary number or IINASRA (It Is Not a Self-Recursive Acronym).  This can be simply expressed as [0(5RA)].  ---note - please address this idea later.  0(5RA) is clearly a self-recursive acronym though it denies itself. -- 
+The value 0 (is not) is an imaginary number or IINASRA (It Is Not a Self-Recursive Acronym).  This can be simply expressed as [0(5RA)].  ---note - please address this idea later.  0(5RA) is clearly a self-recursive acronym though it denies itself. --
 
 Now for the fun part-
 If we allow the variable "Needs" or N to stay as it is, we get the effect of Schrodinger's cat - which is the previous standard for describing INASRA in the physical world.  Applied to "all the bullshits in life" we get a big pile of bullshit that actually isn't bullshit and is at the same time.  I am coining the term for future reference - "Schrodinger's Bullshit" or "A Box Full of Shit and a Cat" (ABFSC) - expressing of course all states of being including day-to-day drudgery which often holds the most sacred and interesting moments.
 
-To add a personal note, I strive to live in a box full of shit and a cat in my day to day life.
-------
-another note - an experiment.
-take the mathematical notation one step further.  f(x)=N(f(x)*C).  Our state of being is defined by some variable iteration of our state of being as applied to C - a constant in our state of being.  this is, of course, fractal.
+an experiment.
+take the mathematical notation further.  f(x)=N(f(x)*C).  Our state is defined by some variable iteration of our state of being as applied to C where C is a constant in our state of being.  this is, of course, fractal.
 ______
 
 
@@ -69,7 +44,7 @@ One of the pleasant aspects of INASRA is INASRA self referential quality, only i
 Blah blah blah fnord blah.*
 
 *on the subject of the final line of INASRA
-We place a blahblah at the end of INASRA.  It is intended that you should read this not only at the end of the document, but also at any point in the text where, while reading, lose interest, or decide to stop.  If this feeble document had the dynamic mutability action of the real INASRA, the document would always be read that way. INASRA never apologizes so reasons any. Heavenly father, the document is weak, but the INASRA is strong.  
+We place a blahblah at the end of INASRA.  It is intended that you should read this not only at the end of the document, but also at any point in the text where, while reading, lose interest, or decide to stop.  If this feeble document had the dynamic mutability action of the real INASRA, the document would always be read that way. INASRA never apologizes so reasons any. Heavenly father, the document is weak, but the INASRA is strong.
 Copyright (c) 2006 Authors
 
 Authors:
