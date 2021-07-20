@@ -12,7 +12,7 @@ ps -ef|grep visualise | grep -v grep || xfce4-terminal -e  './visualizations/bas
 #python3 wikichomp_py3.py
 python3 spinylize.py
 python3 boardtrim.py
-python3 wordsanitizer.py
+python3 wordlistpreparer.py
 echo "words sanitized"
 python3 nextbestwords.py &
 bestwords=$!

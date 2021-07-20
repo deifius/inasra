@@ -12,3 +12,4 @@ mkdir -p $next_word_dir/$next_word
 python3 xword2jsonhtml.py xwordspine.json $next_word_dir > $next_word_dir/xword.json.html
 echo "$next_word_dir/$next_word" >> .next_word_dir
 export inasradir=$next_word_dir
+echo inasradir=$inasradir

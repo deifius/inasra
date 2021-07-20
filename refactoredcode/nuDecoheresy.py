@@ -2,7 +2,7 @@
 
 #	decoheresy is the time of inasra when the nebulous word cloud is distilled
 #	and crystalized onto the board to create intricate and elaborate crossword puzzles
-#	I am a combined cystalize/decoheresy/nextbestwords but stateless, 
+#	I am a combined cystalize/decoheresy/nextbestwords but stateless,
 #	pass me a json string which contains:
 #		a word list
 #		a board state
@@ -31,10 +31,10 @@ class decoheresy:
 			self.wordlist.insert(popularity, word)
 
 	def set_coordinate(self, x, y):
-		self.coordinate= [x,y]		
+		self.coordinate= [x,y]
 
 	def show_board(self, howmany):
-		for e in self.board: print(' '.join(e))	
+		for e in self.board: print(' '.join(e))
 
 	def board_rotate(self):
 		board = list(zip(*board))
@@ -82,4 +82,4 @@ thisboard = sanitizer(argv)
 print(thisboard.coordinate)
 #for e in board: print(e)
 #print(','.join(coordinates))
-pdb.set_trace()
+#pdb.set_trace()

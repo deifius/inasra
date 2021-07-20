@@ -8,11 +8,12 @@ import subprocess
 # not yet on the board.  I grab OneBigDict, which is a list sorted by relevancy and start with legal places
 # the concepts most integral to the current board concept.
 
-#I am designed to be interrupted, NextMovesThinker clears the mem and restarts me constantly.  
+#I am designed to be interrupted, NextMovesThinker clears the mem and restarts me constantly.
 
 with open('freqygoodwords.json') as ok: Relevants = json.loads(ok.read())
 if len(Relevants)>80: Relevants = Relevants[0:36]
 while Relevants:
+	print(Relevants[0])
 	subprocess.Popen(['python3', 'crystalyzation.vertandhoriz.py', Relevants.pop()])
 #for each in Places4BestWord:
 #		#print(each)

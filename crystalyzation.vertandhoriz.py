@@ -15,18 +15,11 @@ import subprocess
 
 #set_trace()
 
-with open("xwordspine.json") as readio: board = json.loads(readio.read())
-
-alexicon = argv[1]
-
-#print(alexicon+ "\n\n\n")
-
 def rotateboard(board):
 	loard = list(zip(*board))
 	for e in enumerate(loard):
 		loard[e[0]] = list(e[1])
 	return loard
-
 def findnextwordspace (board, alexicon):
 	# feed me a board state and a word and I'll tell you all the horizontal spaces it legally fits
 	lines = []
@@ -64,12 +57,9 @@ def findnextwordspace (board, alexicon):
 		print(alexicon + ' ' + str(eachplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']',''))
 	print(alexicon + ' ' + str(legalplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']',''))
 	print(json.dumps(goodplaces))
-	st()
+	#st()
 	return goodplaces
-
-
-
-def sanitize(alexicon):
+def sanitize(board, alexicon):
 	if len(alexicon) > len(board[0]):
 		#print("too long, submit shorter word")
 		exit()
@@ -80,9 +70,12 @@ def sanitize(alexicon):
 		#print("remove offending characters, submit l8ter")
 		exit()
 
-
 def main():
-	cleanexicon= sanitize(alexicon)
+	with open("xwordspine.json") as readio:
+		board = json.loads(readio.read())
+	alexicon = argv[1]
+	#print(alexicon+ "\n\n\n")
+	cleanexicon= sanitize(board, alexicon)
 	horiz = findnextwordspace(board, cleanexicon)
 
 	vertboard = [list(row) for row in list(zip(*board))]

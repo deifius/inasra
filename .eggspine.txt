@@ -1,4 +1,24 @@
-Chaucer	2
-amersham	2
-england	2
-great britain	2
+Chicken nuggets	4
+KFC Original Recipe	3
+Oregano	5
+nineteen thirty United States census	5
+Elliot Rothman	4
+.NextMoves/twentytwentyuselection.VERT.13.31
+.NextMoves/lanetransitdistrict.HORIZ.32.20
+.NextMoves/juandefuca.VERT.20.16
+.NextMoves/taxrevolt.HORIZ.24.10
+.NextMoves/thomasrothman.VERT.16.22
+.NextMoves/losangelesangels.VERT.10.25
+.NextMoves/renewableenergy.VERT.5.18
+.NextMoves/negrito.HORIZ.23.19
+.NextMoves/sacramentokings.VERT.17.30
+.NextMoves/steppeclimate.VERT.0.27
+.NextMoves/jerrybrown.VERT.15.31
+.NextMoves/hollywoodsign.VERT.1.14
+.NextMoves/intel.HORIZ.27.11
+.NextMoves/lamalinche.HORIZ.21.10
+.NextMoves/nuevavizcaya.HORIZ.29.13
+.NextMoves/chickenvesuvio.HORIZ.34.14
+.NextMoves/termofpatent.HORIZ.6.20
+.NextMoves/basil.HORIZ.13.20
+.NextMoves/skiing.VERT.18.17
