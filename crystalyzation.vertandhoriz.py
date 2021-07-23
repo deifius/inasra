@@ -51,14 +51,15 @@ def findnextwordspace (board, alexicon):
 							if re.search('[a-z| ]',line[1][validplace+len(alexicon)+1],) is None:
 								#validplace is valid for word!
 								legalplace.append((line[0],validplace))
-	goodplaces = []
-	for eachplace in legalplace:
-		goodplaces.append(alexicon + ' ' + str(eachplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']',''))
-		print(alexicon + ' ' + str(eachplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']',''))
+
+	goodplaces = tuple(map(lambda item : processLegalPlaceItem(alexicon, item), legalplace))
+
+	print(alexicon + ' ' + str(eachplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']',''))
 	print(alexicon + ' ' + str(legalplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']',''))
 	print(json.dumps(goodplaces))
 	#st()
 	return goodplaces
+
 def sanitize(board, alexicon):
 	if len(alexicon) > len(board[0]):
 		#print("too long, submit shorter word")
