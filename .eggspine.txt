@@ -1,24 +1,23 @@
-Chicken nuggets	4
-KFC Original Recipe	3
-Oregano	5
-nineteen thirty United States census	5
-Elliot Rothman	4
-.NextMoves/twentytwentyuselection.VERT.13.31
-.NextMoves/lanetransitdistrict.HORIZ.32.20
-.NextMoves/juandefuca.VERT.20.16
-.NextMoves/taxrevolt.HORIZ.24.10
-.NextMoves/thomasrothman.VERT.16.22
-.NextMoves/losangelesangels.VERT.10.25
-.NextMoves/renewableenergy.VERT.5.18
-.NextMoves/negrito.HORIZ.23.19
-.NextMoves/sacramentokings.VERT.17.30
-.NextMoves/steppeclimate.VERT.0.27
-.NextMoves/jerrybrown.VERT.15.31
-.NextMoves/hollywoodsign.VERT.1.14
-.NextMoves/intel.HORIZ.27.11
-.NextMoves/lamalinche.HORIZ.21.10
-.NextMoves/nuevavizcaya.HORIZ.29.13
-.NextMoves/chickenvesuvio.HORIZ.34.14
-.NextMoves/termofpatent.HORIZ.6.20
-.NextMoves/basil.HORIZ.13.20
-.NextMoves/skiing.VERT.18.17
+Cactus	3
+Thorns, spines, and prickles	7
+Sansevieria	8
+Rhizome	6
+Ethnobotany	4
+Ojibwa	5
+Aysh-ke-bah-ke-ko-zhay	8
+Beshekee	2
+.NextMoves/arabianpeninsula.VERT.0.17
+.NextMoves/carissabispinosa.VERT.6.19
+.NextMoves/cree.VERT.20.20
+.NextMoves/councilofthreefires.VERT.25.25
+.NextMoves/internode.VERT.9.17
+.NextMoves/cactoblastiscactorum.HORIZ.4.25
+.NextMoves/algonquianlanguages.HORIZ.22.25
+.NextMoves/cryosophilanana.HORIZ.9.29
+.NextMoves/echinopsisatacamensis.HORIZ.24.28
+.NextMoves/laccourteoreilles.HORIZ.11.30
+.NextMoves/littlefrenchriver.HORIZ.20.20
+.NextMoves/cutting.VERT.5.25
+.NextMoves/ethnopoetics.HORIZ.6.27
+.NextMoves/pumice.HORIZ.15.18
+.NextMoves/phoenix.HORIZ.13.30
