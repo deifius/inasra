@@ -22,43 +22,51 @@ def rotateboard(board):
 	return loard
 def findnextwordspace (board, alexicon):
 	# feed me a board state and a word and I'll tell you all the horizontal spaces it legally fits
-	lines = []
-	for space in enumerate(board[0]):
-		if  board[0][space[0]] == ' ' and board[1][space[0]] == ' ':
-			board[0][space[0]] = '.'
-	for space in enumerate(board[-1]):
-		if  board[-1][space[0]] == ' ' and board[-2][space[0]] == ' ':
-			board[-1][space[0]] = '.'
-	for eachline in enumerate(board):
+	def generate_faux_regex_lines(board):
+		lines = []
 		for space in enumerate(board[0]):
-			if board[eachline[0]][space[0]] == ' ':
-				if board[eachline[0]-1][space[0]] == '.' or board[eachline[0]-1][space[0]] == ' ':
-					if board[eachline[0]+1][space[0]] == '.' or board[eachline[0]+1][space[0]] == ' ':
-							board[eachline[0]][space[0]] = '.'
-	for each in board:
-		if re.search("[a-z]","".join(each)) is not None:
-			lines.append(''.join(each))
-	obstacle = re.compile('\.?[a-z][a-z]+\.?')
-	legalplace = []
-	for line in enumerate(lines):
-		validstart = len(line[1])-len(alexicon) - 1
-		#set_trace()
-		for validplace in range(validstart):
-			if re.match(line[1][validplace:len(alexicon)+validplace], alexicon) is not None:
-				if re.search('[a-z| ]',line[1][validplace:len(alexicon)+validplace],) is not None:
-					if re.search('[a-z| ]',line[1][validplace-1],) is None:
-						if validplace + len(alexicon) + 1 < len(line[1]):
-							if re.search('[a-z| ]',line[1][validplace+len(alexicon)+1],) is None:
-								#validplace is valid for word!
-								legalplace.append((line[0],validplace))
+			if  board[0][space[0]] == ' ' and board[1][space[0]] == ' ':
+				board[0][space[0]] = '.'
+		for space in enumerate(board[-1]):
+			if  board[-1][space[0]] == ' ' and board[-2][space[0]] == ' ':
+				board[-1][space[0]] = '.'
+		for eachline in enumerate(board):
+			for space in enumerate(board[0]):
+				if board[eachline[0]][space[0]] == ' ':
+					if board[eachline[0]-1][space[0]] == '.' or board[eachline[0]-1][space[0]] == ' ':
+						if board[eachline[0]+1][space[0]] == '.' or board[eachline[0]+1][space[0]] == ' ':
+								board[eachline[0]][space[0]] = '.'
+		for each in board:
+			if re.search("[a-z]","".join(each)) is not None:
+				lines.append(''.join(each))
+		return lines
 
-	goodplaces = tuple(map(lambda item : processLegalPlaceItem(alexicon, item), legalplace))
-
-	print(alexicon + ' ' + str(eachplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']',''))
-	print(alexicon + ' ' + str(legalplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']',''))
-	print(json.dumps(goodplaces))
-	#st()
-	return goodplaces
+	def identify_legalplace(lines, alexicon):
+		obstacle = re.compile('\.?[a-z][a-z]+\.?')
+		legalplace = []
+		for line in enumerate(lines):
+			validstart = len(line[1])-len(alexicon) - 1
+			#set_trace()
+			for validplace in range(validstart):
+				if re.match(line[1][validplace:len(alexicon)+validplace], alexicon) is not None:
+					if re.search('[a-z| ]',line[1][validplace:len(alexicon)+validplace],) is not None:
+						if re.search('[a-z| ]',line[1][validplace-1],) is None:
+							if validplace + len(alexicon) + 1 < len(line[1]):
+								if re.search('[a-z| ]',line[1][validplace+len(alexicon)+1],) is None:
+									#validplace is valid for word!
+									legalplace.append((line[0],validplace))
+			return legalplace
+	def find_goodplaces(legalplace, alexicon):
+		# goodplaces = []
+		# for eachplace in legalplace:
+		# 	goodplaces.append(alexicon + ' ' + str(eachplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']',''))
+		# 	print(alexicon + ' ' + str(eachplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']',''))
+		goodplaces = tuple(map(lambda item : processLegalPlaceItem(alexicon, item), legalplace))
+		print(alexicon + ' ' + str(legalplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']',''))
+		print(json.dumps(goodplaces))
+		return goodplaces
+	goodplaces_for_alexicon = find_goodplaces(identify_legalplace(generate_faux_regex_lines(board),alexicon), alexicon)
+	return goodplaces_for_alexicon
 
 def sanitize(board, alexicon):
 	if len(alexicon) > len(board[0]):
@@ -87,6 +95,5 @@ def main():
 		#subprocess.call(['python3', 'clueonMTtable.py'] + clue.split(' ') + ['&'])
 	for clue in vert:
 		subprocess.call(['python3', 'cluePLACERvert.py'] + clue.split(' ') + ['&'])
-		#subprocess.call(['python3', 'clueonMTtableVert.py'] + clue.split(' ') + ['&'])
 
 if __name__ == "__main__" : main()
