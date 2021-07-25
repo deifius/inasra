@@ -27,7 +27,7 @@ def sanitize(board, alexicon, position):
 		exit()
 
 def insert(board, alexicon, position):
-	position[1] = position[1] + 1
+	position[1] = position[1]
 	regexalexicon = re.compile(''.join(board[position[0]][position[1]:position[1]+len(alexicon)]).replace(' ','.'))
 	#set_trace()
 	if regexalexicon.match(alexicon) is None:

@@ -14,10 +14,8 @@ import subprocess
 # zip* the board to do down!!
 
 def rotateboard(board):
-	loard = list(zip(*board))
-	for e in enumerate(loard):
-		loard[e[0]] = list(e[1])
-	return loard
+	return [list(row) for row in list(zip(*board))]
+
 def findnextwordspace (board, alexicon):
 	# feed me a board state and a word and I'll tell you all the horizontal spaces it legally fits
 	def generate_faux_regex_lines(board):
@@ -71,16 +69,10 @@ def findnextwordspace (board, alexicon):
 	goodplaces_for_alexicon = find_goodplaces(identify_legalplace(generate_faux_regex_lines(board),alexicon), alexicon)
 	return goodplaces_for_alexicon
 def sanitize(board, alexicon):
-	if len(alexicon) > len(board[0]):
-		#print("too long, submit shorter word")
-		exit()
+	if len(alexicon) > len(board[0]): exit()
 	if re.search("[^a-zA-Z ]", alexicon,) is None:
 		alexicon = ''.join(alexicon.lower().split(' '))
 		return alexicon
-	else:
-		#print("remove offending characters, submit l8ter")
-		exit()
-#set_trace()
 
 def main():
 	with open("xwordspine.json") as readio:
@@ -88,10 +80,10 @@ def main():
 	alexicon = argv[1]
 	#print(alexicon+ "\n\n\n")
 	cleanexicon= sanitize(board, alexicon)
+	print('horiz:')
 	horiz = findnextwordspace(board, cleanexicon)
-
-	vertboard = [list(row) for row in list(zip(*board))]
-	vert = findnextwordspace(vertboard, cleanexicon)
+	print('vert:')
+	vert = findnextwordspace(rotateboard(board), cleanexicon)
 	# vert is throwing real bad answers...  we need to work on this!
 	#for each in vertboard: print(' '.join(each))
 	for clue in horiz:

@@ -1,23 +1,8 @@
-Cactus	3
-Thorns, spines, and prickles	7
-Sansevieria	8
-Rhizome	6
-Ethnobotany	4
-Ojibwa	5
-Aysh-ke-bah-ke-ko-zhay	8
-Beshekee	2
-.NextMoves/arabianpeninsula.VERT.0.17
-.NextMoves/carissabispinosa.VERT.6.19
-.NextMoves/cree.VERT.20.20
-.NextMoves/councilofthreefires.VERT.25.25
-.NextMoves/internode.VERT.9.17
-.NextMoves/cactoblastiscactorum.HORIZ.4.25
-.NextMoves/algonquianlanguages.HORIZ.22.25
-.NextMoves/cryosophilanana.HORIZ.9.29
-.NextMoves/echinopsisatacamensis.HORIZ.24.28
-.NextMoves/laccourteoreilles.HORIZ.11.30
-.NextMoves/littlefrenchriver.HORIZ.20.20
-.NextMoves/cutting.VERT.5.25
-.NextMoves/ethnopoetics.HORIZ.6.27
-.NextMoves/pumice.HORIZ.15.18
-.NextMoves/phoenix.HORIZ.13.30
+Candy	3
+Downhill mountain biking	3
+Naturism	2
+Timeline of non-sexual social nudity	10
+Nude psychotherapy	4
+Public relations	9
+Alternative facts	13
+Circular reporting	9
