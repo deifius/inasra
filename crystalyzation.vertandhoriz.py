@@ -57,10 +57,11 @@ def findnextwordspace (board, alexicon):
 									legalplace.append((line[0],validplace))
 			return legalplace
 	def find_goodplaces(legalplace, alexicon):
-		goodplaces = []
-		for eachplace in legalplace:
-			goodplaces.append(alexicon + ' ' + str(eachplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']',''))
-			print(alexicon + ' ' + str(eachplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']',''))
+		# goodplaces = []
+		# for eachplace in legalplace:
+		# 	goodplaces.append(alexicon + ' ' + str(eachplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']',''))
+		# 	print(alexicon + ' ' + str(eachplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']',''))
+		goodplaces = tuple(map(lambda item : processLegalPlaceItem(alexicon, item), legalplace))
 		print(alexicon + ' ' + str(legalplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']',''))
 		print(json.dumps(goodplaces))
 		return goodplaces
