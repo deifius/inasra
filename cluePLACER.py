@@ -15,7 +15,7 @@ with open("xwordspine.json") as readio: board =json.loads(readio.read())
 
 alexicon = argv[1]
 position = [int(argv[2]),int(argv[3])]
-
+try: orientation = argv[4]
 
 def sanitize(alexicon):
 	if len(alexicon) > len(board[0]) - position[1]:
@@ -40,7 +40,9 @@ def insert(alexicon, position):
 		position[1] = position[1]+1
 	#for e in board: print(e)
 
-insert(sanitize(alexicon), position)
+def main():
+	insert(sanitize(alexicon), position)
+	with open('.NextMoves/'+alexicon+".HORIZ."+str(position[0])+'.'+str(position[1]), 'w') as writio:
+		writio.write(json.dumps(board))
 
-with open('.NextMoves/'+alexicon+".HORIZ."+str(position[0])+'.'+str(position[1]), 'w') as writio:
-	writio.write(json.dumps(board))
+if __name__ == "__main__" : main()
