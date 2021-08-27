@@ -14,7 +14,7 @@ with open('freqygoodwords.json') as ok: Relevants = json.loads(ok.read())
 if len(Relevants)>80: Relevants = Relevants[0:36]
 while Relevants:
 	print(Relevants[0])
-	subprocess.Popen(['python3', 'crystalyzation.vertandhoriz.py', Relevants.pop()])
+	subprocess.Popen(['python3', 'findnextwordspace.py', Relevants.pop()])
 #for each in Places4BestWord:
 #		#print(each)
 #		subprocess.call(['python3', 'cluePLACER.py'] + each.split(' ') + ['&'])
