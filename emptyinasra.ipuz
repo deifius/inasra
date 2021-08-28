@@ -9,7 +9,7 @@
   "publisher": "inasra.us",
   "title": "inasra",
   "intro": "maybe not all things, but at least this is made possible by inasra",
-  "empty": "0",
+  "empty": ".",
   "dimensions": {
     "width": 1,
     "height": 1
@@ -19,11 +19,8 @@
     "Across": [],
     "Down": []
   },
-  "solution": [
-    [
-      " "
-    ]
-  ],
-  "me.inasra:lexicon": [],
-  "me.inasra:wordspace": {}
+  "solution": [],
+  "lexicon": [],
+  "wordspace": [],
+  "history": []
 }

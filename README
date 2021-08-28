@@ -8,17 +8,17 @@ Self
 Recursive
 Acronym
 
-right now inasra is prepared build you an acronym tree 
-that serves as a spine for a crossword you devise.  
+right now inasra is prepared build you an acronym tree
+that serves as a spine for a crossword you devise.
 You may then recursively acronymise.
-we will build acronyms from 
+we will build acronyms from
 news articles, dictionary entries, wikis.
-inasra.me will be an web client in browser visualizing 
+inasra.me will be an web client in browser visualizing
 
 a crossword puzzle of paths
-inasra will populate the crossword 
+inasra will populate the crossword
 from the spine designed by the me
- 
+
 
 Motivation
 This is a game which build crosswords.  There is potential for predictive free associations as well.
@@ -27,7 +27,7 @@ Build status
 This is a work in progress, may never be complete.
 
 Code style
-Completely fluid as I am learning as I compose this software.  If you think I might benefit from a style I am not currently employing, let me know.  
+Completely fluid as I am learning as I compose this software.  If you think I might benefit from a style I am not currently employing, let me know.
 
 Tech/framework used
 Backend prototyped in python 3.xx
@@ -42,7 +42,7 @@ inasra.me
 -> ipuz handlers
 -> morph wikichomping into DB + acronimisation
 	-> db is mirrors of sources
-		-> 
+		->
 -> rt inasra process and gem UI
 	-> camera control via click@letter. mouse and gesture
 -> cc public domain content in a autoKenBurns media collage
@@ -50,18 +50,18 @@ inasra.me
 
 inasra.us
 -> global statistics
--> weird/normal == excentricity coefficient fader 
+-> weird/normal == excentricity coefficient fader
 -> maximize dimensions of inasra
 -> n dimensional decoheresy (like scrambled hackz)
--> get a swell readme organized. 
+-> get a swell readme organized.
 
 Simulate the User Experience
 1) wikichomp_py3.py #run until you have a good spine
 2) spinylze.py
 3) sanitize acro_dicts
-4) crystalyzation.pyb
+4) findnextword.pyb
 
- 
+
 
 Credits
 u/jizzbug can take considerable credit for co-engineering the core concept
@@ -70,5 +70,4 @@ Tova@ps:1 showed me some principles re: classing it up, and web presence.  I am 
 
 Anything else that seems useful
 License
-GPL 3.0 
-
+GPL 3.0

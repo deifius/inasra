@@ -16,6 +16,7 @@ with open("xwordspine.json") as readio: board =json.loads(readio.read())
 alexicon = argv[1]
 position = [int(argv[2]),int(argv[3])]
 try: orientation = argv[4]
+except: pass
 
 def sanitize(alexicon):
 	if len(alexicon) > len(board[0]) - position[1]:

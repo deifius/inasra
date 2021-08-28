@@ -1,8 +1,14 @@
-Coffee	2
-Finland	2
-Nauru	3
-Resignation syndrome	2
-Stupor	5
-Reticular activation system	9
-Anatomy of the cerebellum	8
-.NextMoves/republicofvenice.VERT.28.24
+Tannheuser	7
+Sixth Crusade	6
+Raoul of Merencourt	6
+Francis of Assisi	7
+Olivier Messiaen	9
+.NextMoves/bookofthefirstmonks.HORIZ.17.20
+.NextMoves/baptism.VERT.22.15
+.NextMoves/darmstadtschool.VERT.2.19
+.NextMoves/captureofbilbeis.HORIZ.20.19
+.NextMoves/diptyque.HORIZ.3.12
+.NextMoves/stedingercrusade.HORIZ.10.20
+.NextMoves/hansabrahamsen.HORIZ.8.18
+.NextMoves/philipneri.HORIZ.15.11
+.NextMoves/asceticism.HORIZ.13.11
