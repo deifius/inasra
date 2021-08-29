@@ -86,6 +86,6 @@ def main():
 	os.system('cp acronym/content/' + word.replace(' ','_') + " " + userdir + "/content.json")
 	os.system('python3 xword2jsonhtml.py xwordspine.json ' + userdir + ' > ' + newdir + '/xword.json.html')
 	#pdb.set_trace()
-	os.system('./ye_Olde_init.sh ' + argv[1] +'/'+ choice_word.replace(' ','_').split('/')[-1])
+	os.system('./recursive_spine_builder.sh ' + argv[1] +'/'+ choice_word.replace(' ','_').split('/')[-1])
 
 if __name__ == "__main__":    main()

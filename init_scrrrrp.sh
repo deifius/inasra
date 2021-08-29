@@ -8,7 +8,7 @@ rm .eggspine.txt
 touch .eggspine.txt
 
 ps -ef|grep visualise | grep -v grep || xfce4-terminal -e  './visualizations/bashvisualise.py'
-./ye_Olde_init.sh $1
+./recursive_spine_builder.sh $1
 #python3 wikichomp_py3.py
 python3 spinylize.py
 python3 boardtrim.py
