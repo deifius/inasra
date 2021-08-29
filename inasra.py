@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import json
 
 class wordboard: #
 	def __init__(self, origin, version, publisher, kind, copyright, author, title, intro, empty, dimensions, puzzle, clues, solution, history, lexicon, wordspace):
@@ -44,6 +45,8 @@ class wordboard: #
 		self.clues['across','down'] = self.clues['down','across']
 		self.solution = self.rotate(self.solution)
 		self.puzzle = self.rotate(self.puzzle)
+	def dumps(self):
+		return json.dumps(self.__dict__)
 	#@vertical
 	#def vertical_operation(board):
 	#	rotateboard(board)
