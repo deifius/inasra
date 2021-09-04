@@ -2,16 +2,16 @@
 import json
 
 class wordboard: #
-	def __init__(self, origin, version, publisher, kind, copyright, author, title, intro, empty, dimensions, puzzle, clues, solution, history, lexicon, wordspace):
+	def __init__(self, origin, version, kind, copyright, author, publisher, title, intro, empty, dimensions, puzzle, clues, solution, lexicon, wordspace, history):
 		self.origin = origin
 		self.version = version
 		self.kind = kind
-		self.publisher = publisher
 		self.copyright = copyright
 		self.author = author
+		self.publisher = publisher
 		self.title = title
 		self.intro = intro
-		self.empy = empty
+		self.empty = empty
 		self.dimensions = dimensions
 		self.puzzle = puzzle
 		self.clues = clues
@@ -42,11 +42,22 @@ class wordboard: #
 	def rotate(self, board): # swaps horizontal and vertical faux_regex_lines
 		return [list(row) for row in list(zip(*board))]
 	def swap_down_across(self):
-		self.clues['across','down'] = self.clues['down','across']
+		self.clues['Down'], self.clues['Across'] = self.clues['Across'], self.clues['Down']
+		self.dimensions['height'],self.dimensions['width']=self.dimensions['width'],self.dimensions['height']
 		self.solution = self.rotate(self.solution)
 		self.puzzle = self.rotate(self.puzzle)
 	def dumps(self):
-		return json.dumps(self.__dict__)
+		return json.dumps(self.__dict__, indent=2)
+	def add_one_Down(self):
+		new_empty_line = []
+		for each in self.solution[0]: new_empty_line.append('.')
+		self.solution.append(new_empty_line)
+		self.dimensions['height'] += 1
+	def add_one_Across(self):
+		self.swap_down_across()
+		self.add_one_Down()
+		self.swap_down_across()
+
 	#@vertical
 	#def vertical_operation(board):
 	#	rotateboard(board)

@@ -1,0 +1,61 @@
+{
+  "origin": "inasra, & me, & us",
+  "version": "http://ipuz.org/v2.0.2",
+  "kind": "http://ipuz.org/crossword#1",
+  "copyright": "GPL 3.xx++",
+  "author": "inasra.me",
+  "publisher": "inasra.us",
+  "title": "inasra",
+  "intro": "maybe not all things, but at least this is made possible by inasra",
+  "empty": ".",
+  "dimensions": {
+    "width": 1,
+    "height": 1
+  },
+  "puzzle": [
+    "."
+  ],
+  "clues": {
+    "Across": [
+      "1:monkey"
+    ],
+    "Down": [
+      "1:butts"
+    ]
+  },
+  "solution": [
+    [
+      "a",
+      ".",
+      "."
+    ],
+    [
+      "p",
+      "o",
+      "o"
+    ],
+    [
+      "e",
+      ".",
+      "."
+    ],
+    [
+      ".",
+      ".",
+      "."
+    ],
+    [
+      ".",
+      ".",
+      "."
+    ],
+    [
+      ".",
+      ".",
+      "."
+    ]
+  ],
+  "lexicon": [],
+  "wordspace": [],
+  "history": []
+}
