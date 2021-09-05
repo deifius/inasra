@@ -35,6 +35,7 @@ class wordboard: #
 					linecheck = 1
 			if linecheck == 1:
 				print(line)
+		print('')
 	def show_solution(self):
 		self.visualize(self.solution)
 	def show_puzzle(self):
@@ -48,22 +49,26 @@ class wordboard: #
 		self.puzzle = self.rotate(self.puzzle)
 	def dumps(self):
 		return json.dumps(self.__dict__, indent=2)
-	def add_one_Down(self):
+	def add_one_row_Down(self):
 		new_empty_line = []
 		for each in self.solution[0]: new_empty_line.append('.')
 		self.solution.append(new_empty_line)
 		self.dimensions['height'] += 1
-	def add_one_Across(self):
+	def add_one_col_Across(self):
 		self.swap_down_across()
-		self.add_one_Down()
+		self.add_one_row_Down()
 		self.swap_down_across()
-
-	#@vertical
-	#def vertical_operation(board):
-	#	rotateboard(board)
-	#def do_vertical(func):
-	#	def wrapper_do_vertial():
-	#		rotateboard()
-	#		func()
-	#		rotateboard()
-	#	return wrapper_do_vertical
+	def check_space(self, Across, Down):
+		return self.solution[Down][Across]
+	def add_character(self, character, Across, Down):
+		self.solution[Down][Across] = character
+	def add_word_horiz(self, word, Across, Down):
+		letters = list(word)
+		while letters:
+			self.add_character(letters.pop(0), Across, Down)
+			Across += 1
+	def add_word_vert(self, word, Across, Down):
+		letters = list(word)
+		while letters:
+			self.add_character(letters.pop(0), Across, Down)
+			Down += 1
