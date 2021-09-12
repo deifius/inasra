@@ -32,8 +32,8 @@ def refine_goodwords(maybe_bone):
 					goodwords.append(pattern.sub('', every).lower())
 	return goodwords
 def main():
-	# freqygoodwords are sorted by frequency of recurrence of reference.
-	# Most referred words are last, least are first
+	''' freqygoodwords are sorted by frequency of recurrence of reference.
+	 Most referred words are last, least are first '''
 	goodwords = refine_goodwords(make_maybe_bone(get_acroglob()))
 	freqygoodwords = sorted(set(goodwords), key = lambda ele: goodwords.count(ele))
 	with open('freqygoodwords.json','w') as writeitout: writeitout.write(json.dumps(freqygoodwords))

@@ -8,8 +8,8 @@ import pdb
 
 import os
 
-#Hallo I generate an html with buttons for letters to std
-#input xwordspine.json
+''' Hallo I generate an html with buttons for letters to std
+    input xwordspine.json'''
 with open(argv[1]) as ok: spine = json.loads(ok.read())
 
 jayzawn = {

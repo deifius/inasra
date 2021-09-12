@@ -2,7 +2,7 @@
 
 rm .NextMoves/* 2> /dev/null
 rm acro_dicts/* 2> /dev/null
-rm acronym/*/* #a bunch of stuff
+#rm acronym/*/* #a bunch of stuff
 rm .next_word_dir
 rm .eggspine.txt
 touch .eggspine.txt

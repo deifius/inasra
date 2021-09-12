@@ -6,9 +6,9 @@ from tabulate import tabulate
 import json, re
 from sys import argv
 
-#Hallo I generate an html with buttons for letters to std
-#input xwordspine.json
-#this = argv[1]
+'''	Hallo I generate an html with buttons for letters to std
+	input xwordspine.json
+	this = argv[1]'''
 with open(argv[1]) as ok: this = json.loads(ok.read())
 #with open('xwordspine.json') as ok: this = json.loads(ok.read())
 

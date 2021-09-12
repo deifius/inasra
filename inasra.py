@@ -40,7 +40,7 @@ class wordboard: #
 		self.visualize(self.solution)
 	def show_puzzle(self):
 		self.visualize(self.puzzle)
-	def rotate(self, board): # swaps horizontal and vertical faux_regex_lines
+	def rotate(self, board): # swaps horizontal and vertical axes on a 2d array
 		return [list(row) for row in list(zip(*board))]
 	def swap_down_across(self):
 		self.clues['Down'], self.clues['Across'] = self.clues['Across'], self.clues['Down']
@@ -59,7 +59,24 @@ class wordboard: #
 		self.add_one_row_Down()
 		self.swap_down_across()
 	def check_space(self, Across, Down):
-		return self.solution[Down][Across]
+		if isinstance(Across, list):
+			space = ''
+			for each_space in Across:
+				try:
+					space += self.check_space(each_space, Down)
+				except IndexError:
+					return "Board too narrow: suggest adding col Across"
+			return space #a matchable regex
+		if isinstance(Down, list):
+			space = ''
+			for each_space in Down:
+				try:
+					space += self.check_space(Across, each_space)
+				except IndexError:
+					return "Board to shallow: suggest adding row Down"
+			return space #a matchable regex
+		if isinstance(Across, int) and isinstance(Down, int):
+			return self.solution[Down][Across]
 	def add_character(self, character, Across, Down):
 		self.solution[Down][Across] = character
 	def add_word_horiz(self, word, Across, Down):

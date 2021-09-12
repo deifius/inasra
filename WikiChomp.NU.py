@@ -61,4 +61,4 @@ def wikipedia_grab_chomp(wikiterm):
 		content.write(json.dumps(page.content))
 
 #inasrafieldtest = open(".eggspine.txt",'w')
-wikipedia_grab_chomp(word)
+if __name__ == "__main__": wikipedia_grab_chomp(word)

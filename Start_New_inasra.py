@@ -25,8 +25,8 @@ def Color_Scheme():
     print('color schemed!')
 
 def WikiQueryPrep(word_or_phrase):
-    # Hola pass me any string and I'll format it as a wikipedia article title.
-    # so "legislative chamber" becomes "Legislative_chamber"
+    ''' Hola pass me any string and I'll format it as a wikipedia article title.
+        so "legislative chamber" becomes "Legislative_chamber"'''
     if ' ' in word_or_phrase:
         words = word_or_phrase.split(' ')
         wiki_article = words[0].capitalize() + "_" + '_'.join(words[1:])
