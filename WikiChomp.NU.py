@@ -6,18 +6,18 @@ from sys import argv
 import re
 import pdb
 from num2words import num2words
+from whiptail import Whiptail
+
 
 word = argv[1]
 if "/" in word: word = word.split('/')[-1]
 
 def disambiguouizer(disambuchoices, ambiguous_word):
-	print(ambiguous_word + " may refer to;\n")
-	for each in enumerate(disambuchoices):
-		print(str(each[0]) + ":", each[1])
-	userchoice = -1
-	while 0 >  userchoice or userchoice > len(disambuchoices):
-		userchoice = int(input('you choose(0-' + str(len(disambuchoices)) + '): \t'))
-	return str(disambuchoices[userchoice])
+	whippyGUI = Whiptail()
+	whippyGUI.title = "You've found the disambiguouizer"
+	whippyGUI.backtitle = ambiguous_word + " may refer to;\n"
+	user_choice, exitstatus = whippyGUI.menu(msg='what do you mean by ' +ambiguous_word+"?",items=disambuchoices,prefix='')
+	return user_choice
 
 
 
