@@ -20,7 +20,20 @@ class inasra: #
 		self.wordspace = wordspace #the list of words used in the order used.  This game is played by moving words from lexicon to wordspace
 		self.history = history # the list of operations that have led to the current board state
 	def resize(self, board, Across, Down): pass # sets dimensions of board
-	def trim(self): pass # reduces board to minimal rectangle
+	def trim_solution(self):
+		'''reduces board to minimal rectangle'''
+		def trim_oneD():
+			keep_trimming = True
+			for each in self.solution[-1]:
+				if each != '.':
+					keep_trimming = False
+			if keep_trimming:
+				self.solution.pop(-1)
+				self.trim_solution()
+		trim_oneD()
+		self.solution = self.rotate(self.solution)
+		trim_oneD()
+		self.solution = self.rotate(self.solution)
 	def find_place_for(self, word): pass # returns potential boardstates which include word
 	def find_space_for(self, coordinates): pass # returns boardstates with a new word intersecting the given coordinates
 	def visualize(self, xwordfield):
