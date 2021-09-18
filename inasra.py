@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import json
 
-class wordboard: #
+class inasra: #
 	def __init__(self, origin, version, kind, copyright, author, publisher, title, intro, empty, dimensions, puzzle, clues, solution, lexicon, wordspace, history):
 		self.origin = origin
 		self.version = version
@@ -15,14 +15,14 @@ class wordboard: #
 		self.dimensions = dimensions
 		self.puzzle = puzzle
 		self.clues = clues
-		self.solution = solution
-		self.lexicon = lexicon #a list of relevant words ordered by relevance
+		self.solution = solution # the operating word board
+		self.lexicon = lexicon # a list of relevant words ordered by relevance
 		self.wordspace = wordspace #the list of words used in the order used.  This game is played by moving words from lexicon to wordspace
 		self.history = history # the list of operations that have led to the current board state
-	def resize(self): pass # sets dimensions of board
+	def resize(self, board, Across, Down): pass # sets dimensions of board
 	def trim(self): pass # reduces board to minimal rectangle
-	def findplaceword(self, word): pass # returns potential boardstates which include word
-	def findfillspace(self, coordinates): pass # returns boardstates with a new word
+	def find_place_for(self, word): pass # returns potential boardstates which include word
+	def find_space_for(self, coordinates): pass # returns boardstates with a new word intersecting the given coordinates
 	def visualize(self, xwordfield):
 		#from os import system as systema; systema('clear')
 		print('')
@@ -55,9 +55,8 @@ class wordboard: #
 		self.solution.append(new_empty_line)
 		self.dimensions['height'] += 1
 	def add_one_col_Across(self):
-		self.swap_down_across()
-		self.add_one_row_Down()
-		self.swap_down_across()
+		for each_row in self.solution: each_row.append('.')
+		self.dimensions['width'] += 1
 	def check_space(self, Across, Down):
 		if isinstance(Across, list):
 			space = ''
@@ -65,7 +64,7 @@ class wordboard: #
 				try:
 					space += self.check_space(each_space, Down)
 				except IndexError:
-					return "Board too narrow: suggest adding col Across"
+					return "Board too narrow: add col Across"
 			return space #a matchable regex
 		if isinstance(Down, list):
 			space = ''
@@ -73,12 +72,13 @@ class wordboard: #
 				try:
 					space += self.check_space(Across, each_space)
 				except IndexError:
-					return "Board to shallow: suggest adding row Down"
+					return "Board to shallow: add row Down"
 			return space #a matchable regex
 		if isinstance(Across, int) and isinstance(Down, int):
 			return self.solution[Down][Across]
 	def add_character(self, character, Across, Down):
 		self.solution[Down][Across] = character
+	def range_word(self, word, fist_char_position): pass # returns a list of the range of the word
 	def add_word_horiz(self, word, Across, Down):
 		letters = list(word)
 		while letters:
