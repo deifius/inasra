@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import json
+from findnextwordspace import findnextwordspace
 
 class inasra: #
 	def __init__(self, origin, version, kind, copyright, author, publisher, title, intro, empty, dimensions, puzzle, clues, solution, lexicon, wordspace, history):
@@ -34,8 +35,19 @@ class inasra: #
 		self.solution = self.rotate(self.solution)
 		trim_oneD()
 		self.solution = self.rotate(self.solution)
-	def find_place_for(self, word): pass # returns potential boardstates which include word
-	def find_space_for(self, coordinates): pass # returns boardstates with a new word intersecting the given coordinates
+	def find_places_for(self, word):
+		'''returns potential boardstates which include word'''
+		def find_horizontal_solutions():
+			findnextwordspace(self.solution, word)
+		def find_vertical_solution():
+			self.solution = self.rotate(self.solution)
+			find_horizontal_solutions()
+			self.solution = self.rotate(self.solution)
+		print('horiz:')
+		find_horizontal_solutions()
+		print('vert:')
+		find_vertical_solution()
+	def find_words_for(self, coordinates): pass # returns boardstates with a new word intersecting the given coordinates
 	def visualize(self, xwordfield):
 		#from os import system as systema; systema('clear')
 		print('')
