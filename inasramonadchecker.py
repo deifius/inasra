@@ -11,6 +11,9 @@ def monad_tests(isit_json):
     except:
         print("submit one json string please")
         return -1
+    if type(isit_inasra[1]) != str:
+        print("arg 1 must be the word")
+        return 5
     if len(isit_inasra) < 2 or type(isit_inasra[0]) != list:
         print("need 2 args, 0: dimensions, 1: the word")
         print("element 0 must be a list describing the position of the word")
@@ -25,7 +28,7 @@ def monad_tests(isit_json):
     if (type(nonfloatdimensions[0]) != list or
         len(nonfloatdimensions[0]) != len(isit_inasra[1]) or
         not (lambda l: sorted(l) == list(range(min(l), max(l)+1)))(nonfloatdimensions[0])):
-        print('needed: 1d list of contiguous space to fit word')
+        print('needed: 1d list of contiguous space; precisely fitted for word')
         return 4
     print(isit_inasra[1] + " is inasra")
 
