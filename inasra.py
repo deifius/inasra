@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import json
 from findnextwordspace import findnextwordspace
+#from inasra import inasra as inasra lol
 
 class inasra: #
 	def __init__(self, origin, version, kind, copyright, author, publisher, title, intro, empty, dimensions, puzzle, clues, solution, lexicon, wordspace, history):

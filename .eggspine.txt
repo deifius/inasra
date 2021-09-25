@@ -1,16 +1,23 @@
-Stuff	3
-Fear the Walking Dead	5
-Handle with Care 	6
-Wilbury Twist	5
-Rock and roll	4
-.NextMoves/westcoastblues.VERT.18.14
-.NextMoves/robliefeld.HORIZ.7.16
-.NextMoves/outcast.HORIZ.16.14
-.NextMoves/lonniedonegan.HORIZ.14.18
-.NextMoves/talkingdead.HORIZ.2.13
-.NextMoves/freakshow.HORIZ.0.13
-.NextMoves/pointdume.HORIZ.12.9
-.NextMoves/sydneylemmon.VERT.1.14
-.NextMoves/funk.VERT.13.16
-.NextMoves/boogie.VERT.16.6
-.NextMoves/doi.VERT.12.5
+Seraph	4
+Principalities 	9
+Imperial Circle	13
+Electorate of the Palatinate	5
+Old Swiss Confederacy	6
+Sempacherbrief	7
+Eidgenossenschaft	8
+Swiss citizen	4
+.NextMoves/atziluth.HORIZ.23.36
+.NextMoves/calvinism.HORIZ.18.31
+.NextMoves/angel.VERT.25.28
+.NextMoves/greatchainofbeing.HORIZ.7.18
+.NextMoves/sevenarchangels.VERT.29.17
+.NextMoves/treatiesofnijmegen.HORIZ.18.19
+.NextMoves/talesofzestiria.HORIZ.5.36
+.NextMoves/asturias.HORIZ.11.31
+.NextMoves/bishopricofspeyer.HORIZ.9.38
+.NextMoves/archangel.VERT.26.32
+.NextMoves/geographiccoordinatesystem.HORIZ.3.36
+.NextMoves/abrahamicreligions.HORIZ.33.25
+.NextMoves/citizenshipact.VERT.0.30
+.NextMoves/electorateofbavaria.VERT.2.31
+.NextMoves/countpalatine.VERT.39.30
