@@ -11,13 +11,13 @@ def monad_tests(isit_json):
     except:
         print("submit one json string please")
         return -1
-    if type(isit_inasra[1]) != str:
-        print("arg 1 must be the word")
-        return 5
     if len(isit_inasra) < 2 or type(isit_inasra[0]) != list:
         print("need 2 args, 0: dimensions, 1: the word")
         print("element 0 must be a list describing the position of the word")
         return 1
+    if type(isit_inasra[1]) != str:
+        print("arg 1 must be the word")
+        return 5
     nonfloatdimensions = []
     for dimension in isit_inasra[0]:
         if type(dimension) != int:
