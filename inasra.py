@@ -110,11 +110,13 @@ class inasra: #
 		while letters:
 			self.add_character(letters.pop(0), Across, Down)
 			Across += 1
+		self.clues['Across'].append(word)
 	def add_word_vert(self, word, Across, Down):
 		letters = list(word)
 		while letters:
 			self.add_character(letters.pop(0), Across, Down)
 			Down += 1
+		self.clues['Down'].append(word)
 	def add_word(self, position, word):
 		try:
 			if type(position[0]) is list and type(position[1]) is int: self.add_word_horiz(word, position[0][0], position[1])
@@ -122,3 +124,4 @@ class inasra: #
 		except:
 			print('submit an inasra monad')
 			return -1
+		self.lexicon.append(word)
