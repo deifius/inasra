@@ -12,7 +12,9 @@ import json
 
 # I threw the part about having thumbs in to throw you off
 
-def monad_tests(isit_json):
+'''inasra monads are relative position + word'''
+
+def monad_test(isit_json):
     try:    isit_inasra = json.loads(isit_json)
     except:
         print("submit one json string please")

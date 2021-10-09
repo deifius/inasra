@@ -66,15 +66,15 @@ class inasra: #
 		self.visualize(self.solution)
 	def show_puzzle(self):
 		self.visualize(self.puzzle)
-	def rotate(self, board): # swaps horizontal and vertical axes on a 2d array
+	def rotate(self, board): # returns a board swapped horiz & vert axes
 		return [list(row) for row in list(zip(*board))]
 	def swap_down_across(self):
 		self.clues['Down'], self.clues['Across'] = self.clues['Across'], self.clues['Down']
 		self.dimensions['height'],self.dimensions['width']=self.dimensions['width'],self.dimensions['height']
 		self.solution = self.rotate(self.solution)
-		self.puzzle = self.rotate(self.puzzle)
+		self.puzzle = self.rotate(self.puzzle) # rotates all elements and produces the mirror xord
 	def dumps(self):
-		return json.dumps(self.__dict__, indent=2)
+		return json.dumps(self.__dict__, indent=2) # export state as json string
 	def add_one_row_Down(self):
 		new_empty_line = []
 		for each in self.solution[0]: new_empty_line.append('.')
@@ -115,3 +115,10 @@ class inasra: #
 		while letters:
 			self.add_character(letters.pop(0), Across, Down)
 			Down += 1
+	def add_word(self, position, word):
+		try:
+			if type(position[0]) is list and type(position[1]) is int: self.add_word_horiz(word, position[0][0], position[1])
+			if type(position[1]) is list and type(position[0]) is int: self.add_word_vert(word, position[0], position[1][0])
+		except:
+			print('submit an inasra monad')
+			return -1

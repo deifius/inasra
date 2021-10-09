@@ -1,12 +1,1 @@
-Josiah Warren	2
-Social anarchism	7
-Noam Chomsky	2
-Adhocracy	7
-Corporate governance	3
-.NextMoves/soleproprietorship.HORIZ.5.18
-.NextMoves/culturalism.VERT.13.11
-.NextMoves/policy.VERT.17.11
-.NextMoves/subsidiarity.VERT.0.14
-.NextMoves/socialization.HORIZ.2.13
-.NextMoves/hannaharendt.VERT.15.12
-.NextMoves/citigroup.HORIZ.11.13
+Honey dew melon	5

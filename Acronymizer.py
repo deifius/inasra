@@ -8,10 +8,10 @@ import pdb
 from subprocess import check_output
 import whiptail
 
-#	Input:
-#		first argument
-#		sbsequent arguments: the dictionary
-#	./Acronymizer.py $1    $(cat acronym/links/$1)
+'''	Input:
+		first argument
+		sbsequent arguments: the dictionary
+	./Acronymizer.py $1    $(cat acronym/links/$1)'''
 
 
 def acronymize(word, acronym, relephant):
