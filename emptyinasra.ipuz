@@ -8,10 +8,14 @@
   "title": "inasra",
   "intro": "maybe not all things, but at least this is made possible by inasra",
   "empty": ".",
-  "dimensions": { "width": 1, "height": 1 },
+  "dimensions": {
+  "width": 1,
+  "height": 1 },
   "puzzle": ["."],
-  "clues": { "Across": [],"Down": [] },
-  "solution": ["."],
+  "clues": {
+  "Across": [],
+  "Down": [] },
+  "solution": [["."]],
   "lexicon": [],
   "wordspace": [],
   "history": []

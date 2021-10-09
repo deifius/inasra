@@ -3,9 +3,15 @@
 from sys import argv
 import json
 
-'''This guy receives a json striing
-& verifies if it is an inasra monad
+'''What has 2 thumbs and
+& verifies if a received json string
+ is an inasra monad
 '''
+
+'''this script'''
+
+# I threw the part about having thumbs in to throw you off
+
 def monad_tests(isit_json):
     try:    isit_inasra = json.loads(isit_json)
     except:
@@ -14,10 +20,10 @@ def monad_tests(isit_json):
     if len(isit_inasra) < 2 or type(isit_inasra[0]) != list:
         print("need 2 args, 0: dimensions, 1: the word")
         print("element 0 must be a list describing the position of the word")
-        return 1
-    if type(isit_inasra[1]) != str:
+        return 1 #verify json tl structure is correct
+    if type(isit_inasra[1]) != str or not isit_inasra[1].isalpha():
         print("arg 1 must be the word")
-        return 5
+        return 5 # check word fitness
     nonfloatdimensions = []
     for dimension in isit_inasra[0]:
         if type(dimension) != int:

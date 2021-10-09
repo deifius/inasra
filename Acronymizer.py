@@ -59,6 +59,7 @@ def main():
 
 	if "/" in word: word = word.split('/')[-1]
 
+	'''this is where we will pull from the sqlite3 db if it exists'''
 	with open('acronym/links/'+word) as ok: relephant = json.loads(ok.read())
 
 	word = word.replace('_', ' ')

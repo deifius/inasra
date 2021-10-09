@@ -7,7 +7,7 @@ rm .next_word_dir
 rm .eggspine.txt
 touch .eggspine.txt
 
-ps -ef|grep visualise | grep -v grep || xfce4-terminal -e  './visualizations/bashvisualise.py'
+ps -ef|grep visualise | grep -v grep || xterm -e  './visualizations/bashvisualise.py'
 ./recursive_spine_builder.sh $1
 #python3 wikichomp_py3.py
 python3 spinylize.py
