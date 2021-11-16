@@ -9,8 +9,8 @@
   "intro": "maybe not all things, but at least this is made possible by inasra",
   "empty": ".",
   "dimensions": {
-  "width": 1,
-  "height": 1 },
+  	"width": 1,
+  	"height": 1 },
   "puzzle": ["."],
   "clues": {
   "Across": [],

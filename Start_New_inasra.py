@@ -3,6 +3,7 @@
 from whiptail import Whiptail
 import json
 from os import system
+from lorem import text as lorem
 
 def directory_initializer():
     for essentialdir in ['users','acronym/summary','acronym/content','acronym/links','acronym/images','.NextMoves' ]:
@@ -38,8 +39,8 @@ def main():
     Color_Scheme()
     new_adventure = Whiptail()
     new_adventure.title = "inasra welcomes you"
-    new_adventure.backtitle = "lots of stuff eventually"
-    spinehead, exitstatus = new_adventure.inputbox('what will you offer to inasra?')
+    new_adventure.backtitle = lorem()
+    spinehead, exitstatus = new_adventure.inputbox('what shall you offer to inasra?')
     if exitstatus == 0:
         #this is where all the good sanitizing and CAP permutation should go
         system('./init_scrrrrp.sh ' + WikiQueryPrep(spinehead))

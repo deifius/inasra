@@ -56,18 +56,16 @@ def findnextwordspace (board, alexicon):
 									legalplace.append((line[0],validplace))
 		return legalplace
 	def find_goodplaces(legalplace, alexicon):
-		# this really should be a json hand off.
-		# where is processLegalPlaceItem defined?
-		# goodplaces = tuple(map(lambda item : processLegalPlaceItem(alexicon, item), legalplace))
+		''' this really should be a json hand off.
+		where is processLegalPlaceItem defined?
+		goodplaces = tuple(map(lambda item : processLegalPlaceItem(alexicon, item), legalplace))'''
 		goodplaces = []
 		for eachplace in legalplace:
-			goodplaces.append(alexicon + ' ' + str(eachplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']',''))
-			print(alexicon + ' ' + str(eachplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']',''))
-		print(alexicon + ' ' + str(legalplace).replace('(','').replace(')','').replace(',','').replace('[','').replace(']',''))
-		print(json.dumps(goodplaces))
+			goodplaces.append('[[' + str(eachplace).replace('(','').replace(')','').replace(', ','],') + "], " + alexicon)
 		return goodplaces
 	goodplaces_for_alexicon = find_goodplaces(identify_legalplace(generate_faux_regex_lines(board),alexicon), alexicon)
 	return goodplaces_for_alexicon
+
 def sanitize(board, alexicon):
 	if len(alexicon) > len(board[0]): exit()
 	if re.search("[^a-zA-Z ]", alexicon,) is None:
@@ -80,11 +78,11 @@ def main():
 	alexicon = argv[1]
 	#print(alexicon+ "\n\n\n")
 	cleanexicon= sanitize(board, alexicon)
-	print('horiz:')
+	#print('horiz:')
 	horiz = findnextwordspace(board, cleanexicon)
-	print('vert:')
+	#print('vert:')
 	vert = findnextwordspace(rotateboard(board), cleanexicon)
-	# vert is throwing real bad answers...  we need to work on this!
+	''' vert is throwing real bad answers...  we need to work on this!'''
 	#for each in vertboard: print(' '.join(each))
 	#st()
 	#print('yo')

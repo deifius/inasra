@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 import json
 from findnextwordspace import findnextwordspace
+import db
+from pdb import set_trace
+import Start_New_inasra
 #from inasra import inasra as inasra lol
 
 class inasra: #
@@ -19,7 +22,7 @@ class inasra: #
 		self.clues = clues
 		self.solution = solution # the operating word board
 		self.lexicon = lexicon # a list of relevant words ordered by relevance
-		self.wordspace = wordspace #the list of words used in the order used.  This game is played by moving words from lexicon to wordspace
+		self.wordspace = wordspace # the list of words used in the order used.  This game is played by moving words from lexicon to wordspace
 		self.history = history # the list of operations that have led to the current board state
 	def resize(self, board, Across, Down): pass # sets dimensions of board
 	def trim_solution(self):
@@ -39,15 +42,18 @@ class inasra: #
 	def find_places_for(self, word):
 		'''returns potential boardstates which include word'''
 		def find_horizontal_solutions():
-			findnextwordspace(self.solution, word)
-		def find_vertical_solution():
+			return findnextwordspace(self.solution, word)
+		def find_vertical_solutions():
 			self.solution = self.rotate(self.solution)
-			find_horizontal_solutions()
+			what_you_wanna_know = find_horizontal_solutions()
 			self.solution = self.rotate(self.solution)
-		print('horiz:')
-		find_horizontal_solutions()
-		print('vert:')
-		find_vertical_solution()
+			return what_you_wanna_know
+		#print('horiz:')
+		decohere = find_horizontal_solutions()
+		set_trace()
+		#print('vert:')
+		decohere = decohere + find_vertical_solutions()
+		return decohere
 	def find_words_for(self, coordinates): pass # returns boardstates with a new word intersecting the given coordinates
 	def visualize(self, xwordfield):
 		#from os import system as systema; systema('clear')
@@ -98,7 +104,7 @@ class inasra: #
 				try:
 					space += self.check_space(Across, each_space)
 				except IndexError:
-					return "Board to shallow: add row Down"
+					return "Board too shallow: add row Down"
 			return space #a matchable regex
 		if isinstance(Across, int) and isinstance(Down, int):
 			return self.solution[Down][Across]
@@ -117,7 +123,7 @@ class inasra: #
 			self.add_character(letters.pop(0), Across, Down)
 			Down += 1
 		self.clues['Down'].append(word)
-	def add_word(self, position, word):
+	def add_word(self, position, word, **kwargs):
 		try:
 			if type(position[0]) is list and type(position[1]) is int: self.add_word_horiz(word, position[0][0], position[1])
 			if type(position[1]) is list and type(position[0]) is int: self.add_word_vert(word, position[0], position[1][0])
