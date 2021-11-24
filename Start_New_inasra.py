@@ -23,7 +23,7 @@ def Color_Scheme():
     actbutton=green,black\
     entry=green,black\
     '")
-    print('color schemed!')
+    print('color not schemed!')
 
 def WikiQueryPrep(word_or_phrase):
     ''' Hola pass me any string and I'll format it as a wikipedia article title.

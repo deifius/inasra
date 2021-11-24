@@ -40,4 +40,4 @@ def monad_test(isit_json):
         return 4
     print(isit_inasra[1] + " is inasra")
 
-if __name__ == "__main__": monad_tests(argv[1])
+if __name__ == "__main__": monad_test(argv[1])

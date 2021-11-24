@@ -131,3 +131,5 @@ class inasra: #
 			print('submit an inasra monad')
 			return -1
 		self.lexicon.append(word)
+	def Start(self):
+		self.Start_New_inasra.main()
