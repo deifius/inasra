@@ -5,6 +5,7 @@ import json
 from random import shuffle
 import os
 import pdb
+import db
 from subprocess import check_output
 import whiptail
 
@@ -14,8 +15,9 @@ import whiptail
 	./Acronymizer.py $1    $(cat acronym/links/$1)'''
 
 
-def acronymize(word, acronym, relephant):
+def acronymize(word, relephant):
 	'''I accept a string and return a relevant acronym'''
+	acronym = []
 	def initialyze(singleletter, relephant):
 		if len(singleletter) != 1: return "only one letter plz"
 		if singleletter.isspace(): return " "
@@ -27,29 +29,42 @@ def acronymize(word, acronym, relephant):
 	for eachletter in word:
 		#pdb.set_trace()
 		acronym.append(initialyze(eachletter, relephant))
+	return acronym
 
-def get_choice_with_whiptail(word, acronym, relephant):
+def get_choice_with_whiptail(word, acronym_words, relephant):
 	#pdb.set_trace()
-	while ' ' in acronym: acronym.remove(' ')
-	word = word.replace(' ','')
-	for each in enumerate(acronym):
-		if each[1].isspace(): acronym[each[0]] = ('');
-		else: acronym[each[0]] = str(each[0]) + "    " + word[each[0]] + "    " + each[1]
+	while ' ' in acronym_words: acronym_words.remove(' ')
+	word = word.replace(' ', '')
+	for each in enumerate(acronym_words):
+		if each[1].isspace(): acronym_words[each[0]] = ('');
+		else: acronym_words[each[0]] = str(each[0]) + "    " + word[each[0]] + "    " + each[1]
 	thechoice = whiptail.Whiptail()
 	thechoice.title = word
 	thechoice.backtitle = 'inasra'
-	possible_choices = acronym
+	possible_choices = acronym_words
 	possible_choices.append('respin')
 	choice_word, exitstatus = thechoice.menu('choose your path', possible_choices,'-')
 	if exitstatus == '1':
 		return 0
 	if choice_word == "respin":
 		input("respinnin'")
-		get_choice_with_whiptail(word, acronym, relephant)
+		return get_choice_with_whiptail(word, acronym, relephant)
 	#input("you said " + choice_word.split('    ')[-1])
 	#input(choice_word.split('    ')[0])
 	choice_pos = int(choice_word.split('    ')[0])
 	return choice_pos
+
+def do_acronomize(wikiterm):
+	relephant = db.db_query('''
+		SELECT wl.link
+		FROM word_links wl
+		INNER JOIN word w ON wl.word_id = w.id
+		WHERE w.word = ?
+	''', wikiterm)
+
+	wordclean = wikiterm.replace('_', ' ')
+	# acronymize(wordclean, acronym, relephant)
+	return acronymize(wordclean, relephant)
 
 def main():
 	if len(argv) != 2: word = " ".join(argv)
@@ -60,7 +75,14 @@ def main():
 	if "/" in word: word = word.split('/')[-1]
 
 	'''this is where we will pull from the sqlite3 db if it exists'''
-	with open('acronym/links/'+word) as ok: relephant = json.loads(ok.read())
+	# with open('acronym/links/'+word) as ok: relephant = json.loads(ok.read())
+
+	relephant = db.db_query('''
+		SELECT wl.image_url
+		INNER JOIN word w ON wl.word_id = word.id
+		FROM word_links wl
+		WHERE w.word = ?
+	''', wikiterm)
 
 	word = word.replace('_', ' ')
 	acronym = []

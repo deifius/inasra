@@ -3,7 +3,12 @@ import json
 from findnextwordspace import findnextwordspace
 import db
 from pdb import set_trace
+from os import system
+from whiptail import Whiptail
+from lorem import text as lorem
+import Acronymizer
 import Start_New_inasra
+import WikiChomp
 #from inasra import inasra as inasra lol
 
 class inasra: #
@@ -132,4 +137,31 @@ class inasra: #
 			return -1
 		self.lexicon.append(word)
 	def Start(self):
-		self.Start_New_inasra.main()
+		is_context_cli = True # Hardcoded for now
+		if is_context_cli:
+			new_adventure = Whiptail()
+			new_adventure.title = "inasra welcomes you"
+			new_adventure.backtitle = lorem()
+			word, exitstatus = new_adventure.inputbox('what shall you offer to inasra?')
+			system("ps -ef|grep visualise | grep -v grep || xterm -e  './visualizations/bashvisualise.py'")
+		else: pass # we were called by a web browser TODO
+
+		inasraid = db.db_insert("inasra", name = word, height = 0, width = 0)
+
+		wikified_word = WikiChomp.wiki_query_prep(word)
+		WikiChomp.wikipedia_grab_chomp(wikified_word)
+		acronym_words = Acronymizer.do_acronomize(wikified_word)
+
+		if is_context_cli:
+			# TODO: pull relephant from DB, sucka
+			choice_pos = Acronymizer.get_choice_with_whiptail(word, acronym_words, relephant)
+			choice_word = acronym[choice_pos].split('    ')[-1]
+		else: pass # we probably bail back to user with list of words to pick
+
+		choice_word_ids = db.db_query("SELECT id FROM word WHERE word = ?", choice_word)
+
+		# TODO FIXME: do x, y, and direction, and also word_order
+		# convert spinylize
+		linkid = db.db_insert("inasra_words", inasra_id = inasraid, word_id = choice_word_ids[0].id, x = 0, y = 0, direction = 'x')
+
+		#self.Start_New_inasra.main()
