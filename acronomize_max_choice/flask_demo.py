@@ -20,11 +20,14 @@ def the_singular_thing(word, relephants):
 		if eachletter[1] == ' ':
 			this += "<br>"
 		else:
+			#if eachletter[1] in ['t','l','i']: ourletter = '.'+eachletter[1]
+			#else: ourletter = eachletter[1]
+			ourletter = eachletter[1].capitalize()
 			this += f'''
 			<br>
-			<a href='{acro_fren[eachletter[0]]}'><button type="button"><h2>{eachletter[1]}</h2></button>&emsp;
+			<a href='{acro_fren[eachletter[0]]}'><button type="button"><p style="font-family:monospace;"><h2> {ourletter} </h2></p></button>&emsp;
 			<div class="dropdown">
-			<button class="dropbtn">{acro_fren[eachletter[0]]}</button>
+			<button class="dropbtn"> {acro_fren[eachletter[0]]} </button>
 			<div class="dropdown-content">\n'''
 			shuffle(relephants)
 			for everyword in relephants:
