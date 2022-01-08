@@ -42,14 +42,14 @@ def wikipedia_grab_chomp(wikiterm):
 	if len(words) < 1:
 		try:
 			#pdb.set_trace()
-			page = wikipedia.page(wikiterm)
+			autosuggestSetting = False
+			page = wikipedia.page(wikiterm, None, autosuggestSetting)
 		except wikipedia.DisambiguationError as disambu_choices:
-			#pdb.set_trace()
 			# TODO: handle non-CLI contexts here
-			page = wikipedia.page(disambiguouizer(disambu_choices.options, word))
+			#print(f'DisambiguationError {wikiterm}')
+			page = wikipedia.page(disambiguouizer(disambu_choices.options, wikiterm))
 
 		# pdb.set_trace()
-		# print(len(words))
 		wordid = db.db_insert("word", word = wikiterm, url = page.url, summary = page.summary, content = page.content)
 		links = []
 		for link in page.links:

@@ -15,8 +15,24 @@ import whiptail
 	./Acronymizer.py $1    $(cat acronym/links/$1)'''
 
 
-def acronymize(word, relephant):
-	'''I accept a string and return a relevant acronym'''
+def get_relephant(wikiword):
+	word_links = db.db_query('''
+		SELECT wl.link
+		FROM word_links wl
+		INNER JOIN word w ON wl.word_id = w.id
+		WHERE w.word = ?
+	''', wikiword)
+	relephant = []
+	for word_link in word_links:
+		relephant.append(word_link["link"])
+	return relephant
+
+def acronymize(wikiword, relephant):
+	''' I accept a word and a list of related words and return
+	    a relevant acronym of the word using only related words'''
+
+	wikiword = wikiword.replace('_', ' ')
+
 	acronym = []
 	def initialyze(singleletter, relephant):
 		if len(singleletter) != 1: return "only one letter plz"
@@ -26,13 +42,15 @@ def acronymize(word, relephant):
 			if each[0].capitalize() == singleletter.capitalize():
 				return each
 		return "##QWANTZ no match; increase relephant pool" # singleletter
-	for eachletter in word:
+	for eachletter in wikiword:
 		#pdb.set_trace()
 		acronym.append(initialyze(eachletter, relephant))
 	return acronym
 
 def get_choice_with_whiptail(word, acronym_words, relephant):
 	#pdb.set_trace()
+	# print('acronym_words')
+	# for acronym_word in acronym_words: print(acronym_word)
 	while ' ' in acronym_words: acronym_words.remove(' ')
 	word = word.replace(' ', '')
 	for each in enumerate(acronym_words):
@@ -45,17 +63,17 @@ def get_choice_with_whiptail(word, acronym_words, relephant):
 	possible_choices.append('respin')
 	choice_word, exitstatus = thechoice.menu('choose your path', possible_choices,'-')
 	if exitstatus == '1':
-		return 0
+		return -1
 	if choice_word == "respin":
-		input("respinnin'")
-		return get_choice_with_whiptail(word, acronym, relephant)
+		# input("respinnin'")
+		return get_choice_with_whiptail(word, acronym_words, relephant)
 	#input("you said " + choice_word.split('    ')[-1])
 	#input(choice_word.split('    ')[0])
 	choice_pos = int(choice_word.split('    ')[0])
 	return choice_pos
 
 def do_acronomize(wikiterm):
-	relephant = db.db_query('''
+	relephants = db.db_query('''
 		SELECT wl.link
 		FROM word_links wl
 		INNER JOIN word w ON wl.word_id = w.id
@@ -63,8 +81,17 @@ def do_acronomize(wikiterm):
 	''', wikiterm)
 
 	wordclean = wikiterm.replace('_', ' ')
+
+	# relephant_words = [relephant_words for relephant in relephants]
+	relephant_words = [r.link for r in relephants]
+	# relephant_words = []
+	# for relephant in relephants:
+	# 	relephant_words.append(relephant.link)
+
 	# acronymize(wordclean, acronym, relephant)
-	return acronymize(wordclean, relephant)
+	return acronymize(wordclean, relephants)
+
+
 
 def main():
 	if len(argv) != 2: word = " ".join(argv)
@@ -74,29 +101,55 @@ def main():
 
 	if "/" in word: word = word.split('/')[-1]
 
-	'''this is where we will pull from the sqlite3 db if it exists'''
-	# with open('acronym/links/'+word) as ok: relephant = json.loads(ok.read())
+	related_words = do_acronomize(word)
 
-	relephant = db.db_query('''
-		SELECT wl.image_url
-		INNER JOIN word w ON wl.word_id = word.id
-		FROM word_links wl
-		WHERE w.word = ?
-	''', wikiterm)
+	# '''this is where we pull from the sqlite3 db if it exists'''
 
-	word = word.replace('_', ' ')
-	acronym = []
+	# maybe?
+	# word = word.replace('_', ' ')
+	#
+	# relephant = db.db_query('''
+	# 	SELECT wl.link
+	# 	FROM word_links wl
+	# 	INNER JOIN word w ON wl.word_id = w.id
+	# 	WHERE w.word = ?
+	# ''', word)
+	#
+	# # word = word.replace('_', ' ')
+	# # word = word.replace('_', ' ')
+	#
+	# related_words = acronymize(word, db.db_query('''
+	# 	SELECT wl.link
+	# 	FROM word_links wl
+	# 	INNER JOIN word w ON wl.word_id = w.id
+	# 	WHERE w.word = ?
+	# ''', relephant[0].)) # relephant here?
 
-	acronymize(word, acronym, relephant)
-	choice_pos = get_choice_with_whiptail(word, acronym, relephant)
+
+	# relephant = db.db_query('''
+	# 	SELECT wl.link
+	# 	FROM word_links wl
+	# 	INNER JOIN word w ON wl.word_id = w.id
+	# 	WHERE w.word = ?
+	# ''', wikiterm)
+	#
+	# word = word.replace('_', ' ')
+	# acronym = []
+	#
+	# related_words = acronymize(word, relephant)
+
+	choice_pos = get_choice_with_whiptail(word, related_words, related_words)
 	choice_word = acronym[choice_pos].split('    ')[-1]
 	#input("my choice word is: " + choice_word)
 	#print(relephant)
 
-	with open('.eggspine.txt','a+') as inasradna:
-		#pdb.set_trace()
-		inasradna.write(word +"\t"+ str(choice_pos) + "\n")
-		print("I just wrote " + word)
+	# with open('.eggspine.txt','a+') as inasradna:
+	# 	#pdb.set_trace()
+	# 	inasradna.write(word +"\t"+ str(choice_pos) + "\n")
+	# 	print("I just wrote " + word)
+
+	# TODO: step through this stuff below
+
 	os.system('python3 spinylize.py; echo "COnstruturing"; python3 boardtrim.py')
 	userdir = 'users/$USER/'+ argv[1];
 	newdir = userdir +'/'+ choice_word.replace(' ','_').split('/')[-1]
