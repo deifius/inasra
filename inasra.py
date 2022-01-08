@@ -8,7 +8,7 @@ from whiptail import Whiptail
 from lorem import text as lorem
 import Acronymizer
 import Start_New_inasra
-import WikiChomp
+import wikichompdb
 #from inasra import inasra as inasra lol
 
 class inasra: #
@@ -115,11 +115,11 @@ class inasra: #
 		self.solution[Down][Across] = character
 	def range_word(self, word, fist_char_position): pass # returns a list of the range of the word
 	def add_word_horiz(self, word, Across, Down):
-		letters = list(word)
-		while letters:
-			self.add_character(letters.pop(0), Across, Down)
-			Across += 1
 		self.clues['Across'].append(word)
+		while word:
+			self.add_character(list(word).pop(0), Across, Down)
+			Across += 1
+
 	def add_word_vert(self, word, Across, Down):
 		letters = list(word)
 		while letters:
@@ -157,8 +157,8 @@ class inasra: #
 		choice_pos = 0
 
 		# Chomp the starting word
-		wikified_word = WikiChomp.wiki_query_prep(word)
-		WikiChomp.wikipedia_grab_chomp(wikified_word)
+		wikified_word = wikichompdb.wiki_query_prep(word)
+		wikichompdb.wikipedia_grab_chomp(wikified_word)
 		word_obj = self.db_word_obj(wikified_word)
 		if word_obj is None:
 			print(f'we tried real hard, but db_word_obj failz0red: {word}')
@@ -182,8 +182,8 @@ class inasra: #
 		while choice_pos > -1:
 			print("we startz da loop "+word)
 
-			wikified_word = WikiChomp.wiki_query_prep(word)
-			WikiChomp.wikipedia_grab_chomp(wikified_word)
+			wikified_word = wikichompdb.wiki_query_prep(word)
+			wikichompdb.wikipedia_grab_chomp(wikified_word)
 			relephant = Acronymizer.get_relephant(wikified_word)
 			acronym_words = Acronymizer.acronymize(wikified_word, relephant)
 
@@ -191,8 +191,8 @@ class inasra: #
 			if choice_pos < 0: break
 			choice_word = acronym_words[choice_pos].split('    ')[-1]
 
-			wikified_choice_word = WikiChomp.wiki_query_prep(choice_word)
-			WikiChomp.wikipedia_grab_chomp(wikified_choice_word)
+			wikified_choice_word = wikichompdb.wiki_query_prep(choice_word)
+			wikichompdb.wikipedia_grab_chomp(wikified_choice_word)
 
 			if is_context_cli:
 				word_obj = self.db_word_obj(wikified_choice_word)

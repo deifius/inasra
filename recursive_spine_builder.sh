@@ -5,7 +5,7 @@
 #    exit 1
 #fi
 mkdir -p users/$USER/$@
-test -f "acronym/links/$@" || ./WikiChomp.NU.py "$@"; clear
+test -f "acronym/links/$@" || ./wikichomp.py "$@"; clear
 ./Acronymizer.py "$@"
 next_word_dir=users/$USER/$@
 mkdir -p $next_word_dir/$next_word

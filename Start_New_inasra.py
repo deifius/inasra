@@ -36,7 +36,7 @@ def WikiQueryPrep(word_or_phrase):
 
 def main():
     directory_initializer()
-    Color_Scheme()
+    #Color_Scheme()
     new_adventure = Whiptail()
     new_adventure.title = "inasra welcomes you"
     new_adventure.backtitle = lorem()

@@ -14,7 +14,6 @@ import whiptail
 		sbsequent arguments: the dictionary
 	./Acronymizer.py $1    $(cat acronym/links/$1)'''
 
-
 def get_relephant(wikiword):
 	word_links = db.db_query('''
 		SELECT wl.link
@@ -37,6 +36,7 @@ def acronymize(wikiword, relephant):
 	def initialyze(singleletter, relephant):
 		if len(singleletter) != 1: return "only one letter plz"
 		if singleletter.isspace(): return " "
+		if singleletter == '_': return " "
 		shuffle(relephant)
 		for each in relephant:
 			if each[0].capitalize() == singleletter.capitalize():
@@ -125,21 +125,14 @@ def main():
 	# 	WHERE w.word = ?
 	# ''', relephant[0].)) # relephant here?
 
-
-	# relephant = db.db_query('''
-	# 	SELECT wl.link
-	# 	FROM word_links wl
-	# 	INNER JOIN word w ON wl.word_id = w.id
-	# 	WHERE w.word = ?
-	# ''', wikiterm)
-	#
-	# word = word.replace('_', ' ')
-	# acronym = []
-	#
-	# related_words = acronymize(word, relephant)
-
+	# FIXME: the 2nd related_words needs to a relephant
+	# respin will be broken until this is fixed
 	choice_pos = get_choice_with_whiptail(word, related_words, related_words)
-	choice_word = acronym[choice_pos].split('    ')[-1]
+
+	# word = word.replace('_', ' ')
+	# acronym = acronymize(word, relephant)
+	#choice_pos = get_choice_with_whiptail(word, related_words, relephant)
+	#choice_word = acronym[choice_pos].split('    ')[-1]
 	#input("my choice word is: " + choice_word)
 	#print(relephant)
 
