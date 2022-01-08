@@ -112,11 +112,11 @@ class inasra: #
 		self.solution[Down][Across] = character
 	def range_word(self, word, fist_char_position): pass # returns a list of the range of the word
 	def add_word_horiz(self, word, Across, Down):
-		letters = list(word)
-		while letters:
-			self.add_character(letters.pop(0), Across, Down)
-			Across += 1
 		self.clues['Across'].append(word)
+		while word:
+			self.add_character(list(word).pop(0), Across, Down)
+			Across += 1
+
 	def add_word_vert(self, word, Across, Down):
 		letters = list(word)
 		while letters:

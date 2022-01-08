@@ -11,7 +11,7 @@
   "dimensions": {
   	"width": 1,
   	"height": 1 },
-  "puzzle": ["."],
+  "puzzle": [["."]],
   "clues": {
   "Across": [],
   "Down": [] },

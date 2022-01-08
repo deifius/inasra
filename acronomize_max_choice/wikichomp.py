@@ -53,14 +53,14 @@ def wikipedia_grab_chomp(wikiterm):
 			goodwords.remove(e)
 		goodwords = list(goodwords)
 		#pdb.set_trace()
-		with open('../acronym/links/' + wikiterm, 'w') as links:
+		with open('acronym/links/' + wikiterm, 'w') as links:
 			links.write(json.dumps(goodwords))
 			#db.db_insert("word_links",)
-		with open('../acronym/summary/' + wikiterm, 'w') as summary:
+		with open('acronym/summary/' + wikiterm, 'w') as summary:
 			summary.write(json.dumps(page.summary))
-		with open('../acronym/images/' + wikiterm, 'w') as images:
+		with open('acronym/images/' + wikiterm, 'w') as images:
 			images.write(json.dumps(page.images))
-		with open('../acronym/content/' + wikiterm, 'w') as content:
+		with open('acronym/content/' + wikiterm, 'w') as content:
 			content.write(json.dumps(page.content))
 
 
