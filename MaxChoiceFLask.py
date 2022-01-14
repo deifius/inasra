@@ -4,17 +4,21 @@ from flask import Flask, request, redirect
 from subprocess import Popen, PIPE, STDOUT, check_output
 import json, re, os, pwd, Acronymizer as acronymizer
 from random import shuffle
-import wikipedia
+import wikipedia, re
 import wikichomp
 import inasra
 
 app = Flask(__name__)
 
-
 def the_singular_thing(word, relephants):
 	acro_fren = acronymizer.acronymize(word, relephants)
 	with open('index.html') as stuff: this = stuff.read()
 	with open('acronym/summary/'+word) as summ: summary = json.loads(summ.read())
+	with open('acronym/content/'+word) as cont:
+		content = re.split('\n+',re.sub('''['"]''','',json.loads(cont.read())))
+		for paragraph in content:
+			if paragraph[0] == "=":
+				content.remove(paragraph)
 	this += f'''
 	<a href=" " title="{summary}" style="background-color:#FFFFFF;color:#000000;text-decoration:none"><h1>{word}</h1></a>
 	'''
@@ -22,12 +26,16 @@ def the_singular_thing(word, relephants):
 		if eachletter[1] == ' ':
 			this += "<br>"
 		else:
-			#if eachletter[1] in ['t','l','i']: ourletter = '.'+eachletter[1]
-			#else: ourletter = eachletter[1]
 			ourletter = eachletter[1].capitalize()
+			for paragraph in content:
+				if acro_fren[eachletter[0]].lower() in paragraph.lower():
+					insert_hover = f'title="{paragraph}"'
+					print(insert_hover)
+					break
+				else: insert_hover = 'title="no clue how this relates"'
 			this += f'''
 			<br>
-			<a href='{acro_fren[eachletter[0]]}'><button type="button"><p style="font-family:monospace;"><h2> {ourletter} </h2></p></button>&emsp;
+			<a href='{acro_fren[eachletter[0]]}'{insert_hover}><button type="button"><p style="font-family:monospace;"><h2> {ourletter} </h2></p></button>&emsp;
 			<div class="dropdown">
 			<button class="dropbtn"> {acro_fren[eachletter[0]]} </button>
 			<div class="dropdown-content">\n'''
@@ -36,7 +44,7 @@ def the_singular_thing(word, relephants):
 				if everyword[0].lower() == eachletter[1].lower():
 					this += f"<a href='{everyword}'><button>{everyword}</button></a>"
 			this += '''</div></div>'''
-	this +='''</body></html>'''
+	this +=f'''</body></html>'''
 	return this
 
 @app.route("/")
@@ -48,7 +56,7 @@ def index():
 	<input type="text" id="example" size="40" placeholder="What do you offer to inasra" name="firstword">
   </div>
   <div>
-    <input type="submit" value="beginasration">
+    <input type="submit" value="beginasrazion">
   </div>
 </form>
 '''
@@ -85,4 +93,4 @@ def first_word():
 	return redirect(word)
 
 if __name__ == "__main__":
-	app.run(debug=True, host="0.0.0.0")
+	app.run(debug=True, host="0.0.0.0", port=5000)

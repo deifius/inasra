@@ -21,10 +21,23 @@ class inasra: #
 		self.puzzle = puzzle
 		self.clues = clues
 		self.solution = solution # the operating word board
-		self.lexicon = lexicon # a list of relevant words ordered by relevance
+		self.lexicon = lexicon # a list of relevant words ordered by relevance. The relephant herd.
 		self.wordspace = wordspace # the list of words used in the order used.  This game is played by moving words from lexicon to wordspace
 		self.history = history # the list of operations that have led to the current board state
-	def resize(self, board, Across, Down): pass # sets dimensions of board
+	def resize(self, width, height):
+		print(f"old width & height:  {self.dimensions['width']}, {self.dimensions['height']}")
+		while len(self.solution[0]) > width:
+			for each_row in self.solution: each_row.pop()
+		while len(self.solution[0]) < width:
+			self.add_one_col_Across()
+		while len(self.solution) > height:
+			self.solution.pop()
+		while len(self.solution) < height:
+			self.add_one_row_Down()
+		self.dimensions['width'], self.dimensions['height'] = width, height
+		print(f'{width}, {height}')
+		print(f"new width & height:  {self.dimensions['width']}, {self.dimensions['height']}")
+		self.show_solution()
 	def trim_solution(self):
 		'''reduces board to minimal rectangle'''
 		def trim_oneD():
@@ -39,6 +52,7 @@ class inasra: #
 		self.solution = self.rotate(self.solution)
 		trim_oneD()
 		self.solution = self.rotate(self.solution)
+		self.show_solution()
 	def find_places_for(self, word):
 		'''returns potential boardstates which include word'''
 		def find_horizontal_solutions():
@@ -50,7 +64,7 @@ class inasra: #
 			return what_you_wanna_know
 		#print('horiz:')
 		decohere = find_horizontal_solutions()
-		set_trace()
+		#set_trace()
 		#print('vert:')
 		decohere = decohere + find_vertical_solutions()
 		return decohere
@@ -79,12 +93,13 @@ class inasra: #
 		self.dimensions['height'],self.dimensions['width']=self.dimensions['width'],self.dimensions['height']
 		self.solution = self.rotate(self.solution)
 		self.puzzle = self.rotate(self.puzzle) # rotates all elements and produces the mirror xord
+		self.show_solution()
 	def dumps(self):
 		return json.dumps(self.__dict__, indent=2) # export state as json string
 	def add_one_row_Down(self):
-		new_empty_line = []
-		for each in self.solution[0]: new_empty_line.append('.')
-		self.solution.append(new_empty_line)
+		new_empty_row = ['.' for each_row in self.solution[0]]
+		#for each in self.solution[0]: new_empty_line.append('.')
+		self.solution.append(new_empty_row)
 		self.dimensions['height'] += 1
 	def add_one_col_Across(self):
 		for each_row in self.solution: each_row.append('.')
@@ -110,19 +125,20 @@ class inasra: #
 			return self.solution[Down][Across]
 	def add_character(self, character, Across, Down):
 		self.solution[Down][Across] = character
-	def range_word(self, word, fist_char_position): pass # returns a list of the range of the word
+	def range_word(self, word, fist_char_position):
+		pass # returns a list of the range of the word
 	def add_word_horiz(self, word, Across, Down):
 		self.clues['Across'].append(word)
+		word = list(word)
 		while word:
-			self.add_character(list(word).pop(0), Across, Down)
+			self.add_character(word.pop(0), Across, Down)
 			Across += 1
-
 	def add_word_vert(self, word, Across, Down):
-		letters = list(word)
-		while letters:
-			self.add_character(letters.pop(0), Across, Down)
-			Down += 1
 		self.clues['Down'].append(word)
+		word = list(word)
+		while word:
+			self.add_character(word.pop(0), Across, Down)
+			Down += 1
 	def add_word(self, position, word, **kwargs):
 		try:
 			if type(position[0]) is list and type(position[1]) is int: self.add_word_horiz(word, position[0][0], position[1])
