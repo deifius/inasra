@@ -20,9 +20,10 @@ def the_singular_thing(word, relephants):
 			if paragraph[0] == "=":
 				content.remove(paragraph)
 	this += f'''
-	<a href=" " title="{summary}" style="background-color:#FFFFFF;color:#000000;text-decoration:none"><h1>{word}</h1></a>
+	<a href= 'plants'{summary}><button type="button"><p style="font-family:monospace;"><h2><h1> {word[0]} </h2></p></button>&emsp;
+	<a href=" " title="{summary}" style="background-color:#FFFFFF;color:#000000;text-decoration:none">{word}</h1></a>
 	'''
-	for eachletter in enumerate(word):#Click Me!
+	for eachletter in enumerate(word[1:]):#Click Me!
 		if eachletter[1] == ' ':
 			this += "<br>"
 		else:
@@ -32,7 +33,7 @@ def the_singular_thing(word, relephants):
 					insert_hover = f'title="{paragraph}"'
 					print(insert_hover)
 					break
-				else: insert_hover = 'title="no clue how this relates"'
+				else: insert_hover = f'title="no clue how {acro_fren[eachletter[0]]} relates to {word}"'
 			this += f'''
 			<br>
 			<a href='{acro_fren[eachletter[0]]}'{insert_hover}><button type="button"><p style="font-family:monospace;"><h2> {ourletter} </h2></p></button>&emsp;
