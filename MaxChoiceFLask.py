@@ -20,11 +20,11 @@ def the_singular_thing(word, relephants):
 			if paragraph[0] == "=":
 				content.remove(paragraph)
 	this += f'''
-	<a href= 'plants'{summary}><button type="button"><p style="font-family:monospace;"><h2><h1> {word[0]} </h2></p></button>&emsp;
+	<a href= ''{summary}><button type="button"><p style="font-family:monospace;"><h1> {word[0]} </p></button>&emsp;
 	<a href=" " title="{summary}" style="background-color:#FFFFFF;color:#000000;text-decoration:none">{word}</h1></a>
 	'''
-	for eachletter in enumerate(word[1:]):#Click Me!
-		if eachletter[1] == ' ':
+	for eachletter in enumerate(word):#Click Me!
+		if eachletter[1] == ' ' or eachletter[0] == 0:
 			this += "<br>"
 		else:
 			ourletter = eachletter[1].capitalize()

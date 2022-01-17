@@ -25,7 +25,7 @@ def wikipedia_grab_chomp(wikiterm):
 	if len(words) < 1:
 		try:
 			#pdb.set_trace()
-			page = wikipedia.page(wikiterm)
+			page = wikipedia.page(wikiterm, auto_suggest=False)
 		except wikipedia.DisambiguationError as disambu_choices:
 			#pdb.set_trace()
 			page = wikipedia.page(disambiguouizer(disambu_choices.options, word))
@@ -34,6 +34,13 @@ def wikipedia_grab_chomp(wikiterm):
 		print(len(words))
 		#wordid = db.db_insert("word",word = wikiterm, url = page.url, summary = page.summary, content = page.content)
 		links = []
+		#this is the proper place to sanitize the links, this is a very diverse collection:
+		for each_bad_word in ['ISBN','ISDN']:
+			try: links.remove(each_bad_word)
+			except: print(f'no {each_bad_word}')
+		for each_link in links:
+			if 'list' in each_link[0:4]:
+				links.remove(each_link)
 		for link in page.links:
 			links.append(link.split('(')[0])
 		pattern = re.compile('[\W_]+')
