@@ -42,9 +42,9 @@ def the_singular_thing(word, relephants):
 				else: insert_hover = f'title="no clue how {acro_fren[eachletter[0]]} relates to {word}"'
 			this += f'''
 			<br>
-			<a href='{acro_fren[eachletter[0]]}'{insert_hover}><button type="button"><p style="font-family:monospace; line-height:.5"><font size='+4'> {ourletter} </font></p></button>&emsp;
+			<a href='{acro_fren[eachletter[0]]}'{insert_hover}><button type="button"><p style="font-family:monospace; line-height:.4"><font size='+2'> {ourletter} </font></p></button>&emsp;
 			<div class="dropdown">
-			<button class="dropbtn" style="height:35px;width:500px"> {acro_fren[eachletter[0]]} &emsp;&emsp;&emsp;</button>
+			<button class="dropbtn" style="height:35px;width:400px"> {acro_fren[eachletter[0]]} &emsp;&emsp;&emsp;</button>
 			<div class="dropdown-content">'''
 			shuffle(relephants)
 			for everyword in relephants:
