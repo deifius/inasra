@@ -20,12 +20,17 @@ def the_singular_thing(word, relephants):
 			if paragraph[0] == "=":
 				content.remove(paragraph)
 	this += f'''
-	<a href= ''{summary}><button type="button"><p style="font-family:monospace; line-height:.5"> {word[0]} </p></button>&emsp;
-	<a href=" " title="{summary}" style="background-color:#FFFFFF;color:#000000;text-decoration:none">{word}</a>
+	<!DOCTYPE html>
+	<html lang="en" dir="ltr">
+		<head>
+			<meta charset="utf-8">
+			<title>inasra</title>
+	<a href= ''{summary}><button type="button"><p style="font-family:monospace; line-height:.5;"><font size='+6'> {word[0].upper()} </font></p></button>&emsp;
+	<a href=" " title="{summary}" style="background-color:#FFFFFF;color:#000000;text-decoration:none"><font size='+6'>{word.capitalize()}</font></a>
 	'''
 	for eachletter in enumerate(word):#Click Me!
 		if eachletter[1] == ' ' or eachletter[0] == 0:
-			this += "<br>"
+			this += "."
 		else:
 			ourletter = eachletter[1].capitalize()
 			for paragraph in content:
@@ -37,14 +42,21 @@ def the_singular_thing(word, relephants):
 				else: insert_hover = f'title="no clue how {acro_fren[eachletter[0]]} relates to {word}"'
 			this += f'''
 			<br>
-			<a href='{acro_fren[eachletter[0]]}'{insert_hover}><button type="button"><p style="font-family:monospace; line-height:.5"> {ourletter} </p></button>&emsp;
+			<a href='{acro_fren[eachletter[0]]}'{insert_hover}><button type="button"><p style="font-family:monospace; line-height:.5"><font size='+4'> {ourletter} </font></p></button>&emsp;
 			<div class="dropdown">
 			<button class="dropbtn" style="height:35px;width:500px"> {acro_fren[eachletter[0]]} &emsp;&emsp;&emsp;</button>
 			<div class="dropdown-content">'''
 			shuffle(relephants)
 			for everyword in relephants:
 				if everyword[0].lower() == eachletter[1].lower():
-					this += f"<button><p style='line-height:.7'><a href='{everyword}'>{everyword}</a></p></button>"
+					for paragraph in content:
+						if everyword.lower() in paragraph.lower():
+							paragraph = re.sub(everyword, f' {everyword.upper()}', paragraph, flags=re.IGNORECASE)
+							insert_hover = f'title="{paragraph}"'
+							print(insert_hover)
+							break
+						else: insert_hover = f'title="no clue how {everyword} relates to {word}"'
+					this += f"<button><p style='line-height:.7'><a href='{everyword}'{insert_hover}>{everyword}</a></p></button>"
 			this += '''</div></div>'''
 	this +=f'''</body></html>'''
 	return this
