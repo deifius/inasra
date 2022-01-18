@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from flask import Flask, request, redirect
+from flask import Flask, request, redirect, render_template
 from subprocess import Popen, PIPE, STDOUT, check_output
 import json, re, os, pwd, Acronymizer as acronymizer
 from random import shuffle
@@ -30,7 +30,7 @@ def the_singular_thing(word, relephants):
 			ourletter = eachletter[1].capitalize()
 			for paragraph in content:
 				if acro_fren[eachletter[0]].lower() in paragraph.lower():
-					paragraph = re.sub(acro_fren[eachletter[0]], f' emefing {acro_fren[eachletter[0]].upper()}', paragraph, flags=re.IGNORECASE)
+					paragraph = re.sub(acro_fren[eachletter[0]], f' {acro_fren[eachletter[0]].upper()}', paragraph, flags=re.IGNORECASE)
 					insert_hover = f'title="{paragraph}"'
 					print(insert_hover)
 					break
@@ -44,25 +44,20 @@ def the_singular_thing(word, relephants):
 			shuffle(relephants)
 			for everyword in relephants:
 				if everyword[0].lower() == eachletter[1].lower():
-					this += f"<button><a href='{everyword}'><p style='line-height:.7'>{everyword}</p></a></button>"
+					this += f"<button><p style='line-height:.7'><a href='{everyword}'>{everyword}</a></p></button>"
 			this += '''</div></div>'''
 	this +=f'''</body></html>'''
 	return this
 
+@app.route("/home")
 @app.route("/")
 def index():
-	this = f'''
-<form action="/first_word/" method="post">
-  <div>
-    <label for="example">This is where the inasra happens<br></label>
-	<input type="text" id="example" size="40" placeholder="What do you offer to inasra" name="firstword">
-  </div>
-  <div>
-    <input type="submit" value="beginasrazion">
-  </div>
-</form>
-'''
-	return this
+	return render_template('home.html')
+
+@app.route("/about")
+def about():
+	return render_template('about.html')
+
 
 @app.route("/firstword/<word>")
 #@app.route("/<otherwords>/<word>")
