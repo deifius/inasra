@@ -35,11 +35,11 @@ def wikipedia_grab_chomp(wikiterm):
 		#wordid = db.db_insert("word",word = wikiterm, url = page.url, summary = page.summary, content = page.content)
 		links = []
 		#this is the proper place to sanitize the links, this is a very diverse collection:
-		for each_bad_word in ['ISBN','ISDN']:
+		for each_bad_word in ['ISBN','ISDN','OCLC','LCCN','NKVD','IMDb']:
 			try: links.remove(each_bad_word)
-			except: print(f'no {each_bad_word}')
+			except: print(f'no {each_bad_word} found in word links')
 		for each_link in links:
-			if 'list' in each_link[0:4]:
+			if 'list' in each_link[0:4].lower():
 				links.remove(each_link)
 		for link in page.links:
 			links.append(link.split('(')[0])

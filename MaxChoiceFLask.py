@@ -20,8 +20,8 @@ def the_singular_thing(word, relephants):
 			if paragraph[0] == "=":
 				content.remove(paragraph)
 	this += f'''
-	<a href= ''{summary}><button type="button"><p style="font-family:monospace;"><h1> {word[0]} </p></button>&emsp;
-	<a href=" " title="{summary}" style="background-color:#FFFFFF;color:#000000;text-decoration:none">{word}</h1></a>
+	<a href= ''{summary}><button type="button"><p style="font-family:monospace; line-height:.5"> {word[0]} </p></button>&emsp;
+	<a href=" " title="{summary}" style="background-color:#FFFFFF;color:#000000;text-decoration:none">{word}</a>
 	'''
 	for eachletter in enumerate(word):#Click Me!
 		if eachletter[1] == ' ' or eachletter[0] == 0:
@@ -30,20 +30,21 @@ def the_singular_thing(word, relephants):
 			ourletter = eachletter[1].capitalize()
 			for paragraph in content:
 				if acro_fren[eachletter[0]].lower() in paragraph.lower():
+					paragraph = re.sub(acro_fren[eachletter[0]], f' emefing {acro_fren[eachletter[0]].upper()}', paragraph, flags=re.IGNORECASE)
 					insert_hover = f'title="{paragraph}"'
 					print(insert_hover)
 					break
 				else: insert_hover = f'title="no clue how {acro_fren[eachletter[0]]} relates to {word}"'
 			this += f'''
 			<br>
-			<a href='{acro_fren[eachletter[0]]}'{insert_hover}><button type="button"><p style="font-family:monospace;"><h2> {ourletter} </h2></p></button>&emsp;
+			<a href='{acro_fren[eachletter[0]]}'{insert_hover}><button type="button"><p style="font-family:monospace; line-height:.5"> {ourletter} </p></button>&emsp;
 			<div class="dropdown">
-			<button class="dropbtn"> {acro_fren[eachletter[0]]} </button>
-			<div class="dropdown-content">\n'''
+			<button class="dropbtn" style="height:35px;width:500px"> {acro_fren[eachletter[0]]} &emsp;&emsp;&emsp;</button>
+			<div class="dropdown-content">'''
 			shuffle(relephants)
 			for everyword in relephants:
 				if everyword[0].lower() == eachletter[1].lower():
-					this += f"<a href='{everyword}'><button>{everyword}</button></a>"
+					this += f"<button><a href='{everyword}'><p style='line-height:.7'>{everyword}</p></a></button>"
 			this += '''</div></div>'''
 	this +=f'''</body></html>'''
 	return this
