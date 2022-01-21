@@ -12,7 +12,8 @@ app = Flask(__name__)
 
 def the_singular_thing(word, relephants):
 	acro_fren = acronymizer.acronymize(word, relephants)
-	with open('index.html') as stuff: this = stuff.read()
+	#with open('index.html') as stuff: this = stuff.read()
+	this = render_template('word.html')
 	with open('acronym/summary/'+word) as summ: summary = json.loads(summ.read())
 	with open('acronym/content/'+word) as cont:
 		content = re.split('\n+',re.sub('''['"]''','',json.loads(cont.read())))
@@ -26,7 +27,7 @@ def the_singular_thing(word, relephants):
 			<meta charset="utf-8">
 			<title>inasra</title>
 	<a href= ''{summary}><button type="button"><p style="font-family:monospace; line-height:.5;"><font size='+6'> {word[0].upper()} </font></p></button>&emsp;
-	<a href=" " title="{summary}" style="background-color:#FFFFFF;color:#000000;text-decoration:none"><font size='+6'>{word.capitalize()}</font></a>
+	<a href=" " title="{summary}" style="background-color:#hhhhhh; color:#000000;text-decoration:none"><font size='+6'>{word.capitalize()}</font></a>
 	'''
 	for eachletter in enumerate(word):#Click Me!
 		if eachletter[1] == ' ' or eachletter[0] == 0:

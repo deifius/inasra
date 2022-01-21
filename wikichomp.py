@@ -31,18 +31,16 @@ def wikipedia_grab_chomp(wikiterm):
 			page = wikipedia.page(disambiguouizer(disambu_choices.options, word))
 
 		#pdb.set_trace()
-		print(len(words))
+		#print(len(words))
 		#wordid = db.db_insert("word",word = wikiterm, url = page.url, summary = page.summary, content = page.content)
-		links = []
-		#this is the proper place to sanitize the links, this is a very diverse collection:
-		for each_bad_word in ['ISBN','ISDN','OCLC','LCCN','NKVD','IMDb']:
+		links = [links for links in page.links]
+		#"this is the proper place to sanitize the links:"
+		for each_bad_word in ['ISBN','ISDN','OCLC','LCCN','NKVD','IMDb','ISNI']:
 			try: links.remove(each_bad_word)
 			except: print(f'no {each_bad_word} found in word links')
 		for each_link in links:
-			if 'list' in each_link[0:4].lower():
+			if each_link[0:4].upper() in ['LIST','ISBN','ISDN','OCLC','LCCN','NKVD','IMDB','ISNI']:
 				links.remove(each_link)
-		for link in page.links:
-			links.append(link.split('(')[0])
 		pattern = re.compile('[\W_]+')
 		numbers = re.compile('[0-9]')
 		goodwords = set(links)
