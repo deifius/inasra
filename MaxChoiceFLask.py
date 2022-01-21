@@ -12,26 +12,18 @@ app = Flask(__name__)
 
 def the_singular_thing(word, relephants):
 	acro_fren = acronymizer.acronymize(word, relephants)
-	#with open('index.html') as stuff: this = stuff.read()
-	this = render_template('word.html')
 	with open('acronym/summary/'+word) as summ: summary = json.loads(summ.read())
 	with open('acronym/content/'+word) as cont:
 		content = re.split('\n+',re.sub('''['"]''','',json.loads(cont.read())))
 		for paragraph in content:
 			if paragraph[0] == "=":
 				content.remove(paragraph)
-	this += f'''
-	<!DOCTYPE html>
-	<html lang="en" dir="ltr">
-		<head>
-			<meta charset="utf-8">
-			<title>inasra</title>
-	<a href= ''{summary}><button type="button"><p style="font-family:monospace; line-height:.5;"><font size='+6'> {word[0].upper()} </font></p></button>&emsp;
-	<a href=" " title="{summary}" style="background-color:#hhhhhh; color:#000000;text-decoration:none"><font size='+6'>{word.capitalize()}</font></a>
-	'''
+	this = render_template('word.html', summary=summary,wordupper=word[0].upper(), wordcapper=word.capitalize())
 	for eachletter in enumerate(word):#Click Me!
-		if eachletter[1] == ' ' or eachletter[0] == 0:
-			this += "."
+		#this += "<br>"
+		print(f"yo I'm here, word is {word}, eachletter is {eachletter[1]}")
+		if eachletter[1] in [' ','-'] or eachletter[0] == 0:
+			this += ""
 		else:
 			ourletter = eachletter[1].capitalize()
 			for paragraph in content:
@@ -59,7 +51,6 @@ def the_singular_thing(word, relephants):
 						else: insert_hover = f'title="no clue how {everyword} relates to {word}"'
 					this += f"<button><p style='line-height:.7'><a href='{everyword}'{insert_hover}>{everyword}</a></p></button>"
 			this += '''</div></div>'''
-	this +=f'''</body></html>'''
 	return this
 
 @app.route("/home")
