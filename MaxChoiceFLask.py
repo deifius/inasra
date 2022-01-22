@@ -89,6 +89,7 @@ def first_word():
 
 @app.route('/kenburns/<word>')
 def kenburns(word):
+	# lifted from https://codepen.io/ibanez182/pen/LZPgrY?editors=1100
 	with open(f'acronym/images/{word}') as kenny: all_image_urls = json.loads(kenny.read())
 	shuffle(all_image_urls)
 	return render_template("kenburns.html", word=word, images=all_image_urls)
