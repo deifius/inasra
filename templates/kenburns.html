@@ -7,7 +7,6 @@
 {% endblock %}
 
 {% block main %}
-<!-- You can add more ".slideshow-image" elements, but remember to update the "$items" variable on SCSS -->
 <div class="slideshow">
 	{% for image in range(imagequantity) %}
 	<div class="slide" style="background-image: url('{{ images[image] }}'); animation-delay: {{ image*4 }}s;"></div>

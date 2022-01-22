@@ -20,7 +20,7 @@ def the_singular_thing(word, relephants):
 				content.remove(paragraph)
 	this = render_template('word.html', summary=summary,wordupper=word[0].upper(), wordcapper=word.capitalize())
 	for eachletter in enumerate(word):#Click Me!
-		if eachletter[1] in [' ', '-', '.', ','] or eachletter[0] == 0:
+		if eachletter[1] in [' ', '-', '.', ',','&'] or eachletter[0] == 0:
 			this += ""
 		else:
 			ourletter = eachletter[1].capitalize()
@@ -91,7 +91,8 @@ def first_word():
 def kenburns(word):
 	# lifted from https://codepen.io/anon/pen/XKWMaR
 	with open(f'acronym/images/{word}') as kenny: all_image_urls = json.loads(kenny.read())
-	trashpictures = ["https://upload.wikimedia.org/wikipedia/commons/f/fa/Wikiquote-logo.svg","https://upload.wikimedia.org/wikipedia/en/4/4a/Commons-logo.svg",'https://upload.wikimedia.org/wikipedia/commons/f/ff/Wikidata-logo.svg','https://upload.wikimedia.org/wikipedia/en/9/96/Symbol_category_class.svg']
+	# these trashpictures really need to be excised before database insertion 
+	trashpictures = ['https://upload.wikimedia.org/wikipedia/commons/8/87/Gnome-mime-sound-openclipart.svg','https://upload.wikimedia.org/wikipedia/en/9/94/Symbol_support_vote.svg',"https://upload.wikimedia.org/wikipedia/en/8/8a/OOjs_UI_icon_edit-ltr-progressive.svg","https://upload.wikimedia.org/wikipedia/commons/f/fa/Wikiquote-logo.svg","https://upload.wikimedia.org/wikipedia/en/4/4a/Commons-logo.svg",'https://upload.wikimedia.org/wikipedia/commons/f/ff/Wikidata-logo.svg','https://upload.wikimedia.org/wikipedia/en/9/96/Symbol_category_class.svg']
 	for trash in trashpictures:
 		try:
 			all_image_urls.remove(trash)
