@@ -89,10 +89,16 @@ def first_word():
 
 @app.route('/kenburns/<word>')
 def kenburns(word):
-	# lifted from https://codepen.io/ibanez182/pen/LZPgrY?editors=1100
+	# lifted from https://codepen.io/anon/pen/XKWMaR
 	with open(f'acronym/images/{word}') as kenny: all_image_urls = json.loads(kenny.read())
+	trashpictures = ["https://upload.wikimedia.org/wikipedia/commons/f/fa/Wikiquote-logo.svg","https://upload.wikimedia.org/wikipedia/en/4/4a/Commons-logo.svg",'https://upload.wikimedia.org/wikipedia/commons/f/ff/Wikidata-logo.svg','https://upload.wikimedia.org/wikipedia/en/9/96/Symbol_category_class.svg']
+	for trash in trashpictures:
+		try:
+			all_image_urls.remove(trash)
+		except:
+			print(f'{trash} not found')
 	shuffle(all_image_urls)
-	return render_template("kenburns.html", word=word, images=all_image_urls)
+	return render_template("kenburns.html", word=word, images=all_image_urls, imagequantity=len(all_image_urls))
 
 if __name__ == "__main__":
 	app.run(debug=True, host="0.0.0.0", port=5000)

@@ -1,5 +1,5 @@
 {% extends "public_template.html" %}
-!<--lifted from https://codepen.io/ibanez182/pen/LZPgrY?editors=1100-->!
+!<--lifted from https://codepen.io/anon/pen/XKWMaR -->!
 
 {% block title %} kb/{{ word }} {% endblock %}
 {% block extra_head %}
@@ -9,7 +9,7 @@
 {% block main %}
 <!-- You can add more ".slideshow-image" elements, but remember to update the "$items" variable on SCSS -->
 <div class="slideshow">
-	{% for image in range(4) %}
+	{% for image in range(imagequantity) %}
 	<div class="slide" style="background-image: url('{{ images[image] }}'); animation-delay: {{ image*4 }}s;"></div>
 	{% endfor %}
 </div>
