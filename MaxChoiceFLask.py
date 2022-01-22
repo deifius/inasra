@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-from flask import Flask, request, redirect, render_template
+from flask import Flask, request, redirect, render_template, url_for
 from subprocess import Popen, PIPE, STDOUT, check_output
 import json, re, os, pwd, Acronymizer as acronymizer
 from random import shuffle
@@ -20,9 +20,7 @@ def the_singular_thing(word, relephants):
 				content.remove(paragraph)
 	this = render_template('word.html', summary=summary,wordupper=word[0].upper(), wordcapper=word.capitalize())
 	for eachletter in enumerate(word):#Click Me!
-		#this += "<br>"
-		print(f"yo I'm here, word is {word}, eachletter is {eachletter[1]}")
-		if eachletter[1] in [' ','-'] or eachletter[0] == 0:
+		if eachletter[1] in [' ', '-', '.', ','] or eachletter[0] == 0:
 			this += ""
 		else:
 			ourletter = eachletter[1].capitalize()
@@ -70,7 +68,6 @@ def recurs_spinalyze(word):
 	try:
 		with open('acronym/links/'+word) as linkies:
 			relephants = json.loads(linkies.read())
-		#return json.dumps(relephants)
 	except FileNotFoundError:
 		wikichomp.wikipedia_grab_chomp(word)
 		with open('acronym/links/'+word) as linkies:
@@ -88,10 +85,13 @@ def first_word():
 	my_new_inasra.add_word_vert(xword, 0 , 0)
 	os.system(f'mkdir -p users/$USER/{xword}')
 	os.system(f'''echo '{my_new_inasra.dumps()}' > users/$USER/{xword}/{xword}.ipuz''')
-	#inasra_path = f'users/{pwd.getpwuid( os.getuid() )[ 0 ]}'
-	#inasra_path += word
-	#return inasra_path
 	return redirect(word)
+
+@app.route('/kenburns/<word>')
+def kenburns(word):
+	with open(f'acronym/images/{word}') as kenny: all_image_urls = json.loads(kenny.read())
+	shuffle(all_image_urls)
+	return render_template("kenburns.html", word=word, images=all_image_urls)
 
 if __name__ == "__main__":
 	app.run(debug=True, host="0.0.0.0", port=5000)

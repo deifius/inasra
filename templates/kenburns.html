@@ -1,0 +1,16 @@
+{% extends "public_template.html" %}
+!<--lifted from https://codepen.io/ibanez182/pen/LZPgrY?editors=1100-->!
+
+{% block title %} kb/{{ word }} {% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/kenburns.css') }}">
+{% endblock %}
+
+{% block main %}
+<!-- You can add more ".slideshow-image" elements, but remember to update the "$items" variable on SCSS -->
+<div class="slideshow">
+	{% for image in images[0:4] %}
+  <div class="slideshow-image" style="background-image: url('{{image}}')"></div>
+	{% endfor %}
+</div>
+{% endblock %}
