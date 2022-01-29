@@ -18,7 +18,7 @@ def the_singular_thing(word, relephants):
 		for paragraph in content:
 			if paragraph[0] == "=":
 				content.remove(paragraph)
-	this = render_template('word.html', summary=summary,wordupper=word[0].upper(), wordcapper=word.capitalize())
+	this = render_template('word.html', word= word, summary=summary,wordupper=word[0].upper(), wordcapper=word.capitalize())
 	for eachletter in enumerate(word):#Click Me!
 		if eachletter[1] in [' ', '-', '.', ',','&'] or eachletter[0] == 0:
 			this += ""
@@ -44,11 +44,10 @@ def the_singular_thing(word, relephants):
 						if everyword.lower() in paragraph.lower():
 							paragraph = re.sub(everyword, f' {everyword.upper()}', paragraph, flags=re.IGNORECASE)
 							insert_hover = f'title="{paragraph}"'
-							print(insert_hover)
 							break
 						else: insert_hover = f'title="no clue how {everyword} relates to {word}"'
 					this += f"<button><p style='line-height:.7'><a href='{everyword}'{insert_hover}>{everyword}</a></p></button>"
-			this += '''</div></div>'''
+			this += f'''</div></div>'''
 	return this
 
 @app.route("/home")
@@ -91,8 +90,26 @@ def first_word():
 def kenburns(word):
 	# lifted from https://codepen.io/anon/pen/XKWMaR
 	with open(f'acronym/images/{word}') as kenny: all_image_urls = json.loads(kenny.read())
-	# these trashpictures really need to be excised before database insertion 
-	trashpictures = ['https://upload.wikimedia.org/wikipedia/commons/8/87/Gnome-mime-sound-openclipart.svg','https://upload.wikimedia.org/wikipedia/en/9/94/Symbol_support_vote.svg',"https://upload.wikimedia.org/wikipedia/en/8/8a/OOjs_UI_icon_edit-ltr-progressive.svg","https://upload.wikimedia.org/wikipedia/commons/f/fa/Wikiquote-logo.svg","https://upload.wikimedia.org/wikipedia/en/4/4a/Commons-logo.svg",'https://upload.wikimedia.org/wikipedia/commons/f/ff/Wikidata-logo.svg','https://upload.wikimedia.org/wikipedia/en/9/96/Symbol_category_class.svg']
+	# these trashpictures really need to be excised before database insertion
+	trashpictures = ['https://upload.wikimedia.org/wikipedia/commons/8/87/Gnome-mime-sound-openclipart.svg',
+	'https://upload.wikimedia.org/wikipedia/en/9/94/Symbol_support_vote.svg',
+	"https://upload.wikimedia.org/wikipedia/en/8/8a/OOjs_UI_icon_edit-ltr-progressive.svg",
+	"https://upload.wikimedia.org/wikipedia/commons/f/fa/Wikiquote-logo.svg",
+	"https://upload.wikimedia.org/wikipedia/en/4/4a/Commons-logo.svg",
+	'https://upload.wikimedia.org/wikipedia/commons/f/ff/Wikidata-logo.svg',
+	'https://upload.wikimedia.org/wikipedia/en/9/96/Symbol_category_class.svg',
+	'https://upload.wikimedia.org/wikipedia/commons/f/fa/Wikibooks-logo.svg',
+	'https://upload.wikimedia.org/wikipedia/commons/2/24/Wikinews-logo.svg',
+	'https://upload.wikimedia.org/wikipedia/commons/f/fa/Wikiquote-logo.svg',
+	'https://upload.wikimedia.org/wikipedia/commons/4/4c/Wikisource-logo.svg',
+	'https://upload.wikimedia.org/wikipedia/commons/0/0b/Wikiversity_logo_2017.svg',
+	'https://upload.wikimedia.org/wikipedia/en/4/4a/Commons-logo.svg',
+	'https://upload.wikimedia.org/wikipedia/en/8/8a/OOjs_UI_icon_edit-ltr-progressive.svg',
+	'https://upload.wikimedia.org/wikipedia/en/9/99/Question_book-new.svg',
+	'https://upload.wikimedia.org/wikipedia/en/1/1b/Semi-protection-shackle.svg',
+	'https://upload.wikimedia.org/wikipedia/en/d/db/Symbol_list_class.svg',
+	'https://upload.wikimedia.org/wikipedia/en/0/06/Wiktionary-logo-v2.svg'
+]
 	for trash in trashpictures:
 		try:
 			all_image_urls.remove(trash)
