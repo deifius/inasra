@@ -12,7 +12,7 @@ app = Flask(__name__)
 
 def the_singular_thing(word, relephants):
 	acro_fren = acronymizer.acronymize(word, relephants)
-	with open('acronym/summary/'+word) as summ: summary = json.loads(summ.read())
+	with open('acronym/summary/'+word) as summ: summary = json.loads(summ.read()).split('\n')[0]
 	with open('acronym/content/'+word) as cont:
 		content = re.split('\n+',re.sub('''['"]''','',json.loads(cont.read())))
 		for paragraph in content:
@@ -65,12 +65,12 @@ def about():
 @app.route("/<word>")
 def recurs_spinalyze(word):
 	try:
-		with open('acronym/links/'+word) as linkies:
-			relephants = json.loads(linkies.read())
+		with open('acronym/links/'+word) as lizninks:
+			relephants = json.loads(lizninks.read())
 	except FileNotFoundError:
 		wikichomp.wikipedia_grab_chomp(word)
-		with open('acronym/links/'+word) as linkies:
-			relephants = json.loads(linkies.read())
+		with open('acronym/links/'+word) as lizninks:
+			relephants = json.loads(lizninks.read())
 	return the_singular_thing(word, relephants)
 
 @app.route('/first_word/', methods=['POST'])
