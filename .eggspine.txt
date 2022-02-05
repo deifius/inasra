@@ -1,4 +1,7 @@
-Ernest Hemingway	5
-The Torrents of Spring	3
-To Have and Have Not	10
-A Moveable Feast	11
+Palindrome	4
+Nucleotide	5
+Organelle	3
+Anammoxosome	8
+Scalindua	3
+Ladderane	2
+DNA	2
