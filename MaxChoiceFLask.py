@@ -53,6 +53,7 @@ def the_singular_thing(word, relephants):
 @app.route("/home")
 @app.route("/")
 def index():
+	with open('.eggspine.txt','w') as egg: egg.write('')
 	return render_template('home.html')
 
 @app.route("/about")

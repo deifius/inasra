@@ -1,7 +1,8 @@
-Palindrome	4
-Nucleotide	5
-Organelle	3
-Anammoxosome	8
-Scalindua	3
-Ladderane	2
-DNA	2
+Geography	3
+Geosophy	1
+Earth mysteries	4
+Hinduism	6
+Satanism	6
+Sigil of Baphomet	3
+Iconoclasm	7
+Al-Maqrīzī	8
