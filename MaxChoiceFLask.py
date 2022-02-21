@@ -10,6 +10,9 @@ import inasra
 
 app = Flask(__name__)
 
+with open('emptyinasra.ipuz') as this:
+	big_inasra = inasra.inasra(**json.loads(this.read()))
+
 def the_singular_thing(word, relephants):
 	acro_fren = acronymizer.acronymize(word, relephants)
 	with open('acronym/summary/'+word) as summ: summary = json.loads(summ.read()).split('\n')[0]
@@ -53,18 +56,24 @@ def the_singular_thing(word, relephants):
 @app.route("/home")
 @app.route("/")
 def index():
+	with open('emptyinasra.ipuz') as this:
+		big_inasra = inasra.inasra(**json.loads(this.read()))
 	with open('.eggspine.txt','w') as egg: egg.write('')
+
 	return render_template('home.html')
 
 @app.route("/about")
 def about():
 	return render_template('about.html')
 
-
 @app.route("/firstword/<word>")
 #@app.route("/<otherwords>/<word>")
 @app.route("/<word>")
 def recurs_spinalyze(word):
+	try:
+		print('!') if word in ['favicon.ico'] else big_inasra.wordspace.append(word)
+	except:
+		print(f"couldn't add to the wordspace: {word}")
 	try:
 		with open('acronym/links/'+word) as lizninks:
 			relephants = json.loads(lizninks.read())
@@ -72,7 +81,8 @@ def recurs_spinalyze(word):
 		wikichomp.wikipedia_grab_chomp(word)
 		with open('acronym/links/'+word) as lizninks:
 			relephants = json.loads(lizninks.read())
-	return the_singular_thing(word, relephants)
+	print(big_inasra.wordspace)
+	return '/'.join(big_inasra.wordspace) + '<br><br>'+ the_singular_thing(word, relephants)
 
 @app.route('/first_word/', methods=['POST'])
 def first_word():
@@ -83,8 +93,10 @@ def first_word():
 	for each_char in xword:
 		my_new_inasra.add_one_row_Down()
 	my_new_inasra.add_word_vert(xword, 0 , 0)
+	my_new_inasra.wordspace.append(xword)
 	os.system(f'mkdir -p users/$USER/{xword}')
 	os.system(f'''echo '{my_new_inasra.dumps()}' > users/$USER/{xword}/{xword}.ipuz''')
+	big_inasra = my_new_inasra
 	return redirect(word)
 
 @app.route('/kenburns/<word>')
