@@ -94,6 +94,7 @@ def do_acronomize(wikiterm):
 
 
 def main():
+	'''this bit allows us to handle either a word or a path'''
 	if len(argv) != 2: word = " ".join(argv)
 	else:
 		word = argv[1]
@@ -136,24 +137,7 @@ def main():
 	#input("my choice word is: " + choice_word)
 	#print(relephant)
 
-	# with open('.eggspine.txt','a+') as inasradna:
-	# 	#pdb.set_trace()
-	# 	inasradna.write(word +"\t"+ str(choice_pos) + "\n")
-	# 	print("I just wrote " + word)
-
-	# TODO: step through this stuff below
-
-	os.system('python3 spinylize.py; echo "COnstruturing"; python3 boardtrim.py')
-	userdir = 'users/$USER/'+ argv[1];
-	newdir = userdir +'/'+ choice_word.replace(' ','_').split('/')[-1]
-	#input('new dir is: ' + newdir)
-	os.system('mkdir -p ' + newdir)
-	#os.system('python3 xword2html.py xwordspine.json > ' + newdir + '/xword.html')
-	os.system('cp acronym/links/' + word.replace(' ','_') + " " + userdir + "/links.json")
-	os.system('cp acronym/images/' + word.replace(' ','_') + " " + userdir + "/images.json")
-	os.system('cp acronym/summary/' + word.replace(' ','_') + " " + userdir + "/summary.json")
-	os.system('cp acronym/content/' + word.replace(' ','_') + " " + userdir + "/content.json")
-	os.system('python3 xword2jsonhtml.py xwordspine.json ' + userdir + ' > ' + newdir + '/xword.json.html')
+	record_acronym_choice(word, choice_pos, choice_word, argv[1])
 	#pdb.set_trace()
 	os.system('./recursive_spine_builder.sh ' + argv[1] +'/'+ choice_word.replace(' ','_').split('/')[-1])
 

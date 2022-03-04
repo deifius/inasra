@@ -1,0 +1,29 @@
+.slideshow {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  overflow: hidden;
+}
+
+.slide {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  opacity: 0;
+  background-position: center;
+  background-size: cover;
+  animation: slide-appear 16s linear 0s infinite,
+             slide-zoom 16s linear 0s infinite;
+}
+
+@keyframes slide-appear {
+  0% { opacity: 0; }
+  2% { opacity: 1; }
+  25% { opacity: 1; }
+  27% { opacity: 0; }
+}
+
+@keyframes slide-zoom {
+  0% { transform: scale(1.2); }
+  30% { transform: scale(1); }
+}

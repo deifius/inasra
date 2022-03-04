@@ -1,0 +1,15 @@
+{% extends "public_template.html" %}
+!<--lifted from https://codepen.io/anon/pen/XKWMaR -->!
+
+{% block title %} kb/{{ word }} {% endblock %}
+{% block extra_head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/kenburns.css') }}">
+{% endblock %}
+
+{% block main %}
+<div class="slideshow">
+	{% for image in range(imagequantity) %}
+	<div class="slide" style="background-image: url('{{ images[image] }}'); animation-delay: {{ image*4 }}s;"></div>
+	{% endfor %}
+</div>
+{% endblock %}

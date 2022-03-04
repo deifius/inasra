@@ -39,5 +39,6 @@ def monad_test(isit_json):
         print('needed: 1d list of contiguous space; precisely fitted for word')
         return 4
     print(isit_inasra[1] + " is inasra")
+	return 0
 
 if __name__ == "__main__": monad_test(argv[1])

@@ -84,7 +84,7 @@ def main():
 	vert = findnextwordspace(rotateboard(board), cleanexicon)
 	''' vert is throwing real bad answers...  we need to work on this!'''
 	#for each in vertboard: print(' '.join(each))
-	#st()
+	st()
 	#print('yo')
 	for clue in horiz:
 		subprocess.call(['python3', 'cluePLACER.py'] + clue.split(' ') + ['&'])
