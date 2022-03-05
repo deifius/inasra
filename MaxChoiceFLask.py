@@ -80,7 +80,7 @@ def recurs_spinalyze(word):
 		wikichomp.wikipedia_grab_chomp(word)
 		relephants = db.get_word_links(word)
 	print(big_inasra.wordspace)
-	return '/'.join(big_inasra.wordspace) + '<br><br>' + the_singular_thing(word, relephants)
+	return the_singular_thing(word, relephants) #+ '<br><br>' + '/'.join(big_inasra.wordspace)
 
 @app.route('/first_word/', methods=['POST'])
 def first_word():
