@@ -76,12 +76,10 @@ def recurs_spinalyze(word):
 	except:
 		print(f"couldn't add to the wordspace: {word}")
 
-	word_link_objects = db.get_word_links(word)
-	if len(word_link_objects) < 1:
+	relephants = db.get_word_links(word)
+	if len(relephants) < 1:
 		wikichomp.wikipedia_grab_chomp(word)
-		word_link_objects = db.get_word_links(word)
-
-	relephants = list(map(lambda word_link : word_link['link'], word_link_objects))
+		relephants = db.get_word_links(word)
 
 	print(big_inasra.wordspace)
 	return '/'.join(big_inasra.wordspace) + '<br><br>' + the_singular_thing(word, relephants)
@@ -104,27 +102,29 @@ def first_word():
 @app.route('/kenburns/<word>')
 def kenburns(word):
 	# lifted from https://codepen.io/anon/pen/XKWMaR
-	with open(f'acronym/images/{word}') as kenny: all_image_urls = json.loads(kenny.read())
+	all_image_urls = db.get_word_images(word)
 	# these trashpictures really need to be excised before database insertion
-	trashpictures = ['https://upload.wikimedia.org/wikipedia/commons/8/87/Gnome-mime-sound-openclipart.svg',
-	'https://upload.wikimedia.org/wikipedia/en/9/94/Symbol_support_vote.svg',
-	"https://upload.wikimedia.org/wikipedia/en/8/8a/OOjs_UI_icon_edit-ltr-progressive.svg",
-	"https://upload.wikimedia.org/wikipedia/commons/f/fa/Wikiquote-logo.svg",
-	"https://upload.wikimedia.org/wikipedia/en/4/4a/Commons-logo.svg",
-	'https://upload.wikimedia.org/wikipedia/commons/f/ff/Wikidata-logo.svg',
-	'https://upload.wikimedia.org/wikipedia/en/9/96/Symbol_category_class.svg',
-	'https://upload.wikimedia.org/wikipedia/commons/f/fa/Wikibooks-logo.svg',
-	'https://upload.wikimedia.org/wikipedia/commons/2/24/Wikinews-logo.svg',
-	'https://upload.wikimedia.org/wikipedia/commons/f/fa/Wikiquote-logo.svg',
-	'https://upload.wikimedia.org/wikipedia/commons/4/4c/Wikisource-logo.svg',
-	'https://upload.wikimedia.org/wikipedia/commons/0/0b/Wikiversity_logo_2017.svg',
-	'https://upload.wikimedia.org/wikipedia/en/4/4a/Commons-logo.svg',
-	'https://upload.wikimedia.org/wikipedia/en/8/8a/OOjs_UI_icon_edit-ltr-progressive.svg',
-	'https://upload.wikimedia.org/wikipedia/en/9/99/Question_book-new.svg',
-	'https://upload.wikimedia.org/wikipedia/en/1/1b/Semi-protection-shackle.svg',
-	'https://upload.wikimedia.org/wikipedia/en/d/db/Symbol_list_class.svg',
-	'https://upload.wikimedia.org/wikipedia/en/0/06/Wiktionary-logo-v2.svg'
-]
+	trashpictures = [
+		'https://upload.wikimedia.org/wikipedia/commons/8/87/Gnome-mime-sound-openclipart.svg',
+		'https://upload.wikimedia.org/wikipedia/en/9/94/Symbol_support_vote.svg',
+		"https://upload.wikimedia.org/wikipedia/en/8/8a/OOjs_UI_icon_edit-ltr-progressive.svg",
+		"https://upload.wikimedia.org/wikipedia/commons/f/fa/Wikiquote-logo.svg",
+		"https://upload.wikimedia.org/wikipedia/en/4/4a/Commons-logo.svg",
+		'https://upload.wikimedia.org/wikipedia/commons/f/ff/Wikidata-logo.svg',
+		'https://upload.wikimedia.org/wikipedia/en/9/96/Symbol_category_class.svg',
+		'https://upload.wikimedia.org/wikipedia/commons/f/fa/Wikibooks-logo.svg',
+		'https://upload.wikimedia.org/wikipedia/commons/2/24/Wikinews-logo.svg',
+		'https://upload.wikimedia.org/wikipedia/commons/f/fa/Wikiquote-logo.svg',
+		'https://upload.wikimedia.org/wikipedia/commons/4/4c/Wikisource-logo.svg',
+		'https://upload.wikimedia.org/wikipedia/commons/0/0b/Wikiversity_logo_2017.svg',
+		'https://upload.wikimedia.org/wikipedia/en/4/4a/Commons-logo.svg',
+		'https://upload.wikimedia.org/wikipedia/en/8/8a/OOjs_UI_icon_edit-ltr-progressive.svg',
+		'https://upload.wikimedia.org/wikipedia/en/9/99/Question_book-new.svg',
+		'https://upload.wikimedia.org/wikipedia/en/1/1b/Semi-protection-shackle.svg',
+		'https://upload.wikimedia.org/wikipedia/en/d/db/Symbol_list_class.svg',
+		'https://upload.wikimedia.org/wikipedia/en/0/06/Wiktionary-logo-v2.svg',
+		'https://upload.wikimedia.org/wikipedia/commons/a/a4/Text_document_with_red_question_mark.svg'
+	]
 	for trash in trashpictures:
 		try:
 			all_image_urls.remove(trash)

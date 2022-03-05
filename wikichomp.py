@@ -48,7 +48,7 @@ def wikipedia_grab_chomp(wikiterm):
 			#print(f'DisambiguationError {wikiterm}')
 			page = wikipedia.page(disambiguouizer(disambu_choices.options, wikiterm))
 
-		wordid = db.db_insert("word",word = wikiterm, url = page.url, summary = page.summary, content = page.content)
+		wordid = db.db_insert("word", word = wikiterm, url = page.url, summary = page.summary, content = page.content)
 		links = [links for links in page.links]
 		# for link in page.links:
 		# 	links.append(link.split('(')[0])
@@ -95,7 +95,7 @@ def wikipedia_grab_chomp(wikiterm):
 			linkid = db.db_insert("word_links", word_id = wordid, link = goodword)
 
 		for image in page.images:
-			linkid = db.db_insert("word_images", word_id = wordid, image_url = goodword)
+			linkid = db.db_insert("word_images", word_id = wordid, image_url = image)
 
 		# with open('acronym/summary/' + wikiterm, 'w') as summary:
 		# 	summary.write(json.dumps(page.summary))
