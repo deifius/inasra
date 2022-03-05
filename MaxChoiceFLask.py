@@ -7,6 +7,7 @@ from random import shuffle
 import wikipedia, re
 import wikichomp
 import inasra
+import db
 
 app = Flask(__name__)
 
@@ -15,14 +16,14 @@ with open('emptyinasra.ipuz') as this:
 
 def the_singular_thing(word, relephants):
 	acro_fren = acronymizer.acronymize(word, relephants)
-	with open('acronym/summary/'+word) as summ: summary = json.loads(summ.read()).split('\n')[0]
-	with open('acronym/content/'+word) as cont:
-		content = re.split('\n+',re.sub('''['"]''','',json.loads(cont.read())))
-		for paragraph in content:
-			if paragraph[0] == "=":
-				content.remove(paragraph)
-	this = render_template('word.html', word= word, summary=summary,wordupper=word[0].upper(), wordcapper=word.capitalize())
-	for eachletter in enumerate(word):#Click Me!
+	summary = db.get_word_summary(word)
+	cont = db.get_word_content(word)
+	content = re.split('\n+', re.sub('''['"]''', '', cont))
+	for paragraph in content:
+		if paragraph[0] == "=":
+			content.remove(paragraph)
+	this = render_template('word.html', word=word, summary=summary, wordupper=word[0].upper(), wordcapper=word.capitalize())
+	for eachletter in enumerate(word): #Click Me!
 		if eachletter[1] in [' ', '-', '.', ',','&'] or eachletter[0] == 0:
 			this += ""
 		else:
@@ -74,15 +75,16 @@ def recurs_spinalyze(word):
 		print('!') if word in ['favicon.ico'] else big_inasra.wordspace.append(word)
 	except:
 		print(f"couldn't add to the wordspace: {word}")
-	try:
-		with open('acronym/links/'+word) as lizninks:
-			relephants = json.loads(lizninks.read())
-	except FileNotFoundError:
+
+	word_link_objects = db.get_word_links(word)
+	if len(word_link_objects) < 1:
 		wikichomp.wikipedia_grab_chomp(word)
-		with open('acronym/links/'+word) as lizninks:
-			relephants = json.loads(lizninks.read())
+		word_link_objects = db.get_word_links(word)
+
+	relephants = list(map(lambda word_link : word_link['link'], word_link_objects))
+
 	print(big_inasra.wordspace)
-	return '/'.join(big_inasra.wordspace) + '<br><br>'+ the_singular_thing(word, relephants)
+	return '/'.join(big_inasra.wordspace) + '<br><br>' + the_singular_thing(word, relephants)
 
 @app.route('/first_word/', methods=['POST'])
 def first_word():

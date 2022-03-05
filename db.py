@@ -33,5 +33,33 @@ def db_query(query, *values):
 		final.append(thing)
 	return final
 
+def get_word_links(word: str):
+	return db_query('''
+		SELECT wl.id, wl.word_id, wl.link
+		FROM word_links wl
+		INNER JOIN word w ON wl.word_id = w.id
+		WHERE w.word = ?
+		''', word)
+
+def get_word(word: str):
+	return db_query('''
+		SELECT *
+		FROM word
+		WHERE word = ?
+	''', word)
+
+def get_word_value(word: str, key: str):
+	word_rows = get_word(word)
+	if len(word_rows) > 0:
+		return word_rows[0][key]
+	else:
+		return None
+
+def get_word_summary(word: str):
+	return get_word_value(word, "summary")
+
+def get_word_content(word: str):
+	return get_word_value(word, "content")
+
 # def db_query_one(query, *values):
 # 	return db_query(query, values)
