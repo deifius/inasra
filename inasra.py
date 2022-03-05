@@ -3,7 +3,12 @@ import json
 from findnextwordspace import findnextwordspace
 import db
 from pdb import set_trace
+from os import system
+from whiptail import Whiptail
+from lorem import text as lorem
+import Acronymizer
 import Start_New_inasra
+import wikichompdb
 #from inasra import inasra as inasra lol
 
 class inasra: #
@@ -62,10 +67,7 @@ class inasra: #
 			what_you_wanna_know = find_horizontal_solutions()
 			self.solution = self.rotate(self.solution)
 			return what_you_wanna_know
-		#print('horiz:')
 		decohere = find_horizontal_solutions()
-		#set_trace()
-		#print('vert:')
 		decohere = decohere + find_vertical_solutions()
 		return decohere
 	def find_words_for(self, coordinates): pass # returns boardstates with a new word intersecting the given coordinates
@@ -147,5 +149,112 @@ class inasra: #
 			print('submit an inasra monad')
 			return -1
 		self.lexicon.append(word)
+	def db_word_obj(self, dat_word_tho):
+		word_tuples = db.db_query('''
+			SELECT id FROM word WHERE word = ?
+		''', dat_word_tho)
+		if word_tuples:
+			return word_tuples[0]
+		return None
+		# word_tuple = word_tuples[0]
+		# return {"id": word_tuple[0]}
 	def Start(self):
-		self.Start_New_inasra.main()
+		is_context_cli = True # Hardcoded for now
+		if is_context_cli:
+			new_adventure = Whiptail()
+			new_adventure.title = "inasra welcomes you"
+			new_adventure.backtitle = lorem()
+			word, exitstatus = new_adventure.inputbox('what shall you offer to inasra?')
+			system("ps -ef|grep visualise | grep -v grep || xterm -e  './visualizations/bashvisualise.py'")
+		else: pass # we were called by a web browser TODO
+
+		inasraid = db.db_insert("inasra", name = word, height = 0, width = 0)
+		choice_pos = 0
+
+		# Chomp the starting word
+		wikified_word = wikichompdb.wiki_query_prep(word)
+		wikichompdb.wikipedia_grab_chomp(wikified_word)
+		word_obj = self.db_word_obj(wikified_word)
+		if word_obj is None:
+			print(f'we tried real hard, but db_word_obj failz0red: {word}')
+
+		prev_inasra_word_id = db.db_insert("inasra_words",
+			word_id = word_obj["id"],
+			direction = 'x',
+			x = 0,
+			y = 0,
+			inasra_id = inasraid,
+			char_pos = choice_pos,
+			prev_word_id = None
+		)
+		prev_inasra_words = db.db_query("SELECT id, direction, x, y, char_pos FROM inasra_words WHERE id = ?", prev_inasra_word_id)
+		prev_inasra_word = prev_inasra_words[0]
+		# prev_word_obj = {"id": prev_word_tuple[0], "direction": prev_word_tuple[1], "x": prev_word_tuple[2], "y": prev_word_tuple[3]}
+
+		# wikified_word = WikiChomp.wiki_query_prep(word)
+		# WikiChomp.wikipedia_grab_chomp(wikified_word)
+
+		while choice_pos > -1:
+			print("we startz da loop "+word)
+
+			wikified_word = wikichompdb.wiki_query_prep(word)
+			wikichompdb.wikipedia_grab_chomp(wikified_word)
+			relephant = Acronymizer.get_relephant(wikified_word)
+			acronym_words = Acronymizer.acronymize(wikified_word, relephant)
+
+			choice_pos = Acronymizer.get_choice_with_whiptail(word, acronym_words, relephant)
+			if choice_pos < 0: break
+			choice_word = acronym_words[choice_pos].split('    ')[-1]
+
+			wikified_choice_word = wikichompdb.wiki_query_prep(choice_word)
+			wikichompdb.wikipedia_grab_chomp(wikified_choice_word)
+
+			if is_context_cli:
+				word_obj = self.db_word_obj(wikified_choice_word)
+				direction = "y" if prev_inasra_word["direction"] == "x" else "x"
+				x = prev_inasra_word["x"]
+				y = prev_inasra_word["y"]
+				# FIXME: assigning character positions is off by 1
+				# eg, row #30 has the correctly values for row #29
+				# (see inasra #47)
+				if prev_inasra_word["direction"] == "x":
+					x = x + prev_inasra_word["char_pos"]
+				else: # direction == "y"
+					y = y + prev_inasra_word["char_pos"]
+				inasra_word_id = db.db_insert("inasra_words",
+					word_id = word_obj["id"],
+					direction = direction,
+					x = x,
+					y = y,
+					inasra_id = inasraid,
+					char_pos = choice_pos,
+					prev_word_id = prev_inasra_word["id"]
+				)
+
+				# Prep word for the next pass
+				prev_inasra_words = db.db_query("SELECT id, direction, x, y, char_pos FROM inasra_words WHERE id = ?", inasra_word_id)
+				prev_inasra_word = prev_inasra_words[0]
+				# prev_word_obj = {"id": prev_word_tuple[0], "direction": prev_word_tuple[1], "x": prev_word_tuple[2], "y": prev_word_tuple[3]}
+				word = choice_word
+
+				# go fetch the selected word from WP, so it's in the database
+				# wikified_word = WikiChomp.wiki_query_prep(word)
+				# WikiChomp.wikipedia_grab_chomp(wikified_word)
+
+				print("next loop plz "+word)
+
+				# TODO: update inasra's height and width here
+			else: pass # we probably bail back to user with list of words to pick
+		# end while
+
+		# TODO FIXME: do x, y, and direction, and also word_order
+		# convert spinylize
+		# linkid = db.db_insert("inasra_words", inasra_id = inasraid, word_id = choice_word_ids[0].id, x = 0, y = 0, direction = 'x')
+
+		#self.Start_New_inasra.main()
+
+def main():
+	with open('emptyinasra.ipuz') as fill: ths = inasra(**json.loads(fill.read()))
+	ths.Start()
+
+if __name__ == "__main__": main()

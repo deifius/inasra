@@ -7,6 +7,7 @@ from random import shuffle
 import wikipedia, re
 import wikichomp
 import inasra
+import db
 
 app = Flask(__name__)
 
@@ -15,14 +16,14 @@ with open('emptyinasra.ipuz') as this:
 
 def the_singular_thing(word, relephants):
 	acro_fren = acronymizer.acronymize(word, relephants)
-	with open('acronym/summary/'+word) as summ: summary = json.loads(summ.read()).split('\n')[0]
-	with open('acronym/content/'+word) as cont:
-		content = re.split('\n+',re.sub('''['"]''','',json.loads(cont.read())))
-		for paragraph in content:
-			if paragraph[0] == "=":
-				content.remove(paragraph)
-	this = render_template('word.html', word= word, summary=summary,wordupper=word[0].upper(), wordcapper=word.capitalize())
-	for eachletter in enumerate(word):#Click Me!
+	summary = db.get_word_summary(word)
+	cont = db.get_word_content(word)
+	content = re.split('\n+', re.sub('''['"]''', '', cont))
+	for paragraph in content:
+		if paragraph[0] == "=":
+			content.remove(paragraph)
+	this = render_template('word.html', word=word, summary=summary, wordupper=word[0].upper(), wordcapper=word.capitalize())
+	for eachletter in enumerate(word): #Click Me!
 		if eachletter[1] in [' ', '-', '.', ',','&'] or eachletter[0] == 0:
 			this += ""
 		else:
@@ -74,15 +75,14 @@ def recurs_spinalyze(word):
 		print('!') if word in ['favicon.ico'] else big_inasra.wordspace.append(word)
 	except:
 		print(f"couldn't add to the wordspace: {word}")
-	try:
-		with open('acronym/links/'+word) as lizninks:
-			relephants = json.loads(lizninks.read())
-	except FileNotFoundError:
+
+	relephants = db.get_word_links(word)
+	if len(relephants) < 1:
 		wikichomp.wikipedia_grab_chomp(word)
-		with open('acronym/links/'+word) as lizninks:
-			relephants = json.loads(lizninks.read())
+		relephants = db.get_word_links(word)
+
 	print(big_inasra.wordspace)
-	return '/'.join(big_inasra.wordspace) + '<br><br>'+ the_singular_thing(word, relephants)
+	return '/'.join(big_inasra.wordspace) + '<br><br>' + the_singular_thing(word, relephants)
 
 @app.route('/first_word/', methods=['POST'])
 def first_word():
@@ -102,27 +102,29 @@ def first_word():
 @app.route('/kenburns/<word>')
 def kenburns(word):
 	# lifted from https://codepen.io/anon/pen/XKWMaR
-	with open(f'acronym/images/{word}') as kenny: all_image_urls = json.loads(kenny.read())
+	all_image_urls = db.get_word_images(word)
 	# these trashpictures really need to be excised before database insertion
-	trashpictures = ['https://upload.wikimedia.org/wikipedia/commons/8/87/Gnome-mime-sound-openclipart.svg',
-	'https://upload.wikimedia.org/wikipedia/en/9/94/Symbol_support_vote.svg',
-	"https://upload.wikimedia.org/wikipedia/en/8/8a/OOjs_UI_icon_edit-ltr-progressive.svg",
-	"https://upload.wikimedia.org/wikipedia/commons/f/fa/Wikiquote-logo.svg",
-	"https://upload.wikimedia.org/wikipedia/en/4/4a/Commons-logo.svg",
-	'https://upload.wikimedia.org/wikipedia/commons/f/ff/Wikidata-logo.svg',
-	'https://upload.wikimedia.org/wikipedia/en/9/96/Symbol_category_class.svg',
-	'https://upload.wikimedia.org/wikipedia/commons/f/fa/Wikibooks-logo.svg',
-	'https://upload.wikimedia.org/wikipedia/commons/2/24/Wikinews-logo.svg',
-	'https://upload.wikimedia.org/wikipedia/commons/f/fa/Wikiquote-logo.svg',
-	'https://upload.wikimedia.org/wikipedia/commons/4/4c/Wikisource-logo.svg',
-	'https://upload.wikimedia.org/wikipedia/commons/0/0b/Wikiversity_logo_2017.svg',
-	'https://upload.wikimedia.org/wikipedia/en/4/4a/Commons-logo.svg',
-	'https://upload.wikimedia.org/wikipedia/en/8/8a/OOjs_UI_icon_edit-ltr-progressive.svg',
-	'https://upload.wikimedia.org/wikipedia/en/9/99/Question_book-new.svg',
-	'https://upload.wikimedia.org/wikipedia/en/1/1b/Semi-protection-shackle.svg',
-	'https://upload.wikimedia.org/wikipedia/en/d/db/Symbol_list_class.svg',
-	'https://upload.wikimedia.org/wikipedia/en/0/06/Wiktionary-logo-v2.svg'
-]
+	trashpictures = [
+		'https://upload.wikimedia.org/wikipedia/commons/8/87/Gnome-mime-sound-openclipart.svg',
+		'https://upload.wikimedia.org/wikipedia/en/9/94/Symbol_support_vote.svg',
+		"https://upload.wikimedia.org/wikipedia/en/8/8a/OOjs_UI_icon_edit-ltr-progressive.svg",
+		"https://upload.wikimedia.org/wikipedia/commons/f/fa/Wikiquote-logo.svg",
+		"https://upload.wikimedia.org/wikipedia/en/4/4a/Commons-logo.svg",
+		'https://upload.wikimedia.org/wikipedia/commons/f/ff/Wikidata-logo.svg',
+		'https://upload.wikimedia.org/wikipedia/en/9/96/Symbol_category_class.svg',
+		'https://upload.wikimedia.org/wikipedia/commons/f/fa/Wikibooks-logo.svg',
+		'https://upload.wikimedia.org/wikipedia/commons/2/24/Wikinews-logo.svg',
+		'https://upload.wikimedia.org/wikipedia/commons/f/fa/Wikiquote-logo.svg',
+		'https://upload.wikimedia.org/wikipedia/commons/4/4c/Wikisource-logo.svg',
+		'https://upload.wikimedia.org/wikipedia/commons/0/0b/Wikiversity_logo_2017.svg',
+		'https://upload.wikimedia.org/wikipedia/en/4/4a/Commons-logo.svg',
+		'https://upload.wikimedia.org/wikipedia/en/8/8a/OOjs_UI_icon_edit-ltr-progressive.svg',
+		'https://upload.wikimedia.org/wikipedia/en/9/99/Question_book-new.svg',
+		'https://upload.wikimedia.org/wikipedia/en/1/1b/Semi-protection-shackle.svg',
+		'https://upload.wikimedia.org/wikipedia/en/d/db/Symbol_list_class.svg',
+		'https://upload.wikimedia.org/wikipedia/en/0/06/Wiktionary-logo-v2.svg',
+		'https://upload.wikimedia.org/wikipedia/commons/a/a4/Text_document_with_red_question_mark.svg'
+	]
 	for trash in trashpictures:
 		try:
 			all_image_urls.remove(trash)

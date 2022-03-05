@@ -41,6 +41,7 @@ def wikipedia_grab_chomp(wikiterm):
 	words = db.db_query("select * from word where word = ?", wikiterm)
 	if len(words) < 1:
 		try:
+			#pdb.set_trace()
 			autosuggestSetting = False
 			page = wikipedia.page(wikiterm, None, autosuggestSetting)
 		except wikipedia.DisambiguationError as disambu_choices:
@@ -48,19 +49,12 @@ def wikipedia_grab_chomp(wikiterm):
 			#print(f'DisambiguationError {wikiterm}')
 			page = wikipedia.page(disambiguouizer(disambu_choices.options, wikiterm))
 
+		# pdb.set_trace()
 		wordid = db.db_insert("word", word = wikiterm, url = page.url, summary = page.summary, content = page.content)
-		links = [links for links in page.links]
-		# for link in page.links:
-		# 	links.append(link.split('(')[0])
-		bad_words = ['LIST', 'ISBN','ISDN','OCLC','LCCN','NKVD','IMDb','ISNI'] # TODO: config
-		#"this is the proper place to sanitize the links:"
-		for each_bad_word in bad_words:
-			try: links.remove(each_bad_word)
-			except: print(f'no {each_bad_word} found in word links')
-		for each_link in links:
-			if each_link[0:4].upper() in bad_words:
-				links.remove(each_link)
-		pattern = re.compile('[\W_]+')
+		links = []
+		for link in page.links:
+			links.append(link.split('(')[0])
+		#pattern = re.compile('[\W_]+')
 		numbers = re.compile('[0-9]')
 		goodwords = set(links)
 		# badwords = []
@@ -95,7 +89,7 @@ def wikipedia_grab_chomp(wikiterm):
 			linkid = db.db_insert("word_links", word_id = wordid, link = goodword)
 
 		for image in page.images:
-			linkid = db.db_insert("word_images", word_id = wordid, image_url = image)
+			linkid = db.db_insert("word_images", word_id = wordid, image_url = goodword)
 
 		# with open('acronym/summary/' + wikiterm, 'w') as summary:
 		# 	summary.write(json.dumps(page.summary))
