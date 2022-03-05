@@ -60,7 +60,7 @@ def index():
 	with open('emptyinasra.ipuz') as this:
 		big_inasra = inasra.inasra(**json.loads(this.read()))
 	with open('.eggspine.txt','w') as egg: egg.write('')
-
+	#
 	return render_template('home.html')
 
 @app.route("/about")
@@ -72,15 +72,13 @@ def about():
 @app.route("/<word>")
 def recurs_spinalyze(word):
 	try:
-		print('!') if word in ['favicon.ico'] else big_inasra.wordspace.append(word)
+		print('!') if word in ['favicon.ico'] + big_inasra.wordspace else big_inasra.wordspace.append(word)
 	except:
 		print(f"couldn't add to the wordspace: {word}")
-
 	relephants = db.get_word_links(word)
 	if len(relephants) < 1:
 		wikichomp.wikipedia_grab_chomp(word)
 		relephants = db.get_word_links(word)
-
 	print(big_inasra.wordspace)
 	return '/'.join(big_inasra.wordspace) + '<br><br>' + the_singular_thing(word, relephants)
 
@@ -98,6 +96,8 @@ def first_word():
 	os.system(f'''echo '{my_new_inasra.dumps()}' > users/$USER/{xword}/{xword}.ipuz''')
 	big_inasra = my_new_inasra
 	return redirect(word)
+
+
 
 @app.route('/kenburns/<word>')
 def kenburns(word):
@@ -132,6 +132,10 @@ def kenburns(word):
 			print(f'{trash} not found')
 	shuffle(all_image_urls)
 	return render_template("kenburns.html", word=word, images=all_image_urls, imagequantity=len(all_image_urls))
+
+@app.route('/framing/<word>')
+def framing(word):
+	return render_template('framingdevice.html', word=word)
 
 if __name__ == "__main__":
 	app.run(debug=True, host="0.0.0.0", port=5000)
