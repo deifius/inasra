@@ -3,6 +3,7 @@
 {% block extra_head %}
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style>
+	style="overflow-y:scroll;"
 	.dropbtn {
 	  background-color: #777777;
 	  color: white;
@@ -45,8 +46,8 @@
 {% block main %}
 	<a href= ''{{ summary }}><button type="button"><p style="font-family:monospace; line-height:.5;"><font size='+6'> {{ wordupper }} </font></p></button>&emsp;
 	<a href=" " title="{{ summary }}" style="background-color:#hhhhhh; color:#000000;text-decoration:none"><font size='+6'>{{ wordcapper }}</font></a>&emsp;
-	<iframe align="right" width="720" height="415" src="kenburns/{{word}}"></iframe>
-
 {% endblock %}
 {% block script %}
+<iframe align="right" width="720" height="415" src="kenburns/{{word}}"></iframe>
+
 {% endblock %}

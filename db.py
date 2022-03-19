@@ -71,3 +71,17 @@ def get_word_content(word: str):
 
 # def db_query_one(query, *values):
 # 	return db_query(query, values)
+
+def logginDB(inasra):
+	def print_pre_state(*args, **kwargs):
+		print(f"my inasra is:{inasra}:{args}")
+		inasra.history.append(args, kwargs)
+		#result = dunction()
+		try:
+			result = inasra(*args, **kwargs)
+		except TypeError as err:
+			print(f'failed: {err}')
+			result = -1
+		db.db_insert(inasra.dumps())
+		return result
+	return print_pre_state

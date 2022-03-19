@@ -14,7 +14,7 @@ app = Flask(__name__)
 with open('emptyinasra.ipuz') as this:
 	big_inasra = inasra.inasra(**json.loads(this.read()))
 
-def the_singular_thing(word, relephants):
+def acronym_spinifier(word, relephants):
 	acro_fren = acronymizer.acronymize(word, relephants)
 	summary = db.get_word_summary(word)
 	cont = db.get_word_content(word)
@@ -72,7 +72,7 @@ def about():
 @app.route("/<word>")
 def recurs_spinalyze(word):
 	try:
-		print('!') if word in ['favicon.ico'] + big_inasra.wordspace else big_inasra.wordspace.append(word)
+		print(f'{word} is already in!') if word in ['favicon.ico'] + big_inasra.wordspace else big_inasra.wordspace.append(word)
 	except:
 		print(f"couldn't add to the wordspace: {word}")
 	relephants = db.get_word_links(word)
@@ -80,7 +80,7 @@ def recurs_spinalyze(word):
 		wikichomp.wikipedia_grab_chomp(word)
 		relephants = db.get_word_links(word)
 	print(big_inasra.wordspace)
-	return the_singular_thing(word, relephants) #+ '<br><br>' + '/'.join(big_inasra.wordspace)
+	return '/'.join(big_inasra.wordspace) + '<br><br>' + acronym_spinifier(word, relephants)
 
 @app.route('/first_word/', methods=['POST'])
 def first_word():
