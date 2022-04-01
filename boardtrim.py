@@ -14,12 +14,19 @@ def boardtrim(board):
 		boardtrim(board)
 	elif destroy == 0:
 		print('')
+	return board
+
+def write_it_down(board):
+	with open('xwordspine.json', 'w') as writio:
+		writio.write(json.dumps(board).replace('.',' '))
 
 
-board =json.loads(open("xwordspine.json").read())
-boardtrim(board)
-board = list(zip(*board))
-boardtrim(board)
+def main():
+	board =json.loads(open("xwordspine.json").read())
+	boardtrim(board)
+	board = list(zip(*board))
+	boardtrim(board)
+	write_it_down(board)
 
-with open('xwordspine.json', 'w') as writio:
-	writio.write(json.dumps(board).replace('.',' '))
+
+if __name__ == '__main__': main()

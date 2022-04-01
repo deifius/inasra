@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 
-import pdb
-import json
+import pdb, re, json
+from boardtrim import boardtrim as trim
 from time import sleep
 from os import system
-import re
+
 
 def visualize(xwordfield):
 	#system('clear')
@@ -16,76 +16,92 @@ def visualize(xwordfield):
 			line = line + ' ' + each
 			if each != ' ':
 				linecheck = 1
-		#if linecheck == 1:
-			#print(line)
 
-maxwordsize = {'verts':0,'horiz':0}
-xwordspine = open('.eggspine.txt').read().replace(' ','').split('\n')
-if xwordspine[-1] == '':
-	xwordspine.pop(-1)
-#pdb.set_trace()
-if xwordspine[-1][-1].isdigit() == False:
-	xwordspine.pop(-1)
-for each in range(len(xwordspine)):
-	xwordspine[each] = xwordspine[each].split('\t')
-if len(xwordspine)%2 == 0:
-	verts = len(xwordspine[-1][0])+1
-	horiz = len(xwordspine[-2][0])+1
-else:
-	horiz = len(xwordspine[-1][0])+1
-	verts = len(xwordspine[-2][0])+1 if len(xwordspine) >= 2 else 0
+def get_the_spine():
+	with open('.eggspine.txt') as chicklet:
+		xwordspine = chicklet.read().replace(' ','').split('\n')
+	while xwordspine[-1] == '':
+		xwordspine.pop()
+	#pdb.set_trace()
+	while xwordspine[-1][-1].isdigit() == False:
+		xwordspine.pop()
+	crystalizeds = []
+	while xwordspine[-1][0].isalpha() == False:
+		crystalizeds.append(xwordspine.pop())
+	for each in range(len(xwordspine)):
+		xwordspine[each] = xwordspine[each].split('\t')
+	return [xwordspine, crystalizeds]
 
-pattern = re.compile('[\W_]+')
-for each in xwordspine:
-	each[0] = pattern.sub('', each[0])
-#pdb.set_trace()
+def write_it_down(xwordfield):
+	with open('xwordspine.json', 'w') as writio:
+		writio.write(json.dumps(xwordfield))
 
-for eachword in range(len(xwordspine)):
-	if eachword%2 == 0:
-		verts += int(xwordspine[eachword][1])
-		if len(xwordspine[eachword][0])>maxwordsize['verts']:
-			maxwordsize['verts']= len(xwordspine[eachword][0])
-	if eachword%2 != 0:
-		##pdb.set_trace()
-		horiz += int(xwordspine[eachword][1])
-		if len(xwordspine[eachword][0])>maxwordsize['horiz']:
-			maxwordsize['horiz']= len(xwordspine[eachword][0])
-#approximate size of grid sized to contain a spine
-#TODO: needs to be exact, not approximate
-xwordfield = []
-verts += maxwordsize['verts']
-horiz += maxwordsize['horiz']
-for everyletter in range(verts):
-	xwordfield.append([])
-for everyletter in range(horiz):
-	for everyvert in range(verts):
-		xwordfield[everyvert].append(' ')
-cursor = [0,0]
-maxcursor = cursor
-for eachword in range(len(xwordspine)):
-	if eachword%2 == 0:
-		for letter in xwordspine[eachword][0]:
-			xwordfield[cursor[0]][cursor[1]] = letter
-			cursor[0] += 1
-			visualize(xwordfield)
-			sleep(.031)
-		if cursor[0] > maxcursor[0]:
-				maxcursor[0] = cursor[0]
-		cursor[0] -= len(xwordspine[eachword][0])
-		cursor[0] += int(xwordspine[eachword][1])
-	if eachword%2 != 0:
-		for letter in xwordspine[eachword][0]:
-			xwordfield[cursor[0]][cursor[1]] = letter
-			cursor[1] += 1
-			visualize(xwordfield)
-			sleep(.031)
-		if cursor[1] > maxcursor[1]:
-				maxcursor[1] = cursor[1]
-		cursor[1] -= len(xwordspine[eachword][0])
-		cursor[1] += int(xwordspine[eachword][1])
-		#pdb.set_trace()
+def make_the_spine(xwordspine):
+	maxwordsize = {'verts':0,'horiz':0}
+	if len(xwordspine)%2 == 0:
+		verts = len(xwordspine[-1][0])+1
+		horiz = len(xwordspine[-2][0])+1
+	else:
+		horiz = len(xwordspine[-1][0])+1
+		verts = len(xwordspine[-2][0])+1 if len(xwordspine) >= 2 else 0
 
-with open('xwordspine.json', 'w') as writio:
-	writio.write(json.dumps(xwordfield))
+	pattern = re.compile('[\W_]+')
+	for each in xwordspine:
+		each[0] = pattern.sub('', each[0])
+	#pdb.set_trace()
 
-# TODO : populate the spine with the words from acro_dicts. This is project crystalyzation.py
+	for eachword in range(len(xwordspine)):
+		if eachword%2 == 0:
+			verts += int(xwordspine[eachword][1])
+			if len(xwordspine[eachword][0])>maxwordsize['verts']:
+				maxwordsize['verts']= len(xwordspine[eachword][0])
+		if eachword%2 != 0:
+			##pdb.set_trace()
+			horiz += int(xwordspine[eachword][1])
+			if len(xwordspine[eachword][0])>maxwordsize['horiz']:
+				maxwordsize['horiz']= len(xwordspine[eachword][0])
+	#approximate size of grid sized to contain a spine
+	#TODO: needs to be exact, not approximate
+	xwordfield = []
+	verts += maxwordsize['verts']
+	horiz += maxwordsize['horiz']
+	for everyletter in range(verts):
+		xwordfield.append([])
+	for everyletter in range(horiz):
+		for everyvert in range(verts):
+			xwordfield[everyvert].append(' ')
+	cursor = [0,0]
+	maxcursor = cursor
+	for eachword in range(len(xwordspine)):
+		if eachword%2 == 0:
+			for letter in xwordspine[eachword][0]:
+				xwordfield[cursor[0]][cursor[1]] = letter
+				cursor[0] += 1
+				#visualize(xwordfield)
+				#sleep(.011)
+			if cursor[0] > maxcursor[0]:
+					maxcursor[0] = cursor[0]
+			cursor[0] -= len(xwordspine[eachword][0])
+			cursor[0] += int(xwordspine[eachword][1])
+		if eachword%2 != 0:
+			for letter in xwordspine[eachword][0]:
+				xwordfield[cursor[0]][cursor[1]] = letter
+				cursor[1] += 1
+				#visualize(xwordfield)
+				#sleep(.011)
+			if cursor[1] > maxcursor[1]:
+					maxcursor[1] = cursor[1]
+			cursor[1] -= len(xwordspine[eachword][0])
+			cursor[1] += int(xwordspine[eachword][1])
+			#pdb.set_trace()
+	return trim(list(zip(*trim(xwordfield))))
+
+def main():
+	xwordspine, crystalizeds =  get_the_spine()
+	xwordfield = make_the_spine(xwordspine)
+	for e in xwordfield: print(' '.join(e))
+	for e in crystalizeds: print(e)
+	write_it_down(xwordfield)
+	return xwordfield
+
+if __name__ == '__main__': main()

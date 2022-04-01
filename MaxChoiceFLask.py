@@ -35,12 +35,16 @@ def acronym_spinifier(word, relephants):
 					print(insert_hover)
 					break
 				else: insert_hover = f'title="no clue how {acro_fren[eachletter[0]]} relates to {word}"'
-			this += f'''
-			<br>
-			<a href='{acro_fren[eachletter[0]]}'{insert_hover}><button type="button"><p style="font-family:monospace; line-height:.4"><font size='+2'> {ourletter} </font></p></button>&emsp;
-			<div class="dropdown">
-			<button class="dropbtn" style="height:35px;width:400px"> {acro_fren[eachletter[0]]} &emsp;&emsp;&emsp;</button>
-			<div class="dropdown-content">'''
+			this += f'''	<br>
+							<a href='{acro_fren[eachletter[0]]}'{insert_hover}>
+							<button type="button">
+							<p style="font-family:monospace; line-height:.4"><font size='+2'>
+							{ourletter} </font></p></button>&emsp;
+							<div class="dropdown">
+							<button class="dropbtn" style="height:35px;width:400px">
+							{acro_fren[eachletter[0]]} &emsp;&emsp;&emsp;</button>
+							<div class="dropdown-content">
+					'''
 			shuffle(relephants)
 			for everyword in relephants:
 				if everyword[0].lower() == eachletter[1].lower():
@@ -50,7 +54,9 @@ def acronym_spinifier(word, relephants):
 							insert_hover = f'title="{paragraph}"'
 							break
 						else: insert_hover = f'title="no clue how {everyword} relates to {word}"'
-					this += f"<button><p style='line-height:.7'><a href='{everyword}'{insert_hover}>{everyword}</a></p></button>"
+					this += f"""<button><p style='line-height:.7'>
+								<a href='{everyword}'{insert_hover}>
+								{everyword}</a></p></button>"""
 			this += f'''</div></div>'''
 	return this
 
@@ -96,8 +102,6 @@ def first_word():
 	os.system(f'''echo '{my_new_inasra.dumps()}' > users/$USER/{xword}/{xword}.ipuz''')
 	big_inasra = my_new_inasra
 	return redirect(word)
-
-
 
 @app.route('/kenburns/<word>')
 def kenburns(word):
