@@ -78,7 +78,7 @@ def about():
 #@app.route("/<word>/")
 def recurs_spinalyze(word):
 	try:
-		print(f'{word} is already in!') if word in ['favicon.ico'] + big_inasra.wordspace else big_inasra.wordspace.append(word)
+		print(f'{word} is already in!') if word in ['favicon.ico'] + big_inasra.wordspace else big_inasra.wordspace.append(word.replace(' ',''))
 	except:
 		print(f"couldn't add to the wordspace: {word}")
 	relephants = db.get_word_links(word)
