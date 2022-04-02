@@ -25,7 +25,7 @@ def visualize(xwordfield):
 def get_the_egg():
 	try:
 		xwordspine,crystalizeds  = json.loads(sys.argv[1])
-		pdb.set_trace()
+		#pdb.set_trace()
 	except:
 		with open('.eggspine.txt') as chicklet:
 			xwordspine = chicklet.read().replace(' ','').split('\n')
@@ -41,11 +41,12 @@ def get_the_egg():
 		for each in enumerate(xwordspine):  xwordspine[each[0]] = each[1].split('\t')
 	return [xwordspine, crystalizeds]
 
-def write_it_down(xwordfield):
-	with open('xwordspine.json', 'w') as writio:
-		writio.write(json.dumps(xwordfield))
-
 def make_the_spine(xwordspine):
+	'''
+	feed me a list of word,position(1d) pairs
+	& I will return a 2d array of chars
+	to serve as the spine for this inasra
+	'''
 	maxwordsize = {'verts':0,'horiz':0}
 	if len(xwordspine)%2 == 0:
 		verts = len(xwordspine[-1][0])+1
@@ -104,6 +105,10 @@ def make_the_spine(xwordspine):
 			cursor[1] += int(xwordspine[eachword][1])
 			#pdb.set_trace()
 	return trim(list(zip(*trim(xwordfield))))
+
+def write_it_down(xwordfield):
+	with open('xwordspine.json', 'w') as writio:
+		writio.write(json.dumps(xwordfield))
 
 def main():
 	xwordspine, crystalizeds =  get_the_egg()
