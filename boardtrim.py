@@ -23,9 +23,7 @@ def write_it_down(board):
 
 def main():
 	board =json.loads(open("xwordspine.json").read())
-	boardtrim(board)
-	board = list(zip(*board))
-	boardtrim(board)
+	board = boardtrim(list(zip(*boardtrim(board))))
 	write_it_down(board)
 
 

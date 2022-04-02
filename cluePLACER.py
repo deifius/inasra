@@ -6,10 +6,12 @@ from os import system
 from sys import argv
 
 '''
-feed me an partially constructed crossword puzzle in a 2d array, in ipuz notation (board)
- and a word (alexicon) you want to place on the board, the valid location for the first letter of the word x,y,
- and clueinsert will return the puzzle with the clue inserted
- zip* the board to do down!!
+feed me :
+	a partially constructed crossword puzzle in a 2d array (ipuz)
+	& a word you want to place on the board,
+	& the valid location for the first letter of the word x,y,
+	only then will cluePLACER return the puzzle with the clue inserted
+	zip* the board to do down!!
  '''
 
 

@@ -10,7 +10,8 @@ from sys import argv
 	and a word (alexicon) you want to place on the board,
 	the valid location for the first letter of the word x,y,
  	and clueinsert will return the puzzle with the clue inserted
- 	zip* the board to do down!!'''
+ 	zip* the board to do down!!
+'''
 
 
 def sanitize(alexicon, board, position):
