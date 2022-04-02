@@ -12,8 +12,8 @@ def boardtrim(board):
 	if destroy == 1:
 		board.pop(-1)
 		boardtrim(board)
-	elif destroy == 0:
-		print('')
+	elif destroy == 0: pass
+		#print('')
 	return board
 
 def write_it_down(board):

@@ -5,7 +5,7 @@ from subprocess import Popen, PIPE, STDOUT, check_output
 import json, re, os, pwd, Acronymizer as acronymizer
 from random import shuffle
 import wikipedia, re
-import wikichomp
+import wikichomp, spinylize
 import inasra
 import db
 
@@ -32,11 +32,11 @@ def acronym_spinifier(word, relephants):
 				if acro_fren[eachletter[0]].lower() in paragraph.lower():
 					paragraph = re.sub(acro_fren[eachletter[0]], f' {acro_fren[eachletter[0]].upper()}', paragraph, flags=re.IGNORECASE)
 					insert_hover = f'title="{paragraph}"'
-					print(insert_hover)
+					#print(insert_hover)
 					break
 				else: insert_hover = f'title="no clue how {acro_fren[eachletter[0]]} relates to {word}"'
 			this += f'''	<br>
-							<a href='{acro_fren[eachletter[0]]}'{insert_hover}>
+							<a href='{acro_fren[eachletter[0]]}/{eachletter[0]}'{insert_hover}>
 							<button type="button">
 							<p style="font-family:monospace; line-height:.4"><font size='+2'>
 							{ourletter} </font></p></button>&emsp;
@@ -55,7 +55,7 @@ def acronym_spinifier(word, relephants):
 							break
 						else: insert_hover = f'title="no clue how {everyword} relates to {word}"'
 					this += f"""<button><p style='line-height:.7'>
-								<a href='{everyword}'{insert_hover}>
+								<a href='{everyword}/{eachletter[0]}'{insert_hover}>
 								{everyword}</a></p></button>"""
 			this += f'''</div></div>'''
 	return this
@@ -73,8 +73,9 @@ def about():
 	return render_template('about.html')
 
 @app.route("/firstword/<word>")
-#@app.route("/<otherwords>/<word>")
+#@app.route("/<nothing>/<word>")
 @app.route("/<word>")
+#@app.route("/<word>/")
 def recurs_spinalyze(word):
 	try:
 		print(f'{word} is already in!') if word in ['favicon.ico'] + big_inasra.wordspace else big_inasra.wordspace.append(word)
@@ -84,8 +85,15 @@ def recurs_spinalyze(word):
 	if len(relephants) < 1:
 		wikichomp.wikipedia_grab_chomp(word)
 		relephants = db.get_word_links(word)
-	print(big_inasra.wordspace)
-	return '/'.join(big_inasra.wordspace) + '<br><br>' + acronym_spinifier(word, relephants)
+	print(f"{big_inasra.wordspace}, yo!")
+	try:
+		my_spine = spinylize.make_the_spine(big_inasra.wordspace[:-1]+[[big_inasra.wordspace[-1],0]])
+		print("+ " * len(my_spine[0]) + "+ +")
+		for each_line in my_spine:
+			print(f"+ {' '.join(each_line)} +")
+		print("+ " * len(my_spine[0]) + "+ +")
+	except: print('no spine yet')
+	return acronym_spinifier(word, relephants)
 
 @app.route('/first_word/', methods=['POST'])
 def first_word():
@@ -131,14 +139,21 @@ def kenburns(word):
 	for trash in trashpictures:
 		try:
 			all_image_urls.remove(trash)
-		except:
-			print(f'{trash} not found')
+		except: pass
 	shuffle(all_image_urls)
 	return render_template("kenburns.html", word=word, images=all_image_urls, imagequantity=len(all_image_urls))
 
 @app.route('/framing/<word>')
 def framing(word):
 	return render_template('framingdevice.html', word=word)
+
+@app.route("/<word>/<spine_pos>")
+def build_the_spine(word, spine_pos):
+	try: big_inasra.wordspace[-1] = [big_inasra.wordspace[-1], spine_pos]
+	except: print(f"didn't add position to {big_inasra.wordspace}")
+	print(f"my word is {word}")
+	return redirect(f'/{word}')
+
 
 if __name__ == "__main__":
 	app.run(debug=True, host="0.0.0.0", port=5000)

@@ -113,8 +113,8 @@ def write_it_down(xwordfield):
 def main():
 	xwordspine, crystalizeds =  get_the_egg()
 	xwordfield = make_the_spine(xwordspine)
-	for e in xwordfield: print(' '.join(e))
-	for e in crystalizeds: print(e)
+	#for e in xwordfield: print(' '.join(e))
+	#for e in crystalizeds: print(e)
 	write_it_down(xwordfield)
 	return xwordfield
 
