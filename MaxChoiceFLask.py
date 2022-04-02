@@ -65,8 +65,7 @@ def acronym_spinifier(word, relephants):
 def index():
 	with open('emptyinasra.ipuz') as this:
 		big_inasra = inasra.inasra(**json.loads(this.read()))
-	with open('.eggspine.txt','w') as egg: egg.write('')
-	#
+	#with open('.eggspine.txt','w') as egg: egg.write('')
 	return render_template('home.html')
 
 @app.route("/about")

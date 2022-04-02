@@ -1,11 +1,16 @@
 #!/usr/bin/env python3
 
-import pdb, re, json
+import pdb, re, json, sys
 from boardtrim import boardtrim as trim
 from time import sleep
 from os import system
 
+'''
+	spinylize receives a code for an xword spine
+	& makes that spine
+	like a ribozome interpreting vertebrate DNA
 
+'''
 def visualize(xwordfield):
 	#system('clear')
 	#print('')
@@ -17,19 +22,23 @@ def visualize(xwordfield):
 			if each != ' ':
 				linecheck = 1
 
-def get_the_spine():
-	with open('.eggspine.txt') as chicklet:
-		xwordspine = chicklet.read().replace(' ','').split('\n')
-	while xwordspine[-1] == '':
-		xwordspine.pop()
-	#pdb.set_trace()
-	while xwordspine[-1][-1].isdigit() == False:
-		xwordspine.pop()
-	crystalizeds = []
-	while xwordspine[-1][0].isalpha() == False:
-		crystalizeds.append(xwordspine.pop())
-	for each in range(len(xwordspine)):
-		xwordspine[each] = xwordspine[each].split('\t')
+def get_the_egg():
+	try:
+		xwordspine,crystalizeds  = json.loads(sys.argv[1])
+		pdb.set_trace()
+	except:
+		with open('.eggspine.txt') as chicklet:
+			xwordspine = chicklet.read().replace(' ','').split('\n')
+		while xwordspine[-1] == '':
+			xwordspine.pop()
+		#pdb.set_trace()
+		while xwordspine[-1][-1].isdigit() == False:
+			xwordspine.pop()
+		crystalizeds = []
+		while xwordspine[-1][0].isalpha() == False:
+			crystalizeds.append(xwordspine.pop())
+		for each in enumerate(crystalizeds): crystalizeds[each[0]] = each[1].split('.')[1:]
+		for each in enumerate(xwordspine):  xwordspine[each[0]] = each[1].split('\t')
 	return [xwordspine, crystalizeds]
 
 def write_it_down(xwordfield):
@@ -97,7 +106,7 @@ def make_the_spine(xwordspine):
 	return trim(list(zip(*trim(xwordfield))))
 
 def main():
-	xwordspine, crystalizeds =  get_the_spine()
+	xwordspine, crystalizeds =  get_the_egg()
 	xwordfield = make_the_spine(xwordspine)
 	for e in xwordfield: print(' '.join(e))
 	for e in crystalizeds: print(e)
