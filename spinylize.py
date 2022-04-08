@@ -57,8 +57,17 @@ def make_the_spine(xwordspine):
 
 	pattern = re.compile('[\W_]+')
 	for each in xwordspine:
-		each[0] = pattern.sub('', each[0])
-	#pdb.set_trace()
+		if "(" in each[0]:
+			each[0] = each[0].split('(')[0]
+		try:
+			while ' ' in each[0]:
+				if int(each[1]) > pattern.search(each[0]).start():
+					print(f'subtracting 1:  old total{each}')
+					each[1] = int(each[1])-1
+					print(f'subtracting 1:  new total{each}')
+				each[0] = pattern.sub('', each[0], count=1)
+		except: pass
+		each[0] = pattern.sub('', each[0]).upper()
 
 	for eachword in range(len(xwordspine)):
 		if eachword%2 == 0:
@@ -70,8 +79,6 @@ def make_the_spine(xwordspine):
 			horiz += int(xwordspine[eachword][1])
 			if len(xwordspine[eachword][0])>maxwordsize['horiz']:
 				maxwordsize['horiz']= len(xwordspine[eachword][0])
-	#approximate size of grid sized to contain a spine
-	#TODO: needs to be exact, not approximate
 	xwordfield = []
 	verts += maxwordsize['verts']
 	horiz += maxwordsize['horiz']

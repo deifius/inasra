@@ -70,20 +70,13 @@ class inasra: #
 		decohere = find_horizontal_solutions()
 		decohere = decohere + find_vertical_solutions()
 		return decohere
-	def find_words_for(self, coordinates): pass # returns boardstates with a new word intersecting the given coordinates
+	def find_words_for(self, coordinates):
+		raise InsertCheeseErr("some day I'll return a list of boardstates with a new word intersecting the given coordinates")
 	def visualize(self, xwordfield):
-		#from os import system as systema; systema('clear')
-		print('')
-		for eachline in xwordfield:
-			line = ' '
-			linecheck = 0
-			for each in eachline:
-				line = line + ' ' + each
-				if each != ' ':
-					linecheck = 1
-			if linecheck == 1:
-				print(line)
-		print('')
+		print("+ " * len(xwordfield[0]) + "+ +")
+		for each_line in xwordfield:
+			print(f"+ {' '.join(each_line)} +")
+		print("+ " * len(xwordfield[0]) + "+ +")
 	def show_solution(self):
 		self.visualize(self.solution)
 	def show_puzzle(self):

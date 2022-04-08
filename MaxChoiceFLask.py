@@ -26,6 +26,8 @@ def acronym_spinifier(word, relephants):
 	for eachletter in enumerate(word): #Click Me!
 		if eachletter[1] in [' ', '-', '.', ',','&'] or eachletter[0] == 0:
 			this += ""
+		elif eachletter[1] in ['{','(','[','}',')',']']:
+			break
 		else:
 			ourletter = eachletter[1].capitalize()
 			for paragraph in content:
@@ -78,7 +80,10 @@ def about():
 #@app.route("/<word>/")
 def recurs_spinalyze(word):
 	try:
-		print(f'{word} is already in!') if word in ['favicon.ico'] + big_inasra.wordspace else big_inasra.wordspace.append(word.replace(' ',''))
+		wordspace_word = word#.replace(' ','')
+		#if "(" in wordspace_word:
+		#	wordspace_word = wordspace_word.split('(')[0]
+		print(f'{word} is already in!') if word in ['favicon.ico'] + big_inasra.wordspace else big_inasra.wordspace.append(wordspace_word)
 	except:
 		print(f"couldn't add to the wordspace: {word}")
 	relephants = db.get_word_links(word)
@@ -87,11 +92,8 @@ def recurs_spinalyze(word):
 		relephants = db.get_word_links(word)
 	print(f"{big_inasra.wordspace}, yo!")
 	try:
-		my_spine = spinylize.make_the_spine(big_inasra.wordspace[:-1]+[[big_inasra.wordspace[-1],0]])
-		print("+ " * len(my_spine[0]) + "+ +")
-		for each_line in my_spine:
-			print(f"+ {' '.join(each_line)} +")
-		print("+ " * len(my_spine[0]) + "+ +")
+		big_inasra.solution = spinylize.make_the_spine(big_inasra.wordspace[:-1]+[[big_inasra.wordspace[-1],0]])
+		big_inasra.show_solution()
 	except: print('no spine yet')
 	return acronym_spinifier(word, relephants)
 
@@ -151,7 +153,7 @@ def framing(word):
 def build_the_spine(word, spine_pos):
 	try: big_inasra.wordspace[-1] = [big_inasra.wordspace[-1], spine_pos]
 	except: print(f"didn't add position to {big_inasra.wordspace}")
-	print(f"my word is {word}")
+	print(f"spine_pos: my word is {word}")
 	return redirect(f'/{word}')
 
 
