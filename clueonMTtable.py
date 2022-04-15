@@ -6,11 +6,14 @@ from os import system
 from sys import argv
 import subprocess
 
-# feed me an partially constructed crossword puzzle in a 2d array, in ipuz notation (board)
-# and a word (alexicon) you want to place on the board, the valid location for the first letter of the word x,y,
-# and clueonMTtable will provide the clue on an otherwise empty board, for overlaying on the existing board.
-# zip* the board to do down!!
-
+'''
+	feed me an partially constructed crossword puzzle in
+	a 2d array in ipuz notation (board)
+	& a word (alexicon) you want to place on the board, 
+	the valid location for the first letter of the word x,y,
+	and clueonMTtable will provide the clue on an otherwise empty board, for overlaying on the existing board.
+	zip* the board to do down!!
+'''
 
 with open("xwordspine.json") as readio: board =json.loads(readio.read())
 

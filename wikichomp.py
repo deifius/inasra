@@ -56,7 +56,7 @@ def wikipedia_grab_chomp(wikiterm):
 		#"this is the proper place to sanitize the links:"
 		for each_bad_word in bad_words:
 			try: links.remove(each_bad_word)
-			except: print(f'no {each_bad_word} found in word links')
+			except: pass #print(f'no {each_bad_word} found in word links')
 		for each_link in links:
 			if each_link[0:4].upper() in bad_words:
 				links.remove(each_link)

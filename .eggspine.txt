@@ -1,0 +1,31 @@
+Sir Arthur Conan Doyle	3
+Adaptations of Sherlock Holmes	10
+Sherlock Holmes and the Sign of Four	18
+How Watson Learned the Trick	15
+Diogenes Club	11
+.NextMoves/emilandthedetectives.HORIZ.7.21
+.NextMoves/thepsychologyoftheoccult.HORIZ.4.27
+.NextMoves/minacrandon.HORIZ.2.11
+.NextMoves/georgebernardshaw.HORIZ.12.22
+.NextMoves/merchantivoryproductions.VERT.1.30
+.NextMoves/desmonddavis.HORIZ.16.22
+.NextMoves/menschenamsonntag.VERT.28.32
+.NextMoves/alvinsargent.HORIZ.30.26
+.NextMoves/andrewlycett.HORIZ.32.25
+.NextMoves/barryjenkins.VERT.26.30
+.NextMoves/charlesmarowitz.VERT.23.30
+.NextMoves/charlesgunn.HORIZ.18.23
+.NextMoves/katharinehepburn.HORIZ.22.23
+.NextMoves/michaelgraves.HORIZ.28.23
+.NextMoves/pneumonia.VERT.8.23
+.NextMoves/thedailytelegraph.HORIZ.25.18
+.NextMoves/lostcontinent.VERT.26.14
+.NextMoves/goldenglobeawards.VERT.5.29
+.NextMoves/curlie.VERT.12.26
+.NextMoves/freemasonry.HORIZ.2.30
+.NextMoves/fayardnicholas.VERT.30.28
+.NextMoves/arthurmitchell.VERT.32.23
+.NextMoves/harrycallahan.HORIZ.14.23
+.NextMoves/nature.VERT.24.7
+.NextMoves/rockstargames.HORIZ.20.23
+.NextMoves/psychic.VERT.29.7
