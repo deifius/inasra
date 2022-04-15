@@ -14,7 +14,7 @@ app = Flask(__name__)
 with open('emptyinasra.ipuz') as this:
 	big_inasra = inasra.inasra(**json.loads(this.read()))
 
-def the_singular_thing(word, relephants):
+def web_acronymizer(word, relephants):
 	acro_fren = acronymizer.acronymize(word, relephants)
 	summary = db.get_word_summary(word)
 	cont = db.get_word_content(word)
@@ -67,9 +67,13 @@ def index():
 def about():
 	return render_template('about.html')
 
+@app.route("/<word>", methods=['POST'])
+def recurs_spinalyze_post(word):
+	return redirect("/"+word)
+
 @app.route("/firstword/<word>")
 #@app.route("/<otherwords>/<word>")
-@app.route("/<word>")
+@app.route("/<word>", methods=['GET'])
 def recurs_spinalyze(word):
 	try:
 		print('!') if word in ['favicon.ico'] + big_inasra.wordspace else big_inasra.wordspace.append(word)
@@ -80,22 +84,33 @@ def recurs_spinalyze(word):
 		wikichomp.wikipedia_grab_chomp(word)
 		relephants = db.get_word_links(word)
 	print(big_inasra.wordspace)
-	return the_singular_thing(word, relephants) #+ '<br><br>' + '/'.join(big_inasra.wordspace)
+	return web_acronymizer(word, relephants) #+ '<br><br>' + '/'.join(big_inasra.wordspace)
 
 @app.route('/first_word/', methods=['POST'])
 def first_word():
-	word = "/"+request.form['firstword']
+	word = request.form['firstword']
 	with open('emptyinasra.ipuz') as this:
 		my_new_inasra = inasra.inasra(**json.loads(this.read()))
+	# my_new_inasra.Start()
+	print("starting word ", word)
+	wikichomp.wikipedia_grab_chomp(word)
+	print("did wikipedia_grab_chomp")
+	my_new_inasra.title = word
+	my_new_inasra.write_self_to_db()
+	my_new_inasra.write_word_to_db(word)
+
 	xword = request.form['firstword'].replace(' ','')
 	for each_char in xword:
-		my_new_inasra.add_one_row_Down()
+		my_new_inasra.add_one_row_down()
 	my_new_inasra.add_word_vert(xword, 0 , 0)
 	my_new_inasra.wordspace.append(xword)
+	# print(my_new_inasra.wordspace)
+	# DEPRECATED
 	os.system(f'mkdir -p users/$USER/{xword}')
 	os.system(f'''echo '{my_new_inasra.dumps()}' > users/$USER/{xword}/{xword}.ipuz''')
+	# DEPRECATED
 	big_inasra = my_new_inasra
-	return redirect(word)
+	return redirect("/"+word)
 
 
 

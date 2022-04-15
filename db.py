@@ -56,6 +56,19 @@ def get_word(word: str):
 		WHERE word = ?
 	''', word)
 
+def get_last_inasra_word(inasraid: int):
+	last_inasra_word = db_query('''
+		SELECT iw.id, iw.direction, iw.x, iw.y, iw.char_pos, w.word, w.url, w.summary, w.content
+		FROM inasra_words iw
+		LEFT JOIN words w ON w.id = iw.word_id
+		WHERE iw.inasra_id = ?
+		ORDER BY prev_word_id
+	''', inasraid)
+	if len(last_inasra_word) > 0:
+		return last_inasra_word[0]
+	else:
+		return None
+
 def get_word_value(word: str, key: str):
 	word_rows = get_word(word)
 	if len(word_rows) > 0:
