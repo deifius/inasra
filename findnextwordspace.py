@@ -8,16 +8,21 @@ from os import system
 from sys import argv
 import subprocess
 
-''' feed me an partially constructed crossword puzzle in a 2d array, in ipuz notation (board)
- and a word (alexicon) you want to place on the board, and findthenextword will return a list of valid places
- in the format: [[xCoord_of_First_Letter,yCoord_of_First_Letter]] which is the first letter placement of the accross clue
- zip* the board to do down!!'''
+''' feed me an partially constructed crossword puzzle
+	in a 2d array, in ipuz notation (board)
+ and a word (alexicon) you want to place on the board,
+  findthenextword will return a list of valid places
+ in the format: [[xCoord_of_First_Letter,yCoord_of_First_Letter]]
+ which is the first letter placement of the accross clue
+
+ zip* the board to do verts!!'''
 
 def rotateboard(board):
 	return [list(row) for row in list(zip(*board))]
 
 def findnextwordspace (board, alexicon):
-	''' feed me a board state and a word and I'll tell you all the horizontal spaces it legally fits'''
+	''' feed me a board state and a word and I'll tell you
+		all the horizontal spaces it legally fits'''
 	def generate_faux_regex_lines(board):
 		''' I break the board up into horizontal lines,
 		 with '.' in any square that is not restricted by crossword rules
@@ -76,16 +81,11 @@ def main():
 	with open("xwordspine.json") as readio:
 		board = json.loads(readio.read())
 	alexicon = argv[1]
-	#print(alexicon+ "\n\n\n")
 	cleanexicon= sanitize(board, alexicon)
-	#print('horiz:')
 	horiz = findnextwordspace(board, cleanexicon)
-	#print('vert:')
 	vert = findnextwordspace(rotateboard(board), cleanexicon)
 	''' vert is throwing real bad answers...  we need to work on this!'''
-	#for each in vertboard: print(' '.join(each))
-	st()
-	#print('yo')
+	#st()
 	for clue in horiz:
 		subprocess.call(['python3', 'cluePLACER.py'] + clue.split(' ') + ['&'])
 		#subprocess.call(['python3', 'clueonMTtable.py'] + clue.split(' ') + ['&'])
