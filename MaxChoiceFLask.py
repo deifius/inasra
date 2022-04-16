@@ -52,6 +52,7 @@ def web_acronymizer(word, relephants):
 				if everyword[0].lower() == eachletter[1].lower():
 					for paragraph in content:
 						if everyword.lower() in paragraph.lower():
+							# TODO: Fix the bug with unbalanced parenthesis
 							paragraph = re.sub(everyword, f' {everyword.upper()}', paragraph, flags=re.IGNORECASE)
 							insert_hover = f'title="{paragraph}"'
 							break
@@ -149,7 +150,10 @@ def kenburns(word):
 		'https://upload.wikimedia.org/wikipedia/en/1/1b/Semi-protection-shackle.svg',
 		'https://upload.wikimedia.org/wikipedia/en/d/db/Symbol_list_class.svg',
 		'https://upload.wikimedia.org/wikipedia/en/0/06/Wiktionary-logo-v2.svg',
-		'https://upload.wikimedia.org/wikipedia/commons/a/a4/Text_document_with_red_question_mark.svg'
+		'https://upload.wikimedia.org/wikipedia/commons/a/a4/Text_document_with_red_question_mark.svg',
+		'https://upload.wikimedia.org/wikipedia/en/4/4a/Commons-logo.svg',
+		'https://upload.wikimedia.org/wikipedia/en/8/8a/OOjs_UI_icon_edit-ltr-progressive.svg',
+		'https://upload.wikimedia.org/wikipedia/en/f/f2/Edit-clear.svg'
 	]
 	for trash in trashpictures:
 		try:
@@ -166,7 +170,8 @@ def framing(word):
 def build_the_spine(word, spine_pos):
 	try: big_inasra.wordspace[-1] = [big_inasra.wordspace[-1], spine_pos]
 	except: print(f"didn't add position to {big_inasra.wordspace}")
-	print(f"spine_pos: my word is {word}")
+	spine_id = db.add_one_inasra_spine_please(big_inasra.inasraid, word, spine_pos)
+	print(f"spine_pos: my word is {word}, my spine id is {spine_id}")
 	return redirect(f'/{word}')
 
 

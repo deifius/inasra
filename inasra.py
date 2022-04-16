@@ -153,12 +153,12 @@ class inasra: #
 		# word_tuple = word_tuples[0]
 		# return {"id": word_tuple[0]}
 	def write_self_to_db(self):
-		inasraid = db.db_insert("inasra", name = self.title, height = self.dimensions['height'], width = self.dimensions['width'])
+		self.inasraid = db.db_insert("inasra", name = self.title, height = self.dimensions['height'], width = self.dimensions['width'])
 	def write_word_to_db(self, word):
-		word_obj = db_word_obj(self, word)
+		word_obj = self.db_word_obj(word)
 		if not word_obj or not self.inasraid:
 			return None
-		last_inasra_word = get_last_inasra_word(self.inasraid)
+		last_inasra_word = db.get_last_inasra_word(self.inasraid)
 		if last_inasra_word:
 			x = 0 # TODO
 			y = 0 # TODO
