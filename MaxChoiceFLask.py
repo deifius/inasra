@@ -14,7 +14,7 @@ app = Flask(__name__)
 with open('emptyinasra.ipuz') as this:
 	big_inasra = inasra.inasra(**json.loads(this.read()))
 
-def acronym_spinifier(word, relephants):
+def web_acronymizer(word, relephants):
 	acro_fren = acronymizer.acronymize(word, relephants)
 	summary = db.get_word_summary(word)
 	cont = db.get_word_content(word)
@@ -52,6 +52,7 @@ def acronym_spinifier(word, relephants):
 				if everyword[0].lower() == eachletter[1].lower():
 					for paragraph in content:
 						if everyword.lower() in paragraph.lower():
+							# TODO: Fix the bug with unbalanced parenthesis
 							paragraph = re.sub(everyword, f' {everyword.upper()}', paragraph, flags=re.IGNORECASE)
 							insert_hover = f'title="{paragraph}"'
 							break
@@ -74,10 +75,12 @@ def index():
 def about():
 	return render_template('about.html')
 
+@app.route("/<word>", methods=['POST'])
+def recurs_spinalyze_post(word):
+	return redirect("/"+word)
+
 @app.route("/firstword/<word>")
-#@app.route("/<nothing>/<word>")
-@app.route("/<word>")
-#@app.route("/<word>/")
+@app.route("/<word>", methods=['GET'])
 def recurs_spinalyze(word):
 	try:
 		wordspace_word = word#.replace(' ','')
@@ -95,22 +98,33 @@ def recurs_spinalyze(word):
 		big_inasra.solution = spinylize.make_the_spine(big_inasra.wordspace[:-1]+[[big_inasra.wordspace[-1],0]])
 		big_inasra.show_solution()
 	except: print('no spine yet')
-	return acronym_spinifier(word, relephants)
+	return web_acronymizer(word, relephants)
 
 @app.route('/first_word/', methods=['POST'])
 def first_word():
-	word = "/"+request.form['firstword']
+	word = request.form['firstword']
 	with open('emptyinasra.ipuz') as this:
 		my_new_inasra = inasra.inasra(**json.loads(this.read()))
+	# my_new_inasra.Start()
+	print("starting word ", word)
+	wikichomp.wikipedia_grab_chomp(word)
+	print("did wikipedia_grab_chomp")
+	my_new_inasra.title = word
+	my_new_inasra.write_self_to_db()
+	my_new_inasra.write_word_to_db(word)
+
 	xword = request.form['firstword'].replace(' ','')
 	for each_char in xword:
-		my_new_inasra.add_one_row_Down()
+		my_new_inasra.add_one_row_down()
 	my_new_inasra.add_word_vert(xword, 0 , 0)
 	my_new_inasra.wordspace.append(xword)
+	# print(my_new_inasra.wordspace)
+	# DEPRECATED
 	os.system(f'mkdir -p users/$USER/{xword}')
 	os.system(f'''echo '{my_new_inasra.dumps()}' > users/$USER/{xword}/{xword}.ipuz''')
+	# DEPRECATED
 	big_inasra = my_new_inasra
-	return redirect(word)
+	return redirect("/"+word)
 
 @app.route('/kenburns/<word>')
 def kenburns(word):
@@ -136,7 +150,10 @@ def kenburns(word):
 		'https://upload.wikimedia.org/wikipedia/en/1/1b/Semi-protection-shackle.svg',
 		'https://upload.wikimedia.org/wikipedia/en/d/db/Symbol_list_class.svg',
 		'https://upload.wikimedia.org/wikipedia/en/0/06/Wiktionary-logo-v2.svg',
-		'https://upload.wikimedia.org/wikipedia/commons/a/a4/Text_document_with_red_question_mark.svg'
+		'https://upload.wikimedia.org/wikipedia/commons/a/a4/Text_document_with_red_question_mark.svg',
+		'https://upload.wikimedia.org/wikipedia/en/4/4a/Commons-logo.svg',
+		'https://upload.wikimedia.org/wikipedia/en/8/8a/OOjs_UI_icon_edit-ltr-progressive.svg',
+		'https://upload.wikimedia.org/wikipedia/en/f/f2/Edit-clear.svg'
 	]
 	for trash in trashpictures:
 		try:
@@ -153,7 +170,8 @@ def framing(word):
 def build_the_spine(word, spine_pos):
 	try: big_inasra.wordspace[-1] = [big_inasra.wordspace[-1], spine_pos]
 	except: print(f"didn't add position to {big_inasra.wordspace}")
-	print(f"spine_pos: my word is {word}")
+	spine_id = db.add_one_inasra_spine_please(big_inasra.inasraid, word, spine_pos)
+	print(f"spine_pos: my word is {word}, my spine id is {spine_id}")
 	return redirect(f'/{word}')
 
 

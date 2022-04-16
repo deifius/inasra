@@ -29,6 +29,7 @@ class inasra: #
 		self.lexicon = lexicon # a list of relevant words ordered by relevance. The relephant herd.
 		self.wordspace = wordspace # the list of words used in the order used.  This game is played by moving words from lexicon to wordspace
 		self.history = history # the list of operations that have led to the current board state
+		self.inasraid = None
 	def resize(self, width, height):
 		print(f"old width & height:  {self.dimensions['width']}, {self.dimensions['height']}")
 		while len(self.solution[0]) > width:
@@ -38,7 +39,7 @@ class inasra: #
 		while len(self.solution) > height:
 			self.solution.pop()
 		while len(self.solution) < height:
-			self.add_one_row_Down()
+			self.add_one_row_down()
 		self.dimensions['width'], self.dimensions['height'] = width, height
 		print(f'{width}, {height}')
 		print(f"new width & height:  {self.dimensions['width']}, {self.dimensions['height']}")
@@ -91,7 +92,7 @@ class inasra: #
 		self.show_solution()
 	def dumps(self):
 		return json.dumps(self.__dict__, indent=2) # export state as json string
-	def add_one_row_Down(self):
+	def add_one_row_down(self):
 		new_empty_row = ['.' for each_row in self.solution[0]]
 		#for each in self.solution[0]: new_empty_line.append('.')
 		self.solution.append(new_empty_row)
@@ -151,6 +152,32 @@ class inasra: #
 		return None
 		# word_tuple = word_tuples[0]
 		# return {"id": word_tuple[0]}
+	def write_self_to_db(self):
+		self.inasraid = db.db_insert("inasra", name = self.title, height = self.dimensions['height'], width = self.dimensions['width'])
+	def write_word_to_db(self, word):
+		word_obj = self.db_word_obj(word)
+		if not word_obj or not self.inasraid:
+			return None
+		last_inasra_word = db.get_last_inasra_word(self.inasraid)
+		if last_inasra_word:
+			x = 0 # TODO
+			y = 0 # TODO
+			direction = 'y' if last_inasra_word.direction == 'x' else 'x'
+			prev_word_id = last_inasra_word.id
+		else:
+			x = 0
+			y = 0
+			direction = 'x'
+			prev_word_id = None
+		return db.db_insert("inasra_words",
+			word_id = word_obj["id"],
+			inasra_id = self.inasraid,
+			char_pos = 0, # FIXME
+			direction = direction,
+			x = x,
+			y = y,
+			prev_word_id = prev_word_id,
+		)
 	def Start(self):
 		is_context_cli = True # Hardcoded for now
 		if is_context_cli:
