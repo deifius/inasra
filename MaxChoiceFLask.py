@@ -3,6 +3,7 @@
 from flask import Flask, request, redirect, render_template, url_for
 from subprocess import Popen, PIPE, STDOUT, check_output
 import json, re, os, pwd, Acronymizer as acronymizer
+import copy
 from random import shuffle
 import wikipedia, re
 import wikichomp, spinylize
@@ -10,6 +11,8 @@ import inasra
 import db
 
 app = Flask(__name__)
+
+global big_inasra
 
 with open('emptyinasra.ipuz') as this:
 	big_inasra = inasra.inasra(**json.loads(this.read()))
@@ -93,7 +96,7 @@ def recurs_spinalyze(word):
 	if len(relephants) < 1:
 		wikichomp.wikipedia_grab_chomp(word)
 		relephants = db.get_word_links(word)
-	print(f"{big_inasra.wordspace}, yo!")
+	print(f"{big_inasra.inasraid} {big_inasra.wordspace}, yo!")
 	try:
 		big_inasra.solution = spinylize.make_the_spine(big_inasra.wordspace[:-1]+[[big_inasra.wordspace[-1],0]])
 		big_inasra.show_solution()
@@ -123,7 +126,12 @@ def first_word():
 	os.system(f'mkdir -p users/$USER/{xword}')
 	os.system(f'''echo '{my_new_inasra.dumps()}' > users/$USER/{xword}/{xword}.ipuz''')
 	# DEPRECATED
-	big_inasra = my_new_inasra
+	# big_inasra = my_new_inasra
+	big_inasra = copy.deepcopy(my_new_inasra)
+	# global big_inasra
+	# big_inasra = copy.deepcopy(my_new_inasra)
+	# print(f"we saved u a big_inasra: {big_inasra.inasraid}")
+	# print(f"nevermind the bollocks here's the big_inasra: {big_inasra.dumps()}")
 	return redirect("/"+word)
 
 @app.route('/kenburns/<word>')

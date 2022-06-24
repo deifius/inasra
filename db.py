@@ -16,7 +16,7 @@ def db_insert(table, **values):
 	connection.commit()
 	cursor.close()
 	connection.close()
-	# print(cursor.lastrowid)
+	#print(f"cursor lastrowid is {cursor.lastrowid} m'lord")
 	return cursor.lastrowid
 def db_query(query, *values):
 	connection = sqlite3.connect('inasra.sqlite3')
@@ -53,7 +53,7 @@ def get_word(word: str):
 	return db_query('''
 		SELECT *
 		FROM word
-		WHERE word = ?
+		WHERE word LIKE ?
 	''', word)
 
 def get_last_inasra_word(inasraid: int):
@@ -77,7 +77,8 @@ def get_word_value(word: str, key: str):
 		return None
 
 def add_one_inasra_spine_please(inasra_id: int, word: str, choice_pos: int, *args):
-	word_id = db_query_value("id", "SELECT w.id FROM word w WHERE w.word = ?", word)
+	# word_id = db_query_value("id", "SELECT w.id FROM word w WHERE w.word = ?", word)
+	word_id = get_word_value(word, "id")
 	prev_word = db_query_one("SELECT s.* FROM inasra_spine s WHERE s.inasra_id = ? ORDER BY s.id DESC LIMIT 1", inasra_id)
 	if word_id == None:
 		print(f"yea, thy word {word} be inaccurate for thy inasra {inasra_id}")

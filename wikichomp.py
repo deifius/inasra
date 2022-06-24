@@ -38,7 +38,7 @@ def make_word_xword(wrd):
 def wikipedia_grab_chomp(wikiterm):
 	'''I retrieve linked articles, summaries and picture locations from wikipedia
 		I used to put the chomped wiki stuff in a dir, but now I put that junk in a sqlite3 db'''
-	words = db.db_query("select * from word where word = ?", wikiterm)
+	words = db.db_query("select * from word where word LIKE ?", wikiterm)
 	if len(words) < 1:
 		try:
 			autosuggestSetting = False
@@ -52,7 +52,7 @@ def wikipedia_grab_chomp(wikiterm):
 		links = [links for links in page.links]
 		# for link in page.links:
 		# 	links.append(link.split('(')[0])
-		bad_words = ['LIST', 'ISBN','ISDN','OCLC','LCCN','NKVD','IMDb','ISNI'] # TODO: config
+		bad_words = ['LIST', 'ISBN', 'ISDN', 'OCLC', 'LCCN', 'NKVD', 'IMDb', 'ISNI'] # TODO: config
 		#"this is the proper place to sanitize the links:"
 		for each_bad_word in bad_words:
 			try: links.remove(each_bad_word)
