@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS "inasra";
-CREATE TABLE "inasra" ("id" integer NOT NULL,"name" TEXT, "width" INTEGER NOT NULL, "height" INTEGER NOT NULL, PRIMARY KEY (id));
+CREATE TABLE "inasra" ("id" integer NOT NULL,"name" TEXT, PRIMARY KEY (id));
 
 DROP TABLE IF EXISTS "inasra_words";
 CREATE TABLE "inasra_words" ("id" integer NOT NULL,"inasra_id" integer NOT NULL,"word_id" integer NOT NULL,"parent_word_id" integer,"direction" text NOT NULL,"x" integer NOT NULL,"y" integer NOT NULL,"char_pos" integer NOT NULL, PRIMARY KEY (id), FOREIGN KEY(word_id) REFERENCES words(word_id), FOREIGN KEY(inasra_id) REFERENCES inasra(inasra_id));

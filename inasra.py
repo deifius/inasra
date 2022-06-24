@@ -29,7 +29,8 @@ class inasra: #
 		self.lexicon = lexicon # a list of relevant words ordered by relevance. The relephant herd.
 		self.wordspace = wordspace # the list of words used in the order used.  This game is played by moving words from lexicon to wordspace
 		self.history = history # the list of operations that have led to the current board state
-		self.inasraid = None
+		if hasattr(self, 'inasraid') == False:
+			self.inasraid = None
 	def resize(self, width, height):
 		print(f"old width & height:  {self.dimensions['width']}, {self.dimensions['height']}")
 		while len(self.solution[0]) > width:
