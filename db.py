@@ -33,6 +33,19 @@ def db_query(query, *values):
 		final.append(thing)
 	return final
 
+def get_spine_for_inasra(inasraid: int):
+	we_are_spines = db_query('''
+		SELECT isp.dimension, isp.choice_pos, w.word, pw.word as prev_word
+		FROM inasra_spine isp
+		INNER JOIN word w ON w.id = isp.word_id
+		LEFT JOIN word pw ON pw.id = isp.prev_word_id
+		WHERE isp.inasra_id = ?
+	''', inasraid)
+	if len(we_are_spines) > 0:
+		return we_are_spines[0]
+	else:
+		return None
+
 def get_word_links(word: str):
 	return list(map(lambda word_link : word_link['link'], db_query('''
 		SELECT wl.link
