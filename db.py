@@ -75,7 +75,7 @@ def get_last_inasra_word(inasraid: int):
 		FROM inasra_words iw
 		LEFT JOIN word w ON w.id = iw.word_id
 		WHERE iw.inasra_id = ?
-		ORDER BY prev_word_id
+		ORDER BY parent_word_id
 	''', inasraid)
 	if len(last_inasra_word) > 0:
 		return last_inasra_word[0]
