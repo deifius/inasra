@@ -1,12 +1,17 @@
 #!/usr/bin/env python3
 
+import os
+
+os.system('./scripts/pips.sh -q')
+os.system('./scripts/initdb.sh > /dev/null')
+
 from flask import Flask, request, redirect, render_template, url_for
 from subprocess import Popen, PIPE, STDOUT, check_output
 import json, re, os, pwd, Acronymizer as acronymizer
 import copy
 from random import shuffle
 import wikipedia, re
-import wikichomp, spinylize
+import wikichomp
 import inasra
 import db
 
@@ -29,19 +34,17 @@ def web_acronymizer(word, relephants):
 	for eachletter in enumerate(word): #Click Me!
 		if eachletter[1] in [' ', '-', '.', ',','&'] or eachletter[0] == 0:
 			this += ""
-		elif eachletter[1] in ['{','(','[','}',')',']']:
-			break
 		else:
 			ourletter = eachletter[1].capitalize()
 			for paragraph in content:
 				if acro_fren[eachletter[0]].lower() in paragraph.lower():
 					paragraph = re.sub(acro_fren[eachletter[0]], f' {acro_fren[eachletter[0]].upper()}', paragraph, flags=re.IGNORECASE)
 					insert_hover = f'title="{paragraph}"'
-					#print(insert_hover)
+					print(insert_hover)
 					break
 				else: insert_hover = f'title="no clue how {acro_fren[eachletter[0]]} relates to {word}"'
 			this += f'''	<br>
-							<a href='{acro_fren[eachletter[0]]}/{eachletter[0]}'{insert_hover}>
+							<a href='{acro_fren[eachletter[0]]}'{insert_hover}>
 							<button type="button">
 							<p style="font-family:monospace; line-height:.4"><font size='+2'>
 							{ourletter} </font></p></button>&emsp;
@@ -61,7 +64,7 @@ def web_acronymizer(word, relephants):
 							break
 						else: insert_hover = f'title="no clue how {everyword} relates to {word}"'
 					this += f"""<button><p style='line-height:.7'>
-								<a href='{everyword}/{eachletter[0]}'{insert_hover}>
+								<a href='{everyword}'{insert_hover}>
 								{everyword}</a></p></button>"""
 			this += f'''</div></div>'''
 	return this
@@ -86,10 +89,7 @@ def recurs_spinalyze_post(word):
 @app.route("/<word>", methods=['GET'])
 def recurs_spinalyze(word):
 	try:
-		wordspace_word = word#.replace(' ','')
-		#if "(" in wordspace_word:
-		#	wordspace_word = wordspace_word.split('(')[0]
-		print(f'{word} is already in!') if word in ['favicon.ico'] + big_inasra.wordspace else big_inasra.wordspace.append(wordspace_word)
+		print(f'{word} is already in!') if word in ['favicon.ico'] + big_inasra.wordspace else big_inasra.wordspace.append(word)
 	except:
 		print(f"couldn't add to the wordspace: {word}")
 	relephants = db.get_word_links(word)
@@ -166,7 +166,8 @@ def kenburns(word):
 	for trash in trashpictures:
 		try:
 			all_image_urls.remove(trash)
-		except: pass
+		except:
+			print(f'{trash} not found')
 	shuffle(all_image_urls)
 	return render_template("kenburns.html", word=word, images=all_image_urls, imagequantity=len(all_image_urls))
 
@@ -184,4 +185,5 @@ def build_the_spine(word, spine_pos):
 
 
 if __name__ == "__main__":
-	app.run(debug=True, host="0.0.0.0", port=5000)
+	myuser_id = int(check_output(['id','-g']))
+	app.run(debug=True, host="0.0.0.0", port=6000+myuser_id)
