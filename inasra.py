@@ -154,7 +154,7 @@ class inasra: #
 		# word_tuple = word_tuples[0]
 		# return {"id": word_tuple[0]}
 	def write_self_to_db(self):
-		self.inasraid = db.db_insert("inasra", name = self.title, height = self.dimensions['height'], width = self.dimensions['width'])
+		self.inasraid = db.db_insert("inasra", name = self.title)
 	def write_word_to_db(self, word):
 		word_obj = self.db_word_obj(word)
 		if not word_obj or not self.inasraid:
@@ -177,7 +177,7 @@ class inasra: #
 			direction = direction,
 			x = x,
 			y = y,
-			prev_word_id = prev_word_id,
+			parent_word_id = prev_word_id,
 		)
 	def Start(self):
 		is_context_cli = True # Hardcoded for now
@@ -189,7 +189,7 @@ class inasra: #
 			system("ps -ef|grep visualise | grep -v grep || xterm -e  './visualizations/bashvisualise.py'")
 		else: pass # we were called by a web browser TODO
 
-		inasraid = db.db_insert("inasra", name = word, height = 0, width = 0)
+		inasraid = db.db_insert("inasra", name = word)
 		choice_pos = 0
 
 		# Chomp the starting word
