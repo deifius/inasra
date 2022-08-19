@@ -40,7 +40,7 @@ class inasra: #
 		while len(self.solution) > height:
 			self.solution.pop()
 		while len(self.solution) < height:
-			self.add_one_row_down()
+			self.add_one_row_Down()
 		self.dimensions['width'], self.dimensions['height'] = width, height
 		print(f'{width}, {height}')
 		print(f"new width & height:  {self.dimensions['width']}, {self.dimensions['height']}")
@@ -93,7 +93,7 @@ class inasra: #
 		self.show_solution()
 	def dumps(self):
 		return json.dumps(self.__dict__, indent=2) # export state as json string
-	def add_one_row_down(self):
+	def add_one_row_Down(self):
 		new_empty_row = ['.' for each_row in self.solution[0]]
 		#for each in self.solution[0]: new_empty_line.append('.')
 		self.solution.append(new_empty_row)

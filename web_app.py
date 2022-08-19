@@ -118,7 +118,7 @@ def first_word():
 
 	xword = request.form['firstword'].replace(' ','')
 	for each_char in xword:
-		my_new_inasra.add_one_row_down()
+		my_new_inasra.add_one_row_Down()
 	my_new_inasra.add_word_vert(xword, 0 , 0)
 	my_new_inasra.wordspace.append(xword)
 	# print(my_new_inasra.wordspace)
