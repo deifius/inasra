@@ -1,15 +1,21 @@
 #!/usr/bin/env python3
 
+import os
+
+os.system('./scripts/pips.sh -q')
+os.system('./scripts/initdb.sh > /dev/null')
+
 from flask import Flask, request, redirect, render_template, url_for
 from subprocess import Popen, PIPE, STDOUT, check_output
-import json, re, os, pwd, Acronymizer as acronymizer
+import json, re, pwd, Acronymizer as acronymizer
 from random import shuffle
 import wikipedia, re
-import wikichomp, spinylize
+import wikichomp
 import inasra
 import db
 
 app = Flask(__name__)
+
 
 with open('emptyinasra.ipuz') as this:
 	big_inasra = inasra.inasra(**json.loads(this.read()))
@@ -26,19 +32,17 @@ def acronym_spinifier(word, relephants):
 	for eachletter in enumerate(word): #Click Me!
 		if eachletter[1] in [' ', '-', '.', ',','&'] or eachletter[0] == 0:
 			this += ""
-		elif eachletter[1] in ['{','(','[','}',')',']']:
-			break
 		else:
 			ourletter = eachletter[1].capitalize()
 			for paragraph in content:
 				if acro_fren[eachletter[0]].lower() in paragraph.lower():
 					paragraph = re.sub(acro_fren[eachletter[0]], f' {acro_fren[eachletter[0]].upper()}', paragraph, flags=re.IGNORECASE)
 					insert_hover = f'title="{paragraph}"'
-					#print(insert_hover)
+					print(insert_hover)
 					break
 				else: insert_hover = f'title="no clue how {acro_fren[eachletter[0]]} relates to {word}"'
 			this += f'''	<br>
-							<a href='{acro_fren[eachletter[0]]}/{eachletter[0]}'{insert_hover}>
+							<a href='{acro_fren[eachletter[0]]}'{insert_hover}>
 							<button type="button">
 							<p style="font-family:monospace; line-height:.4"><font size='+2'>
 							{ourletter} </font></p></button>&emsp;
@@ -57,7 +61,7 @@ def acronym_spinifier(word, relephants):
 							break
 						else: insert_hover = f'title="no clue how {everyword} relates to {word}"'
 					this += f"""<button><p style='line-height:.7'>
-								<a href='{everyword}/{eachletter[0]}'{insert_hover}>
+								<a href='{everyword}'{insert_hover}>
 								{everyword}</a></p></button>"""
 			this += f'''</div></div>'''
 	return this
@@ -75,27 +79,19 @@ def about():
 	return render_template('about.html')
 
 @app.route("/firstword/<word>")
-#@app.route("/<nothing>/<word>")
+#@app.route("/<otherwords>/<word>")
 @app.route("/<word>")
-#@app.route("/<word>/")
 def recurs_spinalyze(word):
 	try:
-		wordspace_word = word#.replace(' ','')
-		#if "(" in wordspace_word:
-		#	wordspace_word = wordspace_word.split('(')[0]
-		print(f'{word} is already in!') if word in ['favicon.ico'] + big_inasra.wordspace else big_inasra.wordspace.append(wordspace_word)
+		print(f'{word} is already in!') if word in ['favicon.ico'] + big_inasra.wordspace else big_inasra.wordspace.append(word)
 	except:
 		print(f"couldn't add to the wordspace: {word}")
 	relephants = db.get_word_links(word)
 	if len(relephants) < 1:
 		wikichomp.wikipedia_grab_chomp(word)
 		relephants = db.get_word_links(word)
-	print(f"{big_inasra.wordspace}, yo!")
-	try:
-		big_inasra.solution = spinylize.make_the_spine(big_inasra.wordspace[:-1]+[[big_inasra.wordspace[-1],0]])
-		big_inasra.show_solution()
-	except: print('no spine yet')
-	return acronym_spinifier(word, relephants)
+	print(big_inasra.wordspace)
+	return '/'.join(big_inasra.wordspace) + '<br><br>' + acronym_spinifier(word, relephants)
 
 @app.route('/first_word/', methods=['POST'])
 def first_word():
@@ -141,7 +137,8 @@ def kenburns(word):
 	for trash in trashpictures:
 		try:
 			all_image_urls.remove(trash)
-		except: pass
+		except:
+			print(f'{trash} not found')
 	shuffle(all_image_urls)
 	return render_template("kenburns.html", word=word, images=all_image_urls, imagequantity=len(all_image_urls))
 
@@ -149,13 +146,7 @@ def kenburns(word):
 def framing(word):
 	return render_template('framingdevice.html', word=word)
 
-@app.route("/<word>/<spine_pos>")
-def build_the_spine(word, spine_pos):
-	try: big_inasra.wordspace[-1] = [big_inasra.wordspace[-1], spine_pos]
-	except: print(f"didn't add position to {big_inasra.wordspace}")
-	print(f"spine_pos: my word is {word}")
-	return redirect(f'/{word}')
-
-
 if __name__ == "__main__":
-	app.run(debug=True, host="0.0.0.0", port=5000)
+	myuser_id = int(check_output(['id','-g']))
+	app.run(debug=True, host="0.0.0.0", port=6000+myuser_id)
+

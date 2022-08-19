@@ -16,7 +16,7 @@ def db_insert(table, **values):
 	connection.commit()
 	cursor.close()
 	connection.close()
-	# print(cursor.lastrowid)
+	#print(f"cursor lastrowid is {cursor.lastrowid} m'lord")
 	return cursor.lastrowid
 def db_query(query, *values):
 	connection = sqlite3.connect('inasra.sqlite3')
@@ -53,8 +53,21 @@ def get_word(word: str):
 	return db_query('''
 		SELECT *
 		FROM word
-		WHERE word = ?
+		WHERE word LIKE ?
 	''', word)
+
+def get_last_inasra_word(inasraid: int):
+	last_inasra_word = db_query('''
+		SELECT iw.id, iw.direction, iw.x, iw.y, iw.char_pos, w.word, w.url, w.summary, w.content
+		FROM inasra_words iw
+		LEFT JOIN word w ON w.id = iw.word_id
+		WHERE iw.inasra_id = ?
+		ORDER BY prev_word_id
+	''', inasraid)
+	if len(last_inasra_word) > 0:
+		return last_inasra_word[0]
+	else:
+		return None
 
 def get_word_value(word: str, key: str):
 	word_rows = get_word(word)
@@ -63,14 +76,67 @@ def get_word_value(word: str, key: str):
 	else:
 		return None
 
+def add_one_inasra_spine_please(inasra_id: int, word: str, choice_pos: int, *args):
+	# word_id = db_query_value("id", "SELECT w.id FROM word w WHERE w.word = ?", word)
+	word_id = get_word_value(word, "id")
+	prev_word = db_query_one("SELECT s.* FROM inasra_spine s WHERE s.inasra_id = ? ORDER BY s.id DESC LIMIT 1", inasra_id)
+	if word_id == None:
+		print(f"yea, thy word {word} be inaccurate for thy inasra {inasra_id}")
+		return None
+
+	if len(args) == 1:
+		dimension = args[0]
+	else:
+		try:
+			if prev_word == None:
+				dimension = "x"
+			else:
+				do_the_opposite = {
+					"horiz": "vert",
+					"vert": "horiz",
+					"x": "y",
+					"y": "x",
+					"across": "down",
+					"down": "across"
+				}
+				dimension = do_the_opposite[prev_word.dimension]
+		except:
+			print(f"we tried homie, but ya can't opposite {prev_word.dimension}")
+			return None
+
+	if prev_word == None:
+		prev_word_id = None
+	else:
+		prev_word_id = prev_word.id
+
+	spineid = db.db_insert("inasra_spine",
+		inasra_id = inasra_id,
+		word_id = word_id,
+		dimension = dimension,
+		choice_pos = choice_pos,
+		prev_word_id = prev_word.id
+	)
+	return spineid
+
 def get_word_summary(word: str):
 	return get_word_value(word, "summary")
 
 def get_word_content(word: str):
 	return get_word_value(word, "content")
 
-# def db_query_one(query, *values):
-# 	return db_query(query, values)
+def db_query_value(key, query, *values):
+	row = db_query_one(query, *values)
+	if row == None:
+		return None
+	else:
+		return row[key]
+
+def db_query_one(query, *values):
+	rows = db_query(query, *values)
+	if len(rows) < 1:
+		return None
+	else:
+		return rows[0]
 
 def logginDB(inasra):
 	def print_pre_state(*args, **kwargs):
