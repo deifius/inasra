@@ -196,4 +196,5 @@ def spine_look():
 		return check_output(['./xword2html.py','currentspine.txt'])
 	except: return 'no spine yet'
 if __name__ == "__main__":
-	app.run(debug=True, host="0.0.0.0", port=5000)
+	myuser_id = int(check_output(['id','-g']))
+	app.run(debug=True, host="0.0.0.0", port=6000+myuser_id)
