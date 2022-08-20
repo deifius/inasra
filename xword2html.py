@@ -36,8 +36,6 @@ function klik(btn) {
 	document.location = `/cluez/lukifer/usufruct?action=click&x=${x}&y=${y}`;
 }
 </script>
-
-<h2>INASRA</h2>
 '''
 footer = '</html>\n</body>'
 
