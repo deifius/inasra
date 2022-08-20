@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 
+import os
+
+os.system('./scripts/pips.sh -q > /dev/null')
+os.system('./scripts/initdb.sh > /dev/null')
+
 from flask import Flask, request, redirect, render_template, url_for
 from subprocess import Popen, PIPE, STDOUT, check_output
 import json, re, os, pwd, Acronymizer as acronymizer
@@ -100,6 +105,8 @@ def recurs_spinalyze(word):
 	try:
 		your_inasra.solution = spinylize.make_the_spine(your_inasra.wordspace[:-1]+[[your_inasra.wordspace[-1],0]])
 		your_inasra.show_solution()
+		#import pdb; pdb.set_trace()
+		with open('currentspine.txt','w') as chacha: chacha.write(json.dumps(your_inasra.solution))
 	except: print('no spine yet')
 	return web_acronymizer(word, relephants)
 
@@ -183,5 +190,10 @@ def build_the_spine(word, spine_pos):
 	return redirect(f'/{word}')
 
 
+@app.route('/spine_peak')
+def spine_look():
+	try:
+		return check_output(['./xword2html.py','currentspine.txt'])
+	except: return 'no spine yet'
 if __name__ == "__main__":
 	app.run(debug=True, host="0.0.0.0", port=5000)

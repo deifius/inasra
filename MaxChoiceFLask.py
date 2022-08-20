@@ -11,7 +11,7 @@ import json, re, os, pwd, Acronymizer as acronymizer
 import copy
 from random import shuffle
 import wikipedia, re
-import wikichomp
+import wikichomp, spinylize
 import inasra
 import db
 
@@ -34,13 +34,15 @@ def web_acronymizer(word, relephants):
 	for eachletter in enumerate(word): #Click Me!
 		if eachletter[1] in [' ', '-', '.', ',','&'] or eachletter[0] == 0:
 			this += ""
+		elif eachletter[1] in ['{','(','[','}',')',']']:
+			break
 		else:
 			ourletter = eachletter[1].capitalize()
 			for paragraph in content:
 				if acro_fren[eachletter[0]].lower() in paragraph.lower():
 					paragraph = re.sub(acro_fren[eachletter[0]], f' {acro_fren[eachletter[0]].upper()}', paragraph, flags=re.IGNORECASE)
 					insert_hover = f'title="{paragraph}"'
-					print(insert_hover)
+					#print(insert_hover)
 					break
 				else: insert_hover = f'title="no clue how {acro_fren[eachletter[0]]} relates to {word}"'
 			this += f'''	<br>
