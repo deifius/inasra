@@ -2,9 +2,15 @@
 
 from glob import glob
 import json
-import re
+import re, db
 from pdb import set_trace as st
 from sys import argv
+
+'''
+	This needs critical refactoring.
+	desired inputs: a big globby list of all links
+	desired output: a set of links ordered by redundancy in list
+'''
 
 def get_acroglob():
 	acroglob = []
@@ -36,6 +42,7 @@ def main():
 	 Most referred words are last, least are first '''
 	goodwords = refine_goodwords(make_maybe_bone(get_acroglob()))
 	freqygoodwords = sorted(set(goodwords), key = lambda ele: goodwords.count(ele))
+	st()
 	with open('freqygoodwords.json','w') as writeitout: writeitout.write(json.dumps(freqygoodwords))
 
 if __name__ == '__main__': main()

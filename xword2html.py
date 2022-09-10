@@ -46,6 +46,6 @@ footer = '</html>\n</body>'
 
 print(header)
 #print(tabulate(this, tablefmt='html'))
-print(re.sub('>([\S\s])<', r'><button onclick="klik(this)">\1</button><',tabulate(this, tablefmt='html')))
+print(re.sub('>([\S\s])<', r'><button onclick=crystalization(spine, wordbones)>\1</button><',tabulate(this, tablefmt='html')))
 
 print(footer)

@@ -1,15 +1,12 @@
 #!/usr/bin/env python3
 
-import json, re
+import json, re, pdb, os
 from sys import argv
 from glob import glob
 
-import pdb
-
-import os
-
 ''' Hallo I generate an html with buttons for letters to std
     input xwordspine.json'''
+
 with open(argv[1]) as ok: spine = json.loads(ok.read())
 
 jayzawn = {

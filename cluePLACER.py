@@ -5,7 +5,7 @@ import re
 from os import system
 from sys import argv
 
-'''
+Job = '''
 feed me :
 	a partially constructed crossword puzzle in a 2d array (ipuz)
 	& a word you want to place on the board,
@@ -14,13 +14,19 @@ feed me :
 	zip* the board to do down!!
  '''
 
+def loadargs():
+	try:
+		alexicon = argv[1]
+		position = [int(argv[2]),int(argv[3])]
+		try: orientation = argv[4]
+		except: pass
+		try: board = argv[5]
+		except:
+			with open("xwordspine.json") as readio: board =json.loads(readio.read())
+	except:
+		print(Job);
 
-with open("xwordspine.json") as readio: board =json.loads(readio.read())
 
-alexicon = argv[1]
-position = [int(argv[2]),int(argv[3])]
-try: orientation = argv[4]
-except: pass
 
 def sanitize(alexicon):
 	if len(alexicon) > len(board[0]) - position[1]:
@@ -46,6 +52,7 @@ def insert(alexicon, position):
 	#for e in board: print(e)
 
 def main():
+	loadargs()
 	insert(sanitize(alexicon), position)
 	with open('.NextMoves/'+alexicon+".HORIZ."+str(position[0])+'.'+str(position[1]), 'w') as writio:
 		writio.write(json.dumps(board))

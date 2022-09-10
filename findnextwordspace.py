@@ -65,6 +65,7 @@ def findnextwordspace (board, alexicon):
 		where is processLegalPlaceItem defined?
 		goodplaces = tuple(map(lambda item : processLegalPlaceItem(alexicon, item), legalplace))'''
 		goodplaces = []
+		st()
 		for eachplace in legalplace:
 			goodplaces.append('[[' + str(eachplace).replace('(','').replace(')','').replace(', ','],') + "], " + alexicon)
 		return goodplaces
@@ -78,8 +79,10 @@ def sanitize(board, alexicon):
 		return alexicon
 
 def main():
-	with open("xwordspine.json") as readio:
-		board = json.loads(readio.read())
+	try: board = argv[2]
+	except:
+		with open("xwordspine.json") as readio:
+			board = json.loads(readio.read())
 	alexicon = argv[1]
 	cleanexicon= sanitize(board, alexicon)
 	horiz = findnextwordspace(board, cleanexicon)
