@@ -122,12 +122,12 @@ def add_one_inasra_spine_please(inasra_id: int, word: str, choice_pos: int, *arg
 	else:
 		prev_word_id = prev_word.id
 
-	spineid = db.db_insert("inasra_spine",
+	spineid = db_insert("inasra_spine",
 		inasra_id = inasra_id,
 		word_id = word_id,
 		dimension = dimension,
 		choice_pos = choice_pos,
-		prev_word_id = prev_word.id
+		prev_word_id = prev_word_id
 	)
 	return spineid
 
@@ -157,7 +157,7 @@ def logginDB(inasra):
 		inasra.history.append(args, kwargs)#########TODO
 		try:
 			result = inasra(*args, **kwargs)
-			db.db_insert(inasra.dumps()) ###########TODO
+			# db_insert(inasra.dumps()) ###########TODO
 		except TypeError as err:
 			print(f'failed: {err}')
 			result = -1
