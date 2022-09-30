@@ -192,12 +192,15 @@ def build_the_spine(word, spine_pos):
 	print(f"spine_pos: my word is {word}, my spine id is {spine_id}")
 	return redirect(f'/{word}')
 
-
 @app.route('/spine_peak')
 def spine_look():
 	try:
 		return check_output(['./xword2html.py','currentspine.txt'])
 	except: return 'no spine yet'
+
+def crystalization(spine, wordbones):
+	print(f'{json.dumps(spine)}\n{json.dums(wordbones)}')
+
 if __name__ == "__main__":
 	myuser_id = int(check_output(['id','-g']))
 	app.run(debug=True, host="0.0.0.0", port=6000+myuser_id)
