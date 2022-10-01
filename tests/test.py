@@ -3,6 +3,7 @@ import unittest
 import sys
 import re
 import inspect
+import json
 from functools import reduce
 
 current_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
@@ -10,9 +11,66 @@ parent_dir = os.path.dirname(current_dir)
 sys.path.insert(0, parent_dir)
 
 import Start_New_inasra
-import lambda_experiment as ws
+from legacy import lambda_experiment as ws
+import findnextwordspace
+
+with open("tests/testspine.json") as readio:
+	testspine = json.loads(readio.read())
 
 class TestStringMethods(unittest.TestCase):
+
+	def test_rotateboard(self):
+		testboard = [['a', 'b'], ['c', 'd']]
+		rotato = findnextwordspace.rotateboard(testboard)
+		self.assertEqual(rotato, [['a', 'c'], ['b', 'd']])
+
+	def test_sanitize(self):
+		taco = findnextwordspace.sanitize(testspine, 'ta co')
+		nah = findnextwordspace.sanitize(testspine, 'n_a_h')
+		self.assertEqual(taco, 'taco')
+		self.assertEqual(nah, None)
+
+	def test_generate_faux_regex_lines(self):
+		# print("+ " * len(testspine[0]) + "+ +")
+		# for each_line in testspine:
+		# 	print(f"+ {' '.join(each_line)} +")
+		# print("+ " * len(testspine[0]) + "+ +")
+		lines = findnextwordspace.generate_faux_regex_lines(testspine)
+		self.assertEqual(lines[0][0], 'S')
+		self.assertEqual(lines[1], 'i.................................')
+		self.assertEqual(lines[3], 'AdaptationSofSherlockHolmes.......')
+		self.assertEqual(lines[5], 't.........e.......................')
+
+	def test_identify_legalplace(self):
+		lines = findnextwordspace.generate_faux_regex_lines(testspine)
+		legalplaces_list = findnextwordspace.identify_legalplace(lines, 'taco')
+		legit_x, legit_y = legalplaces_list[0]
+		self.assertEqual(legit_x, 5)
+		self.assertEqual(legit_y, 0)
+		self.assertEqual(len(legalplaces_list), 8)
+		self.assertEqual(legalplaces_list, [(5, 0), (8, 7), (9, 8), (12, 7), (17, 9), (23, 22), (27, 7), (30, 7)])
+
+	def test_findnextwordspace_vert(self):
+		# lines = findnextwordspace.generate_faux_regex_lines(testspine)
+		# print(lines)
+		# FIXME: why dafuq is testspine changing in memory
+		with open("tests/testspine.json") as readio:
+			deffresh = json.loads(readio.read())
+		#
+
+		print("+ " * len(deffresh[0]) + "+ +")
+		for each_line in deffresh:
+			print(f"+ {' '.join(each_line)} +")
+		print("+ " * len(deffresh[0]) + "+ +")
+
+		rotato = findnextwordspace.rotateboard(deffresh)
+		print("+ " * len(rotato[0]) + "+ +")
+		for each_line in rotato:
+			print(f"+ {' '.join(each_line)} +")
+		print("+ " * len(rotato[0]) + "+ +")
+		vert = findnextwordspace.findnextwordspace(rotato, 'taco')
+		for item in vert: print(item)
+		self.assertEqual(vert, [(2, 2), (4, 3), (5, 2), (6, 3), (8, 0), (14, 20), (15, 21), (17, 18), (18, 0), (19, 1), (21, 20), (22, 0), (32, 19)])
 
 	def test_upper(self):
 		self.assertEqual('foo'.upper(), 'FOO')
