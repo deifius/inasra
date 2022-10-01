@@ -103,6 +103,8 @@ def recurs_spinalyze(word):
 		relephants = db.get_word_links(word)
 	print(f"{your_inasra.inasraid} {your_inasra.wordspace}, yo!")
 	try:
+		spine_pos = 0 # fixme
+		spine_id = db.add_one_inasra_spine_please(your_inasra.inasraid, wordspace_word, spine_pos)
 		your_inasra.solution = spinylize.make_the_spine(your_inasra.wordspace[:-1]+[[your_inasra.wordspace[-1],0]])
 		your_inasra.show_solution()
 		#import pdb; pdb.set_trace()
@@ -122,6 +124,7 @@ def first_word():
 	my_new_inasra.title = word
 	my_new_inasra.write_self_to_db()
 	my_new_inasra.write_word_to_db(word)
+	spine_id = db.add_one_inasra_spine_please(my_new_inasra.inasraid, word, 0, "x")
 
 	xword = request.form['firstword'].replace(' ','')
 	for each_char in xword:
