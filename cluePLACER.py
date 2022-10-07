@@ -25,10 +25,10 @@ def loadargs():
 			with open("xwordspine.json") as readio: board =json.loads(readio.read())
 	except:
 		print(Job);
+	return alexicon, position, board
 
 
-
-def sanitize(alexicon):
+def sanitize(alexicon, board, position):
 	if len(alexicon) > len(board[0]) - position[1]:
 		print("too long, submit shorter word")
 		exit()
@@ -40,7 +40,7 @@ def sanitize(alexicon):
 		print("remove offending characters, submit l8ter")
 		exit()
 
-def insert(alexicon, position):
+def insert(alexicon, position, board):
 	#set_trace()
 	regexalexicon = re.compile(''.join(board[position[0]][position[1]:position[1]+len(alexicon)]).replace(' ','.'))
 	if regexalexicon.match(alexicon) is None:
@@ -52,8 +52,8 @@ def insert(alexicon, position):
 	#for e in board: print(e)
 
 def main():
-	loadargs()
-	insert(sanitize(alexicon), position)
+	alexicon, position, board = loadargs()
+	insert(sanitize(alexicon, board, position), position, board)
 	with open('.NextMoves/'+alexicon+".HORIZ."+str(position[0])+'.'+str(position[1]), 'w') as writio:
 		writio.write(json.dumps(board))
 

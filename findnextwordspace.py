@@ -86,6 +86,8 @@ def sanitize(board, alexicon):
 		alexicon = ''.join(alexicon.lower().split(' '))
 		return alexicon
 
+
+
 ''' arg[1]: word (string) '''
 ''' arg[2]: board (string[][] / xwordspine.json) '''
 def main():
@@ -101,11 +103,11 @@ def main():
 
 	# horiz/vert = [(1,2), (3,4)]
 	# TODO: refactor cluePLACERs to pass valid coords directly to browser for rendering / UI
-
+	#st()
 	for clue in horiz:
-		subprocess.call(['python3', 'cluePLACER.py'] + clue.split(' ') + ['&'])
+		subprocess.call(['python3', 'cluePLACER.py'] + [alexicon, str(clue[0]), str(clue[1])])
 		#subprocess.call(['python3', 'clueonMTtable.py'] + clue.split(' ') + ['&'])
 	for clue in vert:
-		subprocess.call(['python3', 'cluePLACERvert.py'] + clue.split(' ') + ['&'])
+		subprocess.call(['python3', 'cluePLACERvert.py'] + [alexicon, str(clue[0]), str(clue[1])])
 
 if __name__ == "__main__" : main()
