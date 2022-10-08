@@ -54,7 +54,7 @@ def insert(alexicon, position, board):
 def main():
 	alexicon, position, board = loadargs()
 	insert(sanitize(alexicon, board, position), position, board)
-	with open('.NextMoves/'+alexicon+".HORIZ."+str(position[0])+'.'+str(position[1]), 'w') as writio:
-		writio.write(json.dumps(board))
+	print(json.dumps(board))
+	#with open('.NextMoves/'+alexicon+".HORIZ."+str(position[0])+'.'+str(position[1]), 'w') as writio: writio.write(json.dumps(board))
 
 if __name__ == "__main__" : main()

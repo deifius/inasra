@@ -102,8 +102,9 @@ def main():
 	''' vert is throwing real bad answers...  we need to work on this!'''
 
 	# horiz/vert = [(1,2), (3,4)]
-	# TODO: refactor cluePLACERs to pass valid coords directly to browser for rendering / UI
-	#st()
+	# TODO: pass valid coords directly to browser for rendering / UI
+	# TODO: pass all clues to cluePlacer in a dict, which performs all verts and horizes
+
 	for clue in horiz:
 		subprocess.call(['python3', 'cluePLACER.py'] + [alexicon, str(clue[0]), str(clue[1])])
 		#subprocess.call(['python3', 'clueonMTtable.py'] + clue.split(' ') + ['&'])
