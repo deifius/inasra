@@ -99,7 +99,6 @@ def main():
 	cleanexicon = sanitize(board, alexicon)
 	horiz = findnextwordspace(board, cleanexicon)
 	vert = findnextwordspace(rotateboard(board), cleanexicon)
-	''' vert is throwing real bad answers...  we need to work on this!'''
 
 	# horiz/vert = [(1,2), (3,4)]
 	# TODO: pass valid coords directly to browser for rendering / UI
@@ -109,6 +108,6 @@ def main():
 		subprocess.call(['python3', 'cluePLACER.py'] + [alexicon, str(clue[0]), str(clue[1])])
 		#subprocess.call(['python3', 'clueonMTtable.py'] + clue.split(' ') + ['&'])
 	for clue in vert:
-		subprocess.call(['python3', 'cluePLACERvert.py'] + [alexicon, str(clue[0]), str(clue[1])])
+		subprocess.call(['python3', 'cluePLACER.py'] + [alexicon, str(clue[0]), str(clue[1]), 'vert'])
 
 if __name__ == "__main__" : main()

@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
-import json
-import re
-#from pdb import set_trace
+import json, re
 from os import system
+from pdb import set_trace
 from sys import argv
 
 Job = '''
@@ -19,13 +18,13 @@ def loadargs():
 		alexicon = argv[1]
 		position = [int(argv[2]),int(argv[3])]
 		try: orientation = argv[4]
-		except: pass
+		except: orientation = 'horiz'
 		try: board = argv[5]
 		except:
 			with open("xwordspine.json") as readio: board =json.loads(readio.read())
 	except:
 		print(Job);
-	return alexicon, position, board
+	return alexicon, position, board, orientation
 
 
 def sanitize(alexicon, board, position):
@@ -52,9 +51,12 @@ def insert(alexicon, position, board):
 	#for e in board: print(e)
 
 def main():
-	alexicon, position, board = loadargs()
+	alexicon, position, board, orientation = loadargs()
+	print(f'orientation: {orientation}')
+	if orientation == 'vert': 	board = [list(row) for row in list(zip(*board))]
 	insert(sanitize(alexicon, board, position), position, board)
+	if orientation == 'vert': 	board = [list(row) for row in list(zip(*board))]
 	print(json.dumps(board))
-	#with open('.NextMoves/'+alexicon+".HORIZ."+str(position[0])+'.'+str(position[1]), 'w') as writio: writio.write(json.dumps(board))
+	with open(f'.NextMoves/{alexicon}.{orientation}.{str(position[0])}.{str(position[1])}', 'w') as writio: writio.write(json.dumps(board))
 
 if __name__ == "__main__" : main()
