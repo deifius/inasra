@@ -9,7 +9,10 @@ from sys import argv
 '''	Hallo I generate an html with buttons for letters to std
 	input xwordspine.json
 	this = argv[1]'''
-with open(argv[1]) as ok: this = json.loads(ok.read())
+try:
+	with open(argv[1]) as ok: this = json.loads(ok.read())
+except:
+	this = json.loads(argv[1])
 #with open('xwordspine.json') as ok: this = json.loads(ok.read())
 
 #for each in enumerate(this):

@@ -76,7 +76,7 @@ def web_acronymizer(word, relephants):
 def index():
 	with open('emptyinasra.ipuz') as this:
 		your_inasra = inasra.inasra(**json.loads(this.read()))
-	#with open('.eggspine.txt','w') as egg: egg.write('')
+	with open('.eggspine.txt','w') as egg: egg.write('')
 	return render_template('home.html')
 
 @app.route("/about")
@@ -103,13 +103,13 @@ def recurs_spinalyze(word):
 		relephants = db.get_word_links(word)
 	print(f"{your_inasra.inasraid} {your_inasra.wordspace}, yo!")
 	try:
+		#import pdb; pdb.set_trace()
 		spine_pos = 0 # fixme
-		spine_id = db.add_one_inasra_spine_please(your_inasra.inasraid, wordspace_word, spine_pos)
+		#spine_id = db.add_one_inasra_spine_please(your_inasra.inasraid, wordspace_word, spine_pos)
 		your_inasra.solution = spinylize.make_the_spine(your_inasra.wordspace[:-1]+[[your_inasra.wordspace[-1],0]])
 		your_inasra.show_solution()
-		#import pdb; pdb.set_trace()
 		with open('currentspine.txt','w') as chacha: chacha.write(json.dumps(your_inasra.solution))
-	except: print('no spine yet')
+	except: print('no SPINE yet')
 	return web_acronymizer(word, relephants)
 
 @app.route('/first_word/', methods=['POST'])
@@ -140,8 +140,8 @@ def first_word():
 	your_inasra = copy.deepcopy(my_new_inasra)
 	# global your_inasra
 	# your_inasra = copy.deepcopy(my_new_inasra)
-	# print(f"we saved u a your_inasra: {your_inasra.inasraid}")
-	# print(f"nevermind the bollocks here's the your_inasra: {your_inasra.dumps()}")
+	print(f"we saved u a your_inasra: {your_inasra.inasraid}")
+	print(f"nevermind the bollocks here's the your_inasra: {your_inasra.dumps()}")
 	return redirect("/"+word)
 
 @app.route('/kenburns/<word>')
@@ -195,9 +195,12 @@ def build_the_spine(word, spine_pos):
 @app.route('/spine_peak')
 def spine_look():
 	try:
-		return check_output(['./xword2html.py','currentspine.txt'])
-	except: return 'no spine yet'
+		#from pdb import set_trace; set_trace()
+		return check_output(['./xword2html.py',json.dumps(your_inasra.solution)])
+		#return json.dumps(your_inasra.solution)
+	except: return 'no spine yet!!'
 
+@app.route('/crysalcification')
 def crystalization(spine, wordbones):
 	print(f'{json.dumps(spine)}\n{json.dums(wordbones)}')
 
