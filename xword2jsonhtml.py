@@ -7,7 +7,7 @@ from glob import glob
 ''' Hallo I generate an html with buttons for letters to std
     input xwordspine.json'''
 
-with open(argv[1]) as ok: spine = json.loads(ok.read())
+with open(argv[1]) as ok: spine = json.loads(ok.read())  # This is equivalent to the inasra.solution
 
 jayzawn = {
   "title": "INASRA",

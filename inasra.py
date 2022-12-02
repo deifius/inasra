@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 import json
 from findnextwordspace import findnextwordspace
 import db
@@ -9,6 +10,8 @@ from lorem import text as lorem
 import Acronymizer
 import Start_New_inasra
 import wikichompdb
+from collections import OrderedDict
+
 #from inasra import inasra as inasra lol
 
 class inasra: #
@@ -179,6 +182,21 @@ class inasra: #
 			y = y,
 			parent_word_id = prev_word_id,
 		)
+	def set_lexicon(self):
+		raise InsertCheeseErr('''
+					This could be wordlistpreparer.main() but that is in serious need of refactoring
+					desired inputs: glob of every article reference from every word in the spine of the board
+					desired output: a set of links ordered by redundancy in list, minus words already on board
+
+				''')
+		links_to_spine = [] # every link in every article for every word in the spine
+		sorted_by_frequency = sorted(links_to_spine, key = links_to_spine.count,reverse = True)
+		ordered_set = list(OrderedDict.fromkeys(sorted_by_frequency))
+		for each_word in self.wordspace:
+			try: ordered_set.remove(each_word)
+			except: print(f"perhaps {each_word} isnt that great a word")
+		self.lexicon = ordered_set
+		return self.lexicon
 	def Start(self):
 		is_context_cli = True # Hardcoded for now
 		if is_context_cli:
