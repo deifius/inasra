@@ -6,6 +6,19 @@ import inspect
 import json
 from functools import reduce
 
+# setting path
+# sys.path.append('../parentdirectory')
+sys.path.append('../db.py')
+
+# importing
+# from parentdirectory.geeks import geek_method
+# from db import db
+
+# sys.path.append('/Users/lukifer/Projects/inasra/db.py')
+# sys.path.append('../db.py')
+
+import db
+
 current_dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 parent_dir = os.path.dirname(current_dir)
 sys.path.insert(0, parent_dir)
@@ -58,18 +71,18 @@ class TestStringMethods(unittest.TestCase):
 			deffresh = json.loads(readio.read())
 		#
 
-		print("+ " * len(deffresh[0]) + "+ +")
-		for each_line in deffresh:
-			print(f"+ {' '.join(each_line)} +")
-		print("+ " * len(deffresh[0]) + "+ +")
+		# print("+ " * len(deffresh[0]) + "+ +")
+		# for each_line in deffresh:
+		# 	print(f"+ {' '.join(each_line)} +")
+		# print("+ " * len(deffresh[0]) + "+ +")
 
 		rotato = findnextwordspace.rotateboard(deffresh)
-		print("+ " * len(rotato[0]) + "+ +")
-		for each_line in rotato:
-			print(f"+ {' '.join(each_line)} +")
-		print("+ " * len(rotato[0]) + "+ +")
+		# print("+ " * len(rotato[0]) + "+ +")
+		# for each_line in rotato:
+		# 	print(f"+ {' '.join(each_line)} +")
+		# print("+ " * len(rotato[0]) + "+ +")
 		vert = findnextwordspace.findnextwordspace(rotato, 'taco')
-		for item in vert: print(item)
+		# for item in vert: print(item)
 		self.assertEqual(vert, [(2, 2), (4, 3), (5, 2), (6, 3), (8, 0), (14, 20), (15, 21), (17, 18), (18, 0), (19, 1), (21, 20), (22, 0), (32, 19)])
 
 	def test_upper(self):
@@ -97,6 +110,20 @@ class TestStringMethods(unittest.TestCase):
 		self.assertEqual(ws.flipWordspace(wordspace), (('h', ' '), ('i', 'f')))
 		self.assertEqual(ws.offAxis('y'), 'x')
 		self.assertEqual(ws.offAxisVal('y', 5, 10), 5)
+
+	def test_article_fetch(self):
+		# TODO: make a persistent / consistent database for testing
+		correlation_links = db.get_word_links('correlation', True)
+		self.assertEqual(len(correlation_links), 409)
+		self.assertEqual(correlation_links[0], 'Absolute value')
+		self.assertEqual(correlation_links[-1], 'Z-test')
+
+	def test_article_fetches(self):
+		# TODO: make a persistent / consistent database for testing
+		correlation_links = db.get_words_links(['correlation', 'catalyst'], True)
+		self.assertEqual(len(correlation_links), 910)
+		self.assertEqual(correlation_links[0], 'ACS Nano')
+		self.assertEqual(correlation_links[-1], 'four-Dimethylaminopyridine')
 
 	def test_wordspace(self):
 		wordspace = (

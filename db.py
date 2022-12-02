@@ -46,20 +46,36 @@ def get_spine_for_inasra(inasraid: int):
 	else:
 		return None
 
-def get_word_links(word: str):
-	return list(map(lambda word_link : word_link['link'], db_query('''
+def get_word_links(word: str, should_sort: bool = False):
+	order_by = ''
+	if should_sort: order_by = 'ORDER BY wl.link ASC'
+	return list(map(lambda word_link : word_link['link'], db_query(f'''
 		SELECT wl.link
 		FROM word_links wl
 		INNER JOIN word w ON wl.word_id = w.id
 		WHERE w.word = ?
+		{order_by}
 		''', word)))
+
+def get_words_links(words: list[str], should_sort: bool = False):
+	order_by = ''
+	if should_sort: order_by = 'ORDER BY wl.link ASC'
+	placeholder = '?'
+	placeholders = ','.join(placeholder * len(words))
+	return list(map(lambda word_link : word_link['link'], db_query(f'''
+		SELECT wl.link
+		FROM word_links wl
+		INNER JOIN word w ON wl.word_id = w.id
+		WHERE w.word IN ({placeholders})
+		{order_by}
+		''', *words)))
 
 def get_word_images(word: str):
 	return list(map(lambda word_image : word_image['image_url'], db_query('''
 		SELECT wi.image_url
 		FROM word_images wi
 		INNER JOIN word w ON wi.word_id = w.id
-		WHERE w.word = ?
+		WHERE w.word = (?)
 		''', word)))
 
 def get_word(word: str):
