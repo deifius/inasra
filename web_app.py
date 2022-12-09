@@ -95,7 +95,7 @@ def recurs_spinalyze(word):
 		wordspace_word = word#.replace(' ','')
 		#if "(" in wordspace_word:
 		#	wordspace_word = wordspace_word.split('(')[0]
-		print(f'{word} is already in!') if word in ['favicon.ico'] + your_inasra.wordspace else your_inasra.wordspace.append(wordspace_word)
+		print(f'{word} is already in!') if word in ['favicon.ico'] + your_inasra.wordspace else your_inasra.wordspace.append([wordspace_word, 0])
 	except:
 		print(f"couldn't add to the wordspace: {word}")
 	relephants = db.get_word_links(word)
@@ -107,7 +107,7 @@ def recurs_spinalyze(word):
 		#import pdb; pdb.set_trace()
 		spine_pos = 0 # fixme
 		#spine_id = db.add_one_inasra_spine_please(your_inasra.inasraid, wordspace_word, spine_pos)
-		your_inasra.solution = spinylize.make_the_spine(your_inasra.wordspace[:-1]+[[your_inasra.wordspace[-1],0]])
+		your_inasra.solution = spinylize.make_the_spine(your_inasra.wordspace)
 		your_inasra.show_solution()
 		with open('currentspine.txt','w') as chacha: chacha.write(json.dumps(your_inasra.solution))
 	except: print('no SPINE yet')
@@ -131,7 +131,7 @@ def first_word():
 	for each_char in xword:
 		my_new_inasra.add_one_row_Down()
 	my_new_inasra.add_word_vert(xword, 0 , 0)
-	my_new_inasra.wordspace.append(xword)
+	my_new_inasra.wordspace.append([xword, 0])
 	# print(my_new_inasra.wordspace)
 	# DEPRECATED
 	os.system(f'mkdir -p users/$USER/{xword}')
@@ -187,7 +187,7 @@ def framing(word):
 
 @app.route("/<word>/<spine_pos>")
 def build_the_spine(word, spine_pos):
-	try: your_inasra.wordspace[-1] = [your_inasra.wordspace[-1], spine_pos]
+	try: your_inasra.wordspace[-1] = [your_inasra.wordspace[-1][0], spine_pos]
 	except: print(f"didn't add position to {your_inasra.wordspace}")
 	spine_id = db.add_one_inasra_spine_please(your_inasra.inasraid, word, spine_pos)
 	print(f"spine_pos: my word is {word}, my spine id is {spine_id}")

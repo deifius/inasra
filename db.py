@@ -53,22 +53,24 @@ def get_word_links(word: str, should_sort: bool = False):
 		SELECT wl.link
 		FROM word_links wl
 		INNER JOIN word w ON wl.word_id = w.id
-		WHERE w.word = ?
+		WHERE w.word LIKE ?
 		{order_by}
 		''', word)))
 
-def get_words_links(words: list[str], should_sort: bool = False):
+def get_multiwords_links(words: list[str], should_sort: bool = False):
 	order_by = ''
 	if should_sort: order_by = 'ORDER BY wl.link ASC'
-	placeholder = '?'
-	placeholders = ','.join(placeholder * len(words))
-	return list(map(lambda word_link : word_link['link'], db_query(f'''
+	placeholder = ['w.word LIKE ?']
+	placeholders = ' OR '.join(placeholder * len(words))
+	sql = f'''
 		SELECT wl.link
 		FROM word_links wl
 		INNER JOIN word w ON wl.word_id = w.id
-		WHERE w.word IN ({placeholders})
+		WHERE {placeholders}
 		{order_by}
-		''', *words)))
+	'''
+	results = db_query(sql, *words)
+	return list(map(lambda word_link : word_link['link'], results))
 
 def get_word_images(word: str):
 	return list(map(lambda word_image : word_image['image_url'], db_query('''

@@ -189,10 +189,7 @@ class inasra: #
 		#			desired output: a set of links ordered by redundancy in list, minus words already on board
 		#		''')
 		spinewords = [x[0] for x in self.wordspace]
-		#spinewords[-1] = self.wordspace[-1]
-		print(f"spinewords:{spinewords}")
-		import pdb; pdb.set_trace()
-		links_to_spine = [db.get_word_links(spinewords)] # every link in every article for every word in the spine
+		links_to_spine = db.get_multiwords_links(spinewords) # every link in every article for every word in the spine
 		sorted_by_frequency = sorted(links_to_spine, key = links_to_spine.count,reverse = True)
 		ordered_set = list(OrderedDict.fromkeys(sorted_by_frequency))
 		for each_word in spinewords:
