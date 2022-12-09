@@ -183,16 +183,19 @@ class inasra: #
 			parent_word_id = prev_word_id,
 		)
 	def set_lexicon(self):
-		raise InsertCheeseErr('''
-					This could be wordlistpreparer.main() but that is in serious need of refactoring
-					desired inputs: glob of every article reference from every word in the spine of the board
-					desired output: a set of links ordered by redundancy in list, minus words already on board
-
-				''')
-		links_to_spine = [] # every link in every article for every word in the spine
+		#raise InsertCheeseErr('''
+		#			This could be wordlistpreparer.main() but thaxt is in serious need of refactoring
+		#			desired inputs: glob of every article reference from every word in the spine of the board
+		#			desired output: a set of links ordered by redundancy in list, minus words already on board
+		#		''')
+		spinewords = [x[0] for x in self.wordspace]
+		#spinewords[-1] = self.wordspace[-1]
+		print(f"spinewords:{spinewords}")
+		import pdb; pdb.set_trace()
+		links_to_spine = [db.get_word_links(spinewords)] # every link in every article for every word in the spine
 		sorted_by_frequency = sorted(links_to_spine, key = links_to_spine.count,reverse = True)
 		ordered_set = list(OrderedDict.fromkeys(sorted_by_frequency))
-		for each_word in self.wordspace:
+		for each_word in spinewords:
 			try: ordered_set.remove(each_word)
 			except: print(f"perhaps {each_word} isnt that great a word")
 		self.lexicon = ordered_set
