@@ -76,7 +76,7 @@ def web_acronymizer(word, relephants):
 def index():
 	with open('emptyinasra.ipuz') as this:
 		your_inasra = inasra.inasra(**json.loads(this.read()))
-	with open('.eggspine.txt','w') as egg: egg.write('')
+	#with open('.eggspine.txt','w') as egg: egg.write('')
 	return render_template('home.html')
 
 @app.route("/about")
@@ -91,18 +91,23 @@ def recurs_spinalyze_post(word):
 @app.route("/<word>", methods=['GET'])
 def recurs_spinalyze(word):
 	try:
-		#import pdb; pdb.set_trace()
+		import pdb; pdb.set_trace()
 		wordspace_word = word#.replace(' ','')
+		print(f"your wordspace_word:word = {wordspace_word}:{word}")
 		#if "(" in wordspace_word:
 		#	wordspace_word = wordspace_word.split('(')[0]
-		print(f'{word} is already in!') if word in ['favicon.ico'] + your_inasra.wordspace else your_inasra.wordspace.append([wordspace_word, 0])
+		if word in ['favicon.ico'] + your_inasra.wordspace:	print(f'{word} is already in!')
+		else:
+			your_inasra.wordspace.append([wordspace_word, 0])
+			your_inasra.history.append(word)
+		print(f'your history:{your_inasra.history}')
 	except:
 		print(f"couldn't add to the wordspace: {word}")
 	relephants = db.get_word_links(word)
 	if len(relephants) < 1:
 		wikichomp.wikipedia_grab_chomp(word)
 		relephants = db.get_word_links(word)
-	print(f"{your_inasra.inasraid} {your_inasra.wordspace}, yo!")
+	print(f"id:{your_inasra.inasraid} wordspace:{your_inasra.wordspace}, yo!")
 	try:
 		#import pdb; pdb.set_trace()
 		spine_pos = 0 # fixme

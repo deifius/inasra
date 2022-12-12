@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import json
-from findnextwordspace import findnextwordspace
+import findnextwordspace
 import db
 from pdb import set_trace
 from os import system
@@ -15,7 +15,7 @@ from collections import OrderedDict
 #from inasra import inasra as inasra lol
 
 class inasra: #
-	def __init__(self, origin, version, kind, copyright, author, publisher, title, intro, empty, dimensions, puzzle, clues, solution, lexicon, wordspace, history):
+	def __init__(self, origin, version, kind, copyright, author, publisher, title, intro, empty, dimensions, puzzle, clues, solution, lexicon, wordspace, history, *args, **kwargs):
 		self.origin = origin
 		self.version = version
 		self.kind = kind
@@ -32,8 +32,10 @@ class inasra: #
 		self.lexicon = lexicon # a list of relevant words ordered by relevance. The relephant herd.
 		self.wordspace = wordspace # the list of words used in the order used.  This game is played by moving words from lexicon to wordspace
 		self.history = history # the list of operations that have led to the current board state
-		if hasattr(self, 'inasraid') == False:
-			self.inasraid = None
+		try: self.inasraid = inasraid
+		except:
+			if hasattr(self, 'inasraid') == False:
+				self.inasraid = None
 	def resize(self, width, height):
 		print(f"old width & height:  {self.dimensions['width']}, {self.dimensions['height']}")
 		while len(self.solution[0]) > width:
@@ -66,7 +68,7 @@ class inasra: #
 	def find_places_for(self, word):
 		'''returns potential boardstates which include word'''
 		def find_horizontal_solutions():
-			return findnextwordspace(self.solution, word)
+				return findnextwordspace.findnextwordspace(self.solution, word)
 		def find_vertical_solutions():
 			self.solution = self.rotate(self.solution)
 			what_you_wanna_know = find_horizontal_solutions()
@@ -76,6 +78,7 @@ class inasra: #
 		decohere = decohere + find_vertical_solutions()
 		return decohere
 	def find_words_for(self, coordinates):
+		self.set_lexicon()
 		raise InsertCheeseErr("some day I'll return a list of boardstates with a new word intersecting the given coordinates")
 	def visualize(self, xwordfield):
 		print("+ " * len(xwordfield[0]) + "+ +")
@@ -188,8 +191,9 @@ class inasra: #
 		#			desired inputs: glob of every article reference from every word in the spine of the board
 		#			desired output: a set of links ordered by redundancy in list, minus words already on board
 		#		''')
-		spinewords = [x[0] for x in self.wordspace]
+		spinewords = self.history
 		links_to_spine = db.get_multiwords_links(spinewords) # every link in every article for every word in the spine
+		import pdb; pdb.set_trace()
 		sorted_by_frequency = sorted(links_to_spine, key = links_to_spine.count,reverse = True)
 		ordered_set = list(OrderedDict.fromkeys(sorted_by_frequency))
 		for each_word in spinewords:
