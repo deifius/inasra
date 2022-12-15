@@ -24,7 +24,7 @@ def loadargs():
 			with open("xwordspine.json") as readio: board =json.loads(readio.read())
 	except:
 		print(Job);
-	return alexicon, position, board, orientation
+	return alexicon, board, position, orientation
 
 
 def sanitize(alexicon, board, position):
@@ -34,27 +34,30 @@ def sanitize(alexicon, board, position):
 	if re.search("[^a-zA-Z ]", alexicon,) is None:
 		alexicon = ''.join(alexicon.lower().split(' '))
 		#set_trace()
-		return alexicon
+		#print(f'alexicon, board, position {alexicon, board, position}')
+		return alexicon.upper().replace(' ',''), board, position
 	else:
 		print("remove offending characters, submit l8ter")
 		exit()
 
-def insert(alexicon, position, board):
+def insert(alexicon, board, position):
 	#set_trace()
 	regexalexicon = re.compile(''.join(board[position[0]][position[1]:position[1]+len(alexicon)]).replace(' ','.'))
 	if regexalexicon.match(alexicon) is None:
-		print(','.join(argv) +'\tnot fit')
-		exit()
+		set_trace()
+		print('\tnot fit')
+		return 0
 	for letter in alexicon:
 		board[position[0]][position[1]] = letter
 		position[1] = position[1]+1
 	#for e in board: print(e)
+	return board
 
 def main():
-	alexicon, position, board, orientation = loadargs()
+	alexicon, board, position, orientation = loadargs()
 	print(f'orientation: {orientation}')
 	if orientation == 'vert': 	board = [list(row) for row in list(zip(*board))]
-	insert(sanitize(alexicon, board, position), position, board)
+	insert(sanitize(alexicon, board, position))
 	if orientation == 'vert': 	board = [list(row) for row in list(zip(*board))]
 	print(json.dumps(board))
 	with open(f'.NextMoves/{alexicon}.{orientation}.{str(position[0])}.{str(position[1])}', 'w') as writio: writio.write(json.dumps(board))
