@@ -41,6 +41,7 @@ def generate_faux_regex_lines(board):
 	for each in board:
 		if re.search("[a-zA-Z]", "".join(each)) is not None:
 			lines.append(''.join(each))
+	print(lines)
 	return lines
 
 def identify_legalplace(lines, alexicon):
@@ -57,6 +58,7 @@ def identify_legalplace(lines, alexicon):
 						if validplace + len(alexicon) + 1 < len(line):
 							if re.search('[a-z| ]', line[valid_end+1],) is None:
 								legalplace.append((pos, validplace))
+	print(f"legal places:{legalplace}")
 	return legalplace
 
 def find_goodplaces(legalplaces, alexicon):
@@ -70,7 +72,6 @@ def find_goodplaces(legalplaces, alexicon):
 		# goodplaces.append('[[' + str(eachplace).replace('(','').replace(')','').replace(', ','],') + "], " + alexicon)
 		goodplaces.append('[' + str(eachplace).replace('(','').replace(')','').replace(', ',',') + "], " + alexicon)
 		# goodplaces.append({"word: alexicon, pos: eachplace})
-
 	return goodplaces
 
 def findnextwordspace (board, alexicon):
@@ -86,10 +87,12 @@ def sanitize(board, alexicon):
 		alexicon = ''.join(alexicon.lower().split(' '))
 		return alexicon
 
+def good_places_for(board, alexicon):
+	cleanexicon = sanitize(board, alexicon)
+	print(f'this cleanex:{cleanexicon}')
+	return findnextwordspace(board, cleanexicon)
 
-
-''' arg[1]: word (string) '''
-''' arg[2]: board (string[][] / xwordspine.json) '''
+''' arg[1]: word (string), arg[2]: board (string[][] / xwordspine.json) '''
 def main():
 	try: board = argv[2]
 	except:
@@ -99,15 +102,12 @@ def main():
 	cleanexicon = sanitize(board, alexicon)
 	horiz = findnextwordspace(board, cleanexicon)
 	vert = findnextwordspace(rotateboard(board), cleanexicon)
-
-	# horiz/vert = [(1,2), (3,4)]
-	# TODO: pass valid coords directly to browser for rendering / UI
+	'''# TODO: pass valid coords directly to browser for rendering / UI
 	# TODO: pass all clues to cluePlacer in a dict, which performs all verts and horizes
-
+	'''
 	for clue in horiz:
 		subprocess.call(['python3', 'cluePLACER.py'] + [alexicon, str(clue[0]), str(clue[1])])
 		#subprocess.call(['python3', 'clueonMTtable.py'] + clue.split(' ') + ['&'])
 	for clue in vert:
 		subprocess.call(['python3', 'cluePLACER.py'] + [alexicon, str(clue[0]), str(clue[1]), 'vert'])
-
 if __name__ == "__main__" : main()

@@ -57,7 +57,7 @@ def get_word_links(word: str, should_sort: bool = False):
 		{order_by}
 		''', word)))
 
-def get_multiwords_links(words: list[str], should_sort: bool = False):
+def get_multiwords_links(words: list, should_sort: bool = False): # there was a list[str] typehint that didnt seem pythonesque
 	order_by = ''
 	if should_sort: order_by = 'ORDER BY wl.link ASC'
 	placeholder = ['w.word LIKE ?']

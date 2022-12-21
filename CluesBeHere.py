@@ -15,6 +15,27 @@ I then compare the list to the freqygoodword list and return any matches
 a reference to a file in .NextMoves/
 '''
 
+def show_cross(zoard, position):
+	board = zoard
+	for row in enumerate(board):
+		#print(f'row:{row}')
+		for col in enumerate(row[1]):
+				if abs(col[0] - position[0]) > 1:
+					if abs(row[0] - position[1]) > 1:
+						board[col[0]][row[0]] = '+'
+				if abs(row[0] - position[1]) == 0:
+					if board[col[0]][row[0]] == ' ':
+						board[col[0]][row[0]] = '.'
+				if abs(col[0] - position[0]) == 0:
+					if board[col[0]][row[0]] == ' ':
+						board[col[0]][row[0]] = '.'
+					if abs(row[0] - position[1]) == 0:
+						board[col[0]][row[0]] = '*'
+	for e in board: e
+	return board
+
+
+
 def main():
 	X,Y = int(argv[1]), int(argv[2])
 	if len(argv) == 4:
