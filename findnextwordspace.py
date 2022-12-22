@@ -45,7 +45,7 @@ def generate_faux_regex_lines(board):
 	return lines
 
 def identify_legalplace(lines, alexicon):
-	# I compare the faux_regex_lines to the alexicon
+	"""I compare the faux_regex_lines to the alexicon"""
 	obstacle = re.compile('\.?[a-z][a-z]+\.?')
 	legalplace = []
 	for pos, line in enumerate(lines):

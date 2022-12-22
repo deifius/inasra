@@ -16,7 +16,7 @@ a reference to a file in .NextMoves/
 '''
 
 def show_cross(zoard, position):
-	board = zoard
+	board = list(map(list, zoard))
 	for row in enumerate(board):
 		#print(f'row:{row}')
 		for col in enumerate(row[1]):

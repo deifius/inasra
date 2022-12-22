@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 import json
 import re
 from pdb import set_trace
@@ -12,7 +13,6 @@ from sys import argv
  	and clueinsert will return the puzzle with the clue inserted
  	zip* the board to do down!!
 '''
-
 
 def sanitize(alexicon, board, position):
 	if len(alexicon) > len(board[0]) - position[1]:
