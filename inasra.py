@@ -201,6 +201,7 @@ class inasra: #
 			except: print(f"perhaps {each_word} isnt that great a word")
 		self.lexicon = ordered_set
 		return self.lexicon
+
 	def Start(self):
 		is_context_cli = True # Hardcoded for now
 		if is_context_cli:
@@ -295,6 +296,10 @@ class inasra: #
 		# linkid = db.db_insert("inasra_words", inasra_id = inasraid, word_id = choice_word_ids[0].id, x = 0, y = 0, direction = 'x')
 
 		#self.Start_New_inasra.main()
+
+def load_test():
+	with open('fartpuzzle.ipuz') as yet:
+		return inasra(**json.loads(yet.read()))
 
 def main():
 	with open('emptyinasra.ipuz') as fill: ths = inasra(**json.loads(fill.read()))
