@@ -89,14 +89,37 @@ def return_max_regex(boardlet):
 		if check_for_viability(new_regex) is False:
 			return regboards
 		for each in range(len(new_regex)):
-			print(f"ya right: {new_regex[:each*-1]}")
 			if check_for_viability(new_regex[:each*-1]) is True:
 				if not new_regex[each*-1].isalpha():
-					print('approved')
 					regboards.append(new_regex[:each*-1])
 				else: print(f"gotta skip it cuz last char was :{new_regex[each*-1]}")
 		regboards.append(new_regex)
 	return regboards
+
+def get_freqy(inasra):
+	try:
+		if inasra.lexicon: freqy = inasra
+		else: freqy = inasra.set_lexicon()
+		return freqy
+	except :
+		print('failed to get freqy witchu')
+
+def will_word_fit(word, regboards):
+	"""	If the word fits in one
+		of the regboard slots,
+		I'll tell you which ones"""
+	which_ones = []
+	for each_slot in regboards:
+		this_slot = re.compile(each_slot.replace('*','.'))
+		if this_slot.match(word.upper()):
+			which_ones.append(each_slot)
+	return which_ones
+
+def compare_freqy_to_regboards(freqy, regboards):
+	freqy = get_freqy()
+	"""	The way this really needs to work is
+		is individual calls should compare a
+		cardinal freqy good"""
 
 def main():
 	X,Y = int(argv[1]), int(argv[2])

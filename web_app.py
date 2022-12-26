@@ -91,7 +91,7 @@ def recurs_spinalyze_post(word):
 @app.route("/<word>", methods=['GET'])
 def recurs_spinalyze(word):
 	try:
-		import pdb; pdb.set_trace()
+		#import pdb; pdb.set_trace()
 		wordspace_word = word#.replace(' ','')
 		print(f"your wordspace_word:word = {wordspace_word}:{word}")
 		#if "(" in wordspace_word:
