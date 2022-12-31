@@ -107,7 +107,7 @@ class inasra: #
 	def add_one_col_Across(self):
 		for each_row in self.solution: each_row.append('.')
 		self.dimensions['width'] += 1
-	def check_space(self, Across, Down):
+	def check_space(self, Down, Across):
 		if isinstance(Across, list):
 			space = ''
 			for each_space in Across:
@@ -126,21 +126,21 @@ class inasra: #
 			return space #a matchable regex
 		if isinstance(Across, int) and isinstance(Down, int):
 			return self.solution[Down][Across]
-	def add_character(self, character, Across, Down):
+	def add_character(self, character, Down, Across):
 		self.solution[Down][Across] = character
 	def range_word(self, word, fist_char_position):
 		pass # returns a list of the range of the word
-	def add_word_horiz(self, word, Across, Down):
+	def add_word_horiz(self, word, Down, Across):
 		self.clues['Across'].append(word)
 		word = list(word)
 		while word:
-			self.add_character(word.pop(0), Across, Down)
+			self.add_character(word.pop(0), Down, Across)
 			Across += 1
-	def add_word_vert(self, word, Across, Down):
+	def add_word_vert(self, word, Down, Across):
 		self.clues['Down'].append(word)
 		word = list(word)
 		while word:
-			self.add_character(word.pop(0), Across, Down)
+			self.add_character(word.pop(0), Down, Across)
 			Down += 1
 	def add_word(self, position, word, **kwargs):
 		try:

@@ -111,8 +111,8 @@ def will_word_fit(word, regboards):
 		I'll tell you which ones"""
 	which_ones = []
 	for each_slot in regboards:
-		this_slot = re.compile(each_slot.replace('*','.'))
-		if this_slot.match(word.upper()):
+		this_slot = re.compile(each_slot.replace('*','.')+"$")
+		if this_slot.match(word.upper().replace(' ','')):
 			which_ones.append(each_slot)
 	return which_ones
 
@@ -127,7 +127,15 @@ def compare_freqy_to_regboards(freqy, regboards):
 	return good_places
 	"""	The way this really needs to work is
 		is individual calls should compare a
-		cardinal freqy good"""
+		cardinal freqy good
+	"""
+
+	'''	Actually this regex
+		match is running
+		pretty fucking fast
+	'''
+def all_boards_with_position(good_places, board, position):
+	return board
 
 def main():
 	X,Y = int(argv[1]), int(argv[2])
