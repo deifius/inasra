@@ -8,7 +8,8 @@ description = '''
  Yo I receive a coordinate in X Y format on the xwordspine board
 I construct a list of regular expressions for legal word
 configurations which intersect the coordinate provided
-I then compare the list to the freqygoodword list and return any matches
+I then compare the list to the freqygoodword list
+and return any matches
 a reference to a file in .NextMoves/
 '''
 
@@ -116,7 +117,14 @@ def will_word_fit(word, regboards):
 	return which_ones
 
 def compare_freqy_to_regboards(freqy, regboards):
-	freqy = get_freqy()
+	good_places = []
+	for each_word in freqy:
+		putz = will_word_fit(each_word, regboards)
+		if putz:
+			good_places.append((each_word, putz))
+		if len(good_places) > 100:
+			return good_places
+	return good_places
 	"""	The way this really needs to work is
 		is individual calls should compare a
 		cardinal freqy good"""
