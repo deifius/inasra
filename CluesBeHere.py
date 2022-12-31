@@ -119,9 +119,9 @@ def will_word_fit(word, regboards):
 def compare_freqy_to_regboards(freqy, regboards):
 	good_places = []
 	for each_word in freqy:
-		putz = will_word_fit(each_word, regboards)
-		if putz:
-			good_places.append((each_word, putz))
+		where_it_fits = will_word_fit(each_word, regboards)
+		if where_it_fits:
+			good_places.append((each_word, where_it_fits))
 		if len(good_places) > 100:
 			return good_places
 	return good_places
