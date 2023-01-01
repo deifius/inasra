@@ -18,6 +18,14 @@ def rotate(board):
 
 def show_cross(zoard, position):
 	board = list(map(list, zoard))
+	for each_line in board:
+		each_line.append(' ')
+		each_line.insert(0, ' ')
+	board.insert(0, [' ']*len(board[0]))
+	board.append([' ']*len(board[0]))
+	position = [position[0]+1, position[1]+1]
+	"""	Just adding temp rows and columns to line the board
+		permitting searching at the edges, top & bottom"""
 	for row in enumerate(board):
 		for col in enumerate(row[1]):
 			if abs(col[0] - position[0]) > 1:
@@ -37,6 +45,7 @@ def show_cross(zoard, position):
 def get2planes(zoard, position):
 	'''i return two planes along the axes of the position'''
 	board = show_cross(zoard, position)
+	position = [position[0]+1, position[1]+1]
 	horiz = rotate(board[position[0]-1:position[0]+2])
 	board = rotate(board)
 	vert = rotate(board[position[1]-1:position[1]+2])
@@ -134,8 +143,13 @@ def compare_freqy_to_regboards(freqy, regboards):
 		match is running
 		pretty fucking fast
 	'''
-def all_boards_with_position(good_places, board, position):
-	return board
+
+def turn_match_to_board(position, good_place):
+	word_prepped = good_place[0].upper().replace(' ','')
+	position = [position[0], position[1]-good_place[1][0].index('*')]
+	return word_prepped, position[0], position[1]
+
+
 
 def main():
 	X,Y = int(argv[1]), int(argv[2])

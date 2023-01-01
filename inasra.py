@@ -193,12 +193,12 @@ class inasra: #
 		#		''')
 		spinewords = self.history
 		links_to_spine = db.get_multiwords_links(spinewords) # every link in every article for every word in the spine
-		import pdb; pdb.set_trace()
+		#import pdb; pdb.set_trace()
 		sorted_by_frequency = sorted(links_to_spine, key = links_to_spine.count,reverse = True)
 		ordered_set = list(OrderedDict.fromkeys(sorted_by_frequency))
 		for each_word in spinewords:
 			try: ordered_set.remove(each_word)
-			except: print(f"perhaps {each_word} isnt that great a word")
+			except: print(f"perhaps {each_word} is already part of the xword")
 		self.lexicon = ordered_set
 		return self.lexicon
 
