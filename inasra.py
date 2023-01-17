@@ -10,6 +10,7 @@ from lorem import text as lorem
 import Acronymizer
 import Start_New_inasra
 import wikichompdb
+from CrystalizeByCoords import return_max_regex, turn_match_to_board,compare_freqy_to_regboards,get2planes
 from collections import OrderedDict
 
 #from inasra import inasra as inasra lol
@@ -77,8 +78,27 @@ class inasra: #
 		decohere = find_horizontal_solutions()
 		decohere = decohere + find_vertical_solutions()
 		return decohere
-	def find_words_for(self, coordinates):
-		self.set_lexicon()
+	def find_words_for(self, coords):
+		"""
+			I return a list of word places that
+			include the coordinates [coords]
+			& intersect the existing xword solution
+			resulting in a new legal xword
+		"""
+		if not self.lexicon: self.set_lexicon()
+		vert, horiz = get2planes(self.solution, coords)
+		this, that = return_max_regex(horiz), return_max_regex(vert)
+		vick, huck = compare_freqy_to_regboards(self.lexicon,that),compare_freqy_to_regboards(self.lexicon,this)
+		vertical_words = [turn_match_to_board(coords, e, 'vert') for e in vick]
+		horizontal_words = [turn_match_to_board(coords, e, 'horiz') for e in huck]
+		crystal_eyes = {
+			'vertical_words':vertical_words,
+			'horizontal_words': horizontal_words
+		}
+		return crystal_eyes
+
+
+
 		raise InsertCheeseErr("some day I'll return a list of boardstates with a new word intersecting the given coordinates")
 	def visualize(self, xwordfield):
 		print("+ " * len(xwordfield[0]) + "+ +")
