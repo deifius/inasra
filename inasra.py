@@ -182,12 +182,10 @@ class inasra: #
 		self.show_solution()
 		self.solution = reality_board
 		return imaginary_board
-
-
-
-
-
-
+		"""	if we do a few things like
+		db.write.word, remove.from.lexicon, add.history
+		then we can just self.solution = imaginary_board!
+		"""
 	def db_word_obj(self, dat_word_tho):
 		word_tuples = db.db_query('''
 			SELECT id FROM word WHERE word = ?
