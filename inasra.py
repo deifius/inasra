@@ -96,10 +96,6 @@ class inasra: #
 			'horizontal_words': horizontal_words
 		}
 		return crystal_eyes
-
-
-
-		raise InsertCheeseErr("some day I'll return a list of boardstates with a new word intersecting the given coordinates")
 	def visualize(self, xwordfield):
 		print("+ " * len(xwordfield[0]) + "+ +")
 		for each_line in xwordfield:
@@ -109,7 +105,8 @@ class inasra: #
 		self.visualize(self.solution)
 	def show_puzzle(self):
 		self.visualize(self.puzzle)
-	def rotate(self, board): # returns a board swapped horiz & vert axes
+	def rotate(self, board): #if you are readin this you want to us swap_down_across()
+		"""returns a board swapped horiz & vert axes"""
 		return [list(row) for row in list(zip(*board))]
 	def swap_down_across(self):
 		self.clues['Down'], self.clues['Across'] = self.clues['Across'], self.clues['Down']
@@ -170,6 +167,27 @@ class inasra: #
 			print('submit an inasra monad')
 			return -1
 		self.lexicon.append(word)
+	def imagine(self, *args): # I'll show the board with a word you supply
+		try:
+			word, coords, orientation = args
+		except:
+			print('please supply word, coords, orientation')
+			return -1
+		reality_board = list(map(list, self.solution))
+		if "VERT" in orientation.upper():
+			self.add_word_vert(word, *coords)
+		else:
+			self.add_word_horiz(word, *coords)
+		imaginary_board = list(map(list, self.solution))
+		self.show_solution()
+		self.solution = reality_board
+		return imaginary_board
+
+
+
+
+
+
 	def db_word_obj(self, dat_word_tho):
 		word_tuples = db.db_query('''
 			SELECT id FROM word WHERE word = ?

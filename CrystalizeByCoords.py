@@ -161,6 +161,7 @@ def main():
 				if board[X][Y] != " ":
 					print("got to handle this")
 					exit(1)
+
 """
 from CluesBeHere import *
 import inasra; ya=inasra.load_test()
