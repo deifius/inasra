@@ -173,15 +173,17 @@ class inasra: #
 		except:
 			print('please supply word, coords, orientation')
 			return -1
-		reality_board = list(map(list, self.solution))
-		if "VERT" in orientation.upper():
-			self.add_word_vert(word, *coords)
-		else:
-			self.add_word_horiz(word, *coords)
-		imaginary_board = list(map(list, self.solution))
-		self.show_solution()
-		self.solution = reality_board
-		return imaginary_board
+		try:
+			reality_board = list(map(list, self.solution))
+			if "VERT" in orientation.upper():
+				self.add_word_vert(word, *coords)
+			else:
+				self.add_word_horiz(word, *coords)
+			imaginary_board = list(map(list, self.solution))
+			self.show_solution()
+			self.solution = reality_board
+			return imaginary_board
+		except: return -2
 		"""	if we do a few things like
 		db.write.word, remove.from.lexicon, add.history
 		then we can just self.solution = imaginary_board!
@@ -237,6 +239,19 @@ class inasra: #
 			except: print(f"perhaps {each_word} is already part of the xword")
 		self.lexicon = ordered_set
 		return self.lexicon
+	def crystalize_imagine(self, *args):
+		new_board_reality = self.imagine(*args)
+		if type(new_board_reality) == int: return "something wrong in the imagination"
+		word, coords, orientation = args
+		self.wordspace.append([word, coords, orientation])
+		for each in enumerate(self.lexicon):
+			if each[1].upper().replace(' ','').startswith(word):
+				self.history.append(self.lexicon.pop(each[0]))
+				print(f"excised d'lexicon: {self.history[-1]}")
+				break
+		self.solution = new_board_reality
+		#self.db.stuff
+		return
 
 	def Start(self):
 		is_context_cli = True # Hardcoded for now
