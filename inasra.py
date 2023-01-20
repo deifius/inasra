@@ -230,6 +230,8 @@ class inasra: #
 		#			desired output: a set of links ordered by redundancy in list, minus words already on board
 		#		''')
 		spinewords = self.history
+		for each in spinewords:
+			wikichompdb.wikipedia_grab_chomp(each)
 		links_to_spine = db.get_multiwords_links(spinewords) # every link in every article for every word in the spine
 		#import pdb; pdb.set_trace()
 		sorted_by_frequency = sorted(links_to_spine, key = links_to_spine.count,reverse = True)

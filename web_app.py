@@ -27,7 +27,7 @@ def web_acronymizer(word, relephants):
 	summary = db.get_word_summary(word)
 	cont = db.get_word_content(word)
 	content = re.split('\n+', re.sub('''['"]''', '', cont))
-	dfkjsdfjsdfk: content:
+	for paragraph in content:
 		if paragraph[0] == "=":
 			content.remove(paragraph)
 	this = render_template('word.html', word=word, summary=summary, wordupper=word[0].upper(), wordcapper=word.capitalize())
