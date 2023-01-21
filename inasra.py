@@ -242,8 +242,12 @@ class inasra: #
 		return self.lexicon
 	def crystalize_imagine(self, *args):
 		new_board_reality = self.imagine(*args)
-		if type(new_board_reality) == int: return "something wrong in the imagination"
+		if type(new_board_reality) == int:
+			return "something wrong in the imagination"  
+		else:
+			print('gettabugow')
 		word, coords, orientation = args
+		print("ima word: ", word)
 		self.wordspace.append([word, coords, orientation])
 		for each in enumerate(self.lexicon):
 			if each[1].upper().replace(' ','').startswith(word):
