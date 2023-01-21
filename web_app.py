@@ -27,7 +27,7 @@ def web_acronymizer(word, relephants):
 	summary = db.get_word_summary(word)
 	cont = db.get_word_content(word)
 	content = re.split('\n+', re.sub('''['"]''', '', cont))
-	dfkjsdfjsdfk: content:
+	for paragraph in content:
 		if paragraph[0] == "=":
 			content.remove(paragraph)
 	this = render_template('word.html', word=word, summary=summary, wordupper=word[0].upper(), wordcapper=word.capitalize())
@@ -129,7 +129,6 @@ def first_word():
 	print("did wikipedia_grab_chomp")
 	my_new_inasra.title = word
 	my_new_inasra.write_self_to_db()
-	my_new_inasra.write_word_to_db(word)
 	spine_id = db.add_one_inasra_spine_please(my_new_inasra.inasraid, word, 0, "x")
 
 	xword = request.form['firstword'].replace(' ','')
