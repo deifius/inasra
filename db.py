@@ -81,7 +81,7 @@ def get_word_images(word: str):
 		''', word)))
 
 def get_word(word: str):
-	return db_query('''
+	return db_query_one('''
 		SELECT *
 		FROM word
 		WHERE word LIKE ?
@@ -89,11 +89,11 @@ def get_word(word: str):
 
 def get_last_inasra_word(inasraid: int):
 	last_inasra_word = db_query('''
-		SELECT iw.id, iw.direction, iw.x, iw.y, iw.char_pos, w.word, w.url, w.summary, w.content
+		SELECT iw.id, iw.direction, iw.x, iw.y, w.word, w.url, w.summary, w.content
 		FROM inasra_words iw
 		LEFT JOIN word w ON w.id = iw.word_id
 		WHERE iw.inasra_id = ?
-		ORDER BY parent_word_id
+		ORDER BY id DESC
 	''', inasraid)
 	if len(last_inasra_word) > 0:
 		return last_inasra_word[0]
@@ -101,11 +101,18 @@ def get_last_inasra_word(inasraid: int):
 		return None
 
 def get_word_value(word: str, key: str):
-	word_rows = get_word(word)
-	if len(word_rows) > 0:
-		return word_rows[0][key]
+	word_obj = get_word(word)
+	if word_obj:
+		return word_obj[key]
 	else:
 		return None
+
+def get_latest_spine_coords(inasraid):
+	lastest_word_id = db_query_value("SELECT MAX(id) FROM inasra_spine WHERE inasra_id = ?", [inasraid])
+	current_dimension = db_query_value("SELECT dimension FROM inasra_spine WHERE id = ?", [lastest_word_id])
+	sumx = db_query_value("SELECT SUM(choice_pos) FROM inasra_spine WHERE inasra_id = ? AND dimension = 'x' AND id != ?", [inasraid, lastest_word_id])
+	sumy = db_query_value("SELECT SUM(choice_pos) FROM inasra_spine WHERE inasra_id = ? AND dimension = 'y' AND id != ?", [inasraid, lastest_word_id])
+	return current_dimension, y, x
 
 def add_one_inasra_spine_please(inasra_id: int, word: str, choice_pos: int, *args):
 	# word_id = db_query_value("id", "SELECT w.id FROM word w WHERE w.word = ?", word)
@@ -148,6 +155,20 @@ def add_one_inasra_spine_please(inasra_id: int, word: str, choice_pos: int, *arg
 		prev_word_id = prev_word_id
 	)
 	return spineid
+
+def add_one_inasra_word_please(inasra_id: int, word: str, direction: str, y: int, x: int, *args):
+	word_id = get_word_value(word, "id")
+	if word_id:
+		inasra_word_id = db_insert("inasra_words",
+			inasra_id = inasra_id,
+			word_id = word_id,
+			direction = ('x' if direction == 'vert' else 'y'),
+			x = x,
+			y = y
+		)
+		return inasra_word_id
+	else:
+		return None
 
 def get_word_summary(word: str):
 	return get_word_value(word, "summary")

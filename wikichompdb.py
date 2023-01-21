@@ -38,7 +38,7 @@ def make_word_xword(wrd):
 def wikipedia_grab_chomp(wikiterm):
 	'''I retrieve linked articles, summaries and picture locations from wikipedia
 		I used to put the chomped wiki stuff in a dir, but now I put that junk in a sqlite3 db'''
-	words = db.db_query("select * from word where word = ?", wikiterm)
+	words = db.db_query("select * from word where word LIKE ?", wikiterm)
 	if len(words) < 1:
 		try:
 			#pdb.set_trace()

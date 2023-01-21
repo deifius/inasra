@@ -129,7 +129,6 @@ def first_word():
 	print("did wikipedia_grab_chomp")
 	my_new_inasra.title = word
 	my_new_inasra.write_self_to_db()
-	my_new_inasra.write_word_to_db(word)
 	spine_id = db.add_one_inasra_spine_please(my_new_inasra.inasraid, word, 0, "x")
 
 	xword = request.form['firstword'].replace(' ','')

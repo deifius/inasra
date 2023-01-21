@@ -16,7 +16,7 @@ from collections import OrderedDict
 #from inasra import inasra as inasra lol
 
 class inasra: #
-	def __init__(self, origin, version, kind, copyright, author, publisher, title, intro, empty, dimensions, puzzle, clues, solution, lexicon, wordspace, history, *args, **kwargs):
+	def __init__(self, origin, version, kind, copyright, author, publisher, title, intro, empty, dimensions, puzzle, clues, solution, lexicon, wordspace, history, inasraid, *args, **kwargs):
 		self.origin = origin
 		self.version = version
 		self.kind = kind
@@ -200,6 +200,7 @@ class inasra: #
 	def write_self_to_db(self):
 		self.inasraid = db.db_insert("inasra", name = self.title)
 	def write_word_to_db(self, word):
+		print("You done called a deprecated func: write_word_to_db")
 		word_obj = self.db_word_obj(word)
 		if not word_obj or not self.inasraid:
 			return None
@@ -217,11 +218,9 @@ class inasra: #
 		return db.db_insert("inasra_words",
 			word_id = word_obj["id"],
 			inasra_id = self.inasraid,
-			char_pos = 0, # FIXME
 			direction = direction,
 			x = x,
 			y = y,
-			parent_word_id = prev_word_id,
 		)
 	def set_lexicon(self):
 		#raise InsertCheeseErr('''
@@ -252,7 +251,9 @@ class inasra: #
 				print(f"excised d'lexicon: {self.history[-1]}")
 				break
 		self.solution = new_board_reality
-		#self.db.stuff
+		fnordotron = self.inasraid
+		if fnordotron:
+			db.add_one_inasra_word_please(fnordotron, word, orientation, coords[0], coords[1])
 		return
 
 	def Start(self):
@@ -275,6 +276,7 @@ class inasra: #
 		if word_obj is None:
 			print(f'we tried real hard, but db_word_obj failz0red: {word}')
 
+		# TODO: this needs to be converted to use the "inasra_spine" table instead
 		prev_inasra_word_id = db.db_insert("inasra_words",
 			word_id = word_obj["id"],
 			direction = 'x',
@@ -352,6 +354,10 @@ class inasra: #
 
 def load_test():
 	with open('fartpuzzle.ipuz') as yet:
+		return inasra(**json.loads(yet.read()))
+
+def load_test_db():
+	with open('fartpuzzle_db.ipuz') as yet:
 		return inasra(**json.loads(yet.read()))
 
 def main():
