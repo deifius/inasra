@@ -5,6 +5,7 @@ import os
 os.system('./scripts/pips.sh -q > /dev/null')
 os.system('./scripts/initdb.sh > /dev/null')
 
+from tabulate import tabulate
 from flask import Flask, request, redirect, render_template, url_for
 from subprocess import Popen, PIPE, STDOUT, check_output
 import json, re, os, pwd, Acronymizer as acronymizer
@@ -30,7 +31,19 @@ def web_acronymizer(word, relephants):
 	for paragraph in content:
 		if paragraph[0] == "=":
 			content.remove(paragraph)
-	this = render_template('word.html', word=word, summary=summary, wordupper=word[0].upper(), wordcapper=word.capitalize())
+
+	with open('datums/garbo.json') as this: garbo = json.loads(this.read())
+	trashpictures = garbo['trashpictures']
+	all_image_urls = db.get_word_images(word)
+	for trash in trashpictures:
+		try:
+			all_image_urls.remove(trash)
+		except: pass
+	shuffle(all_image_urls)
+
+	peak_buttons = re.sub('>([\S\s])<', r'><button onclick=crystalization(spine,wordbones)>\1</button><', tabulate(your_inasra.solution, tablefmt='html'))
+
+	this = render_template('word.html', word=word, summary=summary, wordupper=word[0].upper(), wordcapper=word.capitalize(), images=all_image_urls, imagequantity=len(all_image_urls), peak_buttons=peak_buttons)
 	for eachletter in enumerate(word): #Click Me!
 		if eachletter[1] in [' ', '-', '.', ',','&'] or eachletter[0] == 0:
 			this += ""
