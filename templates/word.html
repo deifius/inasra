@@ -2,6 +2,7 @@
 
 {% block extra_head %}
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/kenburns.css') }}">
 	<style>
 	style="overflow-y:scroll;"
 	.dropbtn {
@@ -44,8 +45,22 @@
 {% block title %}inasra: {{ word }}{% endblock %}
 
 {% block main %}
+<!--
 	<iframe align="right" width="720" height="315" src="kenburns/{{word}}"></iframe>
 	<iframe align="right" width="720" height="315" src="spine_peak"></iframe>
+-->
+
+	<div id="ken_burns" style="opacity: 0.25">
+		<div class="slideshow">
+			{% for image in range(imagequantity) %}
+			<div class="slide" style="background-image: url('{{ images[image] }}'); animation-delay: {{ image*4 }}s;"></div>
+			{% endfor %}
+		</div>
+	</div>
+
+	<div id="spike_peak" style="z-index: 99999; background: rgba(0, 0, 0, 0.5); position: fixed; top: 10px; right: 10px; width: 400px; height: 400px; border: 3px solid black;">
+		{{ peak_buttons|safe }}
+	</div>
 
 	<a href= ''{{ summary }}><button type="button"><p style="font-family:monospace; line-height:.5;"><font size='+6'> {{ wordupper }} </font></p></button>&emsp;
 	<a href=" " title="{{ summary }}" style="background-color:#hhhhhh; color:#000000;text-decoration:none"><font size='+6'>{{ wordcapper }}</font></a>&emsp;
