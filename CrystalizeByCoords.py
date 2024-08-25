@@ -149,6 +149,25 @@ def turn_match_to_board(position, good_place, orientation):
 	else: position = [position[0], position[1]-good_place[1][0].index('*')]
 	return word_prepped, position[0], position[1]
 
+def calculate_possible_words(ipuz_data, lexicon, x, y):
+    # Retrieve the solution grid
+    solution = ipuz_data['solution']
+    
+    # Get the vertical and horizontal planes for the given coordinates
+    vert, horiz = get2planes(solution, [x, y])
+    
+    # Calculate the max regex patterns for both orientations
+    vert_regexes = return_max_regex(vert)
+    horiz_regexes = return_max_regex(horiz)
+    
+    # Combine both regex lists
+    regexes = vert_regexes + horiz_regexes
+    
+    # Find good places in the puzzle for the words from the lexicon
+    possible_words = compare_freqy_to_regboards(lexicon, regexes)
+    
+    return possible_words
+
 
 
 def main():
