@@ -32,6 +32,17 @@
 .dropdown-content button:hover {
     background-color: #ddd;
 }
+.modal-content {
+    background-color: #fefefe;
+    margin: auto; /* Centered horizontally */
+    padding: 20px;
+    border: 1px solid #888;
+    width: auto; /* Adjust width to content */
+    max-width: 90%; /* Limit max width to prevent overflow */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Add some shadow for better visibility */
+    display: inline-block; /* Makes the content fit to its natural size */
+}
+
 .highlight {
     color: red;
 }

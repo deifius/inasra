@@ -29,17 +29,21 @@ def handle_click():
     y = int(request.args.get('y'))
     return jsonify(success=True, x=x, y=y)
 
+
 @app.route('/hover', methods=['GET'])
 def handle_hover():
-    x = int(request.args.get('x'))
-    y = int(request.args.get('y'))
+    x = int(request.args.get('x')) - 1  # Adjust for zero-based index
+    y = int(request.args.get('y')) - 1  # Adjust for zero-based index
+    
+    print(f"Adjusted hover coordinates: x={x}, y={y}")
+    
     global ipuz_data, lexicon
 
-    # Call the function from CrystalizeByCoords.py to get possible words
-    possible_words = CrystalizeByCoords.calculate_possible_words(ipuz_data, lexicon, x, y)
+    # Assuming the corrected interpretation (x = col, y = row) after adjusting for zero-indexing
+    possible_words = CrystalizeByCoords.calculate_possible_words(ipuz_data, lexicon, y, x)
 
-    # Return the possible words and updated puzzle state for preview
     return jsonify(possible_words=possible_words)
+
 
 def render_crossword(ipuz_data):
     puzzle = ipuz_data.get('solution', [])
