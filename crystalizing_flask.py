@@ -3,6 +3,7 @@ import json
 import sys
 from db import db_insert, db_query, add_one_inasra_word_please
 import CrystalizeByCoords  # Assuming this is where regex logic exists
+import uuid
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
@@ -58,9 +59,14 @@ def process():
     position = request.json['position']
     
     possible_words = get_possible_words(position, ipuz_data, lexicon)
-    
     return jsonify(possible_words=possible_words)
 
+# Define the get_updated_board function
+def get_updated_board(word, position, orientation, board):
+    cmd = ["python3", "cluePLACER.py", word, str(position[0]), str(position[1]), orientation, json.dumps(board)]
+    result = subprocess.run(cmd, capture_output=True, text=True)
+    updated_board = json.loads(result.stdout)
+    return updated_board
 
 @app.route('/place_word', methods=['POST'])
 def place_word():
@@ -68,15 +74,16 @@ def place_word():
     word = request.json['word']
     position = request.json['position']
     orientation = request.json['orientation']
-    
-    updated_ipuz, new_coords = place_word_in_ipuz(word, position, orientation, ipuz_data)
-    
+
+    # Use get_updated_board to update the IPUZ board using cluePLACER
+    updated_ipuz = get_updated_board(word, position, orientation, ipuz_data['solution'])
+
     # Update global IPUZ data
-    ipuz_data = updated_ipuz
-    
+    ipuz_data['solution'] = updated_ipuz
+
     new_uuid = str(uuid.uuid4())
-    
-    return jsonify(success=True, message="Word placed successfully", ipuz=updated_ipuz, new_uuid=new_uuid)
+
+    return jsonify(success=True, message="Word placed successfully", ipuz=ipuz_data, new_uuid=new_uuid)
 
 
 def get_possible_words(position, ipuz_data, lexicon):
@@ -86,6 +93,7 @@ def get_possible_words(position, ipuz_data, lexicon):
 def place_word_in_ipuz(word, position, orientation, ipuz_data):
     new_coords = (position[0], position[1])
     return ipuz_data, new_coords
+
 
 
 def run_without_database(ipuz_file, word_list):
